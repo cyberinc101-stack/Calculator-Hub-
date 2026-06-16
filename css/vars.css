@@ -1,0 +1,69 @@
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── Light mode ── */
+  --bg:           #F7F6F3;
+  --bg2:          #EFEEE9;
+  --surface:      #FFFFFF;
+  --surface2:     #F3F2ED;
+  --border:       #E4E2DA;
+  --border2:      #D4D1C7;
+  --text:         #1C1B18;
+  --text-2:       #4A4740;
+  --text-muted:   #8C8880;
+
+  --accent:       #1A3A6B;
+  --accent-mid:   #2552A3;
+  --accent-light: #EDF1FB;
+  --accent-glow:  rgba(37,82,163,0.10);
+
+  --green:        #0F7B52;
+  --green-light:  #E8F7F2;
+  --amber:        #B45309;
+  --amber-light:  #FEF3C7;
+  --red:          #C0392B;
+  --red-light:    #FEE9E7;
+  --violet:       #6D28D9;
+  --violet-light: #EDE9FE;
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.04);
+  --shadow:     0 2px 4px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);
+  --shadow-lg:  0 4px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.10);
+
+  --radius:    16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-serif:'Instrument Serif', Georgia, serif;
+  --font-mono: 'DM Mono', 'Fira Mono', monospace;
+
+  --max-w: 920px;
+}
+
+[data-theme="dark"] {
+  --bg:           #111210;
+  --bg2:          #181917;
+  --surface:      #1D1F1C;
+  --surface2:     #252723;
+  --border:       #2E312B;
+  --border2:      #3A3D36;
+  --text:         #ECEAE4;
+  --text-2:       #C0BDB4;
+  --text-muted:   #706D65;
+  --accent:       #5B8DEF;
+  --accent-mid:   #4A7ADE;
+  --accent-light: #1A2540;
+  --accent-glow:  rgba(91,141,239,.15);
+  --green:        #22C98B;
+  --green-light:  #0C2820;
+  --amber:        #F0B429;
+  --amber-light:  #231C08;
+  --red:          #F06B5B;
+  --red-light:    #2A1210;
+  --violet:       #A78BFA;
+  --violet-light: #1E1840;
+  --shadow-sm:  0 1px 2px rgba(0,0,0,.3);
+  --shadow:     0 2px 4px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  --shadow-lg:  0 4px 8px rgba(0,0,0,.5), 0 16px 48px rgba(0,0,0,.4);
+}

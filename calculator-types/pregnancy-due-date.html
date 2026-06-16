@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pregnancy Due Date Calculator — By LMP, Conception, or Ultrasound | CalcHub</title>
+<meta name="description" content="Free pregnancy due date calculator. Estimate your due date using last menstrual period (LMP), conception date, or ultrasound date. See current week, trimester, and key milestones. Instant results.">
+<meta name="keywords" content="pregnancy due date calculator,due date calculator,how many weeks pregnant am i,conception date calculator,pregnancy week calculator,trimester calculator,LMP due date calculator,EDD calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/pregnancy-due-date.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pregnancy Due Date Calculator","description":"Estimate pregnancy due date from last menstrual period, conception date, or ultrasound date, with current week and trimester breakdown.","url":"https://yourdomain.com/calculator-types/pregnancy-due-date.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🤰 Due Date Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Pregnancy Due Date Calculator</h1>
+  <p class="hero-sub">Estimate your due date from last menstrual period, conception date, or ultrasound — plus current week and trimester.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🤰</div>
+    <div><div class="calc-card-title">Due Date Calculator</div><div class="calc-card-desc">Estimated due date, current week, and trimester</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Calculate Based On</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="dd-mode" value="lmp" checked> Last Period (LMP)</label>
+        <label class="radio-pill"><input type="radio" name="dd-mode" value="conception"> Conception Date</label>
+        <label class="radio-pill"><input type="radio" name="dd-mode" value="ultrasound"> Ultrasound Date</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field" id="dd-date-field">
+        <label for="dd-date" id="dd-date-label">First Day of Last Menstrual Period</label>
+        <input type="date" id="dd-date">
+      </div>
+      <div class="field" id="dd-cycle-field">
+        <label for="dd-cycle">Average Cycle Length</label>
+        <div class="input-wrap">
+          <input type="number" id="dd-cycle" value="28" min="20" max="45" step="1">
+          <span class="input-suffix">days</span>
+        </div>
+        <span class="field-hint">Default is 28 days</span>
+      </div>
+      <div class="field" id="dd-us-weeks-field" style="display:none">
+        <label for="dd-us-weeks">Gestational Age at Ultrasound (weeks)</label>
+        <input type="number" id="dd-us-weeks" value="8" min="0" max="42" step="1">
+      </div>
+      <div class="field" id="dd-us-days-field" style="display:none">
+        <label for="dd-us-days">+ Additional Days</label>
+        <input type="number" id="dd-us-days" value="0" min="0" max="6" step="1">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcDueDate()">Calculate Due Date →</button>
+
+    <div class="results" id="dd-results">
+      <div class="results-header">Pregnancy Timeline</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Estimated Due Date</div>
+          <div class="result-value" id="r-dd-edd">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Current Week</div>
+          <div class="result-value" id="r-dd-week">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Trimester</div>
+          <div class="result-value" id="r-dd-trimester">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Days Until Due Date</div>
+          <div class="result-value" id="r-dd-countdown">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Estimated Conception Date</div>
+          <div class="result-value" id="r-dd-conception">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">End of First Trimester</div>
+          <div class="result-value" id="r-dd-t1-end">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">End of Second Trimester</div>
+          <div class="result-value" id="r-dd-t2-end">—</div>
+        </div>
+      </div>
+
+      <div id="dd-insight" class="insight"><div class="insight-icon">💡</div><div id="dd-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Due Date Calculator</h2>
+  <p>Choose the method that matches the information you have. Last menstrual period (LMP) is the most common method and the one most clinicians default to. If you know your conception date precisely, that method skips the cycle-length assumption. If you've had a dating ultrasound, entering the gestational age it reported gives the most clinically refined estimate, since ultrasound measurements directly observe fetal size.</p>
+
+  <h3>How Due Dates Are Calculated</h3>
+  <p>The standard method (Naegele's Rule) adds 280 days (40 weeks) to the first day of the last menstrual period, adjusted for cycle length if it differs from the 28-day average. Conception-based estimates add 266 days (38 weeks) to the conception date, since conception typically occurs roughly two weeks after the start of the last period. Ultrasound-based estimates work backward from the gestational age measured at the scan.</p>
+
+  <h3>Remember: This Is an Estimate</h3>
+  <p>Only about 5% of babies are born exactly on their estimated due date. Most births happen within a window of one to two weeks before or after the EDD. The due date is a useful planning marker, not a prediction of the exact birth day.</p>
+
+  <div class="faq-item"><div class="faq-q">Why does my due date change depending on the method I use?</div><div class="faq-a"><p>Each method makes different assumptions. LMP-based dating assumes a standard 28-day cycle with ovulation on day 14, which doesn't hold for everyone with irregular cycles. Ultrasound dating measures actual fetal size and is generally considered more accurate, especially when done in the first trimester, which is why doctors often adjust the EDD after an early scan.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How is gestational age different from fetal age?</div><div class="faq-a"><p>Gestational age is counted from the first day of the last menstrual period, while fetal (or conceptional) age is counted from the actual date of conception, roughly two weeks later. Medical providers almost always use gestational age, which is why a pregnancy is described as "40 weeks" even though actual fetal development time is closer to 38 weeks.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What weeks mark each trimester?</div><div class="faq-a"><p>The first trimester runs from week 1 through the end of week 13. The second trimester runs from week 14 through the end of week 27. The third trimester runs from week 28 until delivery, typically around week 40.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var ddMode = 'lmp';
+
+document.querySelectorAll('input[name="dd-mode"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="dd-mode"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    ddMode = this.value;
+    var label = document.getElementById('dd-date-label');
+    var cycleField = document.getElementById('dd-cycle-field');
+    var usWeeksField = document.getElementById('dd-us-weeks-field');
+    var usDaysField = document.getElementById('dd-us-days-field');
+    var dateField = document.getElementById('dd-date-field');
+
+    if(ddMode === 'lmp'){
+      label.textContent = 'First Day of Last Menstrual Period';
+      dateField.style.display = '';
+      cycleField.style.display = '';
+      usWeeksField.style.display = 'none';
+      usDaysField.style.display = 'none';
+    } else if(ddMode === 'conception'){
+      label.textContent = 'Conception Date';
+      dateField.style.display = '';
+      cycleField.style.display = 'none';
+      usWeeksField.style.display = 'none';
+      usDaysField.style.display = 'none';
+    } else {
+      label.textContent = 'Date of Ultrasound';
+      dateField.style.display = '';
+      cycleField.style.display = 'none';
+      usWeeksField.style.display = '';
+      usDaysField.style.display = '';
+    }
+  });
+});
+
+(function(){
+  var todayStr = new Date().toISOString().slice(0,10);
+  document.getElementById('dd-date').value = todayStr;
+})();
+
+function calcDueDate(){
+  var dateStr = vs('dd-date');
+  if(!dateStr){ showToast('Please enter a date'); return; }
+
+  var inputDate = new Date(dateStr + 'T00:00:00');
+  var today = new Date(); today.setHours(0,0,0,0);
+  var edd, conceptionDate;
+
+  if(ddMode === 'lmp'){
+    var cycle = v('dd-cycle') || 28;
+    var cycleAdjust = cycle - 28;
+    edd = new Date(inputDate);
+    edd.setDate(edd.getDate() + 280 + cycleAdjust);
+    conceptionDate = new Date(inputDate);
+    conceptionDate.setDate(conceptionDate.getDate() + 14 + cycleAdjust);
+  } else if(ddMode === 'conception'){
+    conceptionDate = new Date(inputDate);
+    edd = new Date(inputDate);
+    edd.setDate(edd.getDate() + 266);
+  } else {
+    var usWeeks = v('dd-us-weeks') || 0;
+    var usDays = v('dd-us-days') || 0;
+    var gestationalDaysAtScan = usWeeks * 7 + usDays;
+    edd = new Date(inputDate);
+    edd.setDate(edd.getDate() + (280 - gestationalDaysAtScan));
+    conceptionDate = new Date(edd);
+    conceptionDate.setDate(conceptionDate.getDate() - 266);
+  }
+
+  var lmpEquivalent = new Date(edd);
+  lmpEquivalent.setDate(lmpEquivalent.getDate() - 280);
+
+  var msSinceLmp = today.getTime() - lmpEquivalent.getTime();
+  var daysSinceLmp = Math.floor(msSinceLmp / 86400000);
+  var currentWeek = Math.floor(daysSinceLmp / 7);
+  var currentDayInWeek = daysSinceLmp % 7;
+
+  var trimester;
+  if(currentWeek < 0) trimester = 'Not yet started';
+  else if(currentWeek < 14) trimester = 'First Trimester';
+  else if(currentWeek < 28) trimester = 'Second Trimester';
+  else trimester = 'Third Trimester';
+
+  var daysUntilDue = Math.ceil((edd.getTime() - today.getTime()) / 86400000);
+
+  var t1End = new Date(lmpEquivalent); t1End.setDate(t1End.getDate() + 13*7 + 6);
+  var t2End = new Date(lmpEquivalent); t2End.setDate(t2End.getDate() + 27*7 + 6);
+
+  var dateOpts = {year:'numeric',month:'long',day:'numeric'};
+
+  setEl('r-dd-edd', edd.toLocaleDateString('en-US',dateOpts));
+  setEl('r-dd-week', currentWeek >= 0 && currentWeek <= 42 ? ('Week '+currentWeek+', day '+currentDayInWeek) : (currentWeek < 0 ? 'N/A' : 'Past due'));
+  setEl('r-dd-trimester', trimester);
+  setEl('r-dd-countdown', daysUntilDue >= 0 ? daysUntilDue+' days' : Math.abs(daysUntilDue)+' days overdue');
+  setEl('r-dd-conception', conceptionDate.toLocaleDateString('en-US',dateOpts));
+  setEl('r-dd-t1-end', t1End.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));
+  setEl('r-dd-t2-end', t2End.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));
+
+  var insightText;
+  if(currentWeek < 0){
+    insightText = 'Based on your dates, the pregnancy timeline has not started yet according to this calculation — double check your input date.';
+  } else if(daysUntilDue < 0){
+    insightText = '<strong>Past your estimated due date</strong> by '+Math.abs(daysUntilDue)+' days. Only about 5% of babies arrive exactly on the EDD, so this is common — check in with your care provider.';
+  } else if(currentWeek >= 37){
+    insightText = 'At <strong>week '+currentWeek+'</strong>, you are considered full term. Your estimated due date is <strong>'+daysUntilDue+' days</strong> away.';
+  } else {
+    insightText = 'You are in the <strong>'+trimester.toLowerCase()+'</strong>, at approximately <strong>week '+currentWeek+'</strong>. Remember: only ~5% of babies are born exactly on the EDD — most arrive within 1–2 weeks of it.';
+  }
+  document.getElementById('dd-insight-text').innerHTML = insightText;
+
+  showRes('dd-results');
+}
+window.addEventListener('load', calcDueDate);
+</script>
+</body></html>

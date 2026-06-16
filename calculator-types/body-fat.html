@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Body Fat Percentage Calculator — Navy Method & BMI Method | CalcHub</title>
+<meta name="description" content="Free body fat percentage calculator using the U.S. Navy circumference method and BMI method. Get your body fat %, lean mass, fat mass, and category classification. Instant results.">
+<meta name="keywords" content="body fat calculator,body fat percentage calculator,navy body fat method,bmi body fat calculator,lean body mass calculator,body fat category calculator,how to calculate body fat percentage">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/body-fat.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Body Fat Percentage Calculator","description":"Estimate body fat percentage using the U.S. Navy circumference method and BMI method.","url":"https://yourdomain.com/calculator-types/body-fat.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📏 Body Fat Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Body Fat Percentage Calculator</h1>
+  <p class="hero-sub">Estimate your body fat percentage using the U.S. Navy circumference method, with lean mass and category breakdown.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📏</div>
+    <div><div class="calc-card-title">Body Fat Calculator</div><div class="calc-card-desc">Navy method — circumference measurements</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Unit System</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="bf-unit" value="imperial" checked> Imperial (in)</label>
+        <label class="radio-pill"><input type="radio" name="bf-unit" value="metric"> Metric (cm)</label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Sex</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="bf-sex" value="male" checked> Male</label>
+        <label class="radio-pill"><input type="radio" name="bf-sex" value="female"> Female</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="bf-height">Height</label>
+        <div class="input-wrap">
+          <input type="number" id="bf-height" value="70" min="0" step="0.5">
+          <span class="input-suffix" id="bf-h-suffix">in</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="bf-weight">Weight</label>
+        <div class="input-wrap">
+          <input type="number" id="bf-weight" value="175" min="0" step="0.5">
+          <span class="input-suffix" id="bf-w-suffix">lb</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="bf-neck">Neck Circumference</label>
+        <div class="input-wrap">
+          <input type="number" id="bf-neck" value="15" min="0" step="0.1">
+          <span class="input-suffix" id="bf-neck-suffix">in</span>
+        </div>
+        <span class="field-hint">Measure below the larynx</span>
+      </div>
+      <div class="field">
+        <label for="bf-waist">Waist Circumference</label>
+        <div class="input-wrap">
+          <input type="number" id="bf-waist" value="34" min="0" step="0.1">
+          <span class="input-suffix" id="bf-waist-suffix">in</span>
+        </div>
+        <span class="field-hint">Measure at the navel</span>
+      </div>
+      <div class="field" id="bf-hip-field" style="display:none">
+        <label for="bf-hip">Hip Circumference</label>
+        <div class="input-wrap">
+          <input type="number" id="bf-hip" value="38" min="0" step="0.1">
+          <span class="input-suffix" id="bf-hip-suffix">in</span>
+        </div>
+        <span class="field-hint">Females only — measure at widest point</span>
+      </div>
+      <div class="field">
+        <label for="bf-age">Age</label>
+        <input type="number" id="bf-age" value="30" min="1" max="120" step="1">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcBodyFat()">Calculate Body Fat →</button>
+
+    <div class="results" id="bf-results">
+      <div class="results-header">Body Composition Results</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Body Fat %</div>
+          <div class="result-value" id="r-bf-pct">—</div>
+          <div class="result-sub" id="r-bf-cat"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Fat Mass</div>
+          <div class="result-value" id="r-bf-fatmass">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Lean Mass</div>
+          <div class="result-value" id="r-bf-leanmass">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">BMI (reference)</div>
+          <div class="result-value" id="r-bf-bmi">—</div>
+        </div>
+      </div>
+
+      <div id="bf-insight" class="insight"><div class="insight-icon">💡</div><div id="bf-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px">
+        <div class="breakdown-title">Body Fat Category Reference (by sex)</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Category</th><th>Men</th><th>Women</th></tr></thead>
+          <tbody>
+            <tr><td>Essential Fat</td><td class="td-mono">2–5%</td><td class="td-mono">10–13%</td></tr>
+            <tr><td>Athletic</td><td class="td-mono">6–13%</td><td class="td-mono">14–20%</td></tr>
+            <tr><td>Fitness</td><td class="td-mono">14–17%</td><td class="td-mono">21–24%</td></tr>
+            <tr><td>Average</td><td class="td-mono">18–24%</td><td class="td-mono">25–31%</td></tr>
+            <tr><td>Obese</td><td class="td-mono">25%+</td><td class="td-mono">32%+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Body Fat Calculator</h2>
+  <p>Select your unit system and sex, then enter your height, weight, age, and circumference measurements (neck and waist for men; neck, waist, and hip for women). The calculator uses the U.S. Navy method to estimate your body fat percentage, along with your fat mass, lean mass, and category classification.</p>
+
+  <h3>How to Measure Correctly</h3>
+  <p>Measure your neck just below the larynx (Adam's apple), keeping the tape slightly downward-sloping. Measure your waist at the navel for the most consistent results, and for women, measure your hips at the widest point. Use a flexible tape measure and keep it snug but not compressing the skin, ideally measuring first thing in the morning before eating.</p>
+
+  <h3>Why the Navy Method?</h3>
+  <p>The U.S. Navy circumference method was developed and validated by the U.S. military as a practical field alternative to skinfold calipers and DEXA scans. While not as precise as lab-grade methods like hydrostatic weighing or DEXA, it correlates reasonably well with more expensive techniques and only requires a tape measure, making it one of the most accessible reliable estimation methods available.</p>
+
+  <div class="faq-item"><div class="faq-q">How accurate is the Navy method compared to other methods?</div><div class="faq-a"><p>The Navy method typically estimates body fat within 3–4% of more precise methods like DEXA scans for most people, which is comparable to skinfold calipers used correctly. It tends to be less accurate for very lean athletes or people with atypical body fat distribution, but it remains one of the most accessible and reasonably reliable home methods available.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why does the calculator ask for hip measurement only for women?</div><div class="faq-a"><p>The Navy method formula was derived separately for men and women based on where each sex typically stores fat. Men's formula uses neck and waist only, since male fat storage correlates more strongly with abdominal circumference. Women's formula adds hip measurement since female fat storage and distribution is better predicted by including hip circumference.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What's a healthy body fat percentage range?</div><div class="faq-a"><p>For men, 14–17% is generally considered "fitness" level and 18–24% is "average" and still healthy. For women, 21–24% is "fitness" level and 25–31% is "average" and healthy. Athletes often sit lower, but going too far below the essential fat range (2–5% men, 10–13% women) can be harmful to hormonal and organ function.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var bfUnit = 'imperial';
+
+document.querySelectorAll('input[name="bf-unit"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="bf-unit"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    bfUnit = this.value;
+    var suffix = bfUnit === 'imperial' ? 'in' : 'cm';
+    var wsuffix = bfUnit === 'imperial' ? 'lb' : 'kg';
+    document.getElementById('bf-h-suffix').textContent = suffix;
+    document.getElementById('bf-w-suffix').textContent = wsuffix;
+    document.getElementById('bf-neck-suffix').textContent = suffix;
+    document.getElementById('bf-waist-suffix').textContent = suffix;
+    document.getElementById('bf-hip-suffix').textContent = suffix;
+    calcBodyFat();
+  });
+});
+
+document.querySelectorAll('input[name="bf-sex"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="bf-sex"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    document.getElementById('bf-hip-field').style.display = this.value === 'female' ? '' : 'none';
+    calcBodyFat();
+  });
+});
+
+function calcBodyFat(){
+  var sex = document.querySelector('input[name="bf-sex"]:checked').value;
+  var heightIn = v('bf-height');
+  var weightLb = v('bf-weight');
+  var neckIn = v('bf-neck');
+  var waistIn = v('bf-waist');
+  var hipIn = sex === 'female' ? v('bf-hip') : 0;
+  var age = v('bf-age');
+
+  if(heightIn <= 0 || weightLb <= 0 || neckIn <= 0 || waistIn <= 0){ showToast('Please enter valid measurements'); return; }
+
+  var heightCm, weightKg, neckCm, waistCm, hipCm;
+  if(bfUnit === 'imperial'){
+    heightCm = heightIn * 2.54;
+    weightKg = weightLb * 0.453592;
+    neckCm = neckIn * 2.54;
+    waistCm = waistIn * 2.54;
+    hipCm = hipIn * 2.54;
+  } else {
+    heightCm = heightIn;
+    weightKg = weightLb;
+    neckCm = neckIn;
+    waistCm = waistIn;
+    hipCm = hipIn;
+  }
+
+  if(waistCm <= neckCm){ showToast('Waist measurement should be larger than neck measurement'); return; }
+
+  var bfPct;
+  if(sex === 'male'){
+    bfPct = 495 / (1.0324 - 0.19077 * Math.log10(waistCm - neckCm) + 0.15456 * Math.log10(heightCm)) - 450;
+  } else {
+    if(hipCm <= 0){ showToast('Please enter a valid hip measurement'); return; }
+    bfPct = 495 / (1.29579 - 0.35004 * Math.log10(waistCm + hipCm - neckCm) + 0.22100 * Math.log10(heightCm)) - 450;
+  }
+  bfPct = Math.max(2, Math.min(60, bfPct));
+
+  var fatMassKg = weightKg * bfPct / 100;
+  var leanMassKg = weightKg - fatMassKg;
+
+  var heightM = heightCm / 100;
+  var bmi = weightKg / (heightM * heightM);
+
+  var fatMassDisplay, leanMassDisplay;
+  if(bfUnit === 'imperial'){
+    fatMassDisplay = fmt(fatMassKg / 0.453592, 1) + ' lb';
+    leanMassDisplay = fmt(leanMassKg / 0.453592, 1) + ' lb';
+  } else {
+    fatMassDisplay = fmt(fatMassKg, 1) + ' kg';
+    leanMassDisplay = fmt(leanMassKg, 1) + ' kg';
+  }
+
+  var category;
+  if(sex === 'male'){
+    if(bfPct < 6) category = 'Essential Fat';
+    else if(bfPct < 14) category = 'Athletic';
+    else if(bfPct < 18) category = 'Fitness';
+    else if(bfPct < 25) category = 'Average';
+    else category = 'Obese';
+  } else {
+    if(bfPct < 14) category = 'Essential Fat';
+    else if(bfPct < 21) category = 'Athletic';
+    else if(bfPct < 25) category = 'Fitness';
+    else if(bfPct < 32) category = 'Average';
+    else category = 'Obese';
+  }
+
+  setEl('r-bf-pct', fmtPct(bfPct));
+  setEl('r-bf-cat', category);
+  setEl('r-bf-fatmass', fatMassDisplay);
+  setEl('r-bf-leanmass', leanMassDisplay);
+  setEl('r-bf-bmi', fmt(bmi,1));
+
+  var insightText = 'Your estimated body fat is <strong>'+fmtPct(bfPct)+'</strong>, which falls in the <strong>'+category+'</strong> range for your sex. This places you with approximately <strong>'+leanMassDisplay+'</strong> of lean mass.';
+  document.getElementById('bf-insight-text').innerHTML = insightText;
+
+  showRes('bf-results');
+}
+window.addEventListener('load', calcBodyFat);
+</script>
+</body></html>

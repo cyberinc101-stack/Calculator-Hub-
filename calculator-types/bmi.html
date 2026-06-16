@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMI Calculator — Body Mass Index with Health Range & Ideal Weight | CalcHub</title>
+<meta name="description" content="Free BMI calculator for adults. Calculate your Body Mass Index in metric or imperial, see your health classification, ideal weight range, and calorie needs. Instant results.">
+<meta name="keywords" content="BMI calculator,body mass index calculator,BMI calculator metric,BMI calculator imperial,ideal weight calculator,healthy weight range,overweight BMI,BMI chart adults,calorie needs calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/bmi.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BMI Calculator","description":"Calculate Body Mass Index with health range, ideal weight, and calorie needs.","url":"https://yourdomain.com/calculator-types/bmi.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.bmi-gauge-wrap { margin:16px 0 8px; }
+.bmi-bar {
+  height:18px; border-radius:999px; position:relative;
+  background:linear-gradient(to right,#3B82F6 0%,#22C55E 28%,#84CC16 42%,#F59E0B 57%,#EF4444 75%,#9B1C1C 100%);
+  overflow:visible;
+}
+.bmi-needle {
+  position:absolute; top:-6px; width:4px; height:30px;
+  background:var(--text); border-radius:2px;
+  transform:translateX(-50%); transition:left .5s var(--ease);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.bmi-labels {
+  display:flex; justify-content:space-between;
+  font-size:.68rem; color:var(--text-muted); margin-top:6px;
+  font-weight:500;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚖️ Health Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">BMI Calculator</h1>
+  <p class="hero-sub">Calculate your Body Mass Index, see your health classification, ideal weight range, and estimated calorie needs.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚖️</div>
+    <div><div class="calc-card-title">Body Mass Index (BMI)</div><div class="calc-card-desc">Adults 18+ — metric or imperial units</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Unit selector -->
+    <div class="field" style="margin-bottom:16px">
+      <label>Units</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="bmi-unit" value="metric" checked> Metric (cm / kg)</label>
+        <label class="radio-pill"><input type="radio" name="bmi-unit" value="imperial"> Imperial (ft, in / lb)</label>
+      </div>
+    </div>
+
+    <!-- Metric fields -->
+    <div id="metric-fields">
+      <div class="field-grid">
+        <div class="field">
+          <label for="height-cm">Height</label>
+          <div class="input-wrap">
+            <input type="number" id="height-cm" value="175" min="50" max="250">
+            <span class="input-suffix">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="weight-kg">Weight</label>
+          <div class="input-wrap">
+            <input type="number" id="weight-kg" value="75" min="10" max="500">
+            <span class="input-suffix">kg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imperial fields -->
+    <div id="imperial-fields" style="display:none">
+      <div class="field-grid field-grid-3">
+        <div class="field">
+          <label for="height-ft">Height (ft)</label>
+          <div class="input-wrap">
+            <input type="number" id="height-ft" value="5" min="1" max="9">
+            <span class="input-suffix">ft</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="height-in">Height (in)</label>
+          <div class="input-wrap">
+            <input type="number" id="height-in" value="9" min="0" max="11">
+            <span class="input-suffix">in</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="weight-lb">Weight</label>
+          <div class="input-wrap">
+            <input type="number" id="weight-lb" value="165" min="10" max="1200">
+            <span class="input-suffix">lb</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extra fields for TDEE -->
+    <div class="field-grid">
+      <div class="field">
+        <label for="bmi-age">Age</label>
+        <input type="number" id="bmi-age" value="35" min="18" max="100">
+      </div>
+      <div class="field">
+        <label>Sex</label>
+        <div class="radio-group">
+          <label class="radio-pill checked"><input type="radio" name="bmi-sex" value="male" checked> Male</label>
+          <label class="radio-pill"><input type="radio" name="bmi-sex" value="female"> Female</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="activity">Activity Level</label>
+        <select id="activity">
+          <option value="1.2">Sedentary (desk job, no exercise)</option>
+          <option value="1.375">Lightly active (1–3 days/week)</option>
+          <option value="1.55" selected>Moderately active (3–5 days/week)</option>
+          <option value="1.725">Very active (6–7 days/week)</option>
+          <option value="1.9">Extra active (physical job + training)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcBMI()">Calculate BMI →</button>
+
+    <div class="results" id="bmi-results">
+      <div class="results-header">Your BMI Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Your BMI</div>
+          <div class="result-value" id="r-bmi">—</div>
+          <div class="result-sub" id="r-bmi-cat"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Ideal Weight Range</div>
+          <div class="result-value" id="r-ideal">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Weight to Lose/Gain</div>
+          <div class="result-value" id="r-diff">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Maintenance Calories</div>
+          <div class="result-value" id="r-tdee">—</div>
+          <div class="result-sub">calories/day</div>
+        </div>
+      </div>
+
+      <!-- BMI gauge -->
+      <div class="bmi-gauge-wrap">
+        <div class="bmi-bar">
+          <div class="bmi-needle" id="bmi-needle" style="left:0%"></div>
+        </div>
+        <div class="bmi-labels">
+          <span>Underweight<br>&lt;18.5</span>
+          <span>Normal<br>18.5–24.9</span>
+          <span>Overweight<br>25–29.9</span>
+          <span>Obese<br>≥30</span>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Calorie Targets</div>
+      <div class="results-grid">
+        <div class="result-item red">
+          <div class="result-label">Lose 0.5 kg/week</div>
+          <div class="result-value" id="r-lose05">—</div>
+          <div class="result-sub">–500 cal/day</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Lose 0.25 kg/week</div>
+          <div class="result-value" id="r-lose025">—</div>
+          <div class="result-sub">–250 cal/day</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Maintain Weight</div>
+          <div class="result-value" id="r-maintain">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Gain 0.25 kg/week</div>
+          <div class="result-value" id="r-gain025">—</div>
+          <div class="result-sub">+250 cal/day</div>
+        </div>
+      </div>
+
+      <div id="bmi-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="bmi-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>Understanding BMI — What It Means and Its Limitations</h2>
+  <p>BMI (Body Mass Index) is calculated by dividing your weight in kilograms by your height in metres squared (kg/m²). It provides a quick screening tool to identify potential weight-related health risks across population groups.</p>
+  <h3>BMI Categories (WHO Classification)</h3>
+  <ul>
+    <li><strong>Underweight:</strong> BMI below 18.5</li>
+    <li><strong>Normal weight:</strong> BMI 18.5 – 24.9</li>
+    <li><strong>Overweight:</strong> BMI 25.0 – 29.9</li>
+    <li><strong>Obese Class I:</strong> BMI 30.0 – 34.9</li>
+    <li><strong>Obese Class II:</strong> BMI 35.0 – 39.9</li>
+    <li><strong>Obese Class III:</strong> BMI 40.0 and above</li>
+  </ul>
+  <h3>Limitations of BMI</h3>
+  <p>BMI does not distinguish between muscle and fat mass. Athletes and highly muscular individuals may have a high BMI while being in excellent health. BMI also does not account for body fat distribution — waist circumference is often a better predictor of metabolic health risk.</p>
+  <div class="faq-item"><div class="faq-q">Is BMI accurate for children?</div><div class="faq-a"><p>This calculator is designed for adults 18 and older. Children's BMI uses age- and sex-specific growth charts (BMI-for-age percentiles) and should be assessed by a healthcare professional.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is TDEE?</div><div class="faq-a"><p>Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day, including activity. It is calculated using the Mifflin-St Jeor equation for Basal Metabolic Rate (BMR) multiplied by an activity factor.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+document.querySelectorAll('input[name="bmi-unit"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    var isMetric = r.value === 'metric';
+    document.getElementById('metric-fields').style.display   = isMetric ? '' : 'none';
+    document.getElementById('imperial-fields').style.display = isMetric ? 'none' : '';
+  });
+});
+
+function calcBMI(){
+  var unit = document.querySelector('input[name="bmi-unit"]:checked').value;
+  var heightM, weightKg;
+
+  if(unit === 'metric'){
+    heightM  = v('height-cm') / 100;
+    weightKg = v('weight-kg');
+  } else {
+    var totalIn = v('height-ft') * 12 + v('height-in');
+    heightM  = totalIn * 0.0254;
+    weightKg = v('weight-lb') * 0.453592;
+  }
+
+  var age      = v('bmi-age') || 35;
+  var sex      = document.querySelector('input[name="bmi-sex"]:checked').value;
+  var activity = parseFloat(vs('activity')) || 1.55;
+
+  if(heightM <= 0 || weightKg <= 0){ showToast('Please enter valid height and weight'); return; }
+
+  var bmi = weightKg / (heightM * heightM);
+
+  // Category
+  var cat, catClass;
+  if(bmi < 18.5)       { cat='Underweight';  catClass='result-item'; }
+  else if(bmi < 25)    { cat='Normal Weight'; catClass='result-item green'; }
+  else if(bmi < 30)    { cat='Overweight';    catClass='result-item amber'; }
+  else if(bmi < 35)    { cat='Obese (Class I)'; catClass='result-item red'; }
+  else if(bmi < 40)    { cat='Obese (Class II)'; catClass='result-item red'; }
+  else                 { cat='Obese (Class III)'; catClass='result-item red'; }
+
+  // Ideal weight (BMI 18.5-24.9)
+  var idealLow  = 18.5 * heightM * heightM;
+  var idealHigh = 24.9 * heightM * heightM;
+
+  var diff = 0;
+  if(bmi < 18.5)    diff = idealLow - weightKg;
+  else if(bmi > 25) diff = weightKg - idealHigh;
+
+  // BMR (Mifflin-St Jeor)
+  var bmr = sex === 'male'
+    ? 10*weightKg + 6.25*(heightM*100) - 5*age + 5
+    : 10*weightKg + 6.25*(heightM*100) - 5*age - 161;
+  var tdee = bmr * activity;
+
+  // display
+  var isMetric2 = unit === 'metric';
+  var unitW = isMetric2 ? 'kg' : 'lb';
+  var conv  = isMetric2 ? 1 : 2.20462;
+
+  setEl('r-bmi', fmt(bmi,1));
+  setEl('r-bmi-cat', cat);
+  setEl('r-ideal', fmt(idealLow*conv,0)+' – '+fmt(idealHigh*conv,0)+' '+unitW);
+  setEl('r-diff', Math.abs(diff) < 0.5 ? 'At ideal weight ✓' : fmt(Math.abs(diff)*conv,1)+' '+unitW+(diff>0?' to gain':' to lose'));
+  setEl('r-tdee', Math.round(tdee).toLocaleString());
+  setEl('r-lose05',  Math.max(1200, Math.round(tdee-500)).toLocaleString());
+  setEl('r-lose025', Math.max(1200, Math.round(tdee-250)).toLocaleString());
+  setEl('r-maintain', Math.round(tdee).toLocaleString());
+  setEl('r-gain025', Math.round(tdee+250).toLocaleString());
+
+  // Gauge needle — map BMI 15–40 to 0–100%
+  var pct = Math.min(100, Math.max(0, (bmi - 15) / (45-15) * 100));
+  document.getElementById('bmi-needle').style.left = pct+'%';
+
+  // Insight
+  var insight = '';
+  if(bmi < 18.5) insight = '<strong>Underweight:</strong> Consider speaking with a healthcare provider. Increasing calorie-dense, nutritious foods can help reach a healthy weight safely.';
+  else if(bmi < 25) insight = '<strong>Healthy range:</strong> Your BMI indicates a healthy weight for your height. Maintain your current habits with regular physical activity and balanced nutrition.';
+  else if(bmi < 30) insight = '<strong>Overweight:</strong> A modest reduction of '+fmt(diff*conv,1)+' '+unitW+' would bring you into the healthy BMI range. A deficit of 500 calories/day achieves ~0.5 kg/week loss.';
+  else insight = '<strong>Obese:</strong> Health risks increase with BMI above 30. A structured programme combining dietary changes and physical activity is recommended. Please consult a healthcare professional.';
+  document.getElementById('bmi-insight-text').innerHTML = insight;
+
+  showRes('bmi-results');
+}
+window.addEventListener('load', calcBMI);
+</script>
+</body></html>

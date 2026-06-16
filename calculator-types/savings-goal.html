@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Savings Goal Calculator — How Much to Save Monthly | CalcHub</title>
+<meta name="description" content="Free savings goal calculator. Find out how much to save each month to reach any financial target, or how long it will take with your current contributions. Instant results.">
+<meta name="keywords" content="savings goal calculator,how much to save calculator,monthly savings calculator,savings target calculator,time to reach savings goal,compound savings calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/savings-goal.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Savings Goal Calculator","description":"Calculate how much to save monthly to reach a financial goal, or how long it will take with your current savings rate.","url":"https://yourdomain.com/calculator-types/savings-goal.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🎯 Savings Goal Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Savings Goal Calculator</h1>
+  <p class="hero-sub">Find out how much to save each month to hit your target — or how long it'll take at your current pace.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🎯</div>
+    <div><div class="calc-card-title">Savings Goal Calculator</div><div class="calc-card-desc">Required monthly savings or time to reach your target</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>What do you want to know?</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="sg-mode" value="monthly" checked> Monthly Amount Needed</label>
+        <label class="radio-pill"><input type="radio" name="sg-mode" value="time"> Time to Reach Goal</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="sg-goal">Savings Goal</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="sg-goal" class="has-prefix" value="20000" min="0" step="500">
+        </div>
+      </div>
+      <div class="field">
+        <label for="sg-current">Current Savings</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="sg-current" class="has-prefix" value="2000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="sg-rate">Expected Annual Return</label>
+        <div class="input-wrap">
+          <input type="number" id="sg-rate" value="4" min="0" max="50" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">High-yield savings ~4–5%, investing ~7%</span>
+      </div>
+      <div class="field" id="sg-years-field">
+        <label for="sg-years">Time to Reach Goal</label>
+        <div class="input-wrap">
+          <input type="number" id="sg-years" value="3" min="0.1" max="60" step="0.5">
+          <span class="input-suffix">years</span>
+        </div>
+      </div>
+      <div class="field" id="sg-monthly-field" style="display:none">
+        <label for="sg-monthly">Monthly Contribution</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="sg-monthly" class="has-prefix" value="400" min="0" step="25">
+        </div>
+      </div>
+      <div class="field">
+        <label for="sg-start">Starting Month</label>
+        <input type="month" id="sg-start">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcSavingsGoal()">Calculate →</button>
+
+    <div class="results" id="sg-results">
+      <div class="results-header" id="sg-results-header">Required Monthly Savings</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label" id="sg-primary-label">Monthly Savings Needed</div>
+          <div class="result-value" id="r-sg-primary">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Goal Amount</div>
+          <div class="result-value" id="r-sg-goal">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Total Contributions</div>
+          <div class="result-value" id="r-sg-contrib">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Total Interest Earned</div>
+          <div class="result-value" id="r-sg-interest">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Target Date</div>
+          <div class="result-value" id="r-sg-date">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Interest as % of Goal</div>
+          <div class="result-value" id="r-sg-int-pct">—</div>
+        </div>
+      </div>
+
+      <div id="sg-insight" class="insight"><div class="insight-icon">💡</div><div id="sg-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px;max-height:320px;overflow-y:auto">
+        <div class="breakdown-title">Year-by-Year Growth</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Year</th><th>Contributions</th><th>Interest</th><th>Balance</th></tr></thead>
+          <tbody id="sg-schedule-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Savings Goal Calculator</h2>
+  <p>Choose whether you want to know how much to save each month, or how long it will take at a contribution amount you choose. Enter your goal amount, current savings, and expected annual return, and the calculator does the rest — including a year-by-year breakdown of how your balance grows.</p>
+  <h3>Monthly Savings vs. Time to Goal</h3>
+  <p>If you have a deadline — a house down payment, a wedding, a trip — use "Monthly Amount Needed" to find the exact contribution required. If you have a fixed amount you can set aside each month, switch to "Time to Reach Goal" to see when you'll get there.</p>
+  <h3>Where to Keep Savings Goal Money</h3>
+  <ul>
+    <li><strong>High-yield savings account:</strong> ~4–5% APY, fully liquid, FDIC insured — best for goals under 3 years</li>
+    <li><strong>CDs / term deposits:</strong> similar rates, locked in for a fixed term</li>
+    <li><strong>Brokerage / index funds:</strong> ~7% average long-term return but with volatility — best for goals 5+ years out</li>
+  </ul>
+  <div class="faq-item"><div class="faq-q">Does this account for compound interest?</div><div class="faq-a"><p>Yes. The calculator compounds your return monthly, applying it to both your existing balance and each new contribution, so the year-by-year breakdown reflects realistic compound growth rather than simple interest.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What return rate should I use?</div><div class="faq-a"><p>For short-term goals under 3 years kept in a high-yield savings account or CD, 4–5% is a reasonable estimate. For longer-term goals invested in a diversified portfolio, many planners use a long-run average closer to 6–7%, though actual returns vary year to year and are never guaranteed.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What if I already have enough saved?</div><div class="faq-a"><p>If your current savings already meet or exceed your goal, the calculator will let you know rather than returning a negative or zero contribution figure — at that point you may want to focus on where the money is held rather than how much more to add.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var sgMode = 'monthly';
+
+(function(){
+  var now = new Date();
+  var str = now.getFullYear()+'-'+(now.getMonth()+1).toString().padStart(2,'0');
+  document.getElementById('sg-start').value = str;
+})();
+
+document.querySelectorAll('input[name="sg-mode"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="sg-mode"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    sgMode = this.value;
+    document.getElementById('sg-years-field').style.display = sgMode === 'monthly' ? '' : 'none';
+    document.getElementById('sg-monthly-field').style.display = sgMode === 'time' ? '' : 'none';
+    document.getElementById('sg-results-header').textContent = sgMode === 'monthly' ? 'Required Monthly Savings' : 'Time to Reach Goal';
+    document.getElementById('sg-primary-label').textContent = sgMode === 'monthly' ? 'Monthly Savings Needed' : 'Time to Reach Goal';
+    calcSavingsGoal();
+  });
+});
+
+function yrMoStr(months){
+  var y = Math.floor(months/12), m = months % 12;
+  if(y === 0) return m + (m===1?' month':' months');
+  if(m === 0) return y + (y===1?' year':' years');
+  return y + (y===1?' year':' years') + ', ' + m + (m===1?' month':' months');
+}
+
+function calcSavingsGoal(){
+  var goal     = v('sg-goal');
+  var current  = v('sg-current');
+  var rate     = v('sg-rate') / 100 / 12;
+  var startVal = vs('sg-start');
+
+  if(goal <= 0){ showToast('Please enter a valid savings goal'); return; }
+  if(current >= goal){ showToast('Current savings already meet your goal'); return; }
+
+  var n, monthly;
+
+  if(sgMode === 'monthly'){
+    var years = v('sg-years');
+    n = Math.round(years * 12);
+    if(n < 1){ showToast('Please enter a valid time frame'); return; }
+    if(rate === 0){
+      monthly = (goal - current) / n;
+    } else {
+      var growth = Math.pow(1+rate, n);
+      monthly = (goal - current * growth) * rate / (growth - 1);
+    }
+    if(monthly < 0) monthly = 0;
+  } else {
+    monthly = v('sg-monthly');
+    if(monthly <= 0){ showToast('Please enter a valid monthly contribution'); return; }
+    if(rate === 0){
+      n = Math.ceil((goal - current) / monthly);
+    } else {
+      var x = (goal + monthly/rate) / (current + monthly/rate);
+      if(x <= 1){ showToast('Current savings already meet your goal'); return; }
+      n = Math.ceil(Math.log(x) / Math.log(1+rate));
+    }
+  }
+
+  // Month-by-month simulation, aggregated to years for display
+  var bal = current, totalContrib = 0, totalInt = 0, rows = [];
+  for(var m=1; m<=n; m++){
+    var intM = bal * rate;
+    bal += intM + monthly;
+    totalInt += intM;
+    totalContrib += monthly;
+    rows.push({mo:m, contrib:totalContrib, interest:totalInt, bal:bal});
+  }
+
+  var startDate = startVal ? new Date(startVal+'-01') : new Date();
+  var targetDate = new Date(startDate);
+  targetDate.setMonth(targetDate.getMonth() + n);
+  var targetDateStr = targetDate.toLocaleDateString('en-US',{year:'numeric',month:'short'});
+
+  setEl('r-sg-primary', sgMode === 'monthly' ? fmtCur(monthly) : yrMoStr(n));
+  setEl('r-sg-goal', fmtCur(goal));
+  setEl('r-sg-contrib', fmtCur(totalContrib));
+  setEl('r-sg-interest', fmtCur(totalInt));
+  setEl('r-sg-date', targetDateStr);
+  setEl('r-sg-int-pct', fmtPct(totalInt / goal * 100));
+
+  var intPct = totalInt / goal * 100;
+  document.getElementById('sg-insight-text').innerHTML =
+    sgMode === 'monthly'
+      ? 'Saving <strong>'+fmtCur(monthly)+'</strong>/month gets you to <strong>'+fmtCur(goal)+'</strong> by <strong>'+targetDateStr+'</strong>, with interest covering <strong>'+fmtPct(intPct)+'</strong> of the total.'
+      : 'At <strong>'+fmtCur(monthly)+'</strong>/month, you will reach your goal in <strong>'+yrMoStr(n)+'</strong> — interest contributes <strong>'+fmtCur(totalInt)+'</strong> of the total.';
+
+  var tbody = document.getElementById('sg-schedule-body');
+  var yearRows = rows.filter(function(_,i){ return (i+1)%12===0 || i===rows.length-1; });
+  tbody.innerHTML = yearRows.map(function(r){
+    return '<tr><td class="td-mono">Yr '+Math.ceil(r.mo/12)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.contrib)+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(r.interest)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.bal)+'</td></tr>';
+  }).join('');
+
+  showRes('sg-results');
+}
+window.addEventListener('load', calcSavingsGoal);
+</script>
+</body></html>

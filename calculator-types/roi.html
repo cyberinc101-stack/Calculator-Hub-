@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROI Calculator — Return on Investment, Annualised Return & Payback Period | CalcHub</title>
+<meta name="description" content="Free ROI calculator. Calculate return on investment, annualised ROI, payback period, and net profit. Compare investment performance across any time period. Instant results.">
+<meta name="keywords" content="roi calculator,return on investment calculator,annualised roi calculator,payback period calculator,investment return calculator,net profit calculator,roi percentage calculator,how to calculate roi">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/roi.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ROI Calculator","description":"Calculate return on investment, annualised ROI, payback period, and net profit.","url":"https://yourdomain.com/calculator-types/roi.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📊 ROI Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">ROI Calculator</h1>
+  <p class="hero-sub">Calculate return on investment, annualised ROI, and payback period for any investment.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📊</div>
+    <div><div class="calc-card-title">ROI Calculator</div><div class="calc-card-desc">Return on investment, annualised return, and payback period</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="roi-initial">Initial Investment</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="roi-initial" class="has-prefix" value="10000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="roi-final">Final Value</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="roi-final" class="has-prefix" value="14500" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="roi-costs">Additional Costs</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="roi-costs" class="has-prefix" value="0" min="0" step="50">
+        </div>
+        <span class="field-hint">Fees, maintenance, etc. — reduces net profit</span>
+      </div>
+      <div class="field">
+        <label for="roi-years">Holding Period (Years)</label>
+        <input type="number" id="roi-years" value="3" min="0" step="0.25">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcRoi()">Calculate ROI →</button>
+
+    <div class="results" id="roi-results">
+      <div class="results-header">Return Summary</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Total ROI</div>
+          <div class="result-value" id="r-r-roi">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Net Profit</div>
+          <div class="result-value" id="r-r-profit">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Annualised ROI</div>
+          <div class="result-value" id="r-r-annual">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Payback Period</div>
+          <div class="result-value" id="r-r-payback">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Total Invested (incl. costs)</div>
+          <div class="result-value" id="r-r-invested">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Final Value</div>
+          <div class="result-value" id="r-r-final">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Growth Multiple</div>
+          <div class="result-value" id="r-r-multiple">—</div>
+        </div>
+      </div>
+
+      <div id="roi-insight" class="insight"><div class="insight-icon">💡</div><div id="roi-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the ROI Calculator</h2>
+  <p>Enter your initial investment amount, the final value of the investment, any additional costs incurred (fees, maintenance, taxes), and the holding period. The calculator shows your total ROI percentage, net profit, and — critically — your annualised ROI, which lets you compare returns across investments held for different lengths of time.</p>
+
+  <h3>What Is a Good ROI?</h3>
+  <p>There's no universal answer since it depends on the asset class and risk level. As a general reference point, long-term stock market index funds have historically returned around 7–10% annualised. Real estate often returns 8–12% annualised including appreciation and rental income. Higher numbers usually carry higher risk, so ROI should always be considered alongside the risk taken to achieve it.</p>
+
+  <h3>Why Annualised ROI Matters</h3>
+  <p>A 50% total ROI sounds identical whether it happened over 1 year or 10 years, but the annualised figure reveals the real story: 50% in one year is an outstanding 50% annual rate, while 50% over 10 years is a much more modest ~4.1% annual rate. Always compare annualised ROI when judging investments held for different durations.</p>
+
+  <div class="faq-item"><div class="faq-q">What is the formula for ROI?</div><div class="faq-a"><p>ROI = (Net Profit / Total Invested) × 100, where Net Profit equals the final value minus the initial investment minus any additional costs. This calculator also computes the annualised version using the compound growth rate formula so returns can be compared fairly across different time periods.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is payback period and why does it matter?</div><div class="faq-a"><p>Payback period is how long it takes for the investment to return your original capital, assuming linear growth. It's a simple risk-screening tool — shorter payback periods generally mean lower exposure to long-term uncertainty, though it doesn't account for returns earned after the payback point.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Should I include costs like fees and taxes in my ROI calculation?</div><div class="faq-a"><p>Yes, for an accurate picture. Transaction fees, ongoing maintenance, management fees, and taxes all reduce your true return. Use the "Additional Costs" field to factor these in so your ROI reflects the actual money you kept, not just the gross gain.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function calcRoi(){
+  var initial = v('roi-initial');
+  var final_  = v('roi-final');
+  var costs   = v('roi-costs');
+  var years   = v('roi-years');
+
+  if(initial <= 0){ showToast('Please enter a valid initial investment'); return; }
+
+  var totalInvested = initial + costs;
+  var netProfit = final_ - totalInvested;
+  var roi = (netProfit / totalInvested) * 100;
+  var multiple = final_ / totalInvested;
+
+  var annualRoi;
+  if(years > 0 && multiple > 0){
+    annualRoi = (Math.pow(multiple, 1/years) - 1) * 100;
+  } else {
+    annualRoi = roi;
+  }
+
+  var paybackYears = null;
+  if(netProfit > 0 && years > 0){
+    var profitPerYear = netProfit / years;
+    paybackYears = totalInvested / profitPerYear;
+  }
+
+  setEl('r-r-roi', fmtPct(roi));
+  setEl('r-r-profit', fmtCur(netProfit));
+  setEl('r-r-annual', fmtPct(annualRoi));
+  setEl('r-r-payback', paybackYears !== null ? fmtYrs(paybackYears) : 'N/A');
+  setEl('r-r-invested', fmtCur(totalInvested));
+  setEl('r-r-final', fmtCur(final_));
+  setEl('r-r-multiple', fmt(multiple,2) + 'x');
+
+  var insightText;
+  if(roi < 0){
+    insightText = '<strong>Loss on investment:</strong> This investment lost <strong>'+fmtCur(Math.abs(netProfit))+'</strong>, a return of <strong>'+fmtPct(roi)+'</strong>.';
+  } else if(annualRoi > 15){
+    insightText = '<strong>Strong performance:</strong> An annualised return of <strong>'+fmtPct(annualRoi)+'</strong> outpaces typical long-term stock market averages (7–10%/yr).';
+  } else if(annualRoi >= 0){
+    insightText = 'This investment returned <strong>'+fmtPct(roi)+'</strong> total (<strong>'+fmtPct(annualRoi)+'</strong> annualised) over '+fmtYrs(years)+'.';
+  }
+  document.getElementById('roi-insight-text').innerHTML = insightText;
+
+  showRes('roi-results');
+}
+window.addEventListener('load', calcRoi);
+</script>
+</body></html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profit Margin Calculator — Gross, Net & Markup Calculator | CalcHub</title>
+<meta name="description" content="Free profit margin calculator. Calculate gross profit margin, markup percentage, and profit from cost and revenue. Convert between margin and markup instantly.">
+<meta name="keywords" content="profit margin calculator,markup calculator,gross margin calculator,margin vs markup calculator,profit calculator,how to calculate profit margin,selling price calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/profit-margin.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Profit Margin Calculator","description":"Calculate gross profit margin, markup percentage, and net profit from cost and revenue.","url":"https://yourdomain.com/calculator-types/profit-margin.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">💹 Profit Margin Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Profit Margin Calculator</h1>
+  <p class="hero-sub">Calculate gross profit margin, markup percentage, and net profit — with margin/markup conversion.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">💹</div>
+    <div><div class="calc-card-title">Profit Margin Calculator</div><div class="calc-card-desc">Margin, markup, and profit from cost and revenue</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Calculate From</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="pm-mode" value="cost-revenue" checked> Cost &amp; Revenue</label>
+        <label class="radio-pill"><input type="radio" name="pm-mode" value="cost-margin"> Cost &amp; Target Margin</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="pm-cost">Cost Price (per unit)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="pm-cost" class="has-prefix" value="40" min="0" step="0.5">
+        </div>
+      </div>
+      <div class="field" id="pm-revenue-field">
+        <label for="pm-revenue">Selling Price (per unit)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="pm-revenue" class="has-prefix" value="65" min="0" step="0.5">
+        </div>
+      </div>
+      <div class="field" id="pm-margin-field" style="display:none">
+        <label for="pm-margin">Target Profit Margin</label>
+        <div class="input-wrap">
+          <input type="number" id="pm-margin" value="35" min="0" max="99" step="1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="pm-units">Units Sold</label>
+        <input type="number" id="pm-units" value="1" min="1" step="1">
+        <span class="field-hint">Optional — to see total profit</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcMargin()">Calculate Margin →</button>
+
+    <div class="results" id="pm-results">
+      <div class="results-header">Margin &amp; Markup</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Profit Margin</div>
+          <div class="result-value" id="r-pm-margin">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Markup</div>
+          <div class="result-value" id="r-pm-markup">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Profit (per unit)</div>
+          <div class="result-value" id="r-pm-profit">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Selling Price (per unit)</div>
+          <div class="result-value" id="r-pm-price">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Cost Price (per unit)</div>
+          <div class="result-value" id="r-pm-cost">—</div>
+        </div>
+        <div class="result-item" id="r-pm-units-block" style="display:none">
+          <div class="result-label">Total Profit (all units)</div>
+          <div class="result-value" id="r-pm-total-profit">—</div>
+        </div>
+      </div>
+
+      <div id="pm-insight" class="insight"><div class="insight-icon">💡</div><div id="pm-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px">
+        <div class="breakdown-title">Margin vs Markup Reference</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Margin</th><th>Equivalent Markup</th></tr></thead>
+          <tbody>
+            <tr><td class="td-mono">10%</td><td class="td-mono">11.1%</td></tr>
+            <tr><td class="td-mono">20%</td><td class="td-mono">25.0%</td></tr>
+            <tr><td class="td-mono">30%</td><td class="td-mono">42.9%</td></tr>
+            <tr><td class="td-mono">40%</td><td class="td-mono">66.7%</td></tr>
+            <tr><td class="td-mono">50%</td><td class="td-mono">100.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Profit Margin Calculator</h2>
+  <p>Choose whether to calculate from a known cost and selling price, or from a known cost and a target profit margin you want to hit. Enter your values and the calculator instantly shows your profit margin, markup percentage, profit per unit, and the recommended selling price.</p>
+
+  <h3>Margin vs Markup — Why They're Different Numbers</h3>
+  <p>Profit margin is profit as a percentage of the selling price (revenue), while markup is profit as a percentage of the cost. These are frequently confused, and the difference becomes large at higher percentages. A 50% markup on a $40 cost item gives a $60 selling price, which is only a 33% margin, not 50%. Always check which one you're being quoted before pricing decisions.</p>
+
+  <h3>Setting Prices From a Target Margin</h3>
+  <p>If you know your desired profit margin and your cost, use "Cost &amp; Target Margin" mode. The calculator works backward from the formula Selling Price = Cost / (1 − Margin) to tell you exactly what price to charge to hit that margin.</p>
+
+  <div class="faq-item"><div class="faq-q">What is the formula for profit margin?</div><div class="faq-a"><p>Profit Margin (%) = (Selling Price − Cost) / Selling Price × 100. This expresses profit as a percentage of what the customer pays, which is the standard way margin is reported in financial statements and most business contexts.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is the formula for markup?</div><div class="faq-a"><p>Markup (%) = (Selling Price − Cost) / Cost × 100. This expresses profit as a percentage of what the item cost you, which is common in retail and wholesale pricing discussions. Markup will always be a larger number than margin for the same transaction (except at 0%).</p></div></div>
+  <div class="faq-item"><div class="faq-q">What's considered a healthy profit margin?</div><div class="faq-a"><p>It varies enormously by industry. Grocery and retail businesses often operate on thin margins of 2–5%, while software and services businesses can see margins above 70–80% due to low marginal cost. Restaurants typically target 10–15%. There's no universal benchmark — compare against your specific industry rather than a general rule of thumb.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var pmMode = 'cost-revenue';
+
+document.querySelectorAll('input[name="pm-mode"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="pm-mode"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    pmMode = this.value;
+    document.getElementById('pm-revenue-field').style.display = pmMode === 'cost-revenue' ? '' : 'none';
+    document.getElementById('pm-margin-field').style.display = pmMode === 'cost-margin' ? '' : 'none';
+    calcMargin();
+  });
+});
+
+function calcMargin(){
+  var cost = v('pm-cost');
+  var units = Math.max(1, v('pm-units'));
+
+  if(cost < 0){ showToast('Please enter a valid cost'); return; }
+
+  var revenue, margin, markup, profit;
+
+  if(pmMode === 'cost-revenue'){
+    revenue = v('pm-revenue');
+    if(revenue <= 0){ showToast('Please enter a valid selling price'); return; }
+    profit = revenue - cost;
+    margin = (profit / revenue) * 100;
+    markup = cost > 0 ? (profit / cost) * 100 : 0;
+  } else {
+    margin = v('pm-margin');
+    if(margin < 0 || margin >= 100){ showToast('Margin must be between 0 and 99%'); return; }
+    revenue = cost / (1 - margin / 100);
+    profit = revenue - cost;
+    markup = cost > 0 ? (profit / cost) * 100 : 0;
+  }
+
+  setEl('r-pm-margin', fmtPct(margin));
+  setEl('r-pm-markup', fmtPct(markup));
+  setEl('r-pm-profit', fmtCur(profit));
+  setEl('r-pm-price', fmtCur(revenue));
+  setEl('r-pm-cost', fmtCur(cost));
+
+  if(units > 1){
+    document.getElementById('r-pm-units-block').style.display = '';
+    setEl('r-pm-total-profit', fmtCur(profit * units));
+  } else {
+    document.getElementById('r-pm-units-block').style.display = 'none';
+  }
+
+  var insightText;
+  if(margin < 0){
+    insightText = '<strong>Selling at a loss:</strong> Your selling price is below cost, resulting in a negative margin of <strong>'+fmtPct(margin)+'</strong>.';
+  } else if(margin < 10){
+    insightText = '<strong>Thin margin:</strong> A <strong>'+fmtPct(margin)+'</strong> margin is typical for high-volume, low-cost industries like grocery or wholesale, but leaves little buffer for cost increases.';
+  } else {
+    insightText = 'At a <strong>'+fmtPct(margin)+'</strong> margin (equivalent to a <strong>'+fmtPct(markup)+'</strong> markup), you earn <strong>'+fmtCur(profit)+'</strong> profit on each <strong>'+fmtCur(revenue)+'</strong> sale.';
+  }
+  document.getElementById('pm-insight-text').innerHTML = insightText;
+
+  showRes('pm-results');
+}
+window.addEventListener('load', calcMargin);
+</script>
+</body></html>

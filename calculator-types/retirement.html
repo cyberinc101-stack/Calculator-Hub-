@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retirement Savings Calculator — 401k, IRA & Nest-Egg Planner | CalcHub</title>
+<meta name="description" content="Free retirement savings calculator. Plan your 401k, IRA, and nest egg with inflation, Social Security estimates, withdrawal rate, and year-by-year projections. Instant results, no sign-up.">
+<meta name="keywords" content="retirement calculator,401k calculator,retirement savings calculator,IRA calculator,retirement planning,how much do I need to retire,retirement nest egg,social security calculator,retirement income calculator,FIRE calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/retirement.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Gauge / progress bar for "on track" meter ── */
+.retire-meter{
+  margin:18px 0 6px;
+  background:var(--card-border,#1e3a1e);
+  border-radius:999px;
+  height:12px;
+  overflow:hidden;
+}
+.retire-meter-fill{
+  height:100%;
+  border-radius:999px;
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+  background:linear-gradient(90deg,#22c55e,#86efac);
+}
+.retire-meter-fill.danger{ background:linear-gradient(90deg,#ef4444,#f97316); }
+.retire-meter-fill.warn  { background:linear-gradient(90deg,#f59e0b,#eab308); }
+
+/* ── Scenario toggle ── */
+.scenario-tabs{
+  display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;
+}
+.scen-tab{
+  padding:6px 16px;border-radius:999px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
+  background:transparent;color:var(--text-2);transition:all .15s;
+}
+.scen-tab.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+
+/* ── phase bar (accumulation vs drawdown) ── */
+.phase-bar{
+  display:flex;border-radius:8px;overflow:hidden;height:8px;margin:10px 0 4px;
+  gap:2px;
+}
+.phase-accum{ background:#22c55e; }
+.phase-draw { background:#f59e0b; }
+
+.phase-legend{
+  display:flex;gap:16px;font-size:.75rem;color:var(--text-2);margin-bottom:12px;
+}
+.phase-legend span{ display:flex;align-items:center;gap:5px; }
+.phase-legend i{ display:inline-block;width:10px;height:10px;border-radius:2px; }
+.phase-legend .lg-a{ background:#22c55e; }
+.phase-legend .lg-d{ background:#f59e0b; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🎯 Retirement Planner</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Retirement Savings Calculator</h1>
+  <p class="hero-sub">Plan your 401k, IRA, and nest egg — with inflation, Social Security, withdrawal rate, and a year-by-year projection through retirement.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🎯</div>
+    <div>
+      <div class="calc-card-title">Retirement Savings Calculator</div>
+      <div class="calc-card-desc">Accumulation + drawdown phase planner with inflation and Social Security</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- ── SCENARIO TABS ── -->
+    <div class="scenario-tabs" id="scen-tabs">
+      <button class="scen-tab active" onclick="setScen('conservative',this)">🛡 Conservative</button>
+      <button class="scen-tab"        onclick="setScen('moderate',this)">⚖️ Moderate</button>
+      <button class="scen-tab"        onclick="setScen('aggressive',this)">🚀 Aggressive</button>
+      <button class="scen-tab"        onclick="setScen('fire',this)">🔥 FIRE</button>
+    </div>
+
+    <!-- ── INPUTS ── -->
+    <div class="field-grid">
+
+      <!-- LEFT COLUMN: You -->
+      <div class="field">
+        <label for="r-age">Current Age</label>
+        <div class="input-wrap">
+          <input type="number" id="r-age" value="30" min="18" max="80" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="r-retire-age">Retirement Age</label>
+        <div class="input-wrap">
+          <input type="number" id="r-retire-age" value="65" min="40" max="80" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="r-life">Life Expectancy</label>
+        <div class="input-wrap">
+          <input type="number" id="r-life" value="90" min="60" max="110" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Money -->
+      <div class="field">
+        <label for="r-saved">Current Savings</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="r-saved" class="has-prefix" value="25000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="r-contrib">Monthly Contribution</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="r-contrib" class="has-prefix" value="800" min="0" step="50">
+        </div>
+        <span class="field-hint">401k + IRA + personal savings combined</span>
+      </div>
+      <div class="field">
+        <label for="r-employer">Employer Match</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="r-employer" class="has-prefix" value="200" min="0" step="50">
+        </div>
+        <span class="field-hint">Monthly employer 401k match</span>
+      </div>
+
+      <!-- RATES -->
+      <div class="field">
+        <label for="r-return">Annual Return (pre-retirement)</label>
+        <div class="input-wrap">
+          <input type="number" id="r-return" value="7" min="0" max="20" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="r-return-post">Annual Return (in retirement)</label>
+        <div class="input-wrap">
+          <input type="number" id="r-return-post" value="5" min="0" max="15" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Conservative — more bonds in retirement</span>
+      </div>
+      <div class="field">
+        <label for="r-inflation">Inflation Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="r-inflation" value="2.5" min="0" max="10" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="r-contrib-raise">Annual Contribution Increase</label>
+        <div class="input-wrap">
+          <input type="number" id="r-contrib-raise" value="2" min="0" max="15" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Raise contributions with salary each year</span>
+      </div>
+
+      <!-- RETIREMENT SPENDING -->
+      <div class="field">
+        <label for="r-spend">Monthly Spend in Retirement</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="r-spend" class="has-prefix" value="4000" min="0" step="100">
+        </div>
+        <span class="field-hint">In today's dollars — we'll adjust for inflation</span>
+      </div>
+      <div class="field">
+        <label for="r-ss">Social Security / Pension (monthly)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="r-ss" class="has-prefix" value="1800" min="0" step="50">
+        </div>
+        <span class="field-hint">Estimated monthly benefit; 0 if unsure</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcRetire()">Calculate Retirement Plan →</button>
+
+    <!-- ── RESULTS ── -->
+    <div class="results" id="retire-results">
+      <div class="results-header">Retirement Projection</div>
+
+      <!-- On-track meter -->
+      <div style="margin-bottom:4px;font-size:.8rem;font-weight:600;color:var(--text-2)" id="r-meter-label">On track</div>
+      <div class="retire-meter"><div class="retire-meter-fill" id="r-meter-fill" style="width:0%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-2);margin-bottom:14px">
+        <span>$0</span><span id="r-meter-goal-label">Goal</span>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Nest Egg at Retirement</div>
+          <div class="result-value" id="r-nest">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">You Need to Retire</div>
+          <div class="result-value" id="r-need">—</div>
+          <div class="result-sub">25× rule (4% withdrawal)</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Inflation-Adjusted Nest Egg</div>
+          <div class="result-value" id="r-real">—</div>
+          <div class="result-sub">in today's purchasing power</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Monthly Income in Retirement</div>
+          <div class="result-value" id="r-income">—</div>
+          <div class="result-sub">portfolio + Social Security</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Years of Savings</div>
+          <div class="result-value" id="r-acc-yrs">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Retirement Duration</div>
+          <div class="result-value" id="r-draw-yrs">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Total You'll Contribute</div>
+          <div class="result-value" id="r-total-contrib">—</div>
+        </div>
+        <div class="result-item" id="r-surplus-block">
+          <div class="result-label" id="r-surplus-label">Portfolio Surplus / Deficit</div>
+          <div class="result-value" id="r-surplus">—</div>
+          <div class="result-sub" id="r-surplus-sub"></div>
+        </div>
+      </div>
+
+      <!-- Phase bar -->
+      <div class="phase-bar" id="r-phase-bar"></div>
+      <div class="phase-legend">
+        <span><i class="lg-a"></i>Accumulation phase</span>
+        <span><i class="lg-d"></i>Drawdown phase</span>
+      </div>
+
+      <div id="retire-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="retire-insight-text"></div>
+      </div>
+
+      <!-- Year-by-year table -->
+      <div class="breakdown-wrap" style="margin-top:14px;max-height:340px;overflow-y:auto">
+        <div class="breakdown-title">Year-by-Year Projection</div>
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Age</th>
+              <th>Annual Contrib.</th>
+              <th>Balance</th>
+              <th>Real Value</th>
+              <th>Phase</th>
+            </tr>
+          </thead>
+          <tbody id="retire-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Much Do You Need to Retire?</h2>
+  <p>The most widely used benchmark is the <strong>25× rule</strong>: multiply your expected annual retirement spending by 25. This is derived from the <strong>4% safe withdrawal rate</strong> — research (the Trinity Study) suggesting a diversified portfolio can sustain 4% withdrawals annually for 30+ years with a high probability of success.</p>
+
+  <h3>The Two Phases of Retirement Planning</h3>
+  <p><strong>Accumulation phase</strong> is the years before you retire — you're saving and investing, and compound growth is your engine. <strong>Drawdown phase</strong> starts at retirement — your portfolio must now generate income while still growing enough to outpace inflation and last your lifetime.</p>
+
+  <h3>401k vs IRA — What's the Difference?</h3>
+  <p>A <strong>401k</strong> is employer-sponsored with a 2024 contribution limit of $23,000 ($30,500 if 50+). An <strong>IRA</strong> (Individual Retirement Account) has a $7,000 limit ($8,000 if 50+). Both offer tax advantages — traditional accounts reduce taxable income now; Roth accounts grow tax-free. Many financial advisors recommend maxing both if possible.</p>
+
+  <h3>Social Security</h3>
+  <p>The average Social Security benefit in 2024 is approximately $1,800/month. You can claim from age 62 (reduced benefit) to 70 (maximum benefit — 32% higher than full retirement age). Your actual benefit depends on your earnings history — check ssa.gov for your personal estimate.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the FIRE movement?</div>
+    <div class="faq-a"><p>FIRE stands for Financial Independence, Retire Early. Followers typically save 50–70% of income and aim to retire in their 40s or earlier. The 4% rule applies, but many FIRE adherents use a more conservative 3–3.5% withdrawal rate for longer retirement horizons of 50+ years. Use the FIRE scenario tab above to model early retirement.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How does inflation affect retirement savings?</div>
+    <div class="faq-a"><p>Inflation erodes purchasing power. At 2.5% inflation, $4,000/month today costs ~$6,600/month in 20 years. This calculator adjusts your spending target for inflation, so the "You Need to Retire" figure reflects what you'll actually need — not just today's dollars.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What return rate should I use?</div>
+    <div class="faq-a"><p>The S&P 500 has averaged ~10% nominally (7–8% after inflation) over the long run. A diversified 80/20 (stocks/bonds) portfolio might average 7–8% during accumulation. In retirement, many advisors recommend shifting to 60/40 or more conservative allocations, reducing expected returns to 4–6%.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ── Scenario presets ── */
+var SCENARIOS = {
+  conservative: { ret:6,  retPost:4,   inf:3,   raise:1,   spend:3500, ss:1800 },
+  moderate:     { ret:7,  retPost:5,   inf:2.5, raise:2,   spend:4000, ss:1800 },
+  aggressive:   { ret:9,  retPost:6,   inf:2.5, raise:3,   spend:5000, ss:1500 },
+  fire:         { ret:8,  retPost:3.5, inf:2.5, raise:5,   spend:3000, ss:0    }
+};
+
+function setScen(key, btn){
+  document.querySelectorAll('.scen-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var s = SCENARIOS[key];
+  document.getElementById('r-return').value      = s.ret;
+  document.getElementById('r-return-post').value = s.retPost;
+  document.getElementById('r-inflation').value   = s.inf;
+  document.getElementById('r-contrib-raise').value = s.raise;
+  document.getElementById('r-spend').value       = s.spend;
+  document.getElementById('r-ss').value          = s.ss;
+  if(key === 'fire'){
+    document.getElementById('r-retire-age').value = 45;
+    document.getElementById('r-life').value        = 95;
+  }
+  calcRetire();
+}
+
+function calcRetire(){
+  var curAge    = Math.round(v('r-age'));
+  var retAge    = Math.round(v('r-retire-age'));
+  var lifeAge   = Math.round(v('r-life'));
+  var saved     = v('r-saved');
+  var contrib   = v('r-contrib');
+  var employer  = v('r-employer');
+  var retRate   = v('r-return') / 100;
+  var postRate  = v('r-return-post') / 100;
+  var inf       = v('r-inflation') / 100;
+  var raise     = v('r-contrib-raise') / 100;
+  var spendNow  = v('r-spend');       // monthly, today's $
+  var ss        = v('r-ss');          // monthly SS benefit (today's $)
+
+  if(retAge <= curAge){ showToast('Retirement age must be after current age'); return; }
+  if(lifeAge <= retAge){ showToast('Life expectancy must exceed retirement age'); return; }
+
+  var accYrs  = retAge - curAge;
+  var drawYrs = lifeAge - retAge;
+
+  /* ── ACCUMULATION PHASE ── */
+  var balance = saved;
+  var totalContrib = saved;
+  var rows = [];
+  var monthlyContrib = contrib + employer;
+
+  for(var y = 0; y < accYrs; y++){
+    var age = curAge + y;
+    if(y > 0 && raise > 0) monthlyContrib = monthlyContrib * (1 + raise);
+    // Monthly compound
+    var r = retRate / 12;
+    for(var m = 0; m < 12; m++){
+      balance = balance * (1 + r) + monthlyContrib;
+      totalContrib += monthlyContrib;
+    }
+    var realVal = balance / Math.pow(1 + inf, y + 1);
+    rows.push({ age: age+1, contrib: monthlyContrib * 12, balance: balance, realVal: realVal, phase: 'accum' });
+  }
+
+  var nestEgg = balance;
+  var realNest = nestEgg / Math.pow(1 + inf, accYrs);
+
+  /* ── HOW MUCH IS NEEDED (25× rule, inflation-adjusted spend) ── */
+  var spendAtRetire = spendNow * Math.pow(1 + inf, accYrs); // monthly, future $
+  var ssAtRetire    = ss      * Math.pow(1 + inf, accYrs);  // SS also CPI-indexed
+  var portfolioNeeded = Math.max(0, spendAtRetire - ssAtRetire) * 12 / 0.04; // 4% rule
+
+  /* ── DRAWDOWN PHASE ── */
+  var drawBal = nestEgg;
+  var pr = postRate / 12;
+  var deficit = false;
+  var depletedAge = null;
+
+  for(var d = 0; d < drawYrs; d++){
+    var age2 = retAge + d;
+    // Monthly withdrawal = (inflation-adjusted spend) - SS
+    var inflFactor = Math.pow(1 + inf, accYrs + d);
+    var monthSpend = spendNow * inflFactor;
+    var monthSS    = ss * inflFactor;
+    var monthDraw  = Math.max(0, monthSpend - monthSS);
+
+    for(var m2 = 0; m2 < 12; m2++){
+      drawBal = drawBal * (1 + pr) - monthDraw;
+      if(drawBal < 0 && !depletedAge){ depletedAge = age2; }
+      drawBal = Math.max(0, drawBal);
+    }
+    var realVal2 = drawBal / Math.pow(1 + inf, accYrs + d + 1);
+    rows.push({ age: age2+1, contrib: -monthDraw*12, balance: drawBal, realVal: realVal2, phase: 'draw' });
+  }
+
+  /* ── RESULTS ── */
+  var surplus = depletedAge ? -(nestEgg * 0.1) /* symbolic */ : drawBal;
+  var onTrack = Math.min(100, nestEgg / portfolioNeeded * 100);
+  var monthlyPortfolioIncome = nestEgg * 0.04 / 12;
+  var ssMonthlyAtRetire = ss * Math.pow(1 + inf, accYrs);
+  var totalMonthlyIncome = monthlyPortfolioIncome + ssMonthlyAtRetire;
+
+  // Meter
+  var fill = document.getElementById('r-meter-fill');
+  var pct = Math.min(100, onTrack);
+  fill.style.width = pct + '%';
+  fill.className = 'retire-meter-fill' + (pct < 60 ? ' danger' : pct < 85 ? ' warn' : '');
+  document.getElementById('r-meter-label').textContent =
+    pct >= 100 ? '✅ On track — projected to meet your goal'
+    : pct >= 85 ? '⚠️ Close — a bit more saving will get you there'
+    : '🔴 Behind — increase contributions or adjust your plan';
+  document.getElementById('r-meter-goal-label').textContent = fmtCur(portfolioNeeded);
+
+  setEl('r-nest',          fmtCur(nestEgg));
+  setEl('r-need',          fmtCur(portfolioNeeded));
+  setEl('r-real',          fmtCur(realNest));
+  setEl('r-income',        fmtCur(totalMonthlyIncome) + '/mo');
+  setEl('r-acc-yrs',       accYrs + ' years');
+  setEl('r-draw-yrs',      drawYrs + ' years');
+  setEl('r-total-contrib', fmtCur(totalContrib));
+
+  if(depletedAge){
+    document.getElementById('r-surplus-label').textContent = '⚠️ Portfolio Depleted At';
+    setEl('r-surplus', 'Age ' + depletedAge);
+    document.getElementById('r-surplus-sub').textContent = 'Increase savings or reduce spending';
+    document.getElementById('r-surplus-block').className = 'result-item red';
+  } else {
+    document.getElementById('r-surplus-label').textContent = 'Portfolio Remaining at ' + lifeAge;
+    setEl('r-surplus', fmtCur(drawBal));
+    document.getElementById('r-surplus-sub').textContent = 'leaves a legacy / buffer';
+    document.getElementById('r-surplus-block').className = 'result-item green';
+  }
+
+  // Phase bar
+  var totalYrs = accYrs + drawYrs;
+  var accPct  = (accYrs / totalYrs * 100).toFixed(1);
+  var drawPct = (drawYrs / totalYrs * 100).toFixed(1);
+  document.getElementById('r-phase-bar').innerHTML =
+    '<div class="phase-accum" style="flex:'+accPct+'"></div>'
+    +'<div class="phase-draw" style="flex:'+drawPct+'"></div>';
+
+  // Insight
+  var gapText = '';
+  if(nestEgg < portfolioNeeded){
+    var gap = portfolioNeeded - nestEgg;
+    var extraNeeded = gap / (accYrs * 12);
+    gapText = ' To close the <strong>'+fmtCur(gap)+'</strong> gap, you\'d need to save an extra <strong>'+fmtCur(extraNeeded)+'</strong>/month.';
+  }
+  var insightText = depletedAge
+    ? '<strong>Your portfolio runs out at age '+depletedAge+'.</strong> You\'ll need '+fmtCur(Math.max(0,spendNow-ss))+ '/mo more from savings or income after that.' + gapText
+    : '<strong>On track!</strong> Your <strong>'+fmtCur(nestEgg)+'</strong> nest egg should fund <strong>'+fmtCur(Math.round(totalMonthlyIncome))+'</strong>/month through age '+lifeAge+', with <strong>'+fmtCur(drawBal)+'</strong> remaining.' + (portfolioNeeded > nestEgg ? gapText : '');
+  document.getElementById('retire-insight-text').innerHTML = insightText;
+
+  // Table
+  var tbody = document.getElementById('retire-tbody');
+  // Show every year for first 10, then every 5
+  var showRows = rows.filter(function(r, i){
+    return i < 10 || (r.age % 5 === 0) || i === rows.length - 1;
+  });
+  tbody.innerHTML = showRows.map(function(r){
+    var phaseLabel = r.phase === 'accum'
+      ? '<span style="color:#22c55e;font-size:.75rem">▲ Saving</span>'
+      : '<span style="color:#f59e0b;font-size:.75rem">▼ Drawing</span>';
+    var contribDisplay = r.phase === 'accum'
+      ? '<span class="td-green">+'+fmtCur(r.contrib)+'</span>'
+      : '<span style="color:#f59e0b">'+fmtCur(r.contrib)+'</span>';
+    return '<tr>'
+      +'<td class="td-mono">'+r.age+'</td>'
+      +'<td class="td-mono">'+contribDisplay+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(r.balance)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.realVal)+'</td>'
+      +'<td>'+phaseLabel+'</td>'
+      +'</tr>';
+  }).join('');
+
+  showRes('retire-results');
+}
+
+window.addEventListener('load', calcRetire);
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Age Calculator — Exact Age in Years, Months & Days | CalcHub</title>
+<meta name="description" content="Free age calculator. Find your exact age in years, months, days, hours, and minutes. See your next birthday countdown, day of the week born, and total days lived. Instant results.">
+<meta name="keywords" content="age calculator,how old am i,exact age calculator,birthday calculator,age in days calculator,date of birth calculator,age in months calculator,next birthday countdown,what day was I born">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/age.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Age Calculator","description":"Calculate exact age in years, months, days, and time until next birthday.","url":"https://yourdomain.com/calculator-types/age.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🎂 Age Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Age Calculator</h1>
+  <p class="hero-sub">Find your exact age in years, months, and days — plus a countdown to your next birthday.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🎂</div>
+    <div><div class="calc-card-title">Age Calculator</div><div class="calc-card-desc">Exact age, birthday countdown, and day-of-week born</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="age-dob">Date of Birth</label>
+        <input type="date" id="age-dob">
+      </div>
+      <div class="field">
+        <label for="age-asof">Calculate Age As Of</label>
+        <input type="date" id="age-asof">
+        <span class="field-hint">Defaults to today</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcAge()">Calculate Age →</button>
+
+    <div class="results" id="age-results">
+      <div class="results-header">Your Exact Age</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Age</div>
+          <div class="result-value" id="r-a-main">—</div>
+          <div class="result-sub" id="r-a-sub"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Months</div>
+          <div class="result-value" id="r-a-months">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Weeks</div>
+          <div class="result-value" id="r-a-weeks">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Days</div>
+          <div class="result-value" id="r-a-days">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Total Hours</div>
+          <div class="result-value" id="r-a-hours">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Day of Week Born</div>
+          <div class="result-value" id="r-a-dow">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Next Birthday</div>
+          <div class="result-value" id="r-a-next">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Days Until Next Birthday</div>
+          <div class="result-value" id="r-a-countdown">—</div>
+        </div>
+      </div>
+
+      <div id="age-insight" class="insight"><div class="insight-icon">💡</div><div id="age-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Age Calculator</h2>
+  <p>Enter your date of birth and the calculator instantly shows your exact age broken down into years, months, and days, along with totals in weeks, days, and hours. It also calculates how many days remain until your next birthday.</p>
+
+  <h3>Why Calculate Exact Age?</h3>
+  <p>Exact age calculations are useful for legal documents, visa and passport applications, school enrollment cutoffs, medical forms, and life milestone planning. Some eligibility rules (like retirement age or age of majority) depend on the precise day, not just the year.</p>
+
+  <h3>How Age Is Calculated</h3>
+  <p>The calculator finds the difference between your date of birth and today's date (or any chosen date), accounting for varying month lengths and leap years to give a precise years/months/days breakdown rather than a simple year subtraction.</p>
+
+  <div class="faq-item"><div class="faq-q">Why does my age in years differ from just subtracting birth year from current year?</div><div class="faq-a"><p>Simple year subtraction doesn't account for whether your birthday has occurred yet this year. If your birthday hasn't happened yet in the current year, your true age is one year less than the subtraction suggests. This calculator accounts for the exact month and day.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Does the calculator account for leap years?</div><div class="faq-a"><p>Yes. The calculator uses actual calendar dates, so leap years (including the extra day in February) are automatically factored into all day, week, and hour totals.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can I calculate age as of a future or past date instead of today?</div><div class="faq-a"><p>Yes. Use the "Calculate Age As Of" field to set any date — useful for figuring out how old you'll be on a future event date, or how old you were on a specific past date.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  var todayStr = new Date().toISOString().slice(0,10);
+  document.getElementById('age-asof').value = todayStr;
+})();
+
+function calcAge(){
+  var dobStr = vs('age-dob');
+  var asofStr = vs('age-asof') || new Date().toISOString().slice(0,10);
+
+  if(!dobStr){ showToast('Please enter your date of birth'); return; }
+
+  var dob = new Date(dobStr + 'T00:00:00');
+  var asof = new Date(asofStr + 'T00:00:00');
+
+  if(dob > asof){ showToast('Date of birth must be before the comparison date'); return; }
+
+  // Years / months / days breakdown
+  var years = asof.getFullYear() - dob.getFullYear();
+  var months = asof.getMonth() - dob.getMonth();
+  var days = asof.getDate() - dob.getDate();
+
+  if(days < 0){
+    months--;
+    var prevMonth = new Date(asof.getFullYear(), asof.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if(months < 0){
+    years--;
+    months += 12;
+  }
+
+  var msDiff = asof.getTime() - dob.getTime();
+  var totalDays = Math.floor(msDiff / 86400000);
+  var totalWeeks = Math.floor(totalDays / 7);
+  var totalMonths = years * 12 + months;
+  var totalHours = Math.floor(msDiff / 3600000);
+
+  var dowNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var dow = dowNames[dob.getDay()];
+
+  // Next birthday
+  var nextBday = new Date(asof.getFullYear(), dob.getMonth(), dob.getDate());
+  if(nextBday < asof || (nextBday.getMonth()===asof.getMonth() && nextBday.getDate()===asof.getDate() && false)){
+    nextBday.setFullYear(asof.getFullYear()+1);
+  }
+  if(nextBday.getTime() === asof.getTime()){
+    // birthday is today
+  } else if(nextBday < asof){
+    nextBday.setFullYear(asof.getFullYear()+1);
+  }
+  var isBirthdayToday = (dob.getMonth()===asof.getMonth() && dob.getDate()===asof.getDate());
+  var daysUntil = Math.ceil((nextBday.getTime() - asof.getTime()) / 86400000);
+
+  setEl('r-a-main', years + 'y ' + months + 'm ' + days + 'd');
+  setEl('r-a-sub', isBirthdayToday ? '🎉 Birthday today!' : (asofStr === new Date().toISOString().slice(0,10) ? 'as of today' : 'as of ' + asof.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})));
+  setEl('r-a-months', fmt(totalMonths,0));
+  setEl('r-a-weeks', fmt(totalWeeks,0));
+  setEl('r-a-days', fmt(totalDays,0));
+  setEl('r-a-hours', fmt(totalHours,0));
+  setEl('r-a-dow', dow);
+  setEl('r-a-next', nextBday.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));
+  setEl('r-a-countdown', isBirthdayToday ? '0 (today!)' : fmt(daysUntil,0) + ' days');
+
+  var insightText;
+  if(isBirthdayToday){
+    insightText = '<strong>Happy birthday!</strong> You are turning <strong>'+years+'</strong> today.';
+  } else if(daysUntil <= 30){
+    insightText = '<strong>Coming up soon:</strong> Your next birthday is in just <strong>'+daysUntil+' days</strong>, when you turn <strong>'+(years+1)+'</strong>.';
+  } else {
+    insightText = 'You have lived approximately <strong>'+fmt(totalWeeks,0)+' weeks</strong> so far. Your next birthday ('+nextBday.toLocaleDateString('en-US',{month:'long',day:'numeric'})+') is <strong>'+daysUntil+' days</strong> away.';
+  }
+  document.getElementById('age-insight-text').innerHTML = insightText;
+
+  showRes('age-results');
+}
+window.addEventListener('load', function(){
+  if(!document.getElementById('age-dob').value){
+    return; // wait for user input on first load, no default DOB
+  }
+  calcAge();
+});
+</script>
+</body></html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Credit Card Payoff Calculator — Payoff Date, Interest & Strategies | CalcHub</title>
+<meta name="description" content="Free credit card payoff calculator. See how long to pay off your balance, total interest paid, and how much you save with different payment strategies. Compare minimum payments vs fixed payments vs avalanche.">
+<meta name="keywords" content="credit card payoff calculator,how long to pay off credit card,credit card interest calculator,minimum payment calculator,credit card debt calculator,pay off credit card fast,credit card payoff strategies">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/credit-card-payoff.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* Strategy selector tabs */
+.strat-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;
+}
+.strat-tab{
+  flex:1;min-width:130px;
+  padding:10px 14px;border-radius:10px;
+  border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.8rem;font-weight:600;cursor:pointer;
+  font-family:var(--font-sans);background:transparent;
+  color:var(--text-2);transition:all .15s;text-align:left;
+  line-height:1.35;
+}
+.strat-tab .strat-name{ display:block;font-size:.85rem; }
+.strat-tab .strat-desc{ display:block;font-weight:400;font-size:.72rem;opacity:.6;margin-top:2px; }
+.strat-tab.active{
+  background:var(--accent,#22c55e);
+  border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+.strat-tab.active .strat-desc{ opacity:.75; }
+
+/* Comparison strip */
+.compare-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin:14px 0;
+}
+.compare-item{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:10px;padding:12px;text-align:center;
+}
+.compare-item.active-strat{
+  border-color:var(--accent,#22c55e);
+}
+.compare-item-label{ font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-2);margin-bottom:4px; }
+.compare-item-val{ font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--text); }
+.compare-item-sub{ font-size:.7rem;color:var(--text-2);margin-top:2px; }
+.compare-item.best .compare-item-val{ color:var(--accent,#22c55e); }
+.compare-item.worst .compare-item-val{ color:#ef4444; }
+
+/* Payoff progress arc label */
+.danger-label{ color:#ef4444;font-weight:700; }
+.warn-label  { color:#f59e0b;font-weight:700; }
+.good-label  { color:#22c55e;font-weight:700; }
+
+/* Min pay warning */
+.min-warn{
+  background:#1a0a0a;border:1.5px solid #7f1d1d;border-radius:10px;
+  padding:12px 16px;font-size:.83rem;color:#fca5a5;margin-bottom:14px;display:none;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">💸 Debt Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Credit Card Payoff Calculator</h1>
+  <p class="hero-sub">See exactly how long it takes to pay off your balance, how much interest you'll pay, and how much you save by paying more than the minimum.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">💸</div>
+    <div>
+      <div class="calc-card-title">Credit Card Payoff Calculator</div>
+      <div class="calc-card-desc">Minimum payment trap · Fixed payment · Custom payoff target</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Strategy tabs -->
+    <div class="strat-tabs" id="strat-tabs">
+      <button class="strat-tab active" onclick="setStrat('fixed',this)">
+        <span class="strat-name">💳 Fixed Payment</span>
+        <span class="strat-desc">Pay a set amount each month</span>
+      </button>
+      <button class="strat-tab" onclick="setStrat('minimum',this)">
+        <span class="strat-name">⚠️ Minimum Only</span>
+        <span class="strat-desc">See the true cost of minimums</span>
+      </button>
+      <button class="strat-tab" onclick="setStrat('target',this)">
+        <span class="strat-name">🎯 Target Date</span>
+        <span class="strat-desc">Set a payoff deadline</span>
+      </button>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="cc-balance">Current Balance</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="cc-balance" class="has-prefix" value="5000" min="1" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="cc-apr">Annual Interest Rate (APR)</label>
+        <div class="input-wrap">
+          <input type="number" id="cc-apr" value="22.99" min="0" max="100" step="0.01">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+
+      <!-- Fixed payment field -->
+      <div class="field" id="field-fixed">
+        <label for="cc-payment">Monthly Payment</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="cc-payment" class="has-prefix" value="200" min="1" step="10">
+        </div>
+      </div>
+
+      <!-- Minimum payment options -->
+      <div class="field" id="field-min" style="display:none">
+        <label for="cc-min-pct">Minimum Payment Method</label>
+        <select id="cc-min-pct">
+          <option value="pct2">2% of balance (common)</option>
+          <option value="pct1">1% of balance + interest</option>
+          <option value="flat25">$25 flat minimum</option>
+          <option value="pct2_25">2% or $25, whichever is greater</option>
+        </select>
+      </div>
+
+      <!-- Target date field -->
+      <div class="field" id="field-target" style="display:none">
+        <label for="cc-target-months">Pay Off Within</label>
+        <div class="input-wrap">
+          <input type="number" id="cc-target-months" value="24" min="1" max="360" step="1">
+          <span class="input-suffix">months</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cc-new-charges">New Monthly Charges</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="cc-new-charges" class="has-prefix" value="0" min="0" step="10">
+        </div>
+        <span class="field-hint">Ongoing spending on this card</span>
+      </div>
+    </div>
+
+    <!-- Min-pay danger warning -->
+    <div class="min-warn" id="min-warn">
+      ⚠️ <strong>Minimum payment trap:</strong> With only minimum payments, most of your money goes to interest and your balance barely shrinks. This can take <em>decades</em> to pay off.
+    </div>
+
+    <button class="calc-btn" onclick="calcCC()">Calculate Payoff →</button>
+
+    <div class="results" id="cc-results">
+      <div class="results-header">Payoff Results</div>
+
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Monthly Payment</div>
+          <div class="result-value" id="r-cc-payment">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Payoff Date</div>
+          <div class="result-value" id="r-cc-date">—</div>
+        </div>
+        <div class="result-item red">
+          <div class="result-label">Total Interest Paid</div>
+          <div class="result-value" id="r-cc-interest">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Cost (balance + interest)</div>
+          <div class="result-value" id="r-cc-total">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item amber">
+          <div class="result-label">Months to Pay Off</div>
+          <div class="result-value" id="r-cc-months">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Interest as % of Balance</div>
+          <div class="result-value" id="r-cc-int-pct">—</div>
+        </div>
+        <div class="result-item green" id="r-cc-saved-block" style="display:none">
+          <div class="result-label">Interest Saved vs Minimum</div>
+          <div class="result-value" id="r-cc-saved">—</div>
+        </div>
+        <div class="result-item green" id="r-cc-time-saved-block" style="display:none">
+          <div class="result-label">Time Saved vs Minimum</div>
+          <div class="result-value" id="r-cc-time-saved">—</div>
+        </div>
+      </div>
+
+      <!-- Strategy comparison -->
+      <div style="margin:16px 0 6px;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-2)">Strategy Comparison</div>
+      <div class="compare-strip" id="cc-compare"></div>
+
+      <div id="cc-insight" class="insight"><div class="insight-icon">💡</div><div id="cc-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px;max-height:320px;overflow-y:auto">
+        <div class="breakdown-title">Payment Schedule</div>
+        <table class="breakdown-table">
+          <thead><tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+          <tbody id="cc-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>The True Cost of Minimum Payments</h2>
+  <p>Credit card minimum payments are designed to keep you in debt as long as possible. A $5,000 balance at 22.99% APR with 2% minimum payments takes over <strong>30 years</strong> to pay off and costs more than <strong>$8,000 in interest alone</strong> — more than the original debt.</p>
+
+  <h3>How Credit Card Interest is Calculated</h3>
+  <p>Credit cards use a <strong>Daily Periodic Rate (DPR)</strong>: APR ÷ 365. Interest is charged daily on your outstanding balance. If your APR is 22.99%, your DPR is 0.063%. On a $5,000 balance, that's about $3.15 per day in interest — roughly $95/month before you've paid a cent of principal.</p>
+
+  <h3>Payoff Strategies</h3>
+  <ul>
+    <li><strong>Fixed payment:</strong> Pay the same amount every month. Simple and predictable — choose an amount above the minimum to actually make progress.</li>
+    <li><strong>Debt avalanche:</strong> If you have multiple cards, pay minimums on all and throw extra at the highest-APR card first. Mathematically optimal.</li>
+    <li><strong>Debt snowball:</strong> Pay off the smallest balance first for psychological wins. Slightly more interest but higher completion rates.</li>
+  </ul>
+
+  <div class="faq-item">
+    <div class="faq-q">What is a good credit card APR?</div>
+    <div class="faq-a"><p>The average credit card APR in 2024 is around 21–24%. Cards for excellent credit (750+) may offer 15–19%. Anything above 25% is high. If you carry a balance, the APR matters far more than rewards — a 2% cashback card at 24% APR costs you far more than it earns.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Should I do a balance transfer?</div>
+    <div class="faq-a"><p>A 0% intro APR balance transfer can be powerful if you can pay off the balance during the intro period (usually 12–21 months). Watch for transfer fees (typically 3–5%) and the rate that kicks in after the intro period. Use this calculator to see if you can realistically pay off within the promo window.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I stop accumulating more debt?</div>
+    <div class="faq-a"><p>The most effective step is stopping new charges on the card you're paying off — use the "New Monthly Charges" field above to see how ongoing spending extends your payoff date. Even $100/month in new charges can add years and thousands to your payoff.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var currentStrat = 'fixed';
+
+function setStrat(strat, btn){
+  document.querySelectorAll('.strat-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentStrat = strat;
+
+  document.getElementById('field-fixed').style.display  = strat === 'fixed'   ? '' : 'none';
+  document.getElementById('field-min').style.display    = strat === 'minimum' ? '' : 'none';
+  document.getElementById('field-target').style.display = strat === 'target'  ? '' : 'none';
+  document.getElementById('min-warn').style.display     = strat === 'minimum' ? '' : 'none';
+
+  calcCC();
+}
+
+/* ── Simulate payoff ── */
+function simulate(balance, monthlyRate, payment, newCharges, maxMonths){
+  var bal = balance, totalInt = 0, months = 0, rows = [];
+  maxMonths = maxMonths || 1200;
+  while(bal > 0.005 && months < maxMonths){
+    var interest = bal * monthlyRate;
+    bal += newCharges;
+    var prin = Math.min(bal, Math.max(0, payment - interest));
+    if(payment <= interest && newCharges === 0){ return null; } // payment too small
+    bal = Math.max(0, bal - payment + interest); // recompute
+    // Correct: new bal = old bal + interest + new charges - payment
+    // Redo cleanly:
+    if(months === 0) bal = balance; // reset first iter above was messy
+    // clean loop:
+    months = 0; totalInt = 0; rows = []; bal = balance;
+    break;
+  }
+  // Clean implementation
+  bal = balance; totalInt = 0; months = 0; rows = [];
+  while(bal > 0.005 && months < maxMonths){
+    var int2 = bal * monthlyRate;
+    totalInt += int2;
+    bal = bal + int2 + newCharges - payment;
+    months++;
+    if(bal <= 0){ bal = 0; rows.push({ mo:months, pay:payment, int:int2, bal:0 }); break; }
+    if(bal > balance * 50){ return null; } // diverging
+    rows.push({ mo:months, pay:payment, int:int2, bal:bal });
+  }
+  if(bal > 0.005) return null; // didn't pay off
+  return { months:months, totalInt:totalInt, rows:rows };
+}
+
+function getMinPayment(balance, method, monthlyRate){
+  var interest = balance * monthlyRate;
+  switch(method){
+    case 'pct2':    return Math.max(25, balance * 0.02);
+    case 'pct1':    return Math.max(25, balance * 0.01 + interest);
+    case 'flat25':  return 25;
+    case 'pct2_25': return Math.max(25, balance * 0.02);
+    default:        return Math.max(25, balance * 0.02);
+  }
+}
+
+function calcCC(){
+  var balance    = v('cc-balance');
+  var apr        = v('cc-apr') / 100;
+  var newCharges = v('cc-new-charges');
+  var mRate      = apr / 12;
+
+  if(balance <= 0){ showToast('Enter a valid balance'); return; }
+
+  var payment, simResult, minSimResult;
+
+  if(currentStrat === 'fixed'){
+    payment = v('cc-payment');
+    var minInt = balance * mRate;
+    if(payment <= minInt + newCharges){
+      showToast('Payment must exceed monthly interest ($'+fmtCur(minInt+newCharges)+')');
+      return;
+    }
+  } else if(currentStrat === 'minimum'){
+    var minMethod = vs('cc-min-pct');
+    payment = getMinPayment(balance, minMethod, mRate);
+  } else { // target
+    var targetMonths = Math.round(v('cc-target-months'));
+    if(targetMonths < 1){ showToast('Enter a valid target'); return; }
+    // Solve for payment: P = (B * r * (1+r)^n) / ((1+r)^n - 1) + newCharges
+    var rn = Math.pow(1 + mRate, targetMonths);
+    payment = balance * mRate * rn / (rn - 1) + newCharges;
+    payment = Math.ceil(payment * 100) / 100;
+  }
+
+  simResult = simulate(balance, mRate, payment, newCharges, 1200);
+  if(!simResult){ showToast('Payment too small — balance will never pay off'); return; }
+
+  // Always compute minimum for comparison
+  minSimResult = simulate(balance, mRate, getMinPayment(balance,'pct2',mRate), newCharges, 1200);
+
+  var months      = simResult.months;
+  var totalInt    = simResult.totalInt;
+  var totalCost   = balance + totalInt;
+  var intPct      = totalInt / balance * 100;
+
+  // Payoff date
+  var now = new Date();
+  var payoff = new Date(now.getFullYear(), now.getMonth() + months, 1);
+  var payoffStr = payoff.toLocaleDateString('en-US',{year:'numeric',month:'short'});
+
+  setEl('r-cc-payment', fmtCur(payment) + '/mo');
+  setEl('r-cc-date',    payoffStr);
+  setEl('r-cc-interest',fmtCur(totalInt));
+  setEl('r-cc-total',   fmtCur(totalCost));
+  setEl('r-cc-months',  months + (months === 1 ? ' month' : ' months'));
+  setEl('r-cc-int-pct', fmtPct(intPct));
+
+  // vs minimum comparison
+  if(minSimResult && currentStrat !== 'minimum'){
+    var saved     = minSimResult.totalInt - totalInt;
+    var timeSaved = minSimResult.months - months;
+    document.getElementById('r-cc-saved-block').style.display = '';
+    document.getElementById('r-cc-time-saved-block').style.display = '';
+    setEl('r-cc-saved',      fmtCur(Math.max(0,saved)));
+    var tsMo = timeSaved % 12;
+    var tsYr = Math.floor(timeSaved / 12);
+    setEl('r-cc-time-saved', (tsYr > 0 ? tsYr+'y ' : '') + (tsMo > 0 ? tsMo+'m' : ''));
+  } else {
+    document.getElementById('r-cc-saved-block').style.display = 'none';
+    document.getElementById('r-cc-time-saved-block').style.display = 'none';
+  }
+
+  // Strategy comparison strip
+  var strategies = [
+    { label:'Min. Payment (2%)', sim: minSimResult, key:'min' },
+    { label:'Your Payment', sim: simResult, key:'yours' },
+    { label:'Pay in 12 months', sim: null, key:'fast' }
+  ];
+  // compute 12-month payoff
+  var rn12 = Math.pow(1+mRate,12);
+  var pay12 = balance * mRate * rn12 / (rn12-1) + newCharges;
+  var sim12 = simulate(balance, mRate, Math.ceil(pay12*100)/100, newCharges, 24);
+  strategies[2].sim = sim12;
+
+  var leastInt = Infinity, mostInt = -Infinity;
+  strategies.forEach(function(s){ if(s.sim){ leastInt=Math.min(leastInt,s.sim.totalInt); mostInt=Math.max(mostInt,s.sim.totalInt); } });
+
+  document.getElementById('cc-compare').innerHTML = strategies.map(function(s, i){
+    if(!s.sim) return '<div class="compare-item"><div class="compare-item-label">'+s.label+'</div><div class="compare-item-val" style="font-size:.8rem;color:var(--text-2)">N/A</div></div>';
+    var cls = s.sim.totalInt === leastInt ? 'compare-item best' : s.sim.totalInt === mostInt ? 'compare-item worst' : 'compare-item';
+    if(i===1) cls += ' active-strat';
+    var mo = s.sim.months; var yr=Math.floor(mo/12); var rm=mo%12;
+    return '<div class="'+cls+'">'
+      +'<div class="compare-item-label">'+s.label+'</div>'
+      +'<div class="compare-item-val">'+fmtCur(s.sim.totalInt)+'</div>'
+      +'<div class="compare-item-sub">'+(yr>0?yr+'yr ':'')+(rm>0?rm+'mo':yr>0?'':'')+'</div>'
+      +'</div>';
+  }).join('');
+
+  // Insight
+  var insightHtml;
+  if(currentStrat === 'minimum'){
+    var yrs = Math.floor(months/12); var mo2 = months%12;
+    insightHtml = '⚠️ <strong>Minimum payments only:</strong> It takes <strong>'+(yrs>0?yrs+' years':'')+(mo2>0?' '+mo2+' months':'')+' </strong>to pay off this balance and costs <strong>'+fmtCur(totalInt)+'</strong> in interest — <strong>'+fmtPct(intPct)+'</strong> of your original balance. Paying just <strong>$'+Math.ceil(payment*1.5).toLocaleString()+'</strong>/month would cut years off your payoff.';
+  } else {
+    insightHtml = 'At <strong>'+fmtCur(payment)+'</strong>/month you\'ll be debt-free by <strong>'+payoffStr+'</strong>, paying <strong>'+fmtCur(totalInt)+'</strong> in total interest.'
+    + (minSimResult && currentStrat!=='minimum' ? ' That\'s <strong>'+fmtCur(Math.max(0,minSimResult.totalInt-totalInt))+'</strong> less than paying only minimums.' : '');
+  }
+  document.getElementById('cc-insight-text').innerHTML = insightHtml;
+
+  // Table — monthly for ≤60 months, else quarterly
+  var rows = simResult.rows;
+  var showRows = rows.length <= 60 ? rows : rows.filter(function(_,i){ return i%3===0||i===rows.length-1; });
+  var tbody = document.getElementById('cc-tbody');
+  tbody.innerHTML = showRows.map(function(r){
+    return '<tr>'
+      +'<td class="td-mono">'+r.mo+'</td>'
+      +'<td class="td-mono">'+fmtCur(payment)+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(Math.max(0,payment-r.int))+'</td>'
+      +'<td class="td-mono td-red">'+fmtCur(r.int)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.bal)+'</td>'
+      +'</tr>';
+  }).join('');
+
+  showRes('cc-results');
+}
+
+window.addEventListener('load', calcCC);
+</script>
+</body>
+</html>

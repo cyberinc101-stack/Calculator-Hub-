@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compound Interest Calculator — Growth, Inflation Adjusted & Monthly Contributions | CalcHub</title>
+<meta name="description" content="Free compound interest calculator. Calculate investment growth with monthly contributions, inflation adjustment, tax drag, and compound frequency. See year-by-year breakdown.">
+<meta name="keywords" content="compound interest calculator,investment growth calculator,compound interest with monthly contributions,future value calculator,inflation adjusted returns,compound interest formula,savings calculator,how much will my investment grow">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/compound-interest.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📈 Investment Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Compound Interest Calculator</h1>
+  <p class="hero-sub">See how your money grows over time with compound interest, monthly contributions, inflation adjustment, and tax drag.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📈</div>
+    <div><div class="calc-card-title">Compound Interest Calculator</div><div class="calc-card-desc">Growth, contributions, inflation, and tax — all in one</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="ci-principal">Starting Amount</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ci-principal" class="has-prefix" value="10000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="ci-contrib">Monthly Contribution</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ci-contrib" class="has-prefix" value="500" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label for="ci-rate">Annual Return Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="ci-rate" value="8" min="0" max="100" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="ci-years">Investment Period</label>
+        <div class="input-wrap">
+          <input type="number" id="ci-years" value="20" min="1" max="60" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="ci-freq">Compound Frequency</label>
+        <select id="ci-freq">
+          <option value="12" selected>Monthly</option>
+          <option value="4">Quarterly</option>
+          <option value="2">Semi-annually</option>
+          <option value="1">Annually</option>
+          <option value="365">Daily</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="ci-inflation">Inflation Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="ci-inflation" value="2.5" min="0" max="20" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="ci-tax">Investment Tax Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="ci-tax" value="0" min="0" max="60" step="1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Applied annually to gains</span>
+      </div>
+      <div class="field">
+        <label for="ci-contrib-increase">Annual Contribution Increase</label>
+        <div class="input-wrap">
+          <input type="number" id="ci-contrib-increase" value="0" min="0" max="20" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Increase monthly contribution each year</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcCI()">Calculate Growth →</button>
+
+    <div class="results" id="ci-results">
+      <div class="results-header">Investment Results</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Final Balance</div>
+          <div class="result-value" id="r-ci-final">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Total Interest Earned</div>
+          <div class="result-value" id="r-ci-interest">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Contributed</div>
+          <div class="result-value" id="r-ci-contrib">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Inflation-Adjusted Value</div>
+          <div class="result-value" id="r-ci-real">—</div>
+          <div class="result-sub">in today's purchasing power</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item">
+          <div class="result-label">Effective Annual Rate</div>
+          <div class="result-value" id="r-ci-ear">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Tax Paid</div>
+          <div class="result-value" id="r-ci-tax">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Money × Multiplied</div>
+          <div class="result-value" id="r-ci-mult">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Real Return Rate</div>
+          <div class="result-value" id="r-ci-real-rate">—</div>
+          <div class="result-sub">after inflation</div>
+        </div>
+      </div>
+
+      <div id="ci-insight" class="insight"><div class="insight-icon">💡</div><div id="ci-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px;max-height:320px;overflow-y:auto">
+        <div class="breakdown-title">Year-by-Year Growth</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Year</th><th>Contributions</th><th>Interest</th><th>Balance</th><th>Real Value</th></tr></thead>
+          <tbody id="ci-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Compound Interest Works</h2>
+  <p>Compound interest means you earn returns not just on your original investment (principal) but also on the interest already earned. Over time, this creates exponential growth — what Einstein reportedly called "the eighth wonder of the world."</p>
+  <h3>The Compound Interest Formula</h3>
+  <p>A = P(1 + r/n)^(nt) — where P is principal, r is annual rate, n is compounds per year, and t is time in years. When you add regular contributions, each contribution begins its own compounding journey.</p>
+  <h3>Why Inflation-Adjusted Returns Matter</h3>
+  <p>A nominal return of 8% with 2.5% inflation gives a real return of approximately 5.5%. Your purchasing power grows at the real rate — this is what you can actually buy with your future balance in today's money.</p>
+  <div class="faq-item"><div class="faq-q">What is a realistic long-term return rate?</div><div class="faq-a"><p>The US stock market (S&P 500) has returned approximately 10% annually on average over 100 years (7–8% after inflation). Diversified global equity portfolios have returned 7–9% nominally. Conservative bond-heavy portfolios typically return 4–5%.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How does compound frequency affect returns?</div><div class="faq-a"><p>More frequent compounding means slightly higher returns. The difference between monthly and annually is relatively small — from 8% nominal, monthly compounding gives ~8.30% effective annual rate versus 8.00% with annual compounding.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function calcCI(){
+  var P    = v('ci-principal');
+  var mc   = v('ci-contrib');
+  var rate = v('ci-rate') / 100;
+  var yrs  = Math.round(v('ci-years'));
+  var n    = parseFloat(vs('ci-freq'));
+  var inf  = v('ci-inflation') / 100;
+  var tax  = v('ci-tax') / 100;
+  var ci   = v('ci-contrib-increase') / 100;
+
+  if(yrs < 1){ showToast('Enter at least 1 year'); return; }
+
+  var r = rate / n;          // rate per period
+  var balance = P;
+  var totalContrib = P;
+  var totalTax = 0;
+  var rows = [];
+  var monthlyContrib = mc;
+
+  for(var yr = 1; yr <= yrs; yr++){
+    var yearStartBal = balance;
+    if(yr > 1 && ci > 0) monthlyContrib = monthlyContrib * (1 + ci);
+    var periodsPerYear = n;
+    var monthsPerPeriod = 12 / periodsPerYear;
+
+    // Compound each period within the year
+    for(var p = 0; p < periodsPerYear; p++){
+      var contribThisPeriod = monthlyContrib * monthsPerPeriod;
+      balance = balance * (1 + r) + contribThisPeriod;
+      totalContrib += contribThisPeriod;
+    }
+    // Annual tax on gains
+    var yearGains = balance - yearStartBal - monthlyContrib * 12;
+    if(tax > 0 && yearGains > 0){
+      var taxAmt = yearGains * tax;
+      balance -= taxAmt;
+      totalTax += taxAmt;
+    }
+    var realVal = balance / Math.pow(1 + inf, yr);
+    rows.push({ yr:yr, contrib:totalContrib, balance:balance, realVal:realVal });
+  }
+
+  var totalInterest = balance - totalContrib;
+  var realFinal = balance / Math.pow(1+inf, yrs);
+  var ear = Math.pow(1 + rate/n, n) - 1;
+  var realRate = (1 + rate) / (1 + inf) - 1;
+  var mult = totalContrib > 0 ? balance / totalContrib : 0;
+
+  setEl('r-ci-final',    fmtCur(balance));
+  setEl('r-ci-interest', fmtCur(totalInterest));
+  setEl('r-ci-contrib',  fmtCur(totalContrib));
+  setEl('r-ci-real',     fmtCur(realFinal));
+  setEl('r-ci-ear',      fmtPct(ear*100));
+  setEl('r-ci-tax',      fmtCur(totalTax));
+  setEl('r-ci-mult',     fmt(mult,1)+'×');
+  setEl('r-ci-real-rate',fmtPct(realRate*100));
+
+  var pctInterest = totalInterest / balance * 100;
+  document.getElementById('ci-insight-text').innerHTML =
+    '<strong>Compound effect:</strong> Of your <strong>'+fmtCur(balance)+'</strong> final balance, <strong>'+fmtCur(totalInterest)+'</strong> ('+fmt(pctInterest,0)+'%) is pure interest growth — not money you put in. This shows compound interest\'s power over '+yrs+' years.';
+
+  var tbody = document.getElementById('ci-tbody');
+  tbody.innerHTML = rows.map(function(r){
+    return '<tr><td class="td-mono">'+r.yr+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.contrib)+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(r.balance-r.contrib)+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(r.balance)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.realVal)+'</td></tr>';
+  }).join('');
+
+  showRes('ci-results');
+}
+window.addEventListener('load', calcCI);
+</script>
+</body></html>

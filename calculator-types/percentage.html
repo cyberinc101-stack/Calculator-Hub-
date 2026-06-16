@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Percentage Calculator — What Is X% of Y, Percentage Change & More | CalcHub</title>
+<meta name="description" content="Free percentage calculator with 6 modes: what is X% of Y, percentage change, percentage difference, reverse percentage, tip percentage, and percentage of a total. Instant results with explanations.">
+<meta name="keywords" content="percentage calculator,what is x percent of y,percentage change calculator,percentage increase calculator,percentage decrease calculator,percentage difference calculator,how to calculate percentage,reverse percentage calculator,percent of total calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/percentage.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Mode selector tabs ── */
+.mode-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
+}
+.mode-tab{
+  padding:8px 14px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
+  background:transparent;color:var(--text-2);transition:all .15s;line-height:1.3;
+  text-align:left;
+}
+.mode-tab .mode-tab-title{ display:block;color:inherit; }
+.mode-tab .mode-tab-eg{ display:block;font-weight:400;font-size:.72rem;opacity:.65;margin-top:1px; }
+.mode-tab.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+.mode-tab.active .mode-tab-eg{ opacity:.75; }
+
+/* ── Mode panels ── */
+.mode-panel{ display:none; }
+.mode-panel.active{ display:block; }
+
+/* ── Big answer display ── */
+.pct-answer{
+  text-align:center;
+  padding:28px 20px 20px;
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:14px;
+  margin-bottom:14px;
+}
+.pct-answer-value{
+  font-family:var(--font-mono,monospace);
+  font-size:clamp(2rem,7vw,3.5rem);
+  font-weight:700;
+  color:var(--accent,#22c55e);
+  line-height:1;
+  margin-bottom:6px;
+}
+.pct-answer-label{
+  font-size:.85rem;
+  color:var(--text-2);
+}
+
+/* ── Step-by-step formula box ── */
+.formula-box{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:10px;
+  padding:14px 18px;
+  margin-bottom:14px;
+}
+.formula-box-title{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-2);margin-bottom:8px;
+}
+.formula-step{
+  font-family:var(--font-mono,monospace);
+  font-size:.88rem;
+  color:var(--text-2);
+  margin:3px 0;
+  line-height:1.5;
+}
+.formula-step b{ color:var(--accent,#22c55e); }
+
+/* ── Change indicator ── */
+.change-up   { color:#22c55e;font-weight:700; }
+.change-down { color:#ef4444;font-weight:700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">% Math Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Percentage Calculator</h1>
+  <p class="hero-sub">Six calculation modes — from basic percentages to percentage change, reverse percentage, and more. Every answer comes with a step-by-step formula.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">%</div>
+    <div>
+      <div class="calc-card-title">Percentage Calculator</div>
+      <div class="calc-card-desc">6 modes — pick the calculation you need</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- ── MODE TABS ── -->
+    <div class="mode-tabs" id="pct-mode-tabs">
+      <button class="mode-tab active" onclick="setMode('basic',this)">
+        <span class="mode-tab-title">X% of Y</span>
+        <span class="mode-tab-eg">e.g. 15% of 80</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('whatpct',this)">
+        <span class="mode-tab-title">X is what % of Y?</span>
+        <span class="mode-tab-eg">e.g. 12 is what % of 80?</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('change',this)">
+        <span class="mode-tab-title">% Change</span>
+        <span class="mode-tab-eg">e.g. 50 → 75 = +50%</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('diff',this)">
+        <span class="mode-tab-title">% Difference</span>
+        <span class="mode-tab-eg">e.g. between 40 and 60</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('reverse',this)">
+        <span class="mode-tab-title">Reverse %</span>
+        <span class="mode-tab-eg">e.g. 120 after 20% = 100</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('total',this)">
+        <span class="mode-tab-title">% of Total</span>
+        <span class="mode-tab-eg">e.g. 3 parts of a whole</span>
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 1: X% of Y
+    ══════════════════════════════════════ -->
+    <div class="mode-panel active" id="panel-basic">
+      <div class="field-grid">
+        <div class="field">
+          <label for="b-pct">Percentage</label>
+          <div class="input-wrap">
+            <input type="number" id="b-pct" value="15" min="0" step="0.01">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="b-val">of Value</label>
+          <input type="number" id="b-val" value="200" step="any">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBasic()">Calculate →</button>
+      <div class="results" id="res-basic">
+        <div class="pct-answer">
+          <div class="pct-answer-value" id="ans-basic">—</div>
+          <div class="pct-answer-label" id="ans-basic-label"></div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-box-title">How it's calculated</div>
+          <div class="formula-step" id="f-basic-1"></div>
+          <div class="formula-step" id="f-basic-2"></div>
+        </div>
+        <div id="basic-insight" class="insight"><div class="insight-icon">💡</div><div id="basic-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 2: X is what % of Y?
+    ══════════════════════════════════════ -->
+    <div class="mode-panel" id="panel-whatpct">
+      <div class="field-grid">
+        <div class="field">
+          <label for="wp-x">Value (X)</label>
+          <input type="number" id="wp-x" value="30" step="any">
+        </div>
+        <div class="field">
+          <label for="wp-y">of Total (Y)</label>
+          <input type="number" id="wp-y" value="120" step="any">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcWhatPct()">Calculate →</button>
+      <div class="results" id="res-whatpct">
+        <div class="pct-answer">
+          <div class="pct-answer-value" id="ans-wp">—</div>
+          <div class="pct-answer-label" id="ans-wp-label"></div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-box-title">How it's calculated</div>
+          <div class="formula-step" id="f-wp-1"></div>
+          <div class="formula-step" id="f-wp-2"></div>
+        </div>
+        <div id="wp-insight" class="insight"><div class="insight-icon">💡</div><div id="wp-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 3: Percentage Change
+    ══════════════════════════════════════ -->
+    <div class="mode-panel" id="panel-change">
+      <div class="field-grid">
+        <div class="field">
+          <label for="ch-from">Original Value</label>
+          <input type="number" id="ch-from" value="50" step="any">
+        </div>
+        <div class="field">
+          <label for="ch-to">New Value</label>
+          <input type="number" id="ch-to" value="75" step="any">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcChange()">Calculate →</button>
+      <div class="results" id="res-change">
+        <div class="pct-answer">
+          <div class="pct-answer-value" id="ans-change">—</div>
+          <div class="pct-answer-label" id="ans-change-label"></div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-box-title">How it's calculated</div>
+          <div class="formula-step" id="f-ch-1"></div>
+          <div class="formula-step" id="f-ch-2"></div>
+          <div class="formula-step" id="f-ch-3"></div>
+        </div>
+        <div id="change-insight" class="insight"><div class="insight-icon">💡</div><div id="change-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 4: Percentage Difference
+    ══════════════════════════════════════ -->
+    <div class="mode-panel" id="panel-diff">
+      <p style="font-size:.83rem;color:var(--text-2);margin-bottom:12px">
+        Percentage difference is symmetric — it compares two values without implying which is the "original." Use <em>% Change</em> if you're measuring increase or decrease from a baseline.
+      </p>
+      <div class="field-grid">
+        <div class="field">
+          <label for="df-a">Value A</label>
+          <input type="number" id="df-a" value="40" step="any">
+        </div>
+        <div class="field">
+          <label for="df-b">Value B</label>
+          <input type="number" id="df-b" value="60" step="any">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDiff()">Calculate →</button>
+      <div class="results" id="res-diff">
+        <div class="pct-answer">
+          <div class="pct-answer-value" id="ans-diff">—</div>
+          <div class="pct-answer-label" id="ans-diff-label"></div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-box-title">How it's calculated</div>
+          <div class="formula-step" id="f-df-1"></div>
+          <div class="formula-step" id="f-df-2"></div>
+          <div class="formula-step" id="f-df-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 5: Reverse Percentage
+    ══════════════════════════════════════ -->
+    <div class="mode-panel" id="panel-reverse">
+      <p style="font-size:.83rem;color:var(--text-2);margin-bottom:12px">
+        Find the original value before a percentage was applied. Example: a price is $120 after a 20% increase — what was it before?
+      </p>
+      <div class="field-grid">
+        <div class="field">
+          <label for="rv-result">Final Value</label>
+          <input type="number" id="rv-result" value="120" step="any">
+        </div>
+        <div class="field">
+          <label for="rv-pct">Percentage Applied</label>
+          <div class="input-wrap">
+            <input type="number" id="rv-pct" value="20" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Direction</label>
+          <div class="radio-group">
+            <label class="radio-pill checked"><input type="radio" name="rv-dir" value="increase" checked> Increase</label>
+            <label class="radio-pill"><input type="radio" name="rv-dir" value="decrease"> Decrease</label>
+          </div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcReverse()">Calculate →</button>
+      <div class="results" id="res-reverse">
+        <div class="pct-answer">
+          <div class="pct-answer-value" id="ans-rv">—</div>
+          <div class="pct-answer-label" id="ans-rv-label"></div>
+        </div>
+        <div class="formula-box">
+          <div class="formula-box-title">How it's calculated</div>
+          <div class="formula-step" id="f-rv-1"></div>
+          <div class="formula-step" id="f-rv-2"></div>
+          <div class="formula-step" id="f-rv-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         MODE 6: Percentage of Total (multi-part)
+    ══════════════════════════════════════ -->
+    <div class="mode-panel" id="panel-total">
+      <p style="font-size:.83rem;color:var(--text-2);margin-bottom:12px">
+        Break a total into parts and see each as a percentage. Enter values separated by commas (e.g. budgets, votes, test scores).
+      </p>
+      <div class="field-grid">
+        <div class="field" style="grid-column:1/-1">
+          <label for="tot-parts">Values (comma-separated)</label>
+          <input type="text" id="tot-parts" value="300, 450, 150, 100" placeholder="e.g. 300, 450, 150, 100">
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label for="tot-labels">Labels (optional, comma-separated)</label>
+          <input type="text" id="tot-labels" value="Q1, Q2, Q3, Q4" placeholder="e.g. Q1, Q2, Q3, Q4">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcTotal()">Calculate →</button>
+      <div class="results" id="res-total">
+        <div class="results-header">Parts of Total</div>
+        <div id="tot-rows"></div>
+        <div id="tot-insight" class="insight"><div class="insight-icon">💡</div><div id="tot-insight-text"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate Percentages</h2>
+  <p>A percentage is a way of expressing a number as a fraction of 100. The word "percent" means "per hundred" — 25% means 25 out of every 100.</p>
+
+  <h3>The Core Percentage Formulas</h3>
+  <ul>
+    <li><strong>X% of Y:</strong> Result = (X ÷ 100) × Y</li>
+    <li><strong>X is what % of Y:</strong> Percentage = (X ÷ Y) × 100</li>
+    <li><strong>Percentage change:</strong> ((New − Old) ÷ Old) × 100</li>
+    <li><strong>Percentage difference:</strong> (|A − B| ÷ ((A + B) ÷ 2)) × 100</li>
+    <li><strong>Reverse percentage (increase):</strong> Original = Final ÷ (1 + rate)</li>
+    <li><strong>Reverse percentage (decrease):</strong> Original = Final ÷ (1 − rate)</li>
+  </ul>
+
+  <h3>Percentage Change vs Percentage Difference</h3>
+  <p>These are often confused. <strong>Percentage change</strong> has a direction — you're measuring from a specific starting point. It's asymmetric: going from 50 to 100 is +100%, but going from 100 to 50 is −50%. <strong>Percentage difference</strong> has no direction — it symmetrically compares two values using their average as the base.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What is a reverse percentage?</div>
+    <div class="faq-a"><p>A reverse (or inverse) percentage finds the original value before a percentage increase or decrease was applied. If a TV costs $299 after a 15% discount, the original price was $299 ÷ 0.85 = $351.76. A common mistake is to simply add 15% back — that gives the wrong answer because the percentage was taken from the original, larger value, not the discounted price.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I calculate a percentage increase?</div>
+    <div class="faq-a"><p>Subtract the old value from the new value, divide by the old value, then multiply by 100. Example: sales grew from $80,000 to $104,000 — increase = (104,000 − 80,000) ÷ 80,000 × 100 = 30%. Use the % Change mode above for this.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What's a quick mental math trick for percentages?</div>
+    <div class="faq-a"><p>Swap the numbers: 4% of 75 is the same as 75% of 4 = 3. This works because multiplication is commutative. Also: 10% is always easy (move the decimal left one place), then scale: 15% = 10% + 5%, and 5% = half of 10%.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ── Mode switching ── */
+function setMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.mode-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('panel-'+mode).classList.add('active');
+}
+
+/* ── Helper: format number smartly ── */
+function fmtNum(n){
+  if(Math.abs(n) >= 1e6) return (n/1e6).toFixed(2)+'M';
+  if(Math.abs(n) >= 1e3) return n.toLocaleString('en-US',{maximumFractionDigits:2});
+  // Up to 4 decimal places, strip trailing zeros
+  var s = parseFloat(n.toFixed(4)).toString();
+  return s;
+}
+function fmtPctLocal(n){ return parseFloat(n.toFixed(4))+'%'; }
+
+/* ════════════════════════════════════════
+   MODE 1: X% of Y
+════════════════════════════════════════ */
+function calcBasic(){
+  var pct = parseFloat(document.getElementById('b-pct').value);
+  var val = parseFloat(document.getElementById('b-val').value);
+  if(isNaN(pct)||isNaN(val)){ showToast('Enter valid numbers'); return; }
+  var result = (pct / 100) * val;
+
+  setEl('ans-basic', fmtNum(result));
+  document.getElementById('ans-basic-label').textContent = pct+'% of '+fmtNum(val)+' = '+fmtNum(result);
+  document.getElementById('f-basic-1').innerHTML = 'Formula: <b>Result = ('+pct+' ÷ 100) × '+fmtNum(val)+'</b>';
+  document.getElementById('f-basic-2').innerHTML = '         = <b>'+fmtNum(pct/100)+' × '+fmtNum(val)+' = '+fmtNum(result)+'</b>';
+
+  // Insight: also show complement
+  var complement = val - result;
+  document.getElementById('basic-insight-text').innerHTML =
+    pct+'% of <strong>'+fmtNum(val)+'</strong> = <strong>'+fmtNum(result)+'</strong>. '
+    +'The remaining <strong>'+(100-pct)+'%</strong> is <strong>'+fmtNum(complement)+'</strong>. '
+    +(pct===50?'(Exactly half.)':pct>100?'(More than the whole — '+pct+'% exceeds 100%.)':'');
+
+  showRes('res-basic');
+}
+
+/* ════════════════════════════════════════
+   MODE 2: X is what % of Y?
+════════════════════════════════════════ */
+function calcWhatPct(){
+  var x = parseFloat(document.getElementById('wp-x').value);
+  var y = parseFloat(document.getElementById('wp-y').value);
+  if(isNaN(x)||isNaN(y)||y===0){ showToast('Enter valid numbers (Y cannot be 0)'); return; }
+  var result = (x / y) * 100;
+
+  setEl('ans-wp', fmtPctLocal(result));
+  document.getElementById('ans-wp-label').textContent = fmtNum(x)+' is '+fmtPctLocal(result)+' of '+fmtNum(y);
+  document.getElementById('f-wp-1').innerHTML = 'Formula: <b>Percentage = ('+fmtNum(x)+' ÷ '+fmtNum(y)+') × 100</b>';
+  document.getElementById('f-wp-2').innerHTML = '          = <b>'+fmtNum(x/y)+' × 100 = '+fmtPctLocal(result)+'</b>';
+
+  var remaining = 100 - result;
+  document.getElementById('wp-insight-text').innerHTML =
+    '<strong>'+fmtNum(x)+'</strong> represents <strong>'+fmtPctLocal(result)+'</strong> of '+fmtNum(y)+'. '
+    +'The other <strong>'+fmtNum(y - x)+'</strong> makes up the remaining <strong>'+fmtPctLocal(remaining)+'</strong>.';
+
+  showRes('res-whatpct');
+}
+
+/* ════════════════════════════════════════
+   MODE 3: Percentage Change
+════════════════════════════════════════ */
+function calcChange(){
+  var from = parseFloat(document.getElementById('ch-from').value);
+  var to   = parseFloat(document.getElementById('ch-to').value);
+  if(isNaN(from)||isNaN(to)||from===0){ showToast('Enter valid numbers (Original cannot be 0)'); return; }
+  var change = ((to - from) / Math.abs(from)) * 100;
+  var inc = change >= 0;
+  var absChange = Math.abs(change);
+  var diff = to - from;
+
+  var ansEl = document.getElementById('ans-change');
+  ansEl.textContent = (inc ? '+' : '') + fmtPctLocal(change);
+  ansEl.className = 'pct-answer-value ' + (inc ? 'change-up' : 'change-down');
+  document.getElementById('ans-change-label').textContent =
+    fmtNum(from)+' → '+fmtNum(to)+' = '+(inc?'increase':'decrease')+' of '+fmtPctLocal(absChange);
+
+  document.getElementById('f-ch-1').innerHTML = 'Formula: <b>Change % = ((New − Old) ÷ |Old|) × 100</b>';
+  document.getElementById('f-ch-2').innerHTML = '          = (('+(to)+'−'+(from)+') ÷ '+Math.abs(from)+') × 100';
+  document.getElementById('f-ch-3').innerHTML = '          = (<b>'+fmtNum(diff)+'</b> ÷ '+Math.abs(from)+') × 100 = <b>'+(inc?'+':'')+fmtPctLocal(change)+'</b>';
+
+  document.getElementById('change-insight-text').innerHTML =
+    'The value '+(inc?'<span class="change-up">increased</span>':'<span class="change-down">decreased</span>')+' by <strong>'+fmtNum(Math.abs(diff))+'</strong> ('+(inc?'+':'')+fmtPctLocal(change)+').'
+    +' To reverse this and get back to <strong>'+fmtNum(from)+'</strong>, apply a '+(inc?'<span class="change-down">−':'<span class="change-up">+')+fmtPctLocal(absChange/(1+absChange/100))+'</span> change to <strong>'+fmtNum(to)+'</strong>.';
+
+  showRes('res-change');
+}
+
+/* ════════════════════════════════════════
+   MODE 4: Percentage Difference
+════════════════════════════════════════ */
+function calcDiff(){
+  var a = parseFloat(document.getElementById('df-a').value);
+  var b = parseFloat(document.getElementById('df-b').value);
+  if(isNaN(a)||isNaN(b)||(a+b)===0){ showToast('Enter valid numbers'); return; }
+  var diff   = Math.abs(a - b);
+  var avg    = (a + b) / 2;
+  var result = (diff / avg) * 100;
+
+  setEl('ans-diff', fmtPctLocal(result));
+  document.getElementById('ans-diff-label').textContent =
+    'Percentage difference between '+fmtNum(a)+' and '+fmtNum(b);
+
+  document.getElementById('f-df-1').innerHTML = 'Formula: <b>Diff% = (|A − B| ÷ ((A+B)÷2)) × 100</b>';
+  document.getElementById('f-df-2').innerHTML = '         = (|'+a+'−'+b+'| ÷ (('+a+'+'+b+')÷2)) × 100';
+  document.getElementById('f-df-3').innerHTML = '         = (<b>'+fmtNum(diff)+'</b> ÷ <b>'+fmtNum(avg)+'</b>) × 100 = <b>'+fmtPctLocal(result)+'</b>';
+
+  showRes('res-diff');
+}
+
+/* ════════════════════════════════════════
+   MODE 5: Reverse Percentage
+════════════════════════════════════════ */
+function calcReverse(){
+  var result = parseFloat(document.getElementById('rv-result').value);
+  var pct    = parseFloat(document.getElementById('rv-pct').value);
+  var dir    = document.querySelector('input[name="rv-dir"]:checked').value;
+  if(isNaN(result)||isNaN(pct)||pct<=0){ showToast('Enter valid numbers'); return; }
+
+  var rate   = pct / 100;
+  var original;
+  var formulaStr;
+  if(dir === 'increase'){
+    original   = result / (1 + rate);
+    formulaStr = 'Original = Final ÷ (1 + '+pct+'%) = '+fmtNum(result)+' ÷ '+(1+rate)+' = <b>'+fmtNum(original)+'</b>';
+    document.getElementById('f-rv-1').innerHTML = 'If value increased by '+pct+'%, then:';
+    document.getElementById('f-rv-2').innerHTML = 'Formula: <b>Original = Final ÷ (1 + rate)</b>';
+    document.getElementById('f-rv-3').innerHTML = '          = '+fmtNum(result)+' ÷ '+(1+rate)+' = <b>'+fmtNum(original)+'</b>';
+  } else {
+    if(pct >= 100){ showToast('A 100%+ decrease brings value to 0 or below'); return; }
+    original   = result / (1 - rate);
+    document.getElementById('f-rv-1').innerHTML = 'If value decreased by '+pct+'%, then:';
+    document.getElementById('f-rv-2').innerHTML = 'Formula: <b>Original = Final ÷ (1 − rate)</b>';
+    document.getElementById('f-rv-3').innerHTML = '          = '+fmtNum(result)+' ÷ '+(1-rate)+' = <b>'+fmtNum(original)+'</b>';
+  }
+
+  setEl('ans-rv', fmtNum(original));
+  document.getElementById('ans-rv-label').textContent =
+    'Before the '+pct+'% '+(dir==='increase'?'increase':'decrease')+', the value was '+fmtNum(original);
+
+  showRes('res-reverse');
+}
+
+/* ════════════════════════════════════════
+   MODE 6: Percentage of Total
+════════════════════════════════════════ */
+function calcTotal(){
+  var partsRaw  = document.getElementById('tot-parts').value;
+  var labelsRaw = document.getElementById('tot-labels').value;
+
+  var parts  = partsRaw.split(',').map(function(s){ return parseFloat(s.trim()); }).filter(function(n){ return !isNaN(n) && n >= 0; });
+  var labels = labelsRaw.split(',').map(function(s){ return s.trim(); });
+
+  if(parts.length < 2){ showToast('Enter at least 2 comma-separated values'); return; }
+
+  var total = parts.reduce(function(a,b){ return a+b; }, 0);
+  if(total === 0){ showToast('Total cannot be zero'); return; }
+
+  var maxVal  = Math.max.apply(null, parts);
+  var maxIdx  = parts.indexOf(maxVal);
+  var maxPct  = (maxVal / total * 100).toFixed(2);
+
+  // Build rows
+  var rowsHtml = parts.map(function(p, i){
+    var lbl = labels[i] || ('Part '+(i+1));
+    var pct = (p / total * 100);
+    var barW = (p / maxVal * 100).toFixed(1);
+    return '<div style="margin-bottom:12px">'
+      +'<div style="display:flex;justify-content:space-between;margin-bottom:4px">'
+      +'<span style="font-weight:600;font-size:.88rem">'+escH(lbl)+'</span>'
+      +'<span style="font-family:var(--font-mono);font-size:.88rem;color:var(--accent)">'
+      +fmtPctLocal(pct)
+      +' <span style="color:var(--text-2);font-weight:400">('+p.toLocaleString()+')</span></span>'
+      +'</div>'
+      +'<div style="background:var(--card-border,#1e3a1e);border-radius:999px;height:8px;overflow:hidden">'
+      +'<div style="width:'+barW+'%;height:100%;border-radius:999px;background:var(--accent,#22c55e);transition:width .4s"></div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+
+  rowsHtml += '<div style="border-top:1.5px solid var(--card-border,#1e3a1e);margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-size:.85rem">'
+    +'<span style="font-weight:700">Total</span>'
+    +'<span style="font-family:var(--font-mono);font-weight:700">100% ('+total.toLocaleString()+')</span>'
+    +'</div>';
+
+  document.getElementById('tot-rows').innerHTML = rowsHtml;
+
+  var maxLabel = labels[maxIdx] || ('Part '+(maxIdx+1));
+  document.getElementById('tot-insight-text').innerHTML =
+    'The largest portion is <strong>'+escH(maxLabel)+'</strong> at <strong>'+maxPct+'%</strong> of the total '
+    +total.toLocaleString()+'. '
+    +(parts.length===2?'The other portion is <strong>'+(100-parseFloat(maxPct))+'%</strong>.':'');
+
+  showRes('res-total');
+}
+
+function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── Auto-calc on load for mode 1 ── */
+window.addEventListener('load', calcBasic);
+</script>
+</body>
+</html>

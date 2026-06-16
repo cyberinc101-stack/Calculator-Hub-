@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CalcHub — 50 Free Online Calculators | Mortgage, BMI, Loans, Tax & More</title>
+<meta name="description" content="Free online calculators for finance, health, math, business, fitness, and everyday use. 50 calculators including mortgage, BMI, compound interest, tip, loan, tax, retirement, and more. No sign-up, instant results.">
+<meta name="keywords" content="online calculators,free calculators,mortgage calculator,BMI calculator,compound interest calculator,tip calculator,loan calculator,tax calculator,retirement calculator,percentage calculator,age calculator,calorie calculator,finance calculator,math calculator">
+<link rel="canonical" href="https://yourdomain.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"CalcHub","url":"https://yourdomain.com/","description":"50 free online calculators for finance, health, math, business and everyday use.","potentialAction":{"@type":"SearchAction","target":"https://yourdomain.com/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vars.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/layout.css">
+<style>
+/* Typewriter hero */
+.hero h1{
+  font-family:var(--font-sans);
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1.15;
+  margin-bottom:1.5rem;
+  background:linear-gradient(135deg,var(--text) 0%,var(--text-2) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.tw-wrap{
+  display:flex;align-items:center;justify-content:center;
+  min-height:5rem;margin-bottom:.5rem;padding:0 .5rem;
+}
+.tw-text{
+  font-size:clamp(1rem,2.6vw,1.35rem);
+  font-weight:500;
+  color:var(--text-2);
+  font-family:var(--font-sans);
+  letter-spacing:-0.01em;
+  line-height:1.5;
+  text-align:center;
+  max-width:680px;
+}
+/* Bold the calculator name (everything before the em dash) — done via JS */
+.tw-text b{
+  color:var(--accent-mid);
+  font-weight:700;
+}
+.tw-cursor{
+  font-size:clamp(1rem,2.6vw,1.35rem);
+  font-weight:300;color:var(--accent-mid);
+  animation:twblink 1.1s step-end infinite;
+  margin-left:2px;flex-shrink:0;align-self:center;
+}
+@keyframes twblink{0%,100%{opacity:1}50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">✦ 50 Free Calculators</div>
+  <h1>The Calculator You Need,<br>Right Now</h1>
+
+  <!-- Typewriter line -->
+  <div class="tw-wrap">
+    <span class="tw-text" id="tw-text"></span><span class="tw-cursor">|</span>
+  </div>
+
+  <div class="hero-trust" style="margin-top:2rem">
+    <span class="trust-item">✓ 50 calculators</span>
+    <span class="trust-item">✓ Free forever</span>
+    <span class="trust-item">✓ No sign-up</span>
+    <span class="trust-item">✓ Mobile friendly</span>
+  </div>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<!-- CATEGORY FILTER -->
+<div class="cat-nav" id="cat-nav">
+  <button class="cat-pill active" onclick="filterCat('all',this)">All</button>
+  <button class="cat-pill" onclick="filterCat('finance',this)">Finance</button>
+  <button class="cat-pill" onclick="filterCat('health',this)">Health</button>
+  <button class="cat-pill" onclick="filterCat('math',this)">Math</button>
+  <button class="cat-pill" onclick="filterCat('everyday',this)">Everyday</button>
+  <button class="cat-pill" onclick="filterCat('business',this)">Business</button>
+  <button class="cat-pill" onclick="filterCat('fitness',this)">Fitness</button>
+  <button class="cat-pill" onclick="filterCat('science',this)">Science</button>
+</div>
+
+<!-- QUICK JUMP DROPDOWN -->
+<div class="selector-wrap">
+  <span class="selector-label">Jump to a calculator</span>
+  <div class="calc-select-outer">
+    <select class="calc-select" onchange="jumpTo(this.value)">
+      <option value="">— Select a calculator —</option>
+
+      <optgroup label="💰 Finance">
+        <option value="calculator-types/mortgage.html">Mortgage Calculator</option>
+        <option value="calculator-types/loan.html">Loan Calculator</option>
+        <option value="calculator-types/compound-interest.html">Compound Interest Calculator</option>
+        <option value="calculator-types/retirement.html">Retirement Savings Calculator</option>
+        <option value="calculator-types/credit-card-payoff.html">Credit Card Payoff Calculator</option>
+        <option value="#coming">Debt Snowball / Avalanche Calculator</option>
+        <option value="calculator-types/roi.html">Investment Return Calculator</option>
+        <option value="#coming">Budget Planner Calculator</option>
+        <option value="#coming">Net Worth Calculator</option>
+        <option value="#coming">Savings Goal Calculator</option>
+        <option value="#coming">Currency Converter</option>
+        <option value="#coming">Break-Even Calculator</option>
+      </optgroup>
+
+      <optgroup label="🏥 Health">
+        <option value="calculator-types/bmi.html">BMI Calculator</option>
+        <option value="calculator-types/calorie.html">Calorie Calculator (TDEE)</option>
+        <option value="#coming">Body Fat Percentage Calculator</option>
+        <option value="#coming">Ideal Weight Calculator</option>
+        <option value="#coming">Pregnancy Due Date Calculator</option>
+        <option value="#coming">Ovulation Calculator</option>
+        <option value="#coming">Blood Pressure Checker</option>
+        <option value="#coming">Water Intake Calculator</option>
+        <option value="#coming">Sleep Needs Calculator</option>
+      </optgroup>
+
+      <optgroup label="🏋️ Fitness">
+        <option value="calculator-types/one-rep-max.html">One Rep Max (1RM) Calculator</option>
+        <option value="#coming">Macro Calculator</option>
+        <option value="#coming">Running Pace Calculator</option>
+        <option value="#coming">Calories Burned Calculator</option>
+        <option value="#coming">VO2 Max Estimator</option>
+        <option value="#coming">Heart Rate Zone Calculator</option>
+      </optgroup>
+
+      <optgroup label="🧮 Math">
+        <option value="calculator-types/percentage.html">Percentage Calculator</option>
+        <option value="#coming">Fraction Calculator</option>
+        <option value="#coming">Area Calculator</option>
+        <option value="#coming">Volume Calculator</option>
+        <option value="#coming">Ratio Calculator</option>
+        <option value="#coming">Scientific Notation Calculator</option>
+        <option value="#coming">Prime Number Checker</option>
+        <option value="#coming">GCF / LCM Calculator</option>
+        <option value="#coming">Quadratic Equation Solver</option>
+      </optgroup>
+
+      <optgroup label="🏢 Business">
+        <option value="#coming">Profit Margin Calculator</option>
+        <option value="#coming">Markup Calculator</option>
+        <option value="calculator-types/gst-vat.html">GST / VAT Calculator</option>
+        <option value="#coming">Invoice Calculator</option>
+        <option value="#coming">Payroll Tax Calculator</option>
+        <option value="calculator-types/roi.html">ROI Calculator</option>
+        <option value="#coming">Employee Cost Calculator</option>
+        <option value="#coming">SaaS MRR / ARR Calculator</option>
+      </optgroup>
+
+      <optgroup label="🌍 Everyday">
+        <option value="calculator-types/tip.html">Tip Calculator</option>
+        <option value="calculator-types/age.html">Age Calculator</option>
+        <option value="#coming">Date Difference Calculator</option>
+        <option value="#coming">Time Zone Converter</option>
+        <option value="#coming">Unit Converter</option>
+        <option value="#coming">Fuel Cost Calculator</option>
+        <option value="#coming">Electricity Cost Calculator</option>
+        <option value="#coming">Paint Coverage Calculator</option>
+        <option value="#coming">Grade / GPA Calculator</option>
+        <option value="#coming">Concrete Calculator</option>
+      </optgroup>
+
+      <optgroup label="🔬 Science">
+        <option value="#coming">Ohm's Law Calculator</option>
+        <option value="#coming">Density Calculator</option>
+        <option value="#coming">Speed / Distance / Time</option>
+        <option value="#coming">Half-Life Calculator</option>
+        <option value="#coming">Wavelength / Frequency</option>
+      </optgroup>
+
+    </select>
+  </div>
+</div>
+
+<!-- ─── FINANCE SECTION ─── -->
+<div class="dir-section" data-cat="finance">
+  <div class="dir-section-title">💰 Finance Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card" href="calculator-types/mortgage.html">
+      <div class="dir-card-icon">🏠</div>
+      <h3>Mortgage Calculator</h3>
+      <p>Monthly payment, total interest, amortisation schedule, PMI, and extra payments</p>
+    </a>
+    <a class="dir-card" href="calculator-types/loan.html">
+      <div class="dir-card-icon">💳</div>
+      <h3>Loan Calculator</h3>
+      <p>Personal, auto, and student loans — monthly payment, true APR, and amortisation</p>
+    </a>
+    <a class="dir-card" href="calculator-types/compound-interest.html">
+      <div class="dir-card-icon">📈</div>
+      <h3>Compound Interest</h3>
+      <p>Investment growth with contributions, inflation adjustment, tax drag, and year-by-year breakdown</p>
+    </a>
+    <a class="dir-card" href="calculator-types/retirement.html">
+      <div class="dir-card-icon">🎯</div>
+      <h3>Retirement Savings</h3>
+      <p>401k, IRA, and nest-egg planner with inflation and Social Security</p>
+    </a>
+    <a class="dir-card" href="calculator-types/credit-card-payoff.html">
+      <div class="dir-card-icon">💸</div>
+      <h3>Credit Card Payoff</h3>
+      <p>How long to pay off, minimum payment trap, and payoff strategies</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">❄️</div>
+      <h3>Debt Snowball / Avalanche <span class="coming-tag">Soon</span></h3>
+      <p>Compare payoff strategies across multiple debts</p>
+    </a>
+    <a class="dir-card" href="calculator-types/roi.html">
+      <div class="dir-card-icon">📊</div>
+      <h3>Investment Return (ROI)</h3>
+      <p>ROI, annualised return, and payback period calculator</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">💰</div>
+      <h3>Savings Goal <span class="coming-tag">Soon</span></h3>
+      <p>How much to save monthly to reach any financial target</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── HEALTH SECTION ─── -->
+<div class="dir-section" data-cat="health">
+  <div class="dir-section-title">🏥 Health Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card" href="calculator-types/bmi.html">
+      <div class="dir-card-icon">⚖️</div>
+      <h3>BMI Calculator</h3>
+      <p>Body mass index with health classification, ideal weight, and TDEE</p>
+    </a>
+    <a class="dir-card" href="calculator-types/calorie.html">
+      <div class="dir-card-icon">🔥</div>
+      <h3>Calorie Calculator</h3>
+      <p>TDEE, BMR, and calorie targets for weight loss, maintenance, and gain</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">📏</div>
+      <h3>Body Fat % <span class="coming-tag">Soon</span></h3>
+      <p>Estimate body fat percentage using Navy method and BMI method</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🤰</div>
+      <h3>Pregnancy Due Date <span class="coming-tag">Soon</span></h3>
+      <p>Calculate due date by LMP, conception date, or ultrasound</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">💧</div>
+      <h3>Water Intake <span class="coming-tag">Soon</span></h3>
+      <p>Daily water needs based on weight, activity, and climate</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">😴</div>
+      <h3>Sleep Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Optimal bedtime and wake time based on sleep cycles</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── FITNESS SECTION ─── -->
+<div class="dir-section" data-cat="fitness">
+  <div class="dir-section-title">🏋️ Fitness Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card" href="calculator-types/one-rep-max.html">
+      <div class="dir-card-icon">🏋️</div>
+      <h3>One Rep Max (1RM)</h3>
+      <p>Calculate your 1RM from any rep range using 6 proven formulas</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🥩</div>
+      <h3>Macro Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Protein, carbs, and fat targets for your goal and body type</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🏃</div>
+      <h3>Running Pace <span class="coming-tag">Soon</span></h3>
+      <p>Pace, speed, and finish time for any race distance</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">❤️</div>
+      <h3>Heart Rate Zones <span class="coming-tag">Soon</span></h3>
+      <p>Target heart rate zones for fat burn, cardio, and peak training</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── MATH SECTION ─── -->
+<div class="dir-section" data-cat="math">
+  <div class="dir-section-title">🧮 Math Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card" href="calculator-types/percentage.html">
+      <div class="dir-card-icon">%</div>
+      <h3>Percentage Calculator</h3>
+      <p>What is X% of Y, percentage change, and percentage difference</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">½</div>
+      <h3>Fraction Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Add, subtract, multiply, and divide fractions — with simplification</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">📐</div>
+      <h3>Area Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Area of circles, rectangles, triangles, and irregular shapes</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🔢</div>
+      <h3>Ratio Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Simplify ratios, solve proportions, and scale ratios</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">x²</div>
+      <h3>Quadratic Solver <span class="coming-tag">Soon</span></h3>
+      <p>Solve quadratic equations — real and complex roots</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">∗</div>
+      <h3>GCF / LCM <span class="coming-tag">Soon</span></h3>
+      <p>Greatest common factor and least common multiple for any numbers</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── BUSINESS SECTION ─── -->
+<div class="dir-section" data-cat="business">
+  <div class="dir-section-title">🏢 Business Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">💹</div>
+      <h3>Profit Margin <span class="coming-tag">Soon</span></h3>
+      <p>Gross, operating, and net profit margin with markup conversion</p>
+    </a>
+    <a class="dir-card" href="calculator-types/gst-vat.html">
+      <div class="dir-card-icon">🧾</div>
+      <h3>GST / VAT Calculator</h3>
+      <p>Add or remove tax from any amount — multiple tax rates</p>
+    </a>
+    <a class="dir-card" href="calculator-types/roi.html">
+      <div class="dir-card-icon">📊</div>
+      <h3>ROI Calculator</h3>
+      <p>Return on investment, annualised ROI, and payback period</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">⚖️</div>
+      <h3>Break-Even <span class="coming-tag">Soon</span></h3>
+      <p>Units and revenue needed to break even — fixed vs variable costs</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">💼</div>
+      <h3>Employee Cost <span class="coming-tag">Soon</span></h3>
+      <p>True cost of an employee including taxes, benefits, and overhead</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">📱</div>
+      <h3>SaaS MRR / ARR <span class="coming-tag">Soon</span></h3>
+      <p>Monthly and annual recurring revenue, churn, and LTV</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── EVERYDAY SECTION ─── -->
+<div class="dir-section" data-cat="everyday">
+  <div class="dir-section-title">🌍 Everyday Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card" href="calculator-types/tip.html">
+      <div class="dir-card-icon">🧾</div>
+      <h3>Tip Calculator</h3>
+      <p>Calculate tip, split bills, and per-person totals — including tax</p>
+    </a>
+    <a class="dir-card" href="calculator-types/age.html">
+      <div class="dir-card-icon">🎂</div>
+      <h3>Age Calculator</h3>
+      <p>Exact age in years, months, and days — plus next birthday countdown</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">📅</div>
+      <h3>Date Difference <span class="coming-tag">Soon</span></h3>
+      <p>Days, weeks, and months between any two dates</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">⛽</div>
+      <h3>Fuel Cost <span class="coming-tag">Soon</span></h3>
+      <p>Trip fuel cost, miles per gallon, and cost per mile</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">⚡</div>
+      <h3>Electricity Cost <span class="coming-tag">Soon</span></h3>
+      <p>Monthly electricity cost for any appliance or device</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🎓</div>
+      <h3>GPA Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Calculate GPA on 4.0 or 5.0 scale from letter grades and credits</p>
+    </a>
+  </div>
+</div>
+
+<!-- ─── SCIENCE SECTION ─── -->
+<div class="dir-section" data-cat="science">
+  <div class="dir-section-title">🔬 Science Calculators</div>
+  <div class="dir-grid">
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">⚡</div>
+      <h3>Ohm's Law <span class="coming-tag">Soon</span></h3>
+      <p>Voltage, current, resistance, and power — solve for any variable</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">⚗️</div>
+      <h3>Density Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Mass, volume, and density — all unit combinations</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">🚀</div>
+      <h3>Speed / Distance / Time <span class="coming-tag">Soon</span></h3>
+      <p>Solve for any variable with unit conversion</p>
+    </a>
+    <a class="dir-card coming" href="#">
+      <div class="dir-card-icon">☢️</div>
+      <h3>Half-Life Calculator <span class="coming-tag">Soon</span></h3>
+      <p>Radioactive decay and remaining quantity after any period</p>
+    </a>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner">Advertisement</div>
+
+<div class="seo-box">
+  <h2>Why CalcHub?</h2>
+  <p>CalcHub provides 50 free online calculators built to give you accurate, intelligent results immediately — no sign-up, no ads cluttering the results, no paywalls. Every calculator is designed to be genuinely useful: smart defaults, meaningful output explanations, and clear breakdowns of how the answer was calculated.</p>
+
+  <h3>Finance Calculators</h3>
+  <p>Our finance calculators go beyond simple formulas. The mortgage calculator includes property tax, insurance, PMI, and shows your full amortisation schedule. The compound interest calculator adjusts for inflation and tax drag. The loan calculator computes your true APR including fees.</p>
+
+  <h3>Health and Fitness Calculators</h3>
+  <p>The BMI calculator goes beyond a single number — it shows your ideal weight range, calorie targets for weight change, and uses the scientifically validated Mifflin-St Jeor equation for TDEE. Health calculators include both metric and imperial units.</p>
+
+  <div class="faq-item"><div class="faq-q">Are CalcHub calculators free to use?</div><div class="faq-a"><p>Yes. All 50 calculators are completely free, forever. No account required, no premium tier, no usage limits.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Are the calculations accurate?</div><div class="faq-a"><p>Our calculators use industry-standard financial formulas and validated health equations (Mifflin-St Jeor for BMR, standard amortisation for loans and mortgages). Results are for informational purposes — always verify important financial decisions with a qualified advisor.</p></div></div>
+  <div class="faq-item"><div class="faq-q">When will new calculators be available?</div><div class="faq-a"><p>We are adding new calculators regularly. All 50 planned calculators are listed on this page — those marked "Soon" will be live within coming weeks.</p></div></div>
+</div>
+</div>
+
+<div class="wrap" style="padding-top:0">
+<div id="site-footer"></div>
+</div>
+
+<script src="js/typewriter.js"></script>
+<script src="js/app.js"></script>
+<script>
+function jumpTo(url){
+  if(!url) return;
+  if(url === '#coming'){
+    showToast('Coming soon — check back shortly!');
+    document.querySelector('.calc-select').value = '';
+    return;
+  }
+  window.location.href = url;
+}
+
+function filterCat(cat, btn){
+  document.querySelectorAll('.cat-pill').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.dir-section').forEach(function(s){
+    if(cat === 'all' || s.dataset.cat === cat) s.style.display = '';
+    else s.style.display = 'none';
+  });
+}
+
+/* ── TYPEWRITER ─────────────────────────────── */
+(function(){
+  // Wait for typewriter.js to load
+  function startTW(){
+    var phrases = window.TW_PHRASES;
+    if(!phrases || !phrases.length) return;
+
+    var el      = document.getElementById('tw-text');
+    if(!el) return;
+
+    // Shuffle so it feels fresh each visit
+    var pool = phrases.slice().sort(function(){ return Math.random() - 0.5; });
+
+    var idx      = 0;
+    var charIdx  = 0;
+    var deleting = false;
+    var TYPE_SPEED  = 42;   // ms per character — fast enough to read, slow enough to feel deliberate
+    var DEL_SPEED   = 18;   // delete quicker
+    var PAUSE_FULL  = 3200; // hold the full sentence so users can read it
+    var PAUSE_EMPTY = 350;  // tiny breath before the next one
+
+    function renderChars(phrase, chars){
+      // Bold the calculator name = text before first " — "
+      var dashIdx = phrase.indexOf(' — ');
+      if(dashIdx >= 0 && chars > dashIdx){
+        var namePart = phrase.slice(0, dashIdx);
+        var rest     = phrase.slice(dashIdx, chars);
+        el.innerHTML = '<b>' + escH(namePart) + '</b>' + escH(rest);
+      } else {
+        // Still typing the name part — bold it all so far
+        el.innerHTML = '<b>' + escH(phrase.slice(0, chars)) + '</b>';
+      }
+    }
+
+    function escH(s){
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function tick(){
+      var phrase = pool[idx];
+      if(!deleting){
+        charIdx++;
+        renderChars(phrase, charIdx);
+        if(charIdx === phrase.length){
+          deleting = true;
+          setTimeout(tick, PAUSE_FULL);
+          return;
+        }
+        setTimeout(tick, TYPE_SPEED);
+      } else {
+        charIdx--;
+        renderChars(phrase, charIdx);
+        if(charIdx === 0){
+          deleting = false;
+          idx = (idx + 1) % pool.length;
+          setTimeout(tick, PAUSE_EMPTY);
+          return;
+        }
+        setTimeout(tick, DEL_SPEED);
+      }
+    }
+    setTimeout(tick, 900);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', startTW);
+  } else {
+    startTW();
+  }
+})();
+</script>
+</body>
+</html>
