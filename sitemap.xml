@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yourdomain.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://yourdomain.com/calculator-types/mortgage.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://yourdomain.com/calculator-types/bmi.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://yourdomain.com/calculator-types/compound-interest.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://yourdomain.com/calculator-types/tip.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://yourdomain.com/calculator-types/loan.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://yourdomain.com/pages/privacy.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
-  <url><loc>https://yourdomain.com/pages/terms.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/mortgage.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/loan.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/compound-interest.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/credit-card-payoff.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/retirement.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/savings-goal.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/roi.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/profit-margin.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/gst-vat.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/bmi.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/calorie.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/body-fat.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/one-rep-max.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/age.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/pregnancy-due-date.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/tip.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/percentage.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/pages/privacy.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/pages/terms.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
 </urlset>
