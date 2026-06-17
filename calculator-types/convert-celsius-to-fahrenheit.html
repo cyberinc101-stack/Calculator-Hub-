@@ -1,30 +1,72 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Celsius to Fahrenheit Converter | Free Online Calculator</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celsius to Fahrenheit Converter | CalcHub</title>
 <meta name="description" content="Convert Celsius to Fahrenheit instantly with our free calculator. Includes a quick-reference table for common celsius to fahrenheit conversions.">
+<meta name="keywords" content="celsius to fahrenheit converter,celsius to fahrenheit,convert celsius to fahrenheit,celsius fahrenheit calculator">
 <link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-celsius-to-fahrenheit.html">
-<link rel="stylesheet" href="../css/vars.css">
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Celsius to Fahrenheit Converter","description":"Convert Celsius to Fahrenheit instantly with our free calculator. Includes a quick-reference table for common celsius to fahrenheit conversions.","url":"https://calculator-hub-phi-five.vercel.app/calculator-types/convert-celsius-to-fahrenheit.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
 </head>
 <body>
+<div class="wrap">
+<div id="site-header"></div>
 
-<main class="calculator-page">
-  <h1>Celsius to Fahrenheit Converter</h1>
-  <p class="calc-intro">Convert Celsius to Fahrenheit instantly. Enter a value below, or use the reference table for common conversions.</p>
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🌡️ Temperature Converter</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Celsius to Fahrenheit Converter</h1>
+  <p class="hero-sub">Convert Celsius to Fahrenheit instantly, plus a quick-reference table for common values.</p>
+</div>
 
-  <section class="calc-widget">
-    <label for="inputValue">Celsius (celsius)</label>
-    <input type="number" id="inputValue" value="1" step="any">
-    <div class="calc-result" id="resultDisplay">= 0 fahrenheit</div>
-  </section>
+<div class="ad-slot ad-leaderboard">Advertisement</div>
 
-  <section class="reference-table">
-    <h2>Common Celsius to Fahrenheit Conversions</h2>
-    <table>
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🌡️</div>
+    <div><div class="calc-card-title">Celsius to Fahrenheit Converter</div><div class="calc-card-desc">Live conversion between Celsius and Fahrenheit</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="inputValue">Celsius (celsius)</label>
+        <input type="number" id="inputValue" value="1" step="any">
+      </div>
+    </div>
+
+    <div class="results active" id="conv-results">
+      <div class="results-header">Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Fahrenheit</div>
+          <div class="result-value" id="resultValue">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Convert Celsius to Fahrenheit</h2>
+  <p>Multiply the celsius value by 1.8, then add 32, to get fahrenheit.</p>
+
+  <h3>Common Celsius to Fahrenheit Conversions</h3>
+  <div class="breakdown-wrap">
+    <table class="breakdown-table">
       <thead><tr><th>Celsius</th><th>Fahrenheit</th></tr></thead>
       <tbody>
         <tr><td>1 celsius</td><td>33.8 fahrenheit</td></tr>
@@ -37,31 +79,35 @@
         <tr><td>1000 celsius</td><td>1832 fahrenheit</td></tr>
       </tbody>
     </table>
-  </section>
+  </div>
 
-  <section class="related-links">
-    <h2>Related Temperature Conversions</h2>
-    <ul>
-      <li><a href="convert-fahrenheit-to-celsius.html">Fahrenheit to Celsius</a></li>
-    </ul>
-  </section>
-</main>
+  <h3>Related Temperature Conversions</h3>
+  <ul>
+    <li><a href="convert-fahrenheit-to-celsius.html">Fahrenheit to Celsius</a></li>
+  </ul>
 
+  <div class="faq-item"><div class="faq-q">What is the formula to convert Celsius to Fahrenheit?</div><div class="faq-a"><p>Multiply the celsius value by 1.8, then add 32, to get fahrenheit.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How many Fahrenheit is 1 Celsius?</div><div class="faq-a"><p>1 celsius equals 33.8 fahrenheit.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
 <script>
   const factor = 1.8;
   const offset = 32;
   const input = document.getElementById('inputValue');
-  const result = document.getElementById('resultDisplay');
+  const resultEl = document.getElementById('resultValue');
 
   function convert() {
     const val = parseFloat(input.value) || 0;
     const out = (val * factor) + offset;
-    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' fahrenheit';
+    resultEl.textContent = out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' fahrenheit';
   }
 
   input.addEventListener('input', convert);
   convert();
 </script>
-
 </body>
 </html>
