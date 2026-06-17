@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weeks to Days Converter | CalcHub</title>
+<meta name="description" content="Convert Weeks to Days instantly with our free calculator. Includes a quick-reference table for common weeks to days conversions.">
+<meta name="keywords" content="weeks to days converter,weeks to days,convert weeks to days,weeks days calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-weeks-to-days.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Weeks to Days Converter","description":"Convert Weeks to Days instantly with our free calculator. Includes a quick-reference table for common weeks to days conversions.","url":"https://calculator-hub-phi-five.vercel.app/calculator-types/convert-weeks-to-days.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⏱️ Time Converter</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Weeks to Days Converter</h1>
+  <p class="hero-sub">Convert Weeks to Days instantly, plus a quick-reference table for common values.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⏱️</div>
+    <div><div class="calc-card-title">Weeks to Days Converter</div><div class="calc-card-desc">Live conversion between Weeks and Days</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="inputValue">Weeks (weeks)</label>
+        <input type="number" id="inputValue" value="1" step="any">
+      </div>
+    </div>
+
+    <div class="results active" id="conv-results">
+      <div class="results-header">Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Days</div>
+          <div class="result-value" id="resultValue">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Convert Weeks to Days</h2>
+  <p>Multiply the weeks value by 7 to get days.</p>
+
+  <h3>Common Weeks to Days Conversions</h3>
+  <div class="breakdown-wrap">
+    <table class="breakdown-table">
+      <thead><tr><th>Weeks</th><th>Days</th></tr></thead>
+      <tbody>
+        <tr><td>1 weeks</td><td>7 days</td></tr>
+        <tr><td>5 weeks</td><td>35 days</td></tr>
+        <tr><td>10 weeks</td><td>70 days</td></tr>
+        <tr><td>25 weeks</td><td>175 days</td></tr>
+        <tr><td>50 weeks</td><td>350 days</td></tr>
+        <tr><td>100 weeks</td><td>700 days</td></tr>
+        <tr><td>500 weeks</td><td>3500 days</td></tr>
+        <tr><td>1000 weeks</td><td>7000 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Related Time Conversions</h3>
+  <ul>
+    <li><a href="convert-hours-to-minutes.html">Hours to Minutes</a></li>
+    <li><a href="convert-minutes-to-hours.html">Minutes to Hours</a></li>
+    <li><a href="convert-days-to-hours.html">Days to Hours</a></li>
+    <li><a href="convert-hours-to-days.html">Hours to Days</a></li>
+    <li><a href="convert-days-to-weeks.html">Days to Weeks</a></li>
+    <li><a href="convert-minutes-to-seconds.html">Minutes to Seconds</a></li>
+    <li><a href="convert-seconds-to-minutes.html">Seconds to Minutes</a></li>
+    <li><a href="convert-years-to-days.html">Years to Days</a></li>
+    <li><a href="convert-days-to-years.html">Days to Years</a></li>
+  </ul>
+
+  <div class="faq-item"><div class="faq-q">What is the formula to convert Weeks to Days?</div><div class="faq-a"><p>Multiply the weeks value by 7 to get days.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How many Days is 1 Weeks?</div><div class="faq-a"><p>1 weeks equals 7 days.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+  const factor = 7;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const resultEl = document.getElementById('resultValue');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    resultEl.textContent = out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' days';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+</body>
+</html>
