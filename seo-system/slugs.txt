@@ -1,0 +1,222 @@
+﻿======================================================================
+CALCHUB SLUG -> KEYWORD MAP
+calculator-types/<slug>.html  <-  target keyword (search volume/mo)
+======================================================================
+
+bmi.html
+  <- bmi calculator (2,740,000/mo)
+  also targets: bmi (550,000/mo), bmi calculator women (246,000/mo), bmi chart (246,000/mo), bmi chart women (90,500/mo), bmi calculator men (74,000/mo), body mass index calculator (49,500/mo), body mass index (33,100/mo), bmi calculator male (33,100/mo), bmi range (27,100/mo), normal bmi (27,100/mo), bmi formula (18,100/mo), bmi index (18,100/mo), healthy bmi (18,100/mo), cdc bmi calculator (18,100/mo), bmi for women (12,100/mo), bmi for men (12,100/mo), calculate my bmi (9,900/mo)
+
+mortgage.html
+  <- mortgage calculator (2,740,000/mo)
+  also targets: bankrate mortgage calculator (368,000/mo), online mortgage calculator (301,000/mo), mortgage payment calculator (201,000/mo), home loan calculator (90,500/mo), home equity loan calculator (74,000/mo), mortgage amortization calculator (74,000/mo), mortgage loan calculator (60,500/mo), mortgage payoff calculator (60,500/mo), refinance calculator (49,500/mo), mortgage rate calculator (49,500/mo), closing cost calculator (40,500/mo), simple mortgage calculator (40,500/mo), home mortgage calculator (27,100/mo), free mortgage calculator (27,100/mo), monthly mortgage payment calculator (27,100/mo), mortgage calculator with extra payments (33,100/mo), google mortgage calculator (22,200/mo), early mortgage payoff calculator (22,200/mo), va loan calculator (18,100/mo), reverse mortgage calculator (14,800/mo), cash out refinance calculator (14,800/mo), va mortgage calculator (14,800/mo), refinance mortgage calculator (14,800/mo), mortgage estimator (12,100/mo), mortgage amortization schedule (12,100/mo), va home loan calculator (9,900/mo), home equity calculator (9,900/mo), down payment calculator (9,900/mo), monthly mortgage calculator (9,900/mo), mortgage calculator with taxes (9,900/mo), heloc payment calculator (33,100/mo), house payment calculator (33,100/mo), home payment calculator (33,100/mo), bankrate calculator (9,900/mo)
+
+calorie.html
+  <- calorie calculator (1,000,000/mo)
+  also targets: calorie deficit calculator (301,000/mo), maintenance calorie calculator (110,000/mo), calorie intake calculator (22,200/mo), calorie calculator to gain weight (14,800/mo), calorie calculator to lose weight (9,900/mo)
+
+compound-interest.html
+  <- compound interest calculator (823,000/mo)
+  also targets: cumulative interest calculator (823,000/mo), compound interest (60,500/mo), compound interest formula (60,500/mo), compounding calculator (33,100/mo), daily compound interest calculator (14,800/mo), continuous compound interest formula (14,800/mo)
+
+grade-gpa.html
+  <- gpa calculator (823,000/mo)
+  also targets: gpa (110,000/mo), gpa scale (33,100/mo), final exam calculator (90,500/mo), final calculator (90,500/mo), grading calculator (60,500/mo), cumulative gpa calculator (18,100/mo), exam calculator (18,100/mo), weighted gpa calculator (14,800/mo), cumulative gpa (14,800/mo), test calculator (14,800/mo)
+
+age.html
+  <- age calculator (673,000/mo)
+  also targets: age calculator by date of birth (27,100/mo), date of birth calculator (14,800/mo), birth date calculator (14,800/mo)
+
+date-difference.html
+  <- date calculator (673,000/mo)
+  also targets: date to date calculator (673,000/mo), date and time calculator (135,000/mo), date time calculator (135,000/mo), days calculator (74,000/mo), day to day calculator (74,000/mo), date duration calculator (33,100/mo), duration calculator (18,100/mo), day counter (90,500/mo), days since calculator (14,800/mo), days until calculator (14,800/mo), date counter (14,800/mo), elapsed time calculator (12,100/mo), calendar days calculator (12,100/mo)
+
+loan.html
+  <- loan calculator (673,000/mo)
+  also targets: personal loan calculator (165,000/mo), payment calculator (165,000/mo), loan payment calculator (110,000/mo), loan amortization calculator (40,500/mo), loan payoff calculator (33,100/mo), loan interest calculator (27,100/mo), simple loan calculator (14,800/mo), loan repayment calculator (18,100/mo), amortization schedule calculator (12,100/mo), loan amortization (12,100/mo), loan amortization schedule (9,900/mo)
+
+payroll-tax.html
+  <- payroll calculator (673,000/mo)
+  also targets: paycheck calculator (673,000/mo), calculate my paycheck (673,000/mo), smartasset paycheck calculator (90,500/mo), take home pay calculator (60,500/mo), paycheck tax calculator (22,200/mo), hourly paycheck calculator (22,200/mo), paycheck city (27,100/mo), salary paycheck calculator (18,100/mo), net pay calculator (18,100/mo), after tax income calculator (18,100/mo), salary after tax calculator (18,100/mo), payroll hours calculator (9,900/mo), federal tax withholding calculator (9,900/mo), federal withholding calculator (9,900/mo), adp hourly paycheck calculator (14,800/mo), tax withholding calculator (14,800/mo)
+
+concrete.html
+  <- concrete calculator (550,000/mo)
+  also targets: concrete yard calculator (14,800/mo)
+
+percentage.html
+  <- percentage calculator (550,000/mo)
+  also targets: percentage increase calculator (165,000/mo), percentage difference calculator (165,000/mo), percentage change calculator (135,000/mo), percent off calculator (40,500/mo), percent change formula (60,500/mo), percentage increase formula (60,500/mo), percent change (22,200/mo), percent difference (18,100/mo), percent increase (18,100/mo), percentage formula (14,800/mo), percent difference formula (18,100/mo)
+
+quadratic-equation-solver.html
+  <- quadratic formula (550,000/mo)
+  also targets: quadratic formula calculator (49,500/mo), quadratic equation solver (22,200/mo), quadratic equation calculator (22,200/mo)
+
+currency-converter.html
+  <- english pounds to dollars (450,000/mo)
+  also targets: british pounds to dollars (450,000/mo), dollars to pounds converter (22,200/mo), pounds to dollars conversion (27,100/mo), currency calculator (12,100/mo), currency converter online (12,100/mo), pounds to dollars calculator (12,100/mo)
+
+tip.html
+  <- tip calculator (450,000/mo)
+
+fraction.html
+  <- fraction calculator (368,000/mo)
+  also targets: mixed fraction calculator (18,100/mo), mixed number calculator (18,100/mo)
+
+retirement.html
+  <- retirement calculator (368,000/mo)
+  also targets: 401k calculator (165,000/mo), roth ira calculator (135,000/mo), social security calculator (60,500/mo), social security benefits calculator (33,100/mo), social security estimator (33,100/mo), retirement savings calculator (18,100/mo), ira calculator (27,100/mo), fire calculator (18,100/mo), annuity calculator (40,500/mo), social security retirement calculator (14,800/mo), annuity payout calculator (9,900/mo), retirement withdrawal calculator (9,900/mo), military retirement calculator (12,100/mo), fers retirement calculator (12,100/mo), tsp calculator (9,900/mo)
+
+convert-index.html
+  <- unit converter (110,000/mo)
+  also targets: conversion calculator (40,500/mo)
+
+convert-kg-to-lbs.html
+  <- kg to pounds converter (110,000/mo)
+
+macro.html
+  <- macro calculator (110,000/mo)
+  also targets: protein calculator (90,500/mo), protein intake calculator (33,100/mo), macro calculator for weight loss (12,100/mo)
+
+profit-margin.html
+  <- margin calculator (110,000/mo)
+  also targets: profit margin calculator (22,200/mo), gross margin calculator (12,100/mo)
+
+unit-converter.html
+  <- unit converter (110,000/mo)
+  also targets: conversion calculator (40,500/mo), weight conversion (14,800/mo)
+
+running-pace.html
+  <- pace calculator (90,500/mo)
+  also targets: running pace calculator (33,100/mo), marathon pace calculator (12,100/mo)
+
+area.html
+  <- area calculator (74,000/mo)
+  also targets: area of a circle formula (27,100/mo), area of a circle calculator (14,800/mo), area of a circle with diameter (12,100/mo)
+
+body-fat.html
+  <- body fat calculator (74,000/mo)
+  also targets: body fat percentage calculator (49,500/mo), army body fat calculator (18,100/mo)
+
+convert-miles-to-km.html
+  <- miles to km converter (74,000/mo)
+
+distance-time.html
+  <- distance calculator (74,000/mo)
+  also targets: distance formula (246,000/mo), google maps distance calculator (60,500/mo), measure distance google maps (27,100/mo)
+
+ratio.html
+  <- ratio calculator (74,000/mo)
+  also targets: proportion calculator (49,500/mo), aspect ratio (27,100/mo), aspect ratio calculator (14,800/mo), gear ratio calculator (12,100/mo)
+
+gcf-lcm.html
+  <- gcf calculator (60,500/mo)
+  also targets: lcm calculator (49,500/mo), least common multiple calculator (49,500/mo)
+
+savings-goal.html
+  <- savings calculator (60,500/mo)
+  also targets: savings account calculator (9,900/mo)
+
+density.html
+  <- density formula (49,500/mo)
+  also targets: density equation (18,100/mo)
+
+fuel-cost.html
+  <- mileage calculator (49,500/mo)
+  also targets: fuel consumption calculator (40,500/mo), gas mileage calculator (14,800/mo), fuel economy calculator (9,900/mo), mpg calculator (9,900/mo)
+
+paint-coverage.html
+  <- paint calculator (49,500/mo)
+
+volume.html
+  <- cubic yard calculator (40,500/mo)
+  also targets: cubic feet calculator (40,500/mo), cubic inches to cubic feet (12,100/mo)
+
+convert-lbs-to-kg.html
+  <- pound to kg converter (33,100/mo)
+
+convert-feet-to-meters.html
+  <- feet to meter converter (27,100/mo)
+
+credit-card-payoff.html
+  <- credit card payoff calculator (27,100/mo)
+  also targets: credit card payment calculator (9,900/mo), credit card calculator (9,900/mo)
+
+net-worth.html
+  <- net worth calculator (27,100/mo)
+
+budget-planner.html
+  <- budget calculator (22,200/mo)
+
+ideal-weight.html
+  <- ideal body weight calculator (22,200/mo)
+  also targets: ideal weight calculator (14,800/mo)
+
+roi.html
+  <- roi calculator (22,200/mo)
+  also targets: roi formula (12,100/mo), return on investment formula (12,100/mo)
+
+debt-snowball-avalanche.html
+  <- debt payoff calculator (18,100/mo)
+
+markup.html
+  <- markup calculator (18,100/mo)
+
+scientific-notation.html
+  <- scientific notation calculator (18,100/mo)
+
+time-zone-converter.html
+  <- time zone calculator (18,100/mo)
+
+vo2-max.html
+  <- vo2 max calculator (18,100/mo)
+
+water-intake.html
+  <- water intake calculator (18,100/mo)
+
+ohms-law.html
+  <- ohms law calculator (14,800/mo)
+  also targets: ohm's law formula (12,100/mo)
+
+======================================================================
+BIGGEST CONTENT GAPS (high-volume keyword clusters, no matching page)
+======================================================================
+
+- Time/hours tracking (time calculator, hours calculator, time card, time clock, work hours, timesheet, overtime, hourly-to-salary, etc.) - NO page exists
+  combined volume: ~2,050,000/mo
+
+- Auto/car loan & payment specifics (auto loan, car loan, car payment, car finance, monthly car payment, used car loan, etc.) - only generic loan.html covers this
+  combined volume: ~2,500,000/mo
+
+- Scientific/algebra/calculus tools (scientific calculator, graphing calculator, algebra/math solver, integral, derivative, statistics, matrix, trig) - NO page exists
+  combined volume: ~1,800,000/mo
+
+- TDEE / BMR metabolic rate (tdee calculator, bmr calculator, basal metabolic rate, metabolic rate calculator) - NO page exists
+  combined volume: ~1,000,000/mo
+
+- Income tax / refund (tax calculator, income tax, tax return, tax refund estimator, federal tax, property tax) - payroll-tax.html only covers paycheck withholding, not filing/refund
+  combined volume: ~900,000/mo
+
+- Square footage / area materials (square footage calculator, sq ft calculator, square feet calculator, acreage) - area.html exists but doesn't target these terms
+  combined volume: ~280,000/mo
+
+- Salary calculators (salary calculator, annual/yearly/monthly salary, monthly income, net income) - payroll-tax.html only partially overlaps
+  combined volume: ~410,000/mo
+
+- Student loan specific (student loan calculator, student loan payment/repayment) - only generic loan.html covers this
+  combined volume: ~87,000/mo
+
+======================================================================
+EXISTING PAGES WITH NO MATCH IN THIS KEYWORD BATCH (33 pages)
+These just aren't covered by this particular keyword set - not necessarily
+low value, just outside scope of this CSV.
+======================================================================
+
+bac-calculator.html, bankruptcy-calculator.html, bill-split.html, blood-pressure.html,
+break-even.html, calories-burned.html, convert-celsius-to-fahrenheit.html, convert-cm-to-inches.html,
+convert-cups-to-ml.html, convert-fahrenheit-to-celsius.html, convert-gallons-to-liters.html,
+convert-grams-to-oz.html, convert-inches-to-cm.html, convert-kg-to-stone.html, convert-km-to-miles.html,
+convert-kmh-to-mph.html, convert-liters-to-gallons.html, convert-meters-to-feet.html, convert-ml-to-cups.html,
+convert-mph-to-kmh.html, convert-oz-to-grams.html, convert-stone-to-kg.html, electricity-cost.html,
+employee-cost.html, gst-vat.html, half-life.html, heart-rate-zones.html, invoice.html,
+loan-comparison.html, one-rep-max.html, ovulation.html, pregnancy-due-date.html, prime-number-checker.html,
+saas-mrr-arr.html, sleep.html, speed-distance-time.html, wavelength-frequency.html

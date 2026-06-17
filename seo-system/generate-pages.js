@@ -36,6 +36,44 @@ const CATEGORY_ICONS = {
   Torque: '🔧'
 };
 
+// --- Keyword-research overrides --------------------------------------------
+// Formulaic title/meta generation leaves real keyword research on the table
+// for our highest-traffic pairs. This map swaps in the researched phrase
+// (title, meta description, meta keywords) and bumps sitemap priority for
+// specific slugs only. Every other row keeps the formulaic generation
+// exactly as before. searchVolume is just a comment/reference, not used
+// in output.
+const KEYWORD_OVERRIDES = {
+  'convert-kg-to-lbs': {
+    title: 'Kg to Pounds Converter | Kilograms to Pounds | CalcHub',
+    metaDescription: 'Use our free kg to pounds converter to convert kilograms to pounds instantly. Includes a quick-reference table for common kg to lbs conversions.',
+    metaKeywords: 'kg to pounds converter,kilograms to pounds converter,kg to lbs,convert kilograms to pounds',
+    sitemapPriority: 0.9,
+    searchVolume: '110K/mo'
+  },
+  'convert-lbs-to-kg': {
+    title: 'Pound to Kg Converter | Pounds to Kilograms | CalcHub',
+    metaDescription: 'Use our free pound to kg converter to convert pounds to kilograms instantly. Includes a quick-reference table for common lbs to kg conversions.',
+    metaKeywords: 'pound to kg converter,pounds to kg converter,convert pounds to kilograms,lbs to kg',
+    sitemapPriority: 0.9,
+    searchVolume: '33K/mo'
+  },
+  'convert-miles-to-km': {
+    title: 'Miles to Km Converter | Miles to Kilometers | CalcHub',
+    metaDescription: 'Use our free miles to km converter to convert miles to kilometers instantly. Includes a quick-reference table for common miles to km conversions.',
+    metaKeywords: 'miles to km converter,miles to kilometers converter,convert miles to km,miles km calculator',
+    sitemapPriority: 0.85,
+    searchVolume: '74K/mo'
+  },
+  'convert-feet-to-meters': {
+    title: 'Feet to Meter Converter | Feet to Meters | CalcHub',
+    metaDescription: 'Use our free feet to meter converter to convert feet to meters instantly. Includes a quick-reference table for common feet to meters conversions.',
+    metaKeywords: 'feet to meter converter,feet to meters converter,convert feet to meters,feet meters calculator',
+    sitemapPriority: 0.8,
+    searchVolume: '27K/mo'
+  }
+};
+
 // --- Tier selection -------------------------------------------------------
 // Default behaviour: only publish "core" and "standard" tier pairs as real
 // pages. "niche" pairs stay in the data file (so they're available, sized,
@@ -87,6 +125,7 @@ function buildFormulaText(row) {
 
 const sitemapEntries = [];
 let count = 0;
+let overridesMatched = 0;
 const seenSlugs = new Set();
 
 data.forEach(row => {
@@ -101,10 +140,17 @@ data.forEach(row => {
   }
   seenSlugs.add(slug);
 
+  const override = KEYWORD_OVERRIDES[slug];
+  if (override) overridesMatched++;
+
   const icon = CATEGORY_ICONS[row.category] || '🔢';
-  const title = `${row.fromFull} to ${row.toFull} Converter | CalcHub`;
-  const metaDescription = `Convert ${row.fromFull} to ${row.toFull} instantly with our free calculator. Includes a quick-reference table for common ${row.from} to ${row.to} conversions.`;
-  const metaKeywords = `${row.fromFull.toLowerCase()} to ${row.toFull.toLowerCase()} converter,${row.from} to ${row.to},convert ${row.fromFull.toLowerCase()} to ${row.toFull.toLowerCase()},${row.fromFull.toLowerCase()} ${row.toFull.toLowerCase()} calculator`;
+  const title = override ? override.title : `${row.fromFull} to ${row.toFull} Converter | CalcHub`;
+  const metaDescription = override
+    ? override.metaDescription
+    : `Convert ${row.fromFull} to ${row.toFull} instantly with our free calculator. Includes a quick-reference table for common ${row.from} to ${row.to} conversions.`;
+  const metaKeywords = override
+    ? override.metaKeywords
+    : `${row.fromFull.toLowerCase()} to ${row.toFull.toLowerCase()} converter,${row.from} to ${row.to},convert ${row.fromFull.toLowerCase()} to ${row.toFull.toLowerCase()},${row.fromFull.toLowerCase()} ${row.toFull.toLowerCase()} calculator`;
   const canonical = `${SITE_BASE_URL}/calculator-types/${slug}.html`;
   const h1 = `${row.fromFull} to ${row.toFull} Converter`;
   const oneUnitResult = round4(row.factor + row.offset);
@@ -129,7 +175,8 @@ data.forEach(row => {
     .replaceAll('{{RELATED_LINKS}}', buildRelatedLinks(row, data));
 
   fs.writeFileSync(path.join(OUTPUT_DIR, `${slug}.html`), page, 'utf8');
-  sitemapEntries.push(`  <url><loc>${canonical}</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>`);
+  const sitemapPriority = override ? override.sitemapPriority : 0.7;
+  sitemapEntries.push(`  <url><loc>${canonical}</loc><priority>${sitemapPriority}</priority><changefreq>monthly</changefreq></url>`);
   count++;
 });
 
@@ -187,3 +234,4 @@ fs.writeFileSync(path.join(OUTPUT_DIR, 'convert-index.html'), hubPage, 'utf8');
 const skipped = allData.length - data.length;
 console.log(`Generated ${count} pages + 1 hub page + 1 sitemap snippet into ${OUTPUT_DIR}`);
 console.log(`Tiers built: ${TIERS_TO_BUILD.join(', ')} | ${skipped} lower-tier entries skipped (run with --tiers=all to include them)`);
+console.log(`Keyword-research overrides applied: ${overridesMatched} of ${Object.keys(KEYWORD_OVERRIDES).length} configured slugs matched a row in conversions.json`);
