@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kilometers to Miles Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Kilometers to Miles instantly with our free calculator. Includes a quick-reference table for common km to miles conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-km-to-miles.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Kilometers to Miles Converter</h1>
+  <p class="calc-intro">Convert Kilometers to Miles instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Kilometers (km)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 miles</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Kilometers to Miles Conversions</h2>
+    <table>
+      <thead><tr><th>Kilometers</th><th>Miles</th></tr></thead>
+      <tbody>
+        <tr><td>1 km</td><td>0.6214 miles</td></tr>
+        <tr><td>5 km</td><td>3.1069 miles</td></tr>
+        <tr><td>10 km</td><td>6.2137 miles</td></tr>
+        <tr><td>25 km</td><td>15.5343 miles</td></tr>
+        <tr><td>50 km</td><td>31.0686 miles</td></tr>
+        <tr><td>100 km</td><td>62.1371 miles</td></tr>
+        <tr><td>500 km</td><td>310.6855 miles</td></tr>
+        <tr><td>1000 km</td><td>621.371 miles</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Length Conversions</h2>
+    <ul>
+      <li><a href="convert-miles-to-km.html">Miles to Kilometers</a></li>
+      <li><a href="convert-meters-to-feet.html">Meters to Feet</a></li>
+      <li><a href="convert-feet-to-meters.html">Feet to Meters</a></li>
+      <li><a href="convert-inches-to-cm.html">Inches to Centimeters</a></li>
+      <li><a href="convert-cm-to-inches.html">Centimeters to Inches</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 0.621371;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' miles';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grams to Ounces Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Grams to Ounces instantly with our free calculator. Includes a quick-reference table for common grams to oz conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-grams-to-oz.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Grams to Ounces Converter</h1>
+  <p class="calc-intro">Convert Grams to Ounces instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Grams (grams)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 oz</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Grams to Ounces Conversions</h2>
+    <table>
+      <thead><tr><th>Grams</th><th>Ounces</th></tr></thead>
+      <tbody>
+        <tr><td>1 grams</td><td>0.0353 oz</td></tr>
+        <tr><td>5 grams</td><td>0.1764 oz</td></tr>
+        <tr><td>10 grams</td><td>0.3527 oz</td></tr>
+        <tr><td>25 grams</td><td>0.8819 oz</td></tr>
+        <tr><td>50 grams</td><td>1.7637 oz</td></tr>
+        <tr><td>100 grams</td><td>3.5274 oz</td></tr>
+        <tr><td>500 grams</td><td>17.637 oz</td></tr>
+        <tr><td>1000 grams</td><td>35.274 oz</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Weight Conversions</h2>
+    <ul>
+      <li><a href="convert-kg-to-lbs.html">Kilograms to Pounds</a></li>
+      <li><a href="convert-lbs-to-kg.html">Pounds to Kilograms</a></li>
+      <li><a href="convert-kg-to-stone.html">Kilograms to Stone</a></li>
+      <li><a href="convert-stone-to-kg.html">Stone to Kilograms</a></li>
+      <li><a href="convert-oz-to-grams.html">Ounces to Grams</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 0.035274;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' oz';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

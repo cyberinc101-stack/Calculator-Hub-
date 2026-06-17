@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celsius to Fahrenheit Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Celsius to Fahrenheit instantly with our free calculator. Includes a quick-reference table for common celsius to fahrenheit conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-celsius-to-fahrenheit.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Celsius to Fahrenheit Converter</h1>
+  <p class="calc-intro">Convert Celsius to Fahrenheit instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Celsius (celsius)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 fahrenheit</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Celsius to Fahrenheit Conversions</h2>
+    <table>
+      <thead><tr><th>Celsius</th><th>Fahrenheit</th></tr></thead>
+      <tbody>
+        <tr><td>1 celsius</td><td>33.8 fahrenheit</td></tr>
+        <tr><td>5 celsius</td><td>41 fahrenheit</td></tr>
+        <tr><td>10 celsius</td><td>50 fahrenheit</td></tr>
+        <tr><td>25 celsius</td><td>77 fahrenheit</td></tr>
+        <tr><td>50 celsius</td><td>122 fahrenheit</td></tr>
+        <tr><td>100 celsius</td><td>212 fahrenheit</td></tr>
+        <tr><td>500 celsius</td><td>932 fahrenheit</td></tr>
+        <tr><td>1000 celsius</td><td>1832 fahrenheit</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Temperature Conversions</h2>
+    <ul>
+      <li><a href="convert-fahrenheit-to-celsius.html">Fahrenheit to Celsius</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 1.8;
+  const offset = 32;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' fahrenheit';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

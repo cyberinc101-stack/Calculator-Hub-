@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kilograms to Pounds Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Kilograms to Pounds instantly with our free calculator. Includes a quick-reference table for common kg to lbs conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-kg-to-lbs.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Kilograms to Pounds Converter</h1>
+  <p class="calc-intro">Convert Kilograms to Pounds instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Kilograms (kg)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 lbs</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Kilograms to Pounds Conversions</h2>
+    <table>
+      <thead><tr><th>Kilograms</th><th>Pounds</th></tr></thead>
+      <tbody>
+        <tr><td>1 kg</td><td>2.2046 lbs</td></tr>
+        <tr><td>5 kg</td><td>11.0231 lbs</td></tr>
+        <tr><td>10 kg</td><td>22.0462 lbs</td></tr>
+        <tr><td>25 kg</td><td>55.1155 lbs</td></tr>
+        <tr><td>50 kg</td><td>110.231 lbs</td></tr>
+        <tr><td>100 kg</td><td>220.462 lbs</td></tr>
+        <tr><td>500 kg</td><td>1102.31 lbs</td></tr>
+        <tr><td>1000 kg</td><td>2204.62 lbs</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Weight Conversions</h2>
+    <ul>
+      <li><a href="convert-lbs-to-kg.html">Pounds to Kilograms</a></li>
+      <li><a href="convert-kg-to-stone.html">Kilograms to Stone</a></li>
+      <li><a href="convert-stone-to-kg.html">Stone to Kilograms</a></li>
+      <li><a href="convert-oz-to-grams.html">Ounces to Grams</a></li>
+      <li><a href="convert-grams-to-oz.html">Grams to Ounces</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 2.20462;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' lbs';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

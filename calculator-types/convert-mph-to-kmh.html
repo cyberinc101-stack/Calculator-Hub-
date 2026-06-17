@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miles per Hour to Kilometers per Hour Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Miles per Hour to Kilometers per Hour instantly with our free calculator. Includes a quick-reference table for common mph to kmh conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-mph-to-kmh.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Miles per Hour to Kilometers per Hour Converter</h1>
+  <p class="calc-intro">Convert Miles per Hour to Kilometers per Hour instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Miles per Hour (mph)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 kmh</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Miles per Hour to Kilometers per Hour Conversions</h2>
+    <table>
+      <thead><tr><th>Miles per Hour</th><th>Kilometers per Hour</th></tr></thead>
+      <tbody>
+        <tr><td>1 mph</td><td>1.6093 kmh</td></tr>
+        <tr><td>5 mph</td><td>8.0467 kmh</td></tr>
+        <tr><td>10 mph</td><td>16.0934 kmh</td></tr>
+        <tr><td>25 mph</td><td>40.2335 kmh</td></tr>
+        <tr><td>50 mph</td><td>80.467 kmh</td></tr>
+        <tr><td>100 mph</td><td>160.934 kmh</td></tr>
+        <tr><td>500 mph</td><td>804.67 kmh</td></tr>
+        <tr><td>1000 mph</td><td>1609.34 kmh</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Speed Conversions</h2>
+    <ul>
+      <li><a href="convert-kmh-to-mph.html">Kilometers per Hour to Miles per Hour</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 1.60934;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' kmh';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

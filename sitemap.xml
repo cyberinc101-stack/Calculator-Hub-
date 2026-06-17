@@ -21,4 +21,24 @@
   <url><loc>https://calculator-hub-phi-five.vercel.app/pages/privacy.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/pages/terms.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/sleep.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-km-to-miles.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-miles-to-km.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-meters-to-feet.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-feet-to-meters.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-inches-to-cm.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-cm-to-inches.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-kg-to-lbs.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-lbs-to-kg.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-kg-to-stone.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-stone-to-kg.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-oz-to-grams.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-grams-to-oz.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-celsius-to-fahrenheit.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-fahrenheit-to-celsius.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-liters-to-gallons.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-gallons-to-liters.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-cups-to-ml.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-ml-to-cups.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-mph-to-kmh.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/convert-kmh-to-mph.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
 </urlset>

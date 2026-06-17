@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cups to Milliliters Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Cups to Milliliters instantly with our free calculator. Includes a quick-reference table for common cups to ml conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-cups-to-ml.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Cups to Milliliters Converter</h1>
+  <p class="calc-intro">Convert Cups to Milliliters instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Cups (cups)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 ml</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Cups to Milliliters Conversions</h2>
+    <table>
+      <thead><tr><th>Cups</th><th>Milliliters</th></tr></thead>
+      <tbody>
+        <tr><td>1 cups</td><td>236.588 ml</td></tr>
+        <tr><td>5 cups</td><td>1182.94 ml</td></tr>
+        <tr><td>10 cups</td><td>2365.88 ml</td></tr>
+        <tr><td>25 cups</td><td>5914.7 ml</td></tr>
+        <tr><td>50 cups</td><td>11829.4 ml</td></tr>
+        <tr><td>100 cups</td><td>23658.8 ml</td></tr>
+        <tr><td>500 cups</td><td>118294 ml</td></tr>
+        <tr><td>1000 cups</td><td>236588 ml</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Volume Conversions</h2>
+    <ul>
+      <li><a href="convert-liters-to-gallons.html">Liters to Gallons (US)</a></li>
+      <li><a href="convert-gallons-to-liters.html">Gallons (US) to Liters</a></li>
+      <li><a href="convert-ml-to-cups.html">Milliliters to Cups</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 236.588;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' ml';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

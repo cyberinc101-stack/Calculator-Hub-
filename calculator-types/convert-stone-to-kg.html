@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stone to Kilograms Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Stone to Kilograms instantly with our free calculator. Includes a quick-reference table for common stone to kg conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-stone-to-kg.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Stone to Kilograms Converter</h1>
+  <p class="calc-intro">Convert Stone to Kilograms instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Stone (stone)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 kg</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Stone to Kilograms Conversions</h2>
+    <table>
+      <thead><tr><th>Stone</th><th>Kilograms</th></tr></thead>
+      <tbody>
+        <tr><td>1 stone</td><td>6.3503 kg</td></tr>
+        <tr><td>5 stone</td><td>31.7515 kg</td></tr>
+        <tr><td>10 stone</td><td>63.5029 kg</td></tr>
+        <tr><td>25 stone</td><td>158.7573 kg</td></tr>
+        <tr><td>50 stone</td><td>317.5145 kg</td></tr>
+        <tr><td>100 stone</td><td>635.029 kg</td></tr>
+        <tr><td>500 stone</td><td>3175.145 kg</td></tr>
+        <tr><td>1000 stone</td><td>6350.29 kg</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Weight Conversions</h2>
+    <ul>
+      <li><a href="convert-kg-to-lbs.html">Kilograms to Pounds</a></li>
+      <li><a href="convert-lbs-to-kg.html">Pounds to Kilograms</a></li>
+      <li><a href="convert-kg-to-stone.html">Kilograms to Stone</a></li>
+      <li><a href="convert-oz-to-grams.html">Ounces to Grams</a></li>
+      <li><a href="convert-grams-to-oz.html">Grams to Ounces</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 6.35029;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' kg';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

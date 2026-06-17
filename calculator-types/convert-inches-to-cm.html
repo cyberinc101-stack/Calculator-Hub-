@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inches to Centimeters Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Inches to Centimeters instantly with our free calculator. Includes a quick-reference table for common inches to cm conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-inches-to-cm.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Inches to Centimeters Converter</h1>
+  <p class="calc-intro">Convert Inches to Centimeters instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Inches (inches)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 cm</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Inches to Centimeters Conversions</h2>
+    <table>
+      <thead><tr><th>Inches</th><th>Centimeters</th></tr></thead>
+      <tbody>
+        <tr><td>1 inches</td><td>2.54 cm</td></tr>
+        <tr><td>5 inches</td><td>12.7 cm</td></tr>
+        <tr><td>10 inches</td><td>25.4 cm</td></tr>
+        <tr><td>25 inches</td><td>63.5 cm</td></tr>
+        <tr><td>50 inches</td><td>127 cm</td></tr>
+        <tr><td>100 inches</td><td>254 cm</td></tr>
+        <tr><td>500 inches</td><td>1270 cm</td></tr>
+        <tr><td>1000 inches</td><td>2540 cm</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Length Conversions</h2>
+    <ul>
+      <li><a href="convert-km-to-miles.html">Kilometers to Miles</a></li>
+      <li><a href="convert-miles-to-km.html">Miles to Kilometers</a></li>
+      <li><a href="convert-meters-to-feet.html">Meters to Feet</a></li>
+      <li><a href="convert-feet-to-meters.html">Feet to Meters</a></li>
+      <li><a href="convert-cm-to-inches.html">Centimeters to Inches</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 2.54;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' cm';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

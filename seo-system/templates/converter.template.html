@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{META_DESCRIPTION}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>{{H1}}</h1>
+  <p class="calc-intro">Convert {{FROM_FULL}} to {{TO_FULL}} instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">{{FROM_FULL}} ({{FROM}})</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 {{TO}}</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common {{FROM_FULL}} to {{TO_FULL}} Conversions</h2>
+    <table>
+      <thead><tr><th>{{FROM_FULL}}</th><th>{{TO_FULL}}</th></tr></thead>
+      <tbody>
+{{COMMON_TABLE_ROWS}}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related {{CATEGORY}} Conversions</h2>
+    <ul>
+{{RELATED_LINKS}}
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = {{FACTOR}};
+  const offset = {{OFFSET}};
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' {{TO}}';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

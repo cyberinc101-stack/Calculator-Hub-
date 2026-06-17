@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feet to Meters Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Feet to Meters instantly with our free calculator. Includes a quick-reference table for common feet to meters conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-feet-to-meters.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Feet to Meters Converter</h1>
+  <p class="calc-intro">Convert Feet to Meters instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Feet (feet)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 meters</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Feet to Meters Conversions</h2>
+    <table>
+      <thead><tr><th>Feet</th><th>Meters</th></tr></thead>
+      <tbody>
+        <tr><td>1 feet</td><td>0.3048 meters</td></tr>
+        <tr><td>5 feet</td><td>1.524 meters</td></tr>
+        <tr><td>10 feet</td><td>3.048 meters</td></tr>
+        <tr><td>25 feet</td><td>7.62 meters</td></tr>
+        <tr><td>50 feet</td><td>15.24 meters</td></tr>
+        <tr><td>100 feet</td><td>30.48 meters</td></tr>
+        <tr><td>500 feet</td><td>152.4 meters</td></tr>
+        <tr><td>1000 feet</td><td>304.8 meters</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Length Conversions</h2>
+    <ul>
+      <li><a href="convert-km-to-miles.html">Kilometers to Miles</a></li>
+      <li><a href="convert-miles-to-km.html">Miles to Kilometers</a></li>
+      <li><a href="convert-meters-to-feet.html">Meters to Feet</a></li>
+      <li><a href="convert-inches-to-cm.html">Inches to Centimeters</a></li>
+      <li><a href="convert-cm-to-inches.html">Centimeters to Inches</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 0.3048;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' meters';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

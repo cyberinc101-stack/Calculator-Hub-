@@ -1,0 +1,22 @@
+[
+  { "category": "Length", "from": "km", "fromFull": "Kilometers", "to": "miles", "toFull": "Miles", "factor": 0.621371, "offset": 0 },
+  { "category": "Length", "from": "miles", "fromFull": "Miles", "to": "km", "toFull": "Kilometers", "factor": 1.60934, "offset": 0 },
+  { "category": "Length", "from": "meters", "fromFull": "Meters", "to": "feet", "toFull": "Feet", "factor": 3.28084, "offset": 0 },
+  { "category": "Length", "from": "feet", "fromFull": "Feet", "to": "meters", "toFull": "Meters", "factor": 0.3048, "offset": 0 },
+  { "category": "Length", "from": "inches", "fromFull": "Inches", "to": "cm", "toFull": "Centimeters", "factor": 2.54, "offset": 0 },
+  { "category": "Length", "from": "cm", "fromFull": "Centimeters", "to": "inches", "toFull": "Inches", "factor": 0.393701, "offset": 0 },
+  { "category": "Weight", "from": "kg", "fromFull": "Kilograms", "to": "lbs", "toFull": "Pounds", "factor": 2.20462, "offset": 0 },
+  { "category": "Weight", "from": "lbs", "fromFull": "Pounds", "to": "kg", "toFull": "Kilograms", "factor": 0.453592, "offset": 0 },
+  { "category": "Weight", "from": "kg", "fromFull": "Kilograms", "to": "stone", "toFull": "Stone", "factor": 0.157473, "offset": 0 },
+  { "category": "Weight", "from": "stone", "fromFull": "Stone", "to": "kg", "toFull": "Kilograms", "factor": 6.35029, "offset": 0 },
+  { "category": "Weight", "from": "oz", "fromFull": "Ounces", "to": "grams", "toFull": "Grams", "factor": 28.3495, "offset": 0 },
+  { "category": "Weight", "from": "grams", "fromFull": "Grams", "to": "oz", "toFull": "Ounces", "factor": 0.035274, "offset": 0 },
+  { "category": "Temperature", "from": "celsius", "fromFull": "Celsius", "to": "fahrenheit", "toFull": "Fahrenheit", "factor": 1.8, "offset": 32 },
+  { "category": "Temperature", "from": "fahrenheit", "fromFull": "Fahrenheit", "to": "celsius", "toFull": "Celsius", "factor": 0.555556, "offset": -17.7778 },
+  { "category": "Volume", "from": "liters", "fromFull": "Liters", "to": "gallons", "toFull": "Gallons (US)", "factor": 0.264172, "offset": 0 },
+  { "category": "Volume", "from": "gallons", "fromFull": "Gallons (US)", "to": "liters", "toFull": "Liters", "factor": 3.78541, "offset": 0 },
+  { "category": "Volume", "from": "cups", "fromFull": "Cups", "to": "ml", "toFull": "Milliliters", "factor": 236.588, "offset": 0 },
+  { "category": "Volume", "from": "ml", "fromFull": "Milliliters", "to": "cups", "toFull": "Cups", "factor": 0.00422675, "offset": 0 },
+  { "category": "Speed", "from": "mph", "fromFull": "Miles per Hour", "to": "kmh", "toFull": "Kilometers per Hour", "factor": 1.60934, "offset": 0 },
+  { "category": "Speed", "from": "kmh", "fromFull": "Kilometers per Hour", "to": "mph", "toFull": "Miles per Hour", "factor": 0.621371, "offset": 0 }
+]

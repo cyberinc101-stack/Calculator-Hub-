@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallons (US) to Liters Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Gallons (US) to Liters instantly with our free calculator. Includes a quick-reference table for common gallons to liters conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-gallons-to-liters.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Gallons (US) to Liters Converter</h1>
+  <p class="calc-intro">Convert Gallons (US) to Liters instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Gallons (US) (gallons)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 liters</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Gallons (US) to Liters Conversions</h2>
+    <table>
+      <thead><tr><th>Gallons (US)</th><th>Liters</th></tr></thead>
+      <tbody>
+        <tr><td>1 gallons</td><td>3.7854 liters</td></tr>
+        <tr><td>5 gallons</td><td>18.9271 liters</td></tr>
+        <tr><td>10 gallons</td><td>37.8541 liters</td></tr>
+        <tr><td>25 gallons</td><td>94.6353 liters</td></tr>
+        <tr><td>50 gallons</td><td>189.2705 liters</td></tr>
+        <tr><td>100 gallons</td><td>378.541 liters</td></tr>
+        <tr><td>500 gallons</td><td>1892.705 liters</td></tr>
+        <tr><td>1000 gallons</td><td>3785.41 liters</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Volume Conversions</h2>
+    <ul>
+      <li><a href="convert-liters-to-gallons.html">Liters to Gallons (US)</a></li>
+      <li><a href="convert-cups-to-ml.html">Cups to Milliliters</a></li>
+      <li><a href="convert-ml-to-cups.html">Milliliters to Cups</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 3.78541;
+  const offset = 0;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' liters';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>

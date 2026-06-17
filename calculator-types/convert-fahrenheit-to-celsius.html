@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahrenheit to Celsius Converter | Free Online Calculator</title>
+<meta name="description" content="Convert Fahrenheit to Celsius instantly with our free calculator. Includes a quick-reference table for common fahrenheit to celsius conversions.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/convert-fahrenheit-to-celsius.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+<main class="calculator-page">
+  <h1>Fahrenheit to Celsius Converter</h1>
+  <p class="calc-intro">Convert Fahrenheit to Celsius instantly. Enter a value below, or use the reference table for common conversions.</p>
+
+  <section class="calc-widget">
+    <label for="inputValue">Fahrenheit (fahrenheit)</label>
+    <input type="number" id="inputValue" value="1" step="any">
+    <div class="calc-result" id="resultDisplay">= 0 celsius</div>
+  </section>
+
+  <section class="reference-table">
+    <h2>Common Fahrenheit to Celsius Conversions</h2>
+    <table>
+      <thead><tr><th>Fahrenheit</th><th>Celsius</th></tr></thead>
+      <tbody>
+        <tr><td>1 fahrenheit</td><td>-17.2222 celsius</td></tr>
+        <tr><td>5 fahrenheit</td><td>-15 celsius</td></tr>
+        <tr><td>10 fahrenheit</td><td>-12.2222 celsius</td></tr>
+        <tr><td>25 fahrenheit</td><td>-3.8889 celsius</td></tr>
+        <tr><td>50 fahrenheit</td><td>10 celsius</td></tr>
+        <tr><td>100 fahrenheit</td><td>37.7778 celsius</td></tr>
+        <tr><td>500 fahrenheit</td><td>260.0002 celsius</td></tr>
+        <tr><td>1000 fahrenheit</td><td>537.7782 celsius</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="related-links">
+    <h2>Related Temperature Conversions</h2>
+    <ul>
+      <li><a href="convert-celsius-to-fahrenheit.html">Celsius to Fahrenheit</a></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+  const factor = 0.555556;
+  const offset = -17.7778;
+  const input = document.getElementById('inputValue');
+  const result = document.getElementById('resultDisplay');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    result.textContent = '= ' + out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' celsius';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+
+</body>
+</html>
