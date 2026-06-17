@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2ZT2CL405H');
+  </script>
+
+  <!-- Primary SEO -->
+  <title>Sleep Calculator – Find Your Ideal Bedtime & Wake-Up Time | CalcHub</title>
+  <meta name="description" content="Free sleep calculator: enter your bedtime or wake-up time and get optimal sleep cycle times based on 90-minute REM cycles. Find the perfect time to go to sleep tonight." />
+  <meta name="keywords" content="sleep calculator, bedtime calculator, wake up time calculator, sleep cycle calculator, how much sleep do I need, REM sleep cycles, optimal sleep time, best time to wake up" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/sleep.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sleep Calculator – Optimal Bedtime & Wake-Up Time | CalcHub" />
+  <meta property="og:description" content="Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Free, instant results." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://calculator-hub-phi-five.vercel.app/calculator-types/sleep.html" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sleep Calculator – Bedtime & Wake-Up Time | CalcHub" />
+  <meta name="twitter:description" content="Find the perfect time to sleep or wake up using 90-minute sleep cycle science." />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Sleep Calculator",
+        "url": "https://calculator-hub-phi-five.vercel.app/calculator-types/sleep.html",
+        "description": "Calculate optimal bedtime and wake-up times based on 90-minute sleep cycles",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does a sleep calculator work?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A sleep calculator uses 90-minute sleep cycle science. Each night you go through multiple cycles of light sleep, deep sleep, and REM sleep. Waking at the end of a cycle — rather than mid-cycle — means you feel more rested. The calculator adds a 15-minute sleep onset time to your bedtime, then shows wake-up times at 4, 5, and 6 complete cycles (6, 7.5, and 9 hours of sleep)." }
+          },
+          {
+            "@type": "Question",
+            "name": "How many sleep cycles do I need per night?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Most adults need 5–6 complete 90-minute sleep cycles per night, which equals 7.5–9 hours of sleep. Four cycles (6 hours) is the minimum for basic function. Six cycles (9 hours) is ideal for recovery, athletes, or teenagers." }
+          },
+          {
+            "@type": "Question",
+            "name": "What time should I go to bed to wake up at 6am?",
+            "acceptedAnswer": { "@type": "Answer", "text": "To wake up at 6:00 AM feeling refreshed, go to bed at: 8:45 PM (6 cycles / 9 hours), 10:15 PM (5 cycles / 7.5 hours), or 11:45 PM (4 cycles / 6 hours). These times account for the average 15-minute sleep onset period." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is REM sleep?",
+            "acceptedAnswer": { "@type": "Answer", "text": "REM (Rapid Eye Movement) sleep is the stage where most dreaming occurs. It plays a key role in memory consolidation, emotional processing, and creativity. REM stages get longer in the second half of the night, which is why cutting sleep short has an outsized impact on brain function." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it better to sleep 6 hours or 7.5 hours?",
+            "acceptedAnswer": { "@type": "Answer", "text": "7.5 hours (5 complete cycles) is significantly better than 6 hours (4 cycles). The extra 1.5 hours adds a full REM-rich sleep cycle. If you can only sleep 6 hours, time your alarm to land at the end of a cycle — that is still better than 6.5 or 7 hours if you would wake mid-cycle." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- CalcHub shared CSS -->
+  <link rel="stylesheet" href="../css/vars.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+
+  <!-- Sleep calculator specific styles (inlined to keep single-file like other calchub pages) -->
+  <style>
+    /* NAV DROPDOWN */
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; margin-left: 1.5rem; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown-btn:hover { background: var(--surface2); color: var(--text); }
+    .nav-dropdown-btn svg { transition: transform 0.2s; }
+    .nav-dropdown.open .nav-dropdown-btn svg { transform: rotate(180deg); }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.5rem;
+      min-width: 200px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .nav-dropdown.open .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown-menu a:hover { background: var(--surface2); color: var(--text); }
+    .dropdown-menu a.active { color: var(--accent2); font-weight: 600; }
+    .dropdown-section {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 0.5rem 0.75rem 0.25rem;
+      margin-top: 0.25rem;
+    }
+    .dropdown-section:first-child { margin-top: 0; }
+
+    /* MODE TABS */
+    .mode-tabs {
+      display: flex;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 4px;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: none;
+      border: none;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .tab-btn.active { background: var(--accent); color: #fff; }
+
+    /* INPUT CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text); }
+
+    /* TIME ROW */
+    .time-row { display: flex; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+    .time-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .time-field label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .time-field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background-image: var(--select-arrow);
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      min-width: 80px;
+    }
+    .time-field select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .sep { font-size: 1.5rem; font-weight: 700; color: var(--muted); padding-bottom: 0.75rem; }
+
+    /* QUICK OPTIONS */
+    .quick-options { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .quick-options span { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; margin-right: 0.25rem; }
+    .quick-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .quick-btn:hover { border-color: var(--accent); color: var(--accent2); }
+
+    /* CALC BUTTON */
+    .calc-btn {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .calc-btn:hover { opacity: 0.9; }
+
+    /* RESULTS */
+    #results { display: none; }
+    .results-heading { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1rem; }
+    .result-grid { display: grid; gap: 0.75rem; }
+    .result-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .result-item.optimal { border-color: var(--green); }
+    .result-badge { display: flex; flex-direction: column; align-items: center; min-width: 44px; }
+    .result-cycles { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+    .result-cycles-label { font-size: 0.65rem; color: var(--muted); }
+    .result-time { font-size: 1.4rem; font-weight: 700; }
+    .result-meta { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+    .quality-pill { margin-left: auto; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .quality-optimal { background: rgba(52,211,153,0.15); color: var(--green); }
+    .quality-good    { background: rgba(251,191,36,0.12);  color: var(--yellow); }
+    .quality-minimum { background: rgba(248,113,113,0.12); color: var(--red); }
+
+    /* PROSE */
+    .prose h2 { font-size: 1.35rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--text); }
+    .prose h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--accent2); }
+    .prose p { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .prose ul { color: var(--muted); font-size: 0.95rem; padding-left: 1.25rem; }
+    .prose li { margin-bottom: 0.4rem; }
+
+    /* FAQ */
+    .faq-list { margin-top: 1rem; }
+    details { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+    summary { font-weight: 600; font-size: 0.95rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; color: var(--accent2); font-size: 1.2rem; }
+    details[open] summary::after { content: '−'; }
+    details p { color: var(--muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.7; }
+
+    /* MOBILE */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.75rem; }
+      .card { padding: 1.25rem; }
+      .time-row { gap: 0.6rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+
+  <!-- Theme: no defer, prevents flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('calchub-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <nav aria-label="Site navigation">
+    <a href="../index.html" class="logo" aria-label="CalcHub home">
+      <div class="logo-icon" aria-hidden="true">🧮</div>
+      CalcHub
+    </a>
+
+    <div class="nav-links">
+
+      <!-- Finance dropdown -->
+      <div class="nav-dropdown" id="dd-finance">
+        <button class="nav-dropdown-btn" onclick="toggleDD('dd-finance')" aria-expanded="false">
+          Finance
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="mortgage.html">Mortgage</a>
+          <a href="loan.html">Loan</a>
+          <a href="compound-interest.html">Compound Interest</a>
+          <a href="credit-card-payoff.html">Credit Card Payoff</a>
+          <a href="retirement.html">Retirement</a>
+          <a href="savings-goal.html">Savings Goal</a>
+          <a href="roi.html">ROI</a>
+          <a href="profit-margin.html">Profit Margin</a>
+          <a href="gst-vat.html">GST / VAT</a>
+          <a href="tip.html">Tip</a>
+          <a href="percentage.html">Percentage</a>
+        </div>
+      </div>
+
+      <!-- Health dropdown -->
+      <div class="nav-dropdown" id="dd-health">
+        <button class="nav-dropdown-btn" onclick="toggleDD('dd-health')" aria-expanded="false">
+          Health
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="bmi.html">BMI</a>
+          <a href="calorie.html">Calorie</a>
+          <a href="body-fat.html">Body Fat</a>
+          <a href="one-rep-max.html">One Rep Max</a>
+          <a href="sleep.html" class="active">Sleep</a>
+        </div>
+      </div>
+
+      <!-- Life dropdown -->
+      <div class="nav-dropdown" id="dd-life">
+        <button class="nav-dropdown-btn" onclick="toggleDD('dd-life')" aria-expanded="false">
+          Life
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu">
+          <a href="age.html">Age</a>
+          <a href="pregnancy-due-date.html">Pregnancy Due Date</a>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode">
+      <span id="theme-icon">☀️</span>
+      <span id="theme-label">Light mode</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Sleep Calculator</h1>
+    <p>Find the perfect bedtime or wake-up time based on 90-minute sleep cycles — wake up refreshed, not groggy.</p>
+  </header>
+
+  <!-- CALCULATOR -->
+  <main class="calc-wrap" aria-label="Sleep cycle calculator">
+
+    <div class="mode-tabs" role="tablist" aria-label="Calculator mode">
+      <button class="tab-btn active" id="tab-wakeup" role="tab" aria-selected="true" onclick="setMode('wakeup')">
+        🌙 I'm going to bed at…
+      </button>
+      <button class="tab-btn" id="tab-bedtime" role="tab" aria-selected="false" onclick="setMode('bedtime')">
+        ☀️ I need to wake up at…
+      </button>
+    </div>
+
+    <section class="card" id="panel-input">
+      <h2 id="question-label">What time are you going to bed?</h2>
+
+      <div class="time-row">
+        <div class="time-field">
+          <label for="sel-hour">Hour</label>
+          <select id="sel-hour" aria-label="Hour"></select>
+        </div>
+        <div class="sep" aria-hidden="true">:</div>
+        <div class="time-field">
+          <label for="sel-min">Minute</label>
+          <select id="sel-min" aria-label="Minute"></select>
+        </div>
+        <div class="time-field">
+          <label for="sel-ampm">Period</label>
+          <select id="sel-ampm" aria-label="AM or PM">
+            <option>AM</option>
+            <option selected>PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="quick-options" aria-label="Quick time shortcuts">
+        <span>Quick:</span>
+        <button class="quick-btn" onclick="setNow()">Right now</button>
+        <button class="quick-btn" onclick="setTime(10,0,'PM')">10:00 PM</button>
+        <button class="quick-btn" onclick="setTime(10,30,'PM')">10:30 PM</button>
+        <button class="quick-btn" onclick="setTime(11,0,'PM')">11:00 PM</button>
+        <button class="quick-btn" onclick="setTime(11,30,'PM')">11:30 PM</button>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()" aria-label="Calculate sleep times">
+        ✦ Calculate Wake-up Times
+      </button>
+    </section>
+
+    <!-- Results -->
+    <section id="results" aria-live="polite" aria-label="Sleep calculation results">
+      <p class="results-heading">Recommended times</p>
+      <div class="result-grid" id="result-grid" role="list"></div>
+      <p style="font-size:0.78rem; color:var(--muted); margin-top:1rem;">
+        ⏱ Includes 15-minute average sleep onset time. Times based on 90-minute sleep cycles.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- SEO CONTENT -->
+  <article class="info-section prose" aria-label="Sleep calculator guide">
+
+    <div class="stat-row" aria-label="Sleep statistics">
+      <div class="stat-card">
+        <div class="stat-num">90</div>
+        <div class="stat-lbl">Minutes per sleep cycle</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5–6</div>
+        <div class="stat-lbl">Cycles recommended per night</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15</div>
+        <div class="stat-lbl">Min average to fall asleep</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">7.5h</div>
+        <div class="stat-lbl">Optimal adult sleep duration</div>
+      </div>
+    </div>
+
+    <h2>How Does the Sleep Calculator Work?</h2>
+    <p>Your sleep is structured in repeating 90-minute cycles. Each cycle moves through light sleep (N1, N2), deep restorative sleep (N3 / slow-wave sleep), and REM (Rapid Eye Movement) sleep. Waking in the <strong>middle</strong> of a cycle — especially during deep sleep — triggers sleep inertia: that foggy, disoriented feeling that can last for hours.</p>
+    <p>This calculator adds a <strong>15-minute sleep onset</strong> buffer to your chosen bedtime, then calculates wake-up windows at 4, 5, and 6 complete cycles.</p>
+
+    <h3>The 90-Minute Sleep Cycle</h3>
+    <ul>
+      <li><strong>N1 (Light Sleep)</strong> — 1–7 minutes. Transition from wakefulness. Easily awoken.</li>
+      <li><strong>N2 (Core Sleep)</strong> — 10–25 minutes. Heart rate slows, memory consolidation begins.</li>
+      <li><strong>N3 (Deep Sleep)</strong> — 20–40 minutes. Growth hormone released, tissue repair. Hardest to wake from.</li>
+      <li><strong>REM Sleep</strong> — 10–60 minutes. Dreaming, emotional processing, creativity. Lengthens toward morning.</li>
+    </ul>
+
+    <h2>How Many Hours of Sleep Do I Need?</h2>
+    <p>The National Sleep Foundation recommends <strong>7–9 hours</strong> for adults aged 18–64. Teenagers need 8–10 hours. Older adults generally do well with 7–8 hours.</p>
+    <ul>
+      <li><strong>4 cycles (6 hours)</strong> — Minimum. Functional but expect reduced performance and mood.</li>
+      <li><strong>5 cycles (7.5 hours)</strong> — Good. Most adults feel alert and rested.</li>
+      <li><strong>6 cycles (9 hours)</strong> — Optimal. Ideal for recovery, athletes, or sleep debt.</li>
+    </ul>
+
+    <h2>Sleep Hygiene Tips</h2>
+    <ul>
+      <li>Keep a consistent sleep schedule — even on weekends.</li>
+      <li>Avoid screens (blue light) for 30–60 minutes before bed.</li>
+      <li>Keep your bedroom cool: 16–19°C (60–67°F) is ideal.</li>
+      <li>Limit caffeine after 2:00 PM — its half-life is 5–6 hours.</li>
+      <li>Avoid large meals within 2 hours of bedtime.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>How does a sleep calculator work?</summary>
+        <p>It uses 90-minute sleep cycle science. Waking at the end of a cycle — not mid-cycle — means less grogginess. The calculator adds a 15-minute sleep onset period, then shows times at 4, 5, and 6 complete cycles.</p>
+      </details>
+      <details>
+        <summary>How many sleep cycles do I need per night?</summary>
+        <p>Most adults need 5–6 complete 90-minute cycles per night (7.5–9 hours). Four cycles (6 hours) is the functional minimum. Six cycles (9 hours) suits athletes or anyone recovering from sleep debt.</p>
+      </details>
+      <details>
+        <summary>What time should I go to bed to wake up at 6 AM?</summary>
+        <p>To wake at 6:00 AM refreshed: go to bed at 8:45 PM (6 cycles), 10:15 PM (5 cycles), or 11:45 PM (4 cycles). These include the 15-minute sleep onset period.</p>
+      </details>
+      <details>
+        <summary>What is REM sleep and why does it matter?</summary>
+        <p>REM sleep is when most vivid dreaming happens. It's essential for memory consolidation, emotional regulation, and creativity. REM stages get longer toward morning — so cutting sleep short disproportionately reduces REM.</p>
+      </details>
+      <details>
+        <summary>Is it better to sleep 6 hours or 7.5 hours?</summary>
+        <p>7.5 hours (5 complete cycles) is significantly better than 6 hours (4 cycles). The extra 1.5 hours adds a full REM-rich sleep cycle. If you can only sleep 6 hours, time your alarm to end at a cycle boundary.</p>
+      </details>
+      <details>
+        <summary>What time should I go to sleep to wake up at 7 AM?</summary>
+        <p>To wake at 7:00 AM: go to bed at 9:45 PM (6 cycles / 9 hours), 11:15 PM (5 cycles / 7.5 hours), or 12:45 AM (4 cycles / 6 hours).</p>
+      </details>
+    </div>
+
+  </article>
+
+  <footer>
+    <p>© 2026 CalcHub &nbsp;·&nbsp; <a href="../pages/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="../pages/terms.html">Terms</a></p>
+    <p style="margin-top:0.5rem;">Based on sleep science research by the <a href="https://www.sleepfoundation.org" rel="noopener noreferrer" target="_blank">National Sleep Foundation</a>.</p>
+  </footer>
+
+  <script>
+    // ---- Theme ----
+    function applyThemeUI() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.getElementById('theme-icon').textContent  = isDark ? '☀️' : '🌙';
+      document.getElementById('theme-label').textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('calchub-theme', next);
+      applyThemeUI();
+    }
+    applyThemeUI();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('calchub-theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        applyThemeUI();
+      }
+    });
+
+    // ---- Dropdown nav ----
+    function toggleDD(id) {
+      var el = document.getElementById(id);
+      var isOpen = el.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
+      if (!isOpen) el.classList.add('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-dropdown')) {
+        document.querySelectorAll('.nav-dropdown').forEach(function(d) { d.classList.remove('open'); });
+      }
+    });
+
+    // ---- Build selects ----
+    var hourSel = document.getElementById('sel-hour');
+    var minSel  = document.getElementById('sel-min');
+    for (var h = 1; h <= 12; h++) {
+      var o = document.createElement('option');
+      o.value = h; o.textContent = h;
+      if (h === 10) o.selected = true;
+      hourSel.appendChild(o);
+    }
+    ['00','15','30','45'].forEach(function(m) {
+      var o = document.createElement('option');
+      o.value = parseInt(m); o.textContent = m;
+      minSel.appendChild(o);
+    });
+
+    // ---- Mode ----
+    var mode = 'wakeup';
+    function setMode(m) {
+      mode = m;
+      document.getElementById('tab-wakeup').classList.toggle('active', m === 'wakeup');
+      document.getElementById('tab-bedtime').classList.toggle('active', m === 'bedtime');
+      document.getElementById('tab-wakeup').setAttribute('aria-selected', m === 'wakeup');
+      document.getElementById('tab-bedtime').setAttribute('aria-selected', m === 'bedtime');
+
+      var labels = {
+        wakeup:  { q: 'What time are you going to bed?',    btn: '✦ Calculate Wake-up Times' },
+        bedtime: { q: 'What time do you need to wake up?',  btn: '✦ Calculate Bedtime' }
+      };
+      document.getElementById('question-label').textContent = labels[m].q;
+      document.querySelector('.calc-btn').textContent = labels[m].btn;
+
+      var qo = document.querySelector('.quick-options');
+      if (m === 'bedtime') {
+        qo.innerHTML = '<span>Quick:</span>' +
+          '<button class="quick-btn" onclick="setTime(6,0,\'AM\')">6:00 AM</button>' +
+          '<button class="quick-btn" onclick="setTime(6,30,\'AM\')">6:30 AM</button>' +
+          '<button class="quick-btn" onclick="setTime(7,0,\'AM\')">7:00 AM</button>' +
+          '<button class="quick-btn" onclick="setTime(7,30,\'AM\')">7:30 AM</button>' +
+          '<button class="quick-btn" onclick="setTime(8,0,\'AM\')">8:00 AM</button>';
+      } else {
+        qo.innerHTML = '<span>Quick:</span>' +
+          '<button class="quick-btn" onclick="setNow()">Right now</button>' +
+          '<button class="quick-btn" onclick="setTime(10,0,\'PM\')">10:00 PM</button>' +
+          '<button class="quick-btn" onclick="setTime(10,30,\'PM\')">10:30 PM</button>' +
+          '<button class="quick-btn" onclick="setTime(11,0,\'PM\')">11:00 PM</button>' +
+          '<button class="quick-btn" onclick="setTime(11,30,\'PM\')">11:30 PM</button>';
+      }
+      document.getElementById('results').style.display = 'none';
+    }
+
+    function setTime(h, m, ampm) {
+      hourSel.value = h;
+      minSel.value  = m;
+      document.getElementById('sel-ampm').value = ampm;
+    }
+
+    function setNow() {
+      var now = new Date();
+      var h = now.getHours();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      var m = Math.round(now.getMinutes() / 15) * 15 % 60;
+      setTime(h, m, ampm);
+    }
+
+    // ---- Calculate ----
+    function calculate() {
+      var h    = parseInt(hourSel.value);
+      var m    = parseInt(minSel.value);
+      var ampm = document.getElementById('sel-ampm').value;
+      var totalMins = (h % 12) * 60 + m + (ampm === 'PM' ? 720 : 0);
+
+      var ONSET  = 15;
+      var CYCLE  = 90;
+      var cycles = [4, 5, 6];
+      var labels  = { 4: 'minimum', 5: 'good', 6: 'optimal' };
+      var quality = { 4: 'quality-minimum', 5: 'quality-good', 6: 'quality-optimal' };
+      var qlabel  = { 4: 'Minimum', 5: 'Good', 6: 'Optimal' };
+
+      var results = cycles.map(function(c) {
+        var target;
+        if (mode === 'wakeup') {
+          target = totalMins + ONSET + c * CYCLE;
+        } else {
+          target = totalMins - ONSET - c * CYCLE;
+        }
+        target = ((target % 1440) + 1440) % 1440;
+        var th = Math.floor(target / 60);
+        var tm = target % 60;
+        var ta = th >= 12 ? 'PM' : 'AM';
+        var displayH = th % 12 || 12;
+        var displayM = String(tm).padStart(2, '0');
+        var hours = (c * CYCLE / 60).toFixed(1).replace('.0', '');
+        return { cycles: c, time: displayH + ':' + displayM + ' ' + ta, hours: hours, label: labels[c], quality: quality[c], qlabel: qlabel[c] };
+      });
+
+      if (mode === 'wakeup') results.reverse();
+
+      var grid = document.getElementById('result-grid');
+      grid.innerHTML = results.map(function(r) {
+        return '<div class="result-item ' + (r.label === 'optimal' ? 'optimal' : '') + '" role="listitem">' +
+          '<div class="result-badge">' +
+            '<div class="result-cycles">' + r.cycles + '</div>' +
+            '<div class="result-cycles-label">cycles</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="result-time">' + r.time + '</div>' +
+            '<div class="result-meta">' + r.hours + ' hours of sleep</div>' +
+          '</div>' +
+          '<div class="quality-pill ' + r.quality + '">' + r.qlabel + '</div>' +
+        '</div>';
+      }).join('');
+
+      var resultsEl = document.getElementById('results');
+      resultsEl.style.display = 'block';
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+
+</body>
+</html>
