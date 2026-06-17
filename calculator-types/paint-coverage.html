@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paint Coverage Calculator — How Much Paint You Need | CalcHub</title>
+<meta name="description" content="Free paint coverage calculator. Find out exactly how many gallons or litres of paint you need for any room, accounting for doors, windows, ceilings, and multiple coats.">
+<meta name="keywords" content="paint coverage calculator,how much paint do i need,paint calculator,room paint calculator,wall paint calculator,gallons of paint needed,litres of paint needed">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/paint-coverage.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Paint Coverage Calculator","description":"Calculate exactly how much paint you need for any room, including doors, windows, ceilings, and multiple coats.","url":"https://yourdomain.com/calculator-types/paint-coverage.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🎨 Paint Coverage Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Paint Coverage Calculator</h1>
+  <p class="hero-sub">Find out exactly how many gallons or litres of paint you need — accounting for doors, windows, ceilings, and multiple coats.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🎨</div>
+    <div><div class="calc-card-title">Paint Coverage Calculator</div><div class="calc-card-desc">Walls, ceiling, doors, windows, and coats — accurate to the container</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Units</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="pc-unit" value="imperial" checked> Feet &amp; Gallons</label>
+        <label class="radio-pill"><input type="radio" name="pc-unit" value="metric"> Meters &amp; Litres</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="pc-length">Room Length</label>
+        <div class="input-wrap">
+          <input type="number" id="pc-length" value="12" min="0" step="0.1">
+          <span class="input-suffix" id="pc-length-suffix">ft</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="pc-width">Room Width</label>
+        <div class="input-wrap">
+          <input type="number" id="pc-width" value="10" min="0" step="0.1">
+          <span class="input-suffix" id="pc-width-suffix">ft</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="pc-height">Wall Height</label>
+        <div class="input-wrap">
+          <input type="number" id="pc-height" value="8" min="0" step="0.1">
+          <span class="input-suffix" id="pc-height-suffix">ft</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="pc-doors">Number of Doors</label>
+        <input type="number" id="pc-doors" value="1" min="0" step="1">
+        <span class="field-hint" id="pc-door-hint">Assumes ~20 sq ft (1.9 m²) per standard door</span>
+      </div>
+      <div class="field">
+        <label for="pc-windows">Number of Windows</label>
+        <input type="number" id="pc-windows" value="2" min="0" step="1">
+        <span class="field-hint" id="pc-window-hint">Assumes ~15 sq ft (1.4 m²) per standard window</span>
+      </div>
+      <div class="field">
+        <label for="pc-coats">Number of Coats</label>
+        <input type="number" id="pc-coats" value="2" min="1" step="1">
+      </div>
+      <div class="field">
+        <label for="pc-coverage">Paint Coverage Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="pc-coverage" value="350" min="1" step="1">
+          <span class="input-suffix" id="pc-coverage-suffix">sq ft/gal</span>
+        </div>
+        <span class="field-hint">Check your paint can label — typically 350–400 sq ft/gal (8–10 m²/L)</span>
+      </div>
+      <div class="field">
+        <label for="pc-price">Price per Container</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="pc-price" class="has-prefix" value="35" min="0" step="1">
+          <span class="input-suffix" id="pc-price-suffix">/gal</span>
+        </div>
+      </div>
+      <div class="field">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:22px">
+          <input type="checkbox" id="pc-ceiling" style="width:auto">
+          Include ceiling in coverage
+        </label>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcPaint()">Calculate Paint Needed →</button>
+
+    <div class="results" id="pc-results">
+      <div class="results-header">Paint Needed</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Containers to Buy</div>
+          <div class="result-value" id="r-pc-containers">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Exact Paint Needed</div>
+          <div class="result-value" id="r-pc-exact">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Area to Coat</div>
+          <div class="result-value" id="r-pc-totalcoat">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Estimated Cost</div>
+          <div class="result-value" id="r-pc-cost">—</div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Area Breakdown</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Gross Wall (+Ceiling) Area</div>
+          <div class="result-value" id="r-pc-gross">—</div>
+        </div>
+        <div class="result-item red">
+          <div class="result-label">Doors &amp; Windows Deducted</div>
+          <div class="result-value" id="r-pc-deducted">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Net Paintable Area</div>
+          <div class="result-value" id="r-pc-net">—</div>
+        </div>
+      </div>
+
+      <div id="pc-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="pc-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Paint Coverage Calculator</h2>
+  <p>Enter your room's length, width, and wall height, then tell us how many doors and windows it has — standard door and window sizes are automatically deducted from your total paintable area. Choose how many coats you're applying and your paint's coverage rate from the can label to get an exact gallon or litre count.</p>
+
+  <h3>How Much Paint Does One Gallon Cover?</h3>
+  <p>Most interior paints cover 350–400 square feet per gallon, roughly 8–10 m² per litre, for a single coat on primed drywall. Textured walls, unprimed surfaces, or a big colour change all reduce real-world coverage, so check your specific product label for the most accurate figure.</p>
+
+  <h3>Do I Need to Paint the Ceiling Separately?</h3>
+  <p>Ceilings usually call for a flatter, drip-resistant formula, so most painters buy it separately from wall paint. Tick "Include ceiling" above only if you're using the same paint for both surfaces.</p>
+
+  <div class="faq-item"><div class="faq-q">How many coats of paint do I actually need?</div><div class="faq-a"><p>Two coats is standard for most colour changes and gives the most even, durable finish. A single coat can work when you're repainting a wall the same or a very similar colour.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Should I subtract closets or alcoves from my paintable area?</div><div class="faq-a"><p>Treat a closet or alcove as its own small room using the same calculator, then add the two container totals together — its walls still need covering even though it's a different shape.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why does the calculator round up to a whole container?</div><div class="faq-a"><p>Paint is sold in fixed container sizes, and stores typically won't sell partial gallons or litres. Rounding up also leaves a small buffer for drips, spot fixes, and future touch-ups.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var pcUnit = 'imperial';
+
+document.querySelectorAll('input[name="pc-unit"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="pc-unit"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    pcUnit = this.value;
+    applyPCUnit();
+    calcPaint();
+  });
+});
+
+function applyPCUnit(){
+  var lenSuf = pcUnit === 'imperial' ? 'ft' : 'm';
+  document.getElementById('pc-length-suffix').textContent = lenSuf;
+  document.getElementById('pc-width-suffix').textContent  = lenSuf;
+  document.getElementById('pc-height-suffix').textContent = lenSuf;
+  document.getElementById('pc-coverage-suffix').textContent = pcUnit === 'imperial' ? 'sq ft/gal' : 'm²/L';
+  document.getElementById('pc-price-suffix').textContent    = pcUnit === 'imperial' ? '/gal' : '/L';
+  document.getElementById('pc-door-hint').textContent   = pcUnit === 'imperial' ? 'Assumes ~20 sq ft per standard door' : 'Assumes ~1.9 m² per standard door';
+  document.getElementById('pc-window-hint').textContent = pcUnit === 'imperial' ? 'Assumes ~15 sq ft per standard window' : 'Assumes ~1.4 m² per standard window';
+
+  if(pcUnit === 'metric'){
+    document.getElementById('pc-length').value   = 4;
+    document.getElementById('pc-width').value    = 3;
+    document.getElementById('pc-height').value   = 2.4;
+    document.getElementById('pc-coverage').value = 10;
+    document.getElementById('pc-price').value    = 12;
+  } else {
+    document.getElementById('pc-length').value   = 12;
+    document.getElementById('pc-width').value    = 10;
+    document.getElementById('pc-height').value   = 8;
+    document.getElementById('pc-coverage').value = 350;
+    document.getElementById('pc-price').value    = 35;
+  }
+}
+
+function calcPaint(){
+  var length = v('pc-length'), width = v('pc-width'), height = v('pc-height');
+  var doors  = v('pc-doors'),  windows = v('pc-windows'), coats = v('pc-coats');
+  var coverage = v('pc-coverage'), price = v('pc-price');
+  var includeCeiling = document.getElementById('pc-ceiling').checked;
+
+  if(length <= 0 || width <= 0 || height <= 0 || coverage <= 0){ showToast('Please enter valid room dimensions'); return; }
+
+  var doorArea   = pcUnit === 'imperial' ? 20 : 1.85;
+  var windowArea = pcUnit === 'imperial' ? 15 : 1.4;
+  var areaUnit      = pcUnit === 'imperial' ? 'sq ft' : 'm²';
+  var containerUnit = pcUnit === 'imperial' ? 'gal' : 'L';
+
+  var wallArea    = 2 * (length + width) * height;
+  var ceilingArea = includeCeiling ? length * width : 0;
+  var gross       = wallArea + ceilingArea;
+  var deducted    = doors * doorArea + windows * windowArea;
+  var net         = Math.max(0, gross - deducted);
+  var totalToCoat = net * coats;
+  var exactNeeded = totalToCoat / coverage;
+  var containers  = Math.ceil(exactNeeded);
+  var cost        = containers * price;
+
+  setEl('r-pc-containers', containers + ' ' + containerUnit + (containers === 1 ? '' : 's'));
+  setEl('r-pc-exact',      fmt(exactNeeded,2) + ' ' + containerUnit);
+  setEl('r-pc-totalcoat',  fmt(totalToCoat,0) + ' ' + areaUnit);
+  setEl('r-pc-cost',       fmtCur(cost));
+  setEl('r-pc-gross',      fmt(gross,0) + ' ' + areaUnit);
+  setEl('r-pc-deducted',   fmt(deducted,0) + ' ' + areaUnit);
+  setEl('r-pc-net',        fmt(net,0) + ' ' + areaUnit);
+
+  document.getElementById('pc-insight-text').innerHTML =
+    'Buy <strong>' + containers + ' ' + containerUnit + (containers === 1 ? '' : 's') + '</strong> to cover ' + coats + ' coat' + (coats === 1 ? '' : 's') + ' over your net paintable area. '
+    + 'This rounds up from the exact <strong>' + fmt(exactNeeded,2) + ' ' + containerUnit + '</strong> needed, leaving a small buffer for drips and touch-ups. Note your paint code on the receipt in case you need to match it later.';
+
+  showRes('pc-results');
+}
+
+window.addEventListener('load', function(){ applyPCUnit(); calcPaint(); });
+</script>
+</body>
+</html>

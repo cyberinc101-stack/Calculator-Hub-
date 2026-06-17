@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scientific Notation Calculator — Convert & Calculate | CalcHub</title>
+<meta name="description" content="Free scientific notation calculator. Convert any number to and from scientific notation, and add, subtract, multiply, or divide numbers in scientific notation with full working shown.">
+<meta name="keywords" content="scientific notation calculator,convert to scientific notation,standard form calculator,scientific notation to standard form,multiply scientific notation,e notation calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/scientific-notation.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Scientific Notation Calculator","description":"Convert numbers to and from scientific notation and perform arithmetic in scientific notation.","url":"https://yourdomain.com/calculator-types/scientific-notation.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.mode-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+.mode-tab {
+  padding: .45rem .9rem; border-radius: 999px; background: var(--bg-2); border: 1.5px solid var(--border);
+  font-size: .8rem; font-weight: 600; color: var(--text-2); cursor: pointer; transition: border-color .15s, background .15s, color .15s;
+}
+.mode-tab:hover { border-color: var(--accent-mid); }
+.mode-tab.active { border-color: var(--accent-mid); background: color-mix(in srgb, var(--accent-mid) 12%, var(--bg-2)); color: var(--text); }
+
+.sci-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sci-row .input-wrap { max-width: 140px; }
+.sci-op { font-size: 1.4rem; font-weight: 700; color: var(--text-3); }
+
+.sci-display {
+  margin-top: 1rem; padding: .9rem 1rem; border-radius: 10px; background: var(--bg-2);
+  font-family: var(--font-mono); font-size: 1.2rem; text-align: center; color: var(--text); font-weight: 700;
+}
+.sci-step {
+  padding: .5rem .8rem; border-radius: 8px; background: var(--bg-2); font-family: var(--font-mono);
+  font-size: .82rem; color: var(--text-2); margin-bottom: 6px;
+}
+.sci-step b { color: var(--accent-mid); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🔬 Math Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Scientific Notation Calculator</h1>
+  <p class="hero-sub">Convert any number to and from scientific notation, or calculate with two numbers in scientific notation — full working shown.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🔬</div>
+    <div><div class="calc-card-title">Scientific Notation Calculator</div><div class="calc-card-desc">Convert · add · subtract · multiply · divide</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="mode-tabs" id="mode-tabs">
+      <div class="mode-tab active" data-mode="convert">Convert a Number</div>
+      <div class="mode-tab" data-mode="calc">Calculate with Two Numbers</div>
+    </div>
+
+    <!-- CONVERT -->
+    <div id="panel-convert" class="sn-panel">
+      <label style="display:block;margin-bottom:.4rem">Enter a Number (either form)</label>
+      <input type="text" id="cv-input" value="0.000456" placeholder="e.g. 6.022e23 or 0.000456" style="max-width:300px">
+      <span class="field-hint" style="display:block;margin-top:.5rem">Accepts standard numbers (450000) or scientific notation (4.5e5)</span>
+    </div>
+
+    <!-- CALCULATE -->
+    <div id="panel-calc" class="sn-panel" style="display:none">
+      <label style="display:block;margin-bottom:.4rem">First Number</label>
+      <div class="sci-row" style="margin-bottom:1rem">
+        <div class="input-wrap"><input type="number" id="c1-coef" value="3.2" step="any"></div>
+        <span class="sci-op">×10<sup>n</sup></span>
+        <div class="input-wrap"><input type="number" id="c1-exp" value="5" step="1"></div>
+      </div>
+      <label style="display:block;margin-bottom:.4rem">Operation</label>
+      <select id="sn-op" style="max-width:160px;margin-bottom:1rem">
+        <option value="add">Add (+)</option>
+        <option value="sub">Subtract (−)</option>
+        <option value="mul" selected>Multiply (×)</option>
+        <option value="div">Divide (÷)</option>
+      </select>
+      <label style="display:block;margin-bottom:.4rem">Second Number</label>
+      <div class="sci-row">
+        <div class="input-wrap"><input type="number" id="c2-coef" value="4" step="any"></div>
+        <span class="sci-op">×10<sup>n</sup></span>
+        <div class="input-wrap"><input type="number" id="c2-exp" value="3" step="1"></div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcSciNotation()" style="margin-top:1.2rem">Calculate →</button>
+
+    <div class="results" id="sn-results">
+      <div class="results-header">Result</div>
+      <div class="sci-display" id="sn-display">—</div>
+      <div class="results-grid" id="sn-grid"></div>
+      <div class="breakdown-wrap" style="margin-top:1rem" id="sn-steps-wrap">
+        <div class="breakdown-title">Steps</div>
+        <div id="sn-steps"></div>
+      </div>
+      <div id="sn-insight" class="insight"><div class="insight-icon">💡</div><div id="sn-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is Scientific Notation?</h2>
+  <p>Scientific notation (also called standard form) writes a number as a coefficient between 1 and 10, multiplied by 10 raised to a power. It's used throughout science and engineering to express very large or very small numbers without writing out long strings of zeros.</p>
+
+  <h3>Converting To and From Scientific Notation</h3>
+  <p>To convert a standard number to scientific notation, move the decimal point until only one non-zero digit remains to its left, and count how many places you moved it — that count becomes the exponent. Moving the decimal left gives a positive exponent (for large numbers); moving it right gives a negative exponent (for small numbers).</p>
+
+  <h3>Multiplying and Dividing in Scientific Notation</h3>
+  <p>To multiply two numbers in scientific notation, multiply the coefficients and add the exponents. To divide, divide the coefficients and subtract the exponents. Addition and subtraction are trickier — the exponents must first be made equal before the coefficients can be combined.</p>
+
+  <div class="faq-item"><div class="faq-q">Why do scientists use scientific notation?</div><div class="faq-a"><p>It keeps very large numbers (like the distance to a star) and very small numbers (like the mass of an atom) compact, readable, and easy to compare by simply looking at the exponent.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What does the "e" mean in numbers like 4.5e5?</div><div class="faq-a"><p>The "e" stands for "exponent" and is calculator/programming shorthand for "× 10^". So 4.5e5 means 4.5 × 10⁵, which equals 450,000.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why does the coefficient have to be between 1 and 10?</div><div class="faq-a"><p>This is the standard convention for scientific notation — it guarantees every number has exactly one unambiguous representation, making it easy to compare magnitudes just by reading the exponent.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var snMode = 'convert';
+
+document.querySelectorAll('.mode-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.mode-tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    snMode = tab.dataset.mode;
+    document.querySelectorAll('.sn-panel').forEach(function(p){ p.style.display = 'none'; });
+    document.getElementById('panel-' + snMode).style.display = '';
+    document.getElementById('sn-results').classList.remove('show');
+  });
+});
+
+function toSci(num){
+  if(num === 0) return { coef: 0, exp: 0 };
+  var sign = num < 0 ? -1 : 1;
+  var abs = Math.abs(num);
+  var exp = Math.floor(Math.log10(abs));
+  var coef = abs / Math.pow(10, exp);
+  // Correct floating point edge cases
+  if(coef >= 10){ coef /= 10; exp += 1; }
+  if(coef < 1){ coef *= 10; exp -= 1; }
+  return { coef: sign * coef, exp: exp };
+}
+
+function sciToStandard(coef, exp){
+  return coef * Math.pow(10, exp);
+}
+
+function fmtSci(coef, exp){
+  return fmt(coef, 6).replace(/\.?0+$/,'') + ' × 10<sup>' + exp + '</sup>';
+}
+
+function calcSciNotation(){
+  if(snMode === 'convert') return calcConvert();
+  return calcCompute();
+}
+
+function calcConvert(){
+  var raw = document.getElementById('cv-input').value.trim();
+  if(!raw){ showToast('Enter a number'); return; }
+  var num = parseFloat(raw.replace(/×/g,'').replace(/\s*x\s*10\^?/i,'e'));
+  if(isNaN(num)){ showToast('Could not parse that number'); return; }
+
+  var sci = toSci(num);
+  var standard = num;
+
+  document.getElementById('sn-display').innerHTML = fmtSci(sci.coef, sci.exp);
+  document.getElementById('sn-grid').innerHTML =
+    '<div class="result-item highlight"><div class="result-label">Scientific Notation</div><div class="result-value">' + fmtSci(sci.coef, sci.exp) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Standard Form</div><div class="result-value">' + standard.toLocaleString('en-US', {maximumFractionDigits: 20}) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">E-Notation</div><div class="result-value">' + sci.coef.toFixed(6).replace(/0+$/,'').replace(/\.$/,'') + 'e' + (sci.exp>=0?'+':'') + sci.exp + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Order of Magnitude</div><div class="result-value">10<sup>' + sci.exp + '</sup></div></div>';
+
+  document.getElementById('sn-steps-wrap').style.display = 'none';
+
+  document.getElementById('sn-insight-text').innerHTML =
+    'The number <strong>' + standard.toLocaleString() + '</strong> in scientific notation is <strong>' + fmtSci(sci.coef, sci.exp) + '</strong>. '
+    + (sci.exp >= 0 ? 'The decimal point moved ' + Math.abs(sci.exp) + ' place(s) to the left.' : 'The decimal point moved ' + Math.abs(sci.exp) + ' place(s) to the right.');
+
+  showRes('sn-results');
+}
+
+function calcCompute(){
+  var c1 = parseFloat(document.getElementById('c1-coef').value);
+  var e1 = parseInt(document.getElementById('c1-exp').value);
+  var c2 = parseFloat(document.getElementById('c2-coef').value);
+  var e2 = parseInt(document.getElementById('c2-exp').value);
+  var op = vs('sn-op');
+
+  if(isNaN(c1) || isNaN(e1) || isNaN(c2) || isNaN(e2)){ showToast('Enter valid numbers'); return; }
+
+  var n1 = sciToStandard(c1, e1);
+  var n2 = sciToStandard(c2, e2);
+  var resultNum, stepsHtml = '';
+  var opSymbol = { add:'+', sub:'−', mul:'×', div:'÷' }[op];
+
+  if(op === 'add' || op === 'sub'){
+    var maxExp = Math.max(e1, e2);
+    var adj1 = c1 * Math.pow(10, e1 - maxExp);
+    var adj2 = c2 * Math.pow(10, e2 - maxExp);
+    var combinedCoef = op === 'add' ? adj1 + adj2 : adj1 - adj2;
+    resultNum = combinedCoef * Math.pow(10, maxExp);
+    stepsHtml += '<div class="sci-step">1. Match exponents to the larger one: <b>10' + (maxExp>=0?'^'+maxExp:'^('+maxExp+')') + '</b></div>';
+    stepsHtml += '<div class="sci-step">2. Rewrite: ' + fmt(adj1,4) + ' ' + opSymbol + ' ' + fmt(adj2,4) + ' (both ×10' + maxExp + ')</div>';
+    stepsHtml += '<div class="sci-step">3. ' + opSymbol + ' the coefficients: <b>' + fmt(combinedCoef,4) + '</b></div>';
+  } else if(op === 'mul'){
+    resultNum = n1 * n2;
+    stepsHtml += '<div class="sci-step">1. Multiply coefficients: ' + c1 + ' × ' + c2 + ' = <b>' + fmt(c1*c2,4) + '</b></div>';
+    stepsHtml += '<div class="sci-step">2. Add exponents: ' + e1 + ' + ' + e2 + ' = <b>' + (e1+e2) + '</b></div>';
+  } else {
+    resultNum = n1 / n2;
+    stepsHtml += '<div class="sci-step">1. Divide coefficients: ' + c1 + ' ÷ ' + c2 + ' = <b>' + fmt(c1/c2,4) + '</b></div>';
+    stepsHtml += '<div class="sci-step">2. Subtract exponents: ' + e1 + ' − ' + e2 + ' = <b>' + (e1-e2) + '</b></div>';
+  }
+
+  var sci = toSci(resultNum);
+
+  document.getElementById('sn-display').innerHTML = fmtSci(sci.coef, sci.exp);
+  document.getElementById('sn-grid').innerHTML =
+    '<div class="result-item highlight"><div class="result-label">Result (Scientific)</div><div class="result-value">' + fmtSci(sci.coef, sci.exp) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Result (Standard)</div><div class="result-value">' + resultNum.toLocaleString('en-US', {maximumFractionDigits: 10}) + '</div></div>';
+
+  document.getElementById('sn-steps-wrap').style.display = '';
+  document.getElementById('sn-steps').innerHTML = stepsHtml;
+
+  document.getElementById('sn-insight-text').innerHTML =
+    fmtSci(c1,e1) + ' ' + opSymbol + ' ' + fmtSci(c2,e2) + ' = <strong>' + fmtSci(sci.coef, sci.exp) + '</strong>, normalised so the coefficient stays between 1 and 10.';
+
+  showRes('sn-results');
+}
+</script>
+</body>
+</html>

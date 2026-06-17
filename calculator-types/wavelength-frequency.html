@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wavelength &amp; Frequency Calculator — Convert Wave Properties | CalcHub</title>
+<meta name="description" content="Free wavelength and frequency calculator. Convert between wavelength, frequency, and wave speed for light, sound, and radio waves using v = fλ.">
+<meta name="keywords" content="wavelength calculator,frequency calculator,wavelength to frequency,frequency to wavelength,speed of light calculator,wave speed formula,electromagnetic spectrum calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/wavelength-frequency.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wavelength & Frequency Calculator","description":"Convert between wavelength, frequency, and wave speed using v = fλ.","url":"https://yourdomain.com/calculator-types/wavelength-frequency.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.mode-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+.mode-tab {
+  padding: .45rem .9rem; border-radius: 999px; background: var(--bg-2); border: 1.5px solid var(--border);
+  font-size: .8rem; font-weight: 600; color: var(--text-2); cursor: pointer; transition: border-color .15s, background .15s, color .15s;
+}
+.mode-tab:hover { border-color: var(--accent-mid); }
+.mode-tab.active { border-color: var(--accent-mid); background: color-mix(in srgb, var(--accent-mid) 12%, var(--bg-2)); color: var(--text); }
+
+.formula-box {
+  margin-top: 1rem; padding: .7rem .9rem; border-radius: 10px; background: var(--bg-2);
+  font-family: var(--font-mono); font-size: .9rem; color: var(--text-2); text-align: center;
+}
+.formula-box b { color: var(--accent-mid); }
+
+.spectrum-bar {
+  margin-top: 1rem; height: 28px; border-radius: 999px; position: relative;
+  background: linear-gradient(90deg,#888 0%,#7e57c2 12%,#5c6bc0 22%,#42a5f5 32%,#26c6da 40%,#66bb6a 48%,#d4e157 55%,#ffb300 62%,#ff7043 68%,#ef5350 75%,#888 100%);
+}
+.spectrum-marker {
+  position: absolute; top: -6px; width: 3px; height: 40px; background: var(--text);
+  border-radius: 2px; transform: translateX(-1.5px);
+}
+.spectrum-labels { display:flex; justify-content:space-between; font-size:.65rem; color:var(--text-3); margin-top:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🌊 Science Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Wavelength &amp; Frequency Calculator</h1>
+  <p class="hero-sub">Convert between wavelength, frequency, and wave speed using v = f × λ — for light, sound, and radio waves.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🌊</div>
+    <div><div class="calc-card-title">Wave Property Converter</div><div class="calc-card-desc">v = f × λ — solve for any variable</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="mode-tabs" id="mode-tabs">
+      <div class="mode-tab active" data-mode="freq-to-wave">Frequency → Wavelength</div>
+      <div class="mode-tab" data-mode="wave-to-freq">Wavelength → Frequency</div>
+    </div>
+
+    <div class="field" style="max-width:260px">
+      <label for="wf-medium">Wave Speed (medium)</label>
+      <select id="wf-medium">
+        <option value="299792458">Light in vacuum (c) — 299,792,458 m/s</option>
+        <option value="343">Sound in air (20°C) — 343 m/s</option>
+        <option value="1481">Sound in water — 1,481 m/s</option>
+        <option value="5120">Sound in steel — 5,120 m/s</option>
+        <option value="custom">Custom speed…</option>
+      </select>
+    </div>
+
+    <div class="field" id="wf-custom-speed-field" style="display:none;max-width:260px">
+      <label for="wf-custom-speed">Custom Wave Speed</label>
+      <div class="input-wrap"><input type="number" id="wf-custom-speed" value="343" step="any"><span class="input-suffix">m/s</span></div>
+    </div>
+
+    <!-- FREQ -> WAVELENGTH -->
+    <div id="panel-freq-to-wave" class="wf-panel" style="margin-top:.8rem">
+      <div class="field-grid">
+        <div class="field">
+          <label for="wf-freq-val">Frequency</label>
+          <div class="input-wrap"><input type="number" id="wf-freq-val" value="100" step="any"></div>
+        </div>
+        <div class="field">
+          <label for="wf-freq-unit">Unit</label>
+          <select id="wf-freq-unit">
+            <option value="1">Hz</option>
+            <option value="1000">kHz</option>
+            <option value="1000000" selected>MHz</option>
+            <option value="1000000000">GHz</option>
+            <option value="1000000000000">THz</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAVELENGTH -> FREQ -->
+    <div id="panel-wave-to-freq" class="wf-panel" style="margin-top:.8rem;display:none">
+      <div class="field-grid">
+        <div class="field">
+          <label for="wf-wave-val">Wavelength</label>
+          <div class="input-wrap"><input type="number" id="wf-wave-val" value="500" step="any"></div>
+        </div>
+        <div class="field">
+          <label for="wf-wave-unit">Unit</label>
+          <select id="wf-wave-unit">
+            <option value="0.000000001" selected>nm</option>
+            <option value="0.000001">µm</option>
+            <option value="0.001">mm</option>
+            <option value="0.01">cm</option>
+            <option value="1">m</option>
+            <option value="1000">km</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-box" id="wf-formula">Formula: <b>v = f × λ</b></div>
+
+    <button class="calc-btn" onclick="calcWave()" style="margin-top:1rem">Calculate →</button>
+
+    <div class="results" id="wf-results">
+      <div class="results-header">Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label" id="wf-result-label">Wavelength</div>
+          <div class="result-value" id="r-wf-main">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Wave Speed Used</div>
+          <div class="result-value" id="r-wf-speed">—</div>
+        </div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1rem">
+        <div class="breakdown-title">Result in Other Units</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Unit</th><th>Value</th></tr></thead>
+          <tbody id="wf-alt-units"></tbody>
+        </table>
+      </div>
+
+      <div id="wf-spectrum-block" style="display:none">
+        <div class="breakdown-title" style="margin-top:1rem">Position in Visible Spectrum</div>
+        <div class="spectrum-bar"><div class="spectrum-marker" id="wf-spectrum-marker"></div></div>
+        <div class="spectrum-labels"><span>380nm (violet)</span><span>750nm (red)</span></div>
+      </div>
+
+      <div id="wf-insight" class="insight"><div class="insight-icon">💡</div><div id="wf-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>The Wave Speed Formula</h2>
+  <p>Every wave follows the same fundamental relationship: wave speed equals frequency multiplied by wavelength (v = f × λ). This applies to light, sound, water waves, and radio signals alike — only the speed of travel changes depending on the medium.</p>
+
+  <h3>Wavelength and Frequency Are Inversely Related</h3>
+  <p>For a fixed wave speed, higher frequency means shorter wavelength, and lower frequency means longer wavelength. This is why radio waves (low frequency) have wavelengths measured in metres, while visible light (high frequency) has wavelengths measured in nanometres.</p>
+
+  <h3>Light vs Sound</h3>
+  <p>Light travels through a vacuum at roughly 299,792,458 metres per second — the universal speed limit. Sound, by contrast, travels much slower and only through a physical medium like air, water, or solid material, with its speed changing significantly depending on what it's passing through.</p>
+
+  <div class="faq-item"><div class="faq-q">Why does sound travel faster in water than in air?</div><div class="faq-a"><p>Sound travels by vibrating particles, and denser, more tightly packed mediums transmit those vibrations faster. Water molecules are much closer together than air molecules, so sound moves roughly four times faster in water than in air.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What part of the spectrum is visible light?</div><div class="faq-a"><p>Visible light spans roughly 380 to 750 nanometres in wavelength, from violet at the short end to red at the long end. Wavelengths shorter than violet are ultraviolet, and those longer than red are infrared.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How is radio frequency related to wavelength?</div><div class="faq-a"><p>Radio waves travel at the speed of light, so a station broadcasting at 100 MHz has a wavelength of about 3 metres (300,000,000 ÷ 100,000,000). Lower-frequency AM stations have much longer wavelengths than higher-frequency FM stations.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var wfMode = 'freq-to-wave';
+
+document.querySelectorAll('.mode-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.mode-tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    wfMode = tab.dataset.mode;
+    document.querySelectorAll('.wf-panel').forEach(function(p){ p.style.display = 'none'; });
+    document.getElementById('panel-' + wfMode).style.display = '';
+    document.getElementById('wf-result-label').textContent = wfMode === 'freq-to-wave' ? 'Wavelength' : 'Frequency';
+  });
+});
+
+document.getElementById('wf-medium').addEventListener('change', function(){
+  document.getElementById('wf-custom-speed-field').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getWaveSpeed(){
+  var sel = vs('wf-medium');
+  return sel === 'custom' ? v('wf-custom-speed') : parseFloat(sel);
+}
+
+function calcWave(){
+  var speed = getWaveSpeed();
+  if(!speed || speed <= 0){ showToast('Enter a valid wave speed'); return; }
+
+  var result, resultLabel, speedLabel;
+  var speedDisplay = speed >= 1000000 ? (speed/1000000).toLocaleString() + ' ×10⁶ m/s' : fmt(speed,2) + ' m/s';
+
+  if(wfMode === 'freq-to-wave'){
+    var freqVal = v('wf-freq-val');
+    var freqMult = parseFloat(vs('wf-freq-unit'));
+    if(!freqVal || freqVal <= 0){ showToast('Enter a valid frequency'); return; }
+    var freqHz = freqVal * freqMult;
+    var wavelengthM = speed / freqHz;
+    result = wavelengthM;
+    resultLabel = 'Wavelength';
+
+    setEl('r-wf-main', fmtWavelength(wavelengthM));
+    buildWavelengthAltUnits(wavelengthM);
+    maybeShowSpectrum(wavelengthM);
+
+    document.getElementById('wf-insight-text').innerHTML =
+      'A wave at <strong>' + fmt(freqVal,4) + ' ' + unitLabelFreq(freqMult) + '</strong> travelling at ' + speedDisplay + ' has a wavelength of <strong>' + fmtWavelength(wavelengthM) + '</strong>.';
+  } else {
+    var waveVal = v('wf-wave-val');
+    var waveMult = parseFloat(vs('wf-wave-unit'));
+    if(!waveVal || waveVal <= 0){ showToast('Enter a valid wavelength'); return; }
+    var wavelengthMeters = waveVal * waveMult;
+    var freqResult = speed / wavelengthMeters;
+    result = freqResult;
+    resultLabel = 'Frequency';
+
+    setEl('r-wf-main', fmtFrequency(freqResult));
+    buildFrequencyAltUnits(freqResult);
+    maybeShowSpectrum(wavelengthMeters);
+
+    document.getElementById('wf-insight-text').innerHTML =
+      'A wave with wavelength <strong>' + fmt(waveVal,4) + ' ' + unitLabelWave(waveMult) + '</strong> travelling at ' + speedDisplay + ' has a frequency of <strong>' + fmtFrequency(freqResult) + '</strong>.';
+  }
+
+  setEl('r-wf-speed', speedDisplay);
+  showRes('wf-results');
+}
+
+function unitLabelFreq(mult){
+  var map = { '1':'Hz', '1000':'kHz', '1000000':'MHz', '1000000000':'GHz', '1000000000000':'THz' };
+  return map[String(mult)] || 'Hz';
+}
+function unitLabelWave(mult){
+  var map = { '0.000000001':'nm', '0.000001':'µm', '0.001':'mm', '0.01':'cm', '1':'m', '1000':'km' };
+  return map[String(mult)] || 'm';
+}
+
+function fmtWavelength(m){
+  if(m < 0.000001) return fmt(m*1000000000,3) + ' nm';
+  if(m < 0.001) return fmt(m*1000000,3) + ' µm';
+  if(m < 1) return fmt(m*1000,3) + ' mm';
+  if(m < 1000) return fmt(m,4) + ' m';
+  return fmt(m/1000,3) + ' km';
+}
+function fmtFrequency(hz){
+  if(hz >= 1e12) return fmt(hz/1e12,4) + ' THz';
+  if(hz >= 1e9) return fmt(hz/1e9,4) + ' GHz';
+  if(hz >= 1e6) return fmt(hz/1e6,4) + ' MHz';
+  if(hz >= 1e3) return fmt(hz/1e3,4) + ' kHz';
+  return fmt(hz,4) + ' Hz';
+}
+
+function buildWavelengthAltUnits(m){
+  var rows = [
+    { label: 'Nanometres (nm)',  val: m*1e9  },
+    { label: 'Micrometres (µm)', val: m*1e6  },
+    { label: 'Millimetres (mm)', val: m*1e3  },
+    { label: 'Metres (m)',       val: m      },
+    { label: 'Kilometres (km)',  val: m/1e3  }
+  ];
+  document.getElementById('wf-alt-units').innerHTML = rows.map(function(r){
+    return '<tr><td>' + r.label + '</td><td class="td-mono">' + fmt(r.val, r.val < 0.001 || r.val > 100000 ? 6 : 4) + '</td></tr>';
+  }).join('');
+}
+
+function buildFrequencyAltUnits(hz){
+  var rows = [
+    { label: 'Hertz (Hz)',     val: hz       },
+    { label: 'Kilohertz (kHz)',val: hz/1e3   },
+    { label: 'Megahertz (MHz)',val: hz/1e6   },
+    { label: 'Gigahertz (GHz)',val: hz/1e9   },
+    { label: 'Terahertz (THz)',val: hz/1e12  }
+  ];
+  document.getElementById('wf-alt-units').innerHTML = rows.map(function(r){
+    return '<tr><td>' + r.label + '</td><td class="td-mono">' + fmt(r.val, r.val < 0.001 || r.val > 100000 ? 6 : 4) + '</td></tr>';
+  }).join('');
+}
+
+function maybeShowSpectrum(wavelengthM){
+  var nm = wavelengthM * 1e9;
+  var block = document.getElementById('wf-spectrum-block');
+  if(nm >= 380 && nm <= 750){
+    block.style.display = '';
+    var pct = ((nm - 380) / (750 - 380)) * 100;
+    document.getElementById('wf-spectrum-marker').style.left = pct + '%';
+  } else {
+    block.style.display = 'none';
+  }
+}
+
+window.addEventListener('load', calcWave);
+</script>
+</body>
+</html>

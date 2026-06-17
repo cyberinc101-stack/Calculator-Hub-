@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Half-Life Calculator — Radioactive Decay & Remaining Quantity | CalcHub</title>
+<meta name="description" content="Free half-life calculator. Solve for remaining quantity, initial quantity, half-life, or elapsed time for radioactive decay or any exponential decay process.">
+<meta name="keywords" content="half life calculator,radioactive decay calculator,decay constant calculator,remaining quantity calculator,half life formula,exponential decay calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/half-life.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Half-Life Calculator","description":"Solve for remaining quantity, initial quantity, half-life, or elapsed time in radioactive or exponential decay.","url":"https://yourdomain.com/calculator-types/half-life.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">☢️ Half-Life Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Half-Life Calculator</h1>
+  <p class="hero-sub">Solve for remaining quantity, initial quantity, half-life, or elapsed time in any radioactive or exponential decay process.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">☢️</div>
+    <div><div class="calc-card-title">Half-Life Calculator</div><div class="calc-card-desc">N(t) = N₀ × (½)^(t / half-life) — solve for any variable</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="hl-solvefor">Solve For</label>
+        <select id="hl-solvefor" onchange="toggleHalfLifeFields()">
+          <option value="remaining">Remaining Quantity</option>
+          <option value="initial">Initial Quantity</option>
+          <option value="halflife">Half-Life</option>
+          <option value="time">Elapsed Time</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="hl-timeunit">Time Unit</label>
+        <select id="hl-timeunit" onchange="calcHalfLife()">
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+          <option value="days" selected>Days</option>
+          <option value="years">Years</option>
+        </select>
+        <span class="field-hint">Applies to both half-life and elapsed time below</span>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field" id="hl-initial-field">
+        <label for="hl-initial">Initial Quantity</label>
+        <input type="number" id="hl-initial" value="100" min="0" step="0.01">
+        <span class="field-hint">Any unit — grams, atoms, activity, etc.</span>
+      </div>
+      <div class="field" id="hl-remaining-field">
+        <label for="hl-remaining">Remaining Quantity</label>
+        <input type="number" id="hl-remaining" value="25" min="0" step="0.01">
+      </div>
+      <div class="field" id="hl-halflife-field">
+        <label for="hl-halflife">Half-Life</label>
+        <input type="number" id="hl-halflife" value="8" min="0" step="0.01">
+      </div>
+      <div class="field" id="hl-time-field">
+        <label for="hl-time">Elapsed Time</label>
+        <input type="number" id="hl-time" value="16" min="0" step="0.01">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcHalfLife()">Calculate →</button>
+
+    <div class="results" id="hl-results">
+      <div class="results-header">Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label" id="r-hl-label">Remaining Quantity</div>
+          <div class="result-value" id="r-hl-value">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Percent Remaining</div>
+          <div class="result-value" id="r-hl-percent">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Half-Lives Elapsed</div>
+          <div class="result-value" id="r-hl-numhalflives">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Decay Constant (λ)</div>
+          <div class="result-value" id="r-hl-lambda">—</div>
+        </div>
+      </div>
+
+      <div id="hl-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="hl-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>The Half-Life Formula</h2>
+  <p>Half-life decay follows N(t) = N₀ × (½)^(t / half-life), where N₀ is the starting quantity, N(t) is what remains after time t, and the half-life is how long it takes for exactly half the quantity to decay. Pick which value you want to solve for and enter the other three.</p>
+
+  <h3>Common Half-Lives</h3>
+  <p>Carbon-14, used in archaeological dating, has a half-life of about 5,730 years. Iodine-131, used in some medical treatments, decays with a half-life of roughly 8 days. Caffeine in the human body has a biological half-life of around 5 hours, and Uranium-238 decays with a half-life of about 4.5 billion years.</p>
+
+  <h3>The Decay Constant</h3>
+  <p>The decay constant λ (lambda) relates to half-life by λ = ln(2) ÷ half-life, and describes the fraction of the remaining quantity that decays per unit of time in the underlying exponential decay equation N(t) = N₀ × e^(−λt).</p>
+
+  <div class="faq-item"><div class="faq-q">Does half-life mean a substance is half gone, then completely gone after two half-lives?</div><div class="faq-a"><p>No — decay is exponential, not linear. After one half-life, 50% remains; after two, 25% remains; after three, 12.5% remains, and so on. In theory a small fraction always remains mathematically, though it eventually becomes negligible.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is half-life the same as the time something becomes "safe"?</div><div class="faq-a"><p>Not necessarily. Radioactive material is generally considered to have decayed to background-level safety after roughly 10 half-lives, when less than 0.1% of the original activity remains, but the exact safety threshold depends on the specific isotope and its initial activity.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can this calculator be used for things other than radioactivity?</div><div class="faq-a"><p>Yes — the same exponential decay math applies to drug elimination from the body, capacitor discharge, and any other process where a quantity decreases by a fixed proportion over a fixed time interval.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function toggleHalfLifeFields(){
+  var solveFor = vs('hl-solvefor');
+  document.getElementById('hl-initial-field').style.display   = solveFor === 'initial'  ? 'none' : '';
+  document.getElementById('hl-remaining-field').style.display = solveFor === 'remaining' ? 'none' : '';
+  document.getElementById('hl-halflife-field').style.display  = solveFor === 'halflife' ? 'none' : '';
+  document.getElementById('hl-time-field').style.display      = solveFor === 'time' ? 'none' : '';
+
+  var labels = { remaining: 'Remaining Quantity', initial: 'Initial Quantity', halflife: 'Half-Life', time: 'Elapsed Time' };
+  document.getElementById('r-hl-label').textContent = labels[solveFor];
+  calcHalfLife();
+}
+
+function calcHalfLife(){
+  var solveFor = vs('hl-solvefor');
+  var timeUnit = vs('hl-timeunit');
+  var N0 = v('hl-initial'), N = v('hl-remaining'), h = v('hl-halflife'), t = v('hl-time');
+  var result, finalN0, finalN, finalH, finalT;
+
+  if(solveFor === 'remaining'){
+    if(h <= 0){ showToast('Half-life must be greater than zero'); return; }
+    result = N0 * Math.pow(0.5, t / h);
+    finalN0 = N0; finalN = result; finalH = h; finalT = t;
+  } else if(solveFor === 'initial'){
+    if(h <= 0){ showToast('Half-life must be greater than zero'); return; }
+    result = N / Math.pow(0.5, t / h);
+    finalN0 = result; finalN = N; finalH = h; finalT = t;
+  } else if(solveFor === 'halflife'){
+    if(N0 <= 0 || N <= 0 || N >= N0){ showToast('Remaining quantity must be positive and less than initial quantity'); return; }
+    result = t * Math.log(0.5) / Math.log(N / N0);
+    finalN0 = N0; finalN = N; finalH = result; finalT = t;
+  } else {
+    if(N0 <= 0 || N <= 0 || h <= 0){ showToast('Please enter valid positive values'); return; }
+    result = h * Math.log(N / N0) / Math.log(0.5);
+    finalN0 = N0; finalN = N; finalH = h; finalT = result;
+  }
+
+  var unitLabel = timeUnit;
+  var lambda = Math.log(2) / finalH;
+  var halfLivesElapsed = finalT / finalH;
+  var percentRemaining = (finalN / finalN0) * 100;
+
+  var resultLabel = (solveFor === 'halflife' || solveFor === 'time') ? fmt(result,4) + ' ' + unitLabel : fmt(result,4);
+  setEl('r-hl-value', resultLabel);
+  setEl('r-hl-percent', fmt(percentRemaining,2) + '%');
+  setEl('r-hl-numhalflives', fmt(halfLivesElapsed,2));
+  setEl('r-hl-lambda', fmt(lambda,5) + ' / ' + unitLabel);
+
+  document.getElementById('hl-insight-text').innerHTML =
+    'After <strong>' + fmt(halfLivesElapsed,2) + '</strong> half-lives, about <strong>' + fmt(percentRemaining,2) + '%</strong> of the original quantity remains. '
+    + (halfLivesElapsed >= 10 ? 'Past roughly 10 half-lives, less than 0.1% remains — generally considered negligible for most practical purposes.' : 'Each additional half-life cuts the remaining amount in half again, following the exponential curve rather than a straight line.');
+
+  showRes('hl-results');
+}
+
+window.addEventListener('load', function(){ toggleHalfLifeFields(); });
+</script>
+</body>
+</html>

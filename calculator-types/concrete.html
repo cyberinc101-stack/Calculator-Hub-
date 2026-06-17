@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concrete Calculator — Slabs, Footings & Bags Needed | CalcHub</title>
+<meta name="description" content="Free concrete calculator. Work out cubic yards or cubic metres of concrete needed for slabs, footings, and round posts or columns, plus how many bags to buy.">
+<meta name="keywords" content="concrete calculator,cubic yards of concrete,how many bags of concrete,slab concrete calculator,footing calculator,concrete bags calculator,fence post concrete calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/concrete.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Concrete Calculator","description":"Calculate cubic yards or cubic metres of concrete needed for slabs, footings, and round posts, plus the number of bags to buy.","url":"https://yourdomain.com/calculator-types/concrete.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🧱 Concrete Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Concrete Calculator</h1>
+  <p class="hero-sub">Work out how much concrete you need for slabs, footings, or round posts — in cubic yards, cubic metres, or bags.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🧱</div>
+    <div><div class="calc-card-title">Concrete Calculator</div><div class="calc-card-desc">Slabs, footings, and round posts — volume, bags, and cost</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Units</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="co-unit" value="imperial" checked> Feet/Inches &amp; Yards</label>
+        <label class="radio-pill"><input type="radio" name="co-unit" value="metric"> Meters/cm &amp; Cubic Meters</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="co-shape">Pour Shape</label>
+        <select id="co-shape" onchange="toggleShape()">
+          <option value="slab">Slab / Footing (Rectangular)</option>
+          <option value="round">Column / Post Hole (Round)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="co-qty">Quantity</label>
+        <input type="number" id="co-qty" value="1" min="1" step="1">
+        <span class="field-hint">Number of identical pours</span>
+      </div>
+
+      <div class="field" id="co-length-field">
+        <label for="co-length">Length</label>
+        <div class="input-wrap">
+          <input type="number" id="co-length" value="10" min="0" step="0.1">
+          <span class="input-suffix" id="co-length-suffix">ft</span>
+        </div>
+      </div>
+      <div class="field" id="co-width-field">
+        <label for="co-width">Width</label>
+        <div class="input-wrap">
+          <input type="number" id="co-width" value="10" min="0" step="0.1">
+          <span class="input-suffix" id="co-width-suffix">ft</span>
+        </div>
+      </div>
+      <div class="field" id="co-thickness-field">
+        <label for="co-thickness">Thickness</label>
+        <div class="input-wrap">
+          <input type="number" id="co-thickness" value="4" min="0" step="0.5">
+          <span class="input-suffix" id="co-thickness-suffix">in</span>
+        </div>
+      </div>
+
+      <div class="field" id="co-diameter-field" style="display:none">
+        <label for="co-diameter">Diameter</label>
+        <div class="input-wrap">
+          <input type="number" id="co-diameter" value="12" min="0" step="0.5">
+          <span class="input-suffix" id="co-diameter-suffix">in</span>
+        </div>
+      </div>
+      <div class="field" id="co-depth-field" style="display:none">
+        <label for="co-depth">Depth / Height</label>
+        <div class="input-wrap">
+          <input type="number" id="co-depth" value="3" min="0" step="0.1">
+          <span class="input-suffix" id="co-depth-suffix">ft</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="co-waste">Waste Factor</label>
+        <div class="input-wrap">
+          <input type="number" id="co-waste" value="10" min="0" max="50" step="1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Accounts for spillage and uneven ground</span>
+      </div>
+      <div class="field">
+        <label for="co-bagsize">Bag Size</label>
+        <select id="co-bagsize"></select>
+      </div>
+      <div class="field">
+        <label for="co-bagcost">Price per Bag</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="co-bagcost" class="has-prefix" value="6" min="0" step="0.5">
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcConcrete()">Calculate Concrete Needed →</button>
+
+    <div class="results" id="co-results">
+      <div class="results-header">Concrete Needed</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label" id="r-co-vol-label">Cubic Yards Needed</div>
+          <div class="result-value" id="r-co-volume">—</div>
+          <div class="result-sub" id="r-co-volume-sub"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Bags Needed</div>
+          <div class="result-value" id="r-co-bags">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Estimated Cost</div>
+          <div class="result-value" id="r-co-cost">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Volume per Pour</div>
+          <div class="result-value" id="r-co-perunit">—</div>
+        </div>
+      </div>
+
+      <div id="co-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="co-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Concrete Calculator</h2>
+  <p>Pick a pour shape — a rectangular slab or footing, or a round column or fence-post hole — then enter its dimensions and how many identical pours you need. The calculator adds your waste factor on top and works out the number of pre-mixed bags or the cubic yardage to order from a ready-mix truck.</p>
+
+  <h3>Bagged Concrete vs Ready-Mix Delivery</h3>
+  <p>Bagged concrete makes sense for small jobs like fence posts, stepping stones, or a single footing — anything under roughly one cubic yard. Beyond that, a ready-mix truck is almost always cheaper and far less labour, since most suppliers have a minimum delivery of about one cubic yard anyway.</p>
+
+  <h3>Why Add a Waste Factor?</h3>
+  <p>Uneven ground, spillage, and over-digging on footings all eat into your concrete order. A 10% waste factor is the standard rule of thumb for most DIY pours; irregular ground or a first-time pour may warrant 15%.</p>
+
+  <div class="faq-item"><div class="faq-q">How many 80lb bags of concrete are in a cubic yard?</div><div class="faq-a"><p>An 80lb bag yields about 0.6 cubic feet of concrete, so it takes roughly 45 bags to make one cubic yard (27 cubic feet).</p></div></div>
+  <div class="faq-item"><div class="faq-q">How deep should a fence post footing be?</div><div class="faq-a"><p>A common rule is one-third to one-half of the post's above-ground height, with a minimum of 24 inches in most residential soil — check local building code for frost-line requirements in colder climates.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Do I need rebar or wire mesh in a slab?</div><div class="faq-a"><p>Most driveway and patio slabs use either rebar on a grid or welded wire mesh to control cracking and add tensile strength — thin decorative slabs like stepping stones typically don't need it.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var coUnit = 'imperial';
+
+var BAG_OPTIONS = {
+  imperial: [
+    { label: '40 lb bag', yield: 0.30 },
+    { label: '60 lb bag', yield: 0.45 },
+    { label: '80 lb bag', yield: 0.60 }
+  ],
+  metric: [
+    { label: '20 kg bag', yield: 0.01 },
+    { label: '25 kg bag', yield: 0.0125 },
+    { label: '40 kg bag', yield: 0.02 }
+  ]
+};
+
+function populateBagOptions(){
+  var sel = document.getElementById('co-bagsize');
+  var opts = BAG_OPTIONS[coUnit];
+  sel.innerHTML = opts.map(function(o, i){
+    return '<option value="' + o.yield + '"' + (i === opts.length - 1 ? ' selected' : '') + '>' + o.label + '</option>';
+  }).join('');
+}
+
+document.querySelectorAll('input[name="co-unit"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="co-unit"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    coUnit = this.value;
+    applyCOUnit();
+    calcConcrete();
+  });
+});
+
+function applyCOUnit(){
+  var lenSuf = coUnit === 'imperial' ? 'ft' : 'm';
+  var thickSuf = coUnit === 'imperial' ? 'in' : 'cm';
+  document.getElementById('co-length-suffix').textContent    = lenSuf;
+  document.getElementById('co-width-suffix').textContent     = lenSuf;
+  document.getElementById('co-thickness-suffix').textContent = thickSuf;
+  document.getElementById('co-diameter-suffix').textContent  = thickSuf;
+  document.getElementById('co-depth-suffix').textContent     = lenSuf;
+
+  if(coUnit === 'metric'){
+    document.getElementById('co-length').value    = 3;
+    document.getElementById('co-width').value     = 3;
+    document.getElementById('co-thickness').value = 10;
+    document.getElementById('co-diameter').value  = 30;
+    document.getElementById('co-depth').value      = 0.9;
+    document.getElementById('co-bagcost').value    = 8;
+  } else {
+    document.getElementById('co-length').value    = 10;
+    document.getElementById('co-width').value     = 10;
+    document.getElementById('co-thickness').value = 4;
+    document.getElementById('co-diameter').value  = 12;
+    document.getElementById('co-depth').value      = 3;
+    document.getElementById('co-bagcost').value    = 6;
+  }
+  populateBagOptions();
+}
+
+function toggleShape(){
+  var shape = vs('co-shape');
+  var isSlab = shape === 'slab';
+  document.getElementById('co-length-field').style.display    = isSlab ? '' : 'none';
+  document.getElementById('co-width-field').style.display     = isSlab ? '' : 'none';
+  document.getElementById('co-thickness-field').style.display = isSlab ? '' : 'none';
+  document.getElementById('co-diameter-field').style.display  = isSlab ? 'none' : '';
+  document.getElementById('co-depth-field').style.display     = isSlab ? 'none' : '';
+  calcConcrete();
+}
+
+function calcConcrete(){
+  var shape = vs('co-shape');
+  var qty   = v('co-qty');
+  var waste = v('co-waste');
+  var bagYield = parseFloat(vs('co-bagsize'));
+  var bagCost  = v('co-bagcost');
+
+  var volumePerUnit;
+  if(shape === 'slab'){
+    var length = v('co-length'), width = v('co-width'), thickness = v('co-thickness');
+    if(length <= 0 || width <= 0 || thickness <= 0){ showToast('Please enter valid slab dimensions'); return; }
+    volumePerUnit = coUnit === 'imperial'
+      ? length * width * (thickness / 12)
+      : length * width * (thickness / 100);
+  } else {
+    var diameter = v('co-diameter'), depth = v('co-depth');
+    if(diameter <= 0 || depth <= 0){ showToast('Please enter valid diameter and depth'); return; }
+    var radius = coUnit === 'imperial' ? (diameter / 12) / 2 : (diameter / 100) / 2;
+    volumePerUnit = Math.PI * radius * radius * depth;
+  }
+
+  var totalVolume = volumePerUnit * qty;
+  var volumeWithWaste = totalVolume * (1 + waste / 100);
+  var bagsNeeded = Math.ceil(volumeWithWaste / bagYield);
+  var totalCost = bagsNeeded * bagCost;
+
+  var rawUnit, primaryVol, volUnitLabel, threshold;
+  if(coUnit === 'imperial'){
+    rawUnit = 'cu ft';
+    primaryVol = volumeWithWaste / 27;
+    volUnitLabel = 'cu yd';
+    threshold = 1;
+  } else {
+    rawUnit = 'm³';
+    primaryVol = volumeWithWaste;
+    volUnitLabel = 'm³';
+    threshold = 0.75;
+  }
+
+  setEl('r-co-volume', fmt(primaryVol,2) + ' ' + volUnitLabel);
+  setEl('r-co-volume-sub', fmt(volumeWithWaste,2) + ' ' + rawUnit + ' incl. ' + waste + '% waste');
+  setEl('r-co-bags', bagsNeeded + ' bag' + (bagsNeeded === 1 ? '' : 's'));
+  setEl('r-co-cost', fmtCur(totalCost));
+  setEl('r-co-perunit', fmt(volumePerUnit, 3) + ' ' + rawUnit);
+  document.getElementById('r-co-vol-label').textContent = coUnit === 'imperial' ? 'Cubic Yards Needed' : 'Cubic Meters Needed';
+
+  var insightText;
+  if(primaryVol > threshold){
+    insightText = 'This pour is over ' + fmt(threshold,2) + ' ' + volUnitLabel + ', so a ready-mix truck is usually cheaper and far less labour than mixing ' + bagsNeeded + ' bags by hand. Most suppliers deliver in minimum increments of about 1 ' + volUnitLabel + '.';
+  } else {
+    insightText = 'This pour is small enough to comfortably mix with bagged concrete — you\'ll need about ' + bagsNeeded + ' bag' + (bagsNeeded === 1 ? '' : 's') + '. Mix a little extra rather than a little short; topping up a partly-set pour rarely bonds cleanly.';
+  }
+  document.getElementById('co-insight-text').innerHTML = insightText;
+
+  showRes('co-results');
+}
+
+window.addEventListener('load', function(){ applyCOUnit(); toggleShape(); });
+</script>
+</body>
+</html>

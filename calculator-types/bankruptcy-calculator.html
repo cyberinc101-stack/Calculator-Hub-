@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Long Until Bankruptcy Calculator — Financial Runway & Debt Risk | CalcHub</title>
+<meta name="description" content="Free bankruptcy countdown calculator. Estimate how many months your savings will last, how fast debt could grow if you rely on credit, and your debt-to-income risk level.">
+<meta name="keywords" content="how long until bankruptcy calculator,bankruptcy calculator,financial runway calculator,debt to income calculator,time to bankruptcy,money runway calculator,debt risk calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/bankruptcy-calculator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"How Long Until Bankruptcy Calculator","description":"Estimate financial runway, projected debt growth, and debt-to-income risk level based on income, expenses, savings, and existing debt.","url":"https://yourdomain.com/calculator-types/bankruptcy-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📉 Financial Runway Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">How Long Until Bankruptcy Calculator</h1>
+  <p class="hero-sub">Estimate how many months your savings will last, how fast debt could grow if the gap is financed on credit, and your overall debt-to-income risk level.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📉</div>
+    <div><div class="calc-card-title">Financial Runway Calculator</div><div class="calc-card-desc">Savings runway, debt projection, and debt-to-income risk</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="bk-savings">Current Savings / Cash on Hand</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bk-savings" class="has-prefix" value="5000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bk-income">Monthly Income (after tax)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bk-income" class="has-prefix" value="4000" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bk-expenses">Monthly Expenses</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bk-expenses" class="has-prefix" value="4600" min="0" step="50">
+        </div>
+        <span class="field-hint">Include rent, bills, and minimum debt payments</span>
+      </div>
+      <div class="field">
+        <label for="bk-debt">Current Total Debt Balance</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bk-debt" class="has-prefix" value="8000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bk-apr">Average Debt Interest Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="bk-apr" value="24" min="0" max="40" step="0.5">
+          <span class="input-suffix">% APR</span>
+        </div>
+        <span class="field-hint">Typical credit card APR is 20–28%</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcBankruptcy()">Calculate My Financial Runway →</button>
+
+    <div class="results" id="bk-results">
+      <div class="results-header">Cash Flow Snapshot</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Monthly Shortfall</div>
+          <div class="result-value" id="r-bk-shortfall">—</div>
+          <div class="result-sub" id="r-bk-shortfall-sub"></div>
+        </div>
+        <div class="result-item" id="r-bk-months-card">
+          <div class="result-label">Months of Savings Remaining</div>
+          <div class="result-value" id="r-bk-months">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Savings Run Out</div>
+          <div class="result-value" id="r-bk-date">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Current Debt-to-Income Ratio</div>
+          <div class="result-value" id="r-bk-dti">—</div>
+        </div>
+      </div>
+
+      <div id="bk-projection-block">
+        <div class="results-header" style="margin-top:14px">Projected Debt If the Gap Is Financed on Credit</div>
+        <div class="results-grid">
+          <div class="result-item red">
+            <div class="result-label">In 12 Months</div>
+            <div class="result-value" id="r-bk-y1">—</div>
+          </div>
+          <div class="result-item red">
+            <div class="result-label">In 24 Months</div>
+            <div class="result-value" id="r-bk-y2">—</div>
+          </div>
+          <div class="result-item red">
+            <div class="result-label">In 36 Months</div>
+            <div class="result-value" id="r-bk-y3">—</div>
+          </div>
+        </div>
+
+        <div class="breakdown-wrap" id="bk-table-wrap" style="margin-top:14px;max-height:280px;overflow-y:auto">
+          <div class="breakdown-title">5-Year Debt Projection</div>
+          <table class="breakdown-table" id="bk-table">
+            <thead><tr><th>Year</th><th>Debt Balance</th><th>Debt-to-Income</th><th>Risk Level</th></tr></thead>
+            <tbody id="bk-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="bk-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="bk-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How This Calculator Works</h2>
+  <p>Enter your savings, monthly income, monthly expenses, and any existing debt. If your expenses exceed your income, the calculator first shows how many months your current savings will cover the gap. After that point, it models what happens if the remaining shortfall is financed on debt at your average interest rate, projecting your balance and debt-to-income ratio out five years.</p>
+
+  <h3>What Counts as a Risky Debt-to-Income Ratio?</h3>
+  <p>Debt-to-income (DTI) compares your total debt to your annual income. Most nonprofit credit counselors treat a DTI under 20% as healthy, 20–36% as a caution zone worth monitoring, 36–50% as a sign of real financial strain, and above 50% as a level where many households start exploring formal debt relief, credit counseling, or bankruptcy protection.</p>
+
+  <h3>This Is an Estimate, Not a Verdict</h3>
+  <p>Bankruptcy is a specific legal process filed through a court, not an automatic outcome of any formula. This tool only models cash flow and debt growth under the numbers you enter — it can't account for asset sales, family support, income changes, or legal protections available in your area.</p>
+
+  <div class="faq-item"><div class="faq-q">What's the difference between Chapter 7 and Chapter 13 bankruptcy?</div><div class="faq-a"><p>Chapter 7 generally discharges most unsecured debt after liquidating non-exempt assets, while Chapter 13 sets up a 3–5 year repayment plan that lets filers keep more property. Eligibility depends on income, assets, and the type of debt involved — a bankruptcy attorney can advise which fits your situation.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is credit counseling different from bankruptcy?</div><div class="faq-a"><p>Yes. Nonprofit credit counseling (such as agencies accredited by the National Foundation for Credit Counseling) negotiates payment plans and lower interest rates without going to court, and is usually tried before bankruptcy is considered.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Should I talk to a professional before my situation gets worse?</div><div class="faq-a"><p>Generally yes — both nonprofit credit counselors and bankruptcy attorneys typically offer free initial consultations, and acting earlier usually preserves more options than waiting until accounts are already in default.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function riskLevel(dti){
+  if(dti < 20) return 'Low';
+  if(dti < 36) return 'Caution';
+  if(dti < 50) return 'High';
+  return 'Severe';
+}
+
+function calcBankruptcy(){
+  var savings  = v('bk-savings');
+  var income   = v('bk-income');
+  var expenses = v('bk-expenses');
+  var debt     = v('bk-debt');
+  var apr      = v('bk-apr') / 100 / 12;
+
+  if(income < 0 || expenses < 0){ showToast('Please enter valid amounts'); return; }
+
+  var shortfall = expenses - income;
+  var annualIncome = income * 12;
+  var currentDti = annualIncome > 0 ? (debt / annualIncome * 100) : 0;
+
+  setEl('r-bk-shortfall', fmtCur(Math.abs(shortfall)) + (shortfall > 0 ? '/mo' : '/mo surplus'));
+  setEl('r-bk-dti', fmt(currentDti,1) + '%');
+  document.getElementById('r-bk-shortfall-sub').textContent = shortfall > 0 ? 'spending more than you earn' : 'spending less than you earn';
+
+  if(shortfall <= 0){
+    setEl('r-bk-months', '∞');
+    setEl('r-bk-date', 'No runway risk');
+    document.getElementById('r-bk-months-card').className = 'result-item green';
+    document.getElementById('bk-projection-block').style.display = 'none';
+    document.getElementById('bk-insight-text').innerHTML =
+      'Your income covers your expenses with <strong>' + fmtCur(Math.abs(shortfall)) + '/mo</strong> left over. At this rate there\'s no savings runway risk — focus on building an emergency fund and paying down any existing debt of <strong>' + fmtCur(debt) + '</strong> faster than the minimum.';
+    showRes('bk-results');
+    return;
+  }
+
+  document.getElementById('bk-projection-block').style.display = '';
+  document.getElementById('r-bk-months-card').className = 'result-item red';
+
+  var monthsSavings = savings > 0 ? savings / shortfall : 0;
+  var runOutDate = new Date();
+  runOutDate.setMonth(runOutDate.getMonth() + Math.floor(monthsSavings));
+  var runOutStr = monthsSavings > 0 ? runOutDate.toLocaleDateString('en-US',{year:'numeric',month:'short'}) : 'Immediately';
+
+  setEl('r-bk-months', fmt(monthsSavings,1) + ' mo');
+  setEl('r-bk-date', runOutStr);
+
+  // Project debt growth: flat while savings cover the gap, compounding once savings run out
+  var bal = debt;
+  var rows = [];
+  var milestoneBalances = {};
+  for(var m = 1; m <= 60; m++){
+    if(m > monthsSavings){
+      bal = bal * (1 + apr) + shortfall;
+    }
+    if(m === 12) milestoneBalances.y1 = bal;
+    if(m === 24) milestoneBalances.y2 = bal;
+    if(m === 36) milestoneBalances.y3 = bal;
+    if(m % 12 === 0){
+      var dti = annualIncome > 0 ? (bal / annualIncome * 100) : 0;
+      rows.push({ yr: m / 12, bal: bal, dti: dti, risk: riskLevel(dti) });
+    }
+  }
+
+  setEl('r-bk-y1', fmtCur(milestoneBalances.y1));
+  setEl('r-bk-y2', fmtCur(milestoneBalances.y2));
+  setEl('r-bk-y3', fmtCur(milestoneBalances.y3));
+
+  var riskClass = { Low: 'td-green', Caution: '', High: 'td-red', Severe: 'td-red' };
+  var tbody = document.getElementById('bk-table-body');
+  tbody.innerHTML = rows.map(function(r){
+    return '<tr><td class="td-mono">Year ' + r.yr + '</td>'
+      + '<td class="td-mono">' + fmtCur(r.bal) + '</td>'
+      + '<td class="td-mono">' + fmt(r.dti,1) + '%</td>'
+      + '<td class="td-mono ' + (riskClass[r.risk] || '') + '">' + r.risk + '</td></tr>';
+  }).join('');
+
+  var finalRisk = riskLevel(currentDti);
+  var insightText;
+  if(finalRisk === 'Low'){
+    insightText = 'Your current debt-to-income ratio of <strong>' + fmt(currentDti,1) + '%</strong> is healthy, but your monthly shortfall of <strong>' + fmtCur(shortfall) + '</strong> will use up your savings in about <strong>' + fmt(monthsSavings,1) + ' months</strong>. Closing that gap now is far easier than after savings run out.';
+  } else if(finalRisk === 'Caution'){
+    insightText = 'A debt-to-income ratio of <strong>' + fmt(currentDti,1) + '%</strong> puts you in the caution zone many credit counselors watch closely. With savings covering only <strong>' + fmt(monthsSavings,1) + ' months</strong> of shortfall, it\'s worth tightening expenses or speaking with a nonprofit credit counselor before the gap widens.';
+  } else if(finalRisk === 'High'){
+    insightText = 'A debt-to-income ratio of <strong>' + fmt(currentDti,1) + '%</strong> is considered high risk by most lenders and credit counselors. Your savings cover roughly <strong>' + fmt(monthsSavings,1) + ' months</strong> before the shortfall would need to be financed on credit — this is a good time to talk to an accredited credit counselor.</p>';
+  } else {
+    insightText = 'A debt-to-income ratio of <strong>' + fmt(currentDti,1) + '%</strong> is in the severe range, a point where many households start exploring formal debt relief or bankruptcy protection. A licensed bankruptcy attorney or nonprofit credit counselor can lay out the options available where you live.';
+  }
+  document.getElementById('bk-insight-text').innerHTML = insightText;
+
+  showRes('bk-results');
+}
+
+window.addEventListener('load', calcBankruptcy);
+</script>
+</body>
+</html>

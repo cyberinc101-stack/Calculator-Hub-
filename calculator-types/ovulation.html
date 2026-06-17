@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ovulation Calculator — Fertile Window & Ovulation Date | CalcHub</title>
+<meta name="description" content="Free ovulation calculator. Estimate your ovulation date, fertile window, and next expected period based on your last period and average cycle length.">
+<meta name="keywords" content="ovulation calculator,fertile window calculator,ovulation date,when am i ovulating,fertility calculator,cycle calculator,best days to conceive">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/ovulation.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ovulation Calculator","description":"Estimate ovulation date, fertile window, and next expected period based on last menstrual period and cycle length.","url":"https://yourdomain.com/calculator-types/ovulation.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🌸 Ovulation Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Ovulation Calculator</h1>
+  <p class="hero-sub">Estimate your fertile window, ovulation date, and next expected period based on your last period and average cycle length.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🌸</div>
+    <div><div class="calc-card-title">Ovulation Calculator</div><div class="calc-card-desc">Fertile window, ovulation date, and next period estimate</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="ov-lmp">First Day of Last Period</label>
+        <input type="date" id="ov-lmp">
+      </div>
+      <div class="field">
+        <label for="ov-cycle">Average Cycle Length</label>
+        <div class="input-wrap">
+          <input type="number" id="ov-cycle" value="28" min="20" max="45" step="1">
+          <span class="input-suffix">days</span>
+        </div>
+        <span class="field-hint">Days from one period's start to the next</span>
+      </div>
+      <div class="field">
+        <label for="ov-luteal">Luteal Phase Length</label>
+        <div class="input-wrap">
+          <input type="number" id="ov-luteal" value="14" min="10" max="18" step="1">
+          <span class="input-suffix">days</span>
+        </div>
+        <span class="field-hint">Default 14 days is typical; adjust if you track it</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcOvulation()">Calculate My Fertile Window →</button>
+
+    <div class="results" id="ov-results">
+      <div class="results-header">Your Estimated Cycle</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Estimated Ovulation Date</div>
+          <div class="result-value" id="r-ov-ovdate">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Most Fertile Days</div>
+          <div class="result-value" id="r-ov-bestdays">—</div>
+          <div class="result-sub">Highest chance of conception</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Fertile Window</div>
+          <div class="result-value" id="r-ov-window">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Next Period Expected</div>
+          <div class="result-value" id="r-ov-nextperiod">—</div>
+        </div>
+      </div>
+
+      <div id="ov-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="ov-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How This Calculator Works</h2>
+  <p>Ovulation typically happens a fixed number of days before your next period starts — your luteal phase length — rather than a fixed number of days after your last period. This calculator uses your cycle length and luteal phase to estimate ovulation, then builds a fertile window around it that accounts for how long sperm and the egg each survive.</p>
+
+  <h3>Why the Fertile Window Starts Before Ovulation</h3>
+  <p>Sperm can survive in the reproductive tract for up to five days, while a released egg is viable for about 24 hours. That's why the fertile window is shown as the five days before ovulation through one day after — intercourse any time in that range can lead to conception, with the two days before and the day of ovulation giving the highest odds.</p>
+
+  <h3>Why Cycles Vary</h3>
+  <p>Stress, illness, travel, and changes in exercise or weight can all shift ovulation earlier or later than average, even in someone with a normally regular cycle. Tracking basal body temperature or using ovulation predictor kits alongside this estimate gives a more precise picture.</p>
+
+  <div class="faq-item"><div class="faq-q">How accurate is an ovulation calculator?</div><div class="faq-a"><p>It's a useful starting estimate for people with fairly regular cycles, but actual ovulation can shift by several days cycle to cycle. Ovulation predictor kits, which detect the LH hormone surge, or basal body temperature tracking give more precise real-time confirmation.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can I use this calculator with an irregular cycle?</div><div class="faq-a"><p>The estimate becomes less reliable the more your cycle length varies month to month. If your cycles are consistently irregular, an ovulation predictor kit or a conversation with a healthcare provider will give more reliable guidance.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is this calculator a form of birth control?</div><div class="faq-a"><p>No. This tool estimates fertile days for those trying to conceive and should not be relied on as a method of contraception, since ovulation timing can vary unpredictably.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function fmtDate(d){
+  return d.toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'});
+}
+function fmtDateShort(d){
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+function addDays(date, days){
+  var d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function calcOvulation(){
+  var lmpStr = document.getElementById('ov-lmp').value;
+  var cycle = v('ov-cycle');
+  var luteal = v('ov-luteal');
+
+  if(!lmpStr){ showToast('Please enter the first day of your last period'); return; }
+  if(cycle <= luteal){ showToast('Cycle length must be longer than luteal phase'); return; }
+
+  var lmp = new Date(lmpStr + 'T00:00:00');
+  var nextPeriod = addDays(lmp, cycle);
+  var ovulation = addDays(nextPeriod, -luteal);
+  var fertileStart = addDays(ovulation, -5);
+  var fertileEnd = addDays(ovulation, 1);
+  var bestStart = addDays(ovulation, -2);
+
+  setEl('r-ov-ovdate', fmtDate(ovulation));
+  setEl('r-ov-bestdays', fmtDateShort(bestStart) + ' – ' + fmtDateShort(ovulation));
+  setEl('r-ov-window', fmtDateShort(fertileStart) + ' – ' + fmtDateShort(fertileEnd));
+  setEl('r-ov-nextperiod', fmtDate(nextPeriod));
+
+  document.getElementById('ov-insight-text').innerHTML =
+    'Based on a ' + cycle + '-day cycle, your fertile window runs from <strong>' + fmtDateShort(fertileStart) + '</strong> to <strong>' + fmtDateShort(fertileEnd) + '</strong>, with the two days before ovulation through ovulation day itself giving the highest chance of conception. '
+    + 'If your cycle length varies, re-run this calculator each month using your most recent period start date for the best estimate.';
+
+  showRes('ov-results');
+}
+
+window.addEventListener('load', function(){
+  var today = new Date();
+  var defaultLmp = addDays(today, -14);
+  document.getElementById('ov-lmp').value = defaultLmp.toISOString().split('T')[0];
+  calcOvulation();
+});
+</script>
+</body>
+</html>

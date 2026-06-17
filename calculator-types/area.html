@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Area Calculator — Rectangle, Circle, Triangle & More | CalcHub</title>
+<meta name="description" content="Free area calculator for rectangles, squares, circles, triangles, trapezoids, parallelograms, and ellipses. Instant results with formulas and unit conversion.">
+<meta name="keywords" content="area calculator,area of a circle,area of a triangle,area of a rectangle,area of a trapezoid,square footage calculator,shape area calculator,how to calculate area">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/area.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Area Calculator","description":"Calculate the area of rectangles, circles, triangles, trapezoids, parallelograms, and ellipses.","url":"https://yourdomain.com/calculator-types/area.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.shape-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: .6rem;
+}
+@media (max-width: 560px){ .shape-grid { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 420px){ .shape-grid { grid-template-columns: repeat(2,1fr); } }
+.shape-card {
+  padding: .65rem .4rem;
+  border-radius: 10px;
+  background: var(--bg-2);
+  border: 1.5px solid var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.shape-card:hover { border-color: var(--accent-mid); }
+.shape-card.active { border-color: var(--accent-mid); background: color-mix(in srgb, var(--accent-mid) 10%, var(--bg-2)); }
+.shape-card-icon { font-size: 1.4rem; line-height:1; margin-bottom: 4px; }
+.shape-card-label { font-size: .72rem; color: var(--text-2); font-weight: 600; }
+
+.formula-box {
+  margin-top: 1rem;
+  padding: .7rem .9rem;
+  border-radius: 10px;
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  color: var(--text-2);
+  text-align: center;
+}
+.formula-box b { color: var(--accent-mid); }
+
+.shape-svg-wrap { display:flex; align-items:center; justify-content:center; margin: .8rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📐 Math Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Area Calculator</h1>
+  <p class="hero-sub">Calculate the area of rectangles, circles, triangles, trapezoids, parallelograms, and ellipses — with formulas and unit conversion.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📐</div>
+    <div><div class="calc-card-title">Shape Area Calculator</div><div class="calc-card-desc">7 shapes · instant results · unit conversion</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:6px">
+      <label>Select Shape</label>
+      <div class="shape-grid" id="shape-grid">
+        <div class="shape-card active" data-shape="rectangle"><div class="shape-card-icon">▭</div><div class="shape-card-label">Rectangle</div></div>
+        <div class="shape-card" data-shape="square"><div class="shape-card-icon">⬜</div><div class="shape-card-label">Square</div></div>
+        <div class="shape-card" data-shape="circle"><div class="shape-card-icon">⚪</div><div class="shape-card-label">Circle</div></div>
+        <div class="shape-card" data-shape="triangle"><div class="shape-card-icon">▲</div><div class="shape-card-label">Triangle</div></div>
+        <div class="shape-card" data-shape="trapezoid"><div class="shape-card-icon">⏢</div><div class="shape-card-label">Trapezoid</div></div>
+        <div class="shape-card" data-shape="parallelogram"><div class="shape-card-icon">▱</div><div class="shape-card-label">Parallelogram</div></div>
+        <div class="shape-card" data-shape="ellipse"><div class="shape-card-icon">⬭</div><div class="shape-card-label">Ellipse</div></div>
+      </div>
+    </div>
+
+    <div class="formula-box" id="formula-box"></div>
+
+    <div class="field-grid" id="shape-inputs" style="margin-top:1rem"></div>
+
+    <div class="field" style="margin-top:10px;max-width:220px">
+      <label for="area-unit">Unit</label>
+      <select id="area-unit">
+        <option value="mm">millimetres (mm)</option>
+        <option value="cm">centimetres (cm)</option>
+        <option value="m" selected>metres (m)</option>
+        <option value="km">kilometres (km)</option>
+        <option value="in">inches (in)</option>
+        <option value="ft">feet (ft)</option>
+        <option value="yd">yards (yd)</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" onclick="calcArea()">Calculate Area →</button>
+
+    <div class="results" id="area-results">
+      <div class="results-header">Area Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Area</div>
+          <div class="result-value" id="r-area-main">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Perimeter / Circumference</div>
+          <div class="result-value" id="r-area-perim">—</div>
+        </div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1rem">
+        <div class="breakdown-title">Alternate Units</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Unit</th><th>Area</th></tr></thead>
+          <tbody id="r-area-alt"></tbody>
+        </table>
+      </div>
+
+      <div id="area-insight" class="insight"><div class="insight-icon">💡</div><div id="area-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate Area</h2>
+  <p>Area measures the amount of two-dimensional space a shape covers, expressed in square units. Every shape has its own formula, but most are built from the same basic ideas: multiplying a base by a height, or using a radius for curved shapes.</p>
+
+  <h3>Common Area Formulas</h3>
+  <p>A rectangle's area is length times width. A square's area is the side length squared. A circle's area is pi times the radius squared. A triangle's area is half of base times height. A trapezoid's area is half the sum of the two parallel sides, multiplied by the height. A parallelogram's area is base times height, and an ellipse's area is pi times the semi-major axis times the semi-minor axis.</p>
+
+  <h3>Why Unit Conversion Matters</h3>
+  <p>Area scales by the square of the unit conversion factor, not the factor itself. Converting 1 square metre to square feet means multiplying by roughly 10.76, not the linear conversion of about 3.28. This calculator handles that automatically so you can compare results across metric and imperial units.</p>
+
+  <div class="faq-item"><div class="faq-q">What's the difference between area and perimeter?</div><div class="faq-a"><p>Area measures the space inside a shape (in square units like m² or ft²), while perimeter measures the total distance around the outside edge (in linear units like m or ft). This calculator shows both wherever applicable.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I calculate square footage for flooring or paint?</div><div class="faq-a"><p>Measure the length and width of the room in feet, then use the rectangle option (or sum multiple rectangles for irregular rooms) to get the total square footage. Always add 10% extra for cuts and waste when ordering materials.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can this calculator handle irregular shapes?</div><div class="faq-a"><p>Not directly — irregular shapes are usually best broken down into a combination of rectangles, triangles, and circles, with each piece calculated separately and the results added together.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var currentShape = 'rectangle';
+
+var SHAPES = {
+  rectangle: {
+    label: 'Rectangle',
+    formula: 'Area = length × width',
+    inputs: [
+      { id: 'length', label: 'Length', def: 10 },
+      { id: 'width',  label: 'Width',  def: 5  }
+    ],
+    calc: function(v){ return { area: v.length * v.width, perim: 2*(v.length + v.width) }; }
+  },
+  square: {
+    label: 'Square',
+    formula: 'Area = side²',
+    inputs: [
+      { id: 'side', label: 'Side Length', def: 8 }
+    ],
+    calc: function(v){ return { area: v.side * v.side, perim: 4 * v.side }; }
+  },
+  circle: {
+    label: 'Circle',
+    formula: 'Area = π × radius²',
+    inputs: [
+      { id: 'radius', label: 'Radius', def: 6 }
+    ],
+    calc: function(v){ return { area: Math.PI * v.radius * v.radius, perim: 2 * Math.PI * v.radius, perimLabel: 'Circumference' }; }
+  },
+  triangle: {
+    label: 'Triangle',
+    formula: 'Area = ½ × base × height',
+    inputs: [
+      { id: 'base',   label: 'Base',   def: 10 },
+      { id: 'height', label: 'Height', def: 6  }
+    ],
+    calc: function(v){ return { area: 0.5 * v.base * v.height, perim: null }; }
+  },
+  trapezoid: {
+    label: 'Trapezoid',
+    formula: 'Area = ½ × (a + b) × height',
+    inputs: [
+      { id: 'a',      label: 'Side A (top)',    def: 8  },
+      { id: 'b',      label: 'Side B (bottom)', def: 14 },
+      { id: 'height', label: 'Height',          def: 5  }
+    ],
+    calc: function(v){ return { area: 0.5 * (v.a + v.b) * v.height, perim: null }; }
+  },
+  parallelogram: {
+    label: 'Parallelogram',
+    formula: 'Area = base × height',
+    inputs: [
+      { id: 'base',   label: 'Base',   def: 12 },
+      { id: 'height', label: 'Height', def: 7  }
+    ],
+    calc: function(v){ return { area: v.base * v.height, perim: null }; }
+  },
+  ellipse: {
+    label: 'Ellipse',
+    formula: 'Area = π × a × b',
+    inputs: [
+      { id: 'a', label: 'Semi-major Axis (a)', def: 8 },
+      { id: 'b', label: 'Semi-minor Axis (b)', def: 4 }
+    ],
+    calc: function(v){
+      var a = v.a, b = v.b;
+      // Ramanujan approximation for ellipse perimeter
+      var h = Math.pow((a-b)/(a+b), 2);
+      var perim = Math.PI * (a+b) * (1 + (3*h)/(10 + Math.sqrt(4 - 3*h)));
+      return { area: Math.PI * a * b, perim: perim, perimLabel: 'Approx. Circumference' };
+    }
+  }
+};
+
+// Conversion factors to metres (linear)
+var UNIT_TO_M = { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144 };
+var UNIT_LABEL = { mm: 'mm', cm: 'cm', m: 'm', km: 'km', in: 'in', ft: 'ft', yd: 'yd' };
+var DISPLAY_UNITS = ['mm','cm','m','ft','yd'];
+
+function renderShapeInputs(){
+  var shape = SHAPES[currentShape];
+  document.getElementById('formula-box').innerHTML = 'Formula: <b>' + shape.formula + '</b>';
+  document.getElementById('shape-inputs').innerHTML = shape.inputs.map(function(inp){
+    return '<div class="field">'
+      + '<label for="area-' + inp.id + '">' + inp.label + '</label>'
+      + '<div class="input-wrap"><input type="number" id="area-' + inp.id + '" value="' + inp.def + '" min="0" step="0.1"><span class="input-suffix" id="area-' + inp.id + '-unit"></span></div>'
+      + '</div>';
+  }).join('');
+  updateUnitSuffixes();
+}
+
+function updateUnitSuffixes(){
+  var unit = vs('area-unit');
+  SHAPES[currentShape].inputs.forEach(function(inp){
+    var el = document.getElementById('area-' + inp.id + '-unit');
+    if(el) el.textContent = unit;
+  });
+}
+
+document.getElementById('area-unit').addEventListener('change', updateUnitSuffixes);
+
+document.querySelectorAll('.shape-card').forEach(function(card){
+  card.addEventListener('click', function(){
+    document.querySelectorAll('.shape-card').forEach(function(c){ c.classList.remove('active'); });
+    card.classList.add('active');
+    currentShape = card.dataset.shape;
+    renderShapeInputs();
+  });
+});
+
+function calcArea(){
+  var shape = SHAPES[currentShape];
+  var unit = vs('area-unit');
+  var unitToM = UNIT_TO_M[unit];
+
+  var values = {};
+  var valid = true;
+  shape.inputs.forEach(function(inp){
+    var val = v('area-' + inp.id);
+    if(!val || val <= 0) valid = false;
+    values[inp.id] = val;
+  });
+  if(!valid){ showToast('Enter valid positive measurements'); return; }
+
+  var result = shape.calc(values);
+  var areaInM2 = result.area * unitToM * unitToM;
+  var perimInM = result.perim != null ? result.perim * unitToM : null;
+
+  setEl('r-area-main', fmt(result.area, 2) + ' ' + unit + '²');
+
+  var perimLabel = result.perimLabel || 'Perimeter';
+  if(result.perim == null){
+    document.querySelector('#area-results .result-item:nth-child(2) .result-label').textContent = 'Perimeter';
+    setEl('r-area-perim', 'N/A for this shape');
+  } else {
+    document.querySelector('#area-results .result-item:nth-child(2) .result-label').textContent = perimLabel;
+    setEl('r-area-perim', fmt(result.perim, 2) + ' ' + unit);
+  }
+
+  // Alternate units table
+  var rows = DISPLAY_UNITS.filter(function(u){ return u !== unit; }).map(function(u){
+    var converted = areaInM2 / (UNIT_TO_M[u] * UNIT_TO_M[u]);
+    return '<tr><td>' + UNIT_LABEL[u] + '²</td><td class="td-mono">' + fmt(converted, converted < 1 ? 4 : 2) + '</td></tr>';
+  }).join('');
+  document.getElementById('r-area-alt').innerHTML = rows;
+
+  document.getElementById('area-insight-text').innerHTML =
+    'A <strong>' + shape.label.toLowerCase() + '</strong> with the dimensions you entered covers <strong>' + fmt(result.area, 2) + ' ' + unit + '²</strong>. '
+    + (currentShape === 'circle' || currentShape === 'ellipse'
+        ? 'Curved shapes like this one are calculated using π (pi ≈ 3.14159).'
+        : 'Double-check that all measurements use the same unit before calculating.');
+
+  showRes('area-results');
+}
+
+renderShapeInputs();
+window.addEventListener('load', calcArea);
+</script>
+</body>
+</html>

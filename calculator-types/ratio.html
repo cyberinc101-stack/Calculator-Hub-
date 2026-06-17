@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ratio Calculator — Simplify Ratios & Solve Proportions | CalcHub</title>
+<meta name="description" content="Free ratio calculator. Simplify any ratio to lowest terms, solve missing values in a proportion (A:B = C:D), and scale a ratio to a target total.">
+<meta name="keywords" content="ratio calculator,simplify ratio,proportion calculator,ratio to fraction,scale ratio,solve for x ratio,equivalent ratios calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/ratio.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ratio Calculator","description":"Simplify ratios, solve proportions, and scale ratios to a target value.","url":"https://yourdomain.com/calculator-types/ratio.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.mode-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.mode-tab {
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  background: var(--bg-2);
+  border: 1.5px solid var(--border);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.mode-tab:hover { border-color: var(--accent-mid); }
+.mode-tab.active { border-color: var(--accent-mid); background: color-mix(in srgb, var(--accent-mid) 12%, var(--bg-2)); color: var(--text); }
+
+.ratio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ratio-row .input-wrap { max-width: 110px; }
+.ratio-colon { font-size: 1.4rem; font-weight: 700; color: var(--text-3); }
+.ratio-equals { font-size: 1.3rem; font-weight: 700; color: var(--text-3); margin: 0 4px; }
+
+.proportion-display {
+  margin-top: 1rem;
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  text-align: center;
+  color: var(--text-2);
+}
+.proportion-display b { color: var(--accent-mid); }
+.proportion-display .unknown { color: var(--accent-mid); border-bottom: 2px dashed var(--accent-mid); padding: 0 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🔢 Math Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Ratio Calculator</h1>
+  <p class="hero-sub">Simplify ratios to lowest terms, solve the missing value in a proportion, or scale a ratio to a target total.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🔢</div>
+    <div><div class="calc-card-title">Ratio Calculator</div><div class="calc-card-desc">Simplify · solve proportions · scale to a total</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="mode-tabs" id="mode-tabs">
+      <div class="mode-tab active" data-mode="simplify">Simplify a Ratio</div>
+      <div class="mode-tab" data-mode="proportion">Solve a Proportion (A:B = C:D)</div>
+      <div class="mode-tab" data-mode="scale">Scale to a Total</div>
+    </div>
+
+    <!-- SIMPLIFY -->
+    <div id="panel-simplify" class="ratio-panel">
+      <label style="display:block;margin-bottom:.4rem">Enter a Ratio</label>
+      <div class="ratio-row">
+        <div class="input-wrap"><input type="number" id="s-a" value="24" step="1"></div>
+        <span class="ratio-colon">:</span>
+        <div class="input-wrap"><input type="number" id="s-b" value="36" step="1"></div>
+      </div>
+    </div>
+
+    <!-- PROPORTION -->
+    <div id="panel-proportion" class="ratio-panel" style="display:none">
+      <label style="display:block;margin-bottom:.4rem">Solve A : B = C : D</label>
+      <div class="ratio-row">
+        <div class="input-wrap"><input type="number" id="p-a" value="4" step="any"></div>
+        <span class="ratio-colon">:</span>
+        <div class="input-wrap"><input type="number" id="p-b" value="9" step="any"></div>
+        <span class="ratio-equals">=</span>
+        <div class="input-wrap"><input type="number" id="p-c" value="20" step="any"></div>
+        <span class="ratio-colon">:</span>
+        <div class="input-wrap"><input type="text" id="p-d" value="x" placeholder="x"></div>
+      </div>
+      <span class="field-hint" style="display:block;margin-top:.5rem">Leave exactly one field as "x" — that's the value to solve for.</span>
+    </div>
+
+    <!-- SCALE -->
+    <div id="panel-scale" class="ratio-panel" style="display:none">
+      <label style="display:block;margin-bottom:.4rem">Ratio to Scale</label>
+      <div class="ratio-row" style="margin-bottom:1rem">
+        <div class="input-wrap"><input type="number" id="sc-a" value="2" step="any"></div>
+        <span class="ratio-colon">:</span>
+        <div class="input-wrap"><input type="number" id="sc-b" value="3" step="any"></div>
+      </div>
+      <div class="field" style="max-width:220px">
+        <label for="sc-total">Target Total</label>
+        <div class="input-wrap"><input type="number" id="sc-total" value="100" step="1"></div>
+        <span class="field-hint">Split this total in the same ratio</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcRatio()">Calculate →</button>
+
+    <div class="results" id="ratio-results">
+      <div class="results-header" id="ratio-results-header">Result</div>
+
+      <div class="proportion-display" id="ratio-proportion-display" style="display:none"></div>
+
+      <div class="results-grid" id="ratio-results-grid"></div>
+
+      <div id="ratio-insight" class="insight"><div class="insight-icon">💡</div><div id="ratio-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is a Ratio?</h2>
+  <p>A ratio compares two or more quantities, showing how many times one value contains another. Ratios are written as A:B and can be simplified, scaled, or used to solve proportions — equations where two ratios are set equal to each other.</p>
+
+  <h3>How to Simplify a Ratio</h3>
+  <p>To simplify a ratio, divide both numbers by their greatest common factor (GCF). For example, 24:36 shares a GCF of 12, simplifying to 2:3. This is the same process used to reduce a fraction to its lowest terms.</p>
+
+  <h3>How to Solve a Proportion</h3>
+  <p>A proportion states that two ratios are equal, such as A:B = C:D. Using cross-multiplication (A × D = B × C), you can solve for any single missing value as long as the other three are known.</p>
+
+  <h3>Scaling a Ratio to a Total</h3>
+  <p>To split a total amount according to a ratio, add the parts of the ratio together to find the total number of "shares," then multiply the target total by each part's fraction of that sum. A 2:3 ratio splitting $100 gives $40 and $60, since the ratio has 5 total shares.</p>
+
+  <div class="faq-item"><div class="faq-q">What's the difference between a ratio and a fraction?</div><div class="faq-a"><p>A ratio compares two separate quantities (like 2 cups flour : 3 cups sugar), while a fraction represents a part of a single whole. That said, a ratio A:B can always be written as the fraction A/B, and they simplify using the same math.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I scale a recipe using ratios?</div><div class="faq-a"><p>Keep the ratio between ingredients constant. If a recipe uses a 1:2 ratio of butter to sugar and you want to use 150g of butter, scale the sugar to 300g to keep the same ratio and preserve the recipe's balance.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can a ratio have more than two numbers?</div><div class="faq-a"><p>Yes — ratios can compare three or more quantities, like 1:2:3. The same simplification rule applies: divide every term by the greatest common factor shared across all of them.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var currentMode = 'simplify';
+
+document.querySelectorAll('.mode-tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.mode-tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    currentMode = tab.dataset.mode;
+    document.querySelectorAll('.ratio-panel').forEach(function(p){ p.style.display = 'none'; });
+    document.getElementById('panel-' + currentMode).style.display = '';
+    document.getElementById('ratio-results').classList.remove('show');
+  });
+});
+
+function gcd(a, b){ a = Math.abs(a); b = Math.abs(b); while(b){ var t = b; b = a % b; a = t; } return a || 1; }
+
+function calcRatio(){
+  if(currentMode === 'simplify') return calcSimplify();
+  if(currentMode === 'proportion') return calcProportion();
+  if(currentMode === 'scale') return calcScale();
+}
+
+function calcSimplify(){
+  var a = v('s-a'), b = v('s-b');
+  if(!a || !b || a <= 0 || b <= 0){ showToast('Enter two positive numbers'); return; }
+
+  // Handle decimals by scaling to integers first
+  var factor = 1;
+  while(Math.round(a*factor) !== a*factor || Math.round(b*factor) !== b*factor){ factor *= 10; if(factor > 100000) break; }
+  var ai = Math.round(a*factor), bi = Math.round(b*factor);
+  var g = gcd(ai, bi);
+  var simpA = ai / g, simpB = bi / g;
+
+  document.getElementById('ratio-results-header').textContent = 'Simplified Ratio';
+  document.getElementById('ratio-proportion-display').style.display = 'none';
+  document.getElementById('ratio-results-grid').innerHTML =
+    '<div class="result-item highlight"><div class="result-label">Simplified</div><div class="result-value">' + simpA + ' : ' + simpB + '</div></div>'
+    + '<div class="result-item"><div class="result-label">As a Decimal</div><div class="result-value">' + fmt(a/b, 4) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">As a Fraction</div><div class="result-value">' + simpA + '⁄' + simpB + '</div></div>'
+    + '<div class="result-item"><div class="result-label">As a Percentage</div><div class="result-value">' + fmt(a/(a+b)*100, 1) + '% : ' + fmt(b/(a+b)*100, 1) + '%</div></div>';
+
+  document.getElementById('ratio-insight-text').innerHTML =
+    'The ratio <strong>' + a + ':' + b + '</strong> simplifies to <strong>' + simpA + ':' + simpB + '</strong> in lowest terms'
+    + (g > 1 || factor > 1 ? ' (dividing both sides by their greatest common factor).' : ' — it was already in lowest terms.');
+
+  showRes('ratio-results');
+}
+
+function calcProportion(){
+  var aRaw = document.getElementById('p-a').value.trim();
+  var bRaw = document.getElementById('p-b').value.trim();
+  var cRaw = document.getElementById('p-c').value.trim();
+  var dRaw = document.getElementById('p-d').value.trim();
+  var vals = [aRaw, bRaw, cRaw, dRaw];
+  var xCount = vals.filter(function(x){ return x.toLowerCase() === 'x'; }).length;
+
+  if(xCount !== 1){ showToast('Set exactly one value to "x"'); return; }
+
+  var nums = vals.map(function(x){ return x.toLowerCase() === 'x' ? null : parseFloat(x); });
+  if(nums.some(function(n, i){ return n !== null && (isNaN(n)); })){ showToast('Enter valid numbers'); return; }
+
+  var a = nums[0], b = nums[1], c = nums[2], d = nums[3];
+  var solved, label, eqA, eqB, eqC, eqD;
+
+  // A:B = C:D  =>  A*D = B*C
+  if(a === null){ solved = (b*c)/d; a = solved; label = 'A'; }
+  else if(b === null){ solved = (a*d)/c; b = solved; label = 'B'; }
+  else if(c === null){ solved = (a*d)/b; c = solved; label = 'C'; }
+  else { solved = (b*c)/a; d = solved; label = 'D'; }
+
+  if(!isFinite(solved)){ showToast('Cannot solve — check for divide by zero'); return; }
+
+  document.getElementById('ratio-results-header').textContent = 'Solved Proportion';
+  var disp = document.getElementById('ratio-proportion-display');
+  disp.style.display = '';
+  disp.innerHTML = fmt(a,4) + ' : ' + fmt(b,4) + '&nbsp;&nbsp;=&nbsp;&nbsp;' + fmt(c,4) + ' : ' + fmt(d,4);
+
+  document.getElementById('ratio-results-grid').innerHTML =
+    '<div class="result-item highlight"><div class="result-label">' + label + ' = </div><div class="result-value">' + fmt(solved, 4) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Cross-check (A×D)</div><div class="result-value">' + fmt(a*d, 4) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Cross-check (B×C)</div><div class="result-value">' + fmt(b*c, 4) + '</div></div>';
+
+  document.getElementById('ratio-insight-text').innerHTML =
+    'Using cross-multiplication (A × D = B × C), the missing value <strong>' + label + '</strong> solves to <strong>' + fmt(solved, 4) + '</strong>, keeping both ratios equal.';
+
+  showRes('ratio-results');
+}
+
+function calcScale(){
+  var a = v('sc-a'), b = v('sc-b'), total = v('sc-total');
+  if(!a || !b || a <= 0 || b <= 0 || !total || total <= 0){ showToast('Enter valid positive numbers'); return; }
+
+  var shares = a + b;
+  var partA = total * (a / shares);
+  var partB = total * (b / shares);
+
+  document.getElementById('ratio-results-header').textContent = 'Scaled Result';
+  document.getElementById('ratio-proportion-display').style.display = 'none';
+  document.getElementById('ratio-results-grid').innerHTML =
+    '<div class="result-item highlight"><div class="result-label">Part A</div><div class="result-value">' + fmt(partA, 2) + '</div></div>'
+    + '<div class="result-item highlight"><div class="result-label">Part B</div><div class="result-value">' + fmt(partB, 2) + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Total Shares</div><div class="result-value">' + shares + '</div></div>'
+    + '<div class="result-item"><div class="result-label">Value per Share</div><div class="result-value">' + fmt(total/shares, 4) + '</div></div>';
+
+  document.getElementById('ratio-insight-text').innerHTML =
+    'Splitting <strong>' + fmt(total,2) + '</strong> in a <strong>' + a + ':' + b + '</strong> ratio gives <strong>' + fmt(partA,2) + '</strong> and <strong>' + fmt(partB,2) + '</strong> — each share of the ' + shares + ' total parts is worth ' + fmt(total/shares, 4) + '.';
+
+  showRes('ratio-results');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Employee Cost Calculator — True Cost of an Employee | CalcHub</title>
+<meta name="description" content="Free employee cost calculator. See the true cost of hiring beyond salary — payroll taxes, benefits, equipment, and overhead. Compare to a contractor or freelancer.">
+<meta name="keywords" content="employee cost calculator,true cost of an employee,cost to hire an employee,total compensation calculator,burden rate calculator,employer payroll tax calculator,fully loaded cost calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/employee-cost.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Employee Cost Calculator","description":"Calculate the true fully-loaded cost of an employee including payroll taxes, benefits, and overhead.","url":"https://yourdomain.com/calculator-types/employee-cost.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+.donut-svg { flex-shrink: 0; }
+.donut-legend { flex: 1; min-width: 180px; }
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: .85rem;
+}
+.legend-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.legend-label { color: var(--text-2); flex: 1; }
+.legend-val   { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+.legend-pct   { font-size: .75rem; color: var(--text-3); min-width: 36px; text-align: right; }
+
+.rate-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: .8rem;
+}
+.rate-box {
+  background: var(--bg-2);
+  border-radius: 10px;
+  padding: .7rem .9rem;
+  text-align: center;
+}
+.rate-box-label { font-size: .72rem; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.rate-box-val   { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--accent-mid); }
+.rate-box-sub   { font-size: .73rem; color: var(--text-3); margin-top: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🏢 Business Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Employee Cost Calculator</h1>
+  <p class="hero-sub">Salary is just the starting point. See the true, fully-loaded cost of an employee once taxes, benefits, and overhead are added in.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">👥</div>
+    <div><div class="calc-card-title">True Cost of an Employee</div><div class="calc-card-desc">Salary · employer payroll taxes · benefits · overhead</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="ec-salary">Annual Base Salary</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-salary" class="has-prefix" value="70000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="ec-bonus">Annual Bonus / Commission</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-bonus" class="has-prefix" value="0" min="0" step="500">
+        </div>
+      </div>
+      <div class="field">
+        <label for="ec-payroll-tax">Employer Payroll Tax Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="ec-payroll-tax" value="7.65" min="0" max="30" step="0.05">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Employer FICA match (6.2% SS + 1.45% Medicare) + unemployment</span>
+      </div>
+      <div class="field">
+        <label for="ec-benefits">Health/Benefits Cost (annual)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-benefits" class="has-prefix" value="9000" min="0" step="100">
+        </div>
+        <span class="field-hint">Health, dental, vision, life, disability premiums</span>
+      </div>
+      <div class="field">
+        <label for="ec-retirement">Retirement Match (annual)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-retirement" class="has-prefix" value="2100" min="0" step="100">
+        </div>
+        <span class="field-hint">401(k) / pension employer match</span>
+      </div>
+      <div class="field">
+        <label for="ec-equipment">Equipment / Software (annual)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-equipment" class="has-prefix" value="1500" min="0" step="100">
+        </div>
+        <span class="field-hint">Laptop, licenses, tools, amortised per year</span>
+      </div>
+      <div class="field">
+        <label for="ec-overhead">Overhead %</label>
+        <div class="input-wrap">
+          <input type="number" id="ec-overhead" value="10" min="0" max="100" step="1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Office space, utilities, admin support, as % of salary</span>
+      </div>
+      <div class="field">
+        <label for="ec-recruiting">One-time Recruiting Cost</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="ec-recruiting" class="has-prefix" value="3000" min="0" step="100">
+        </div>
+        <span class="field-hint">Recruiter fees, job ads, interview time (Year 1 only)</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcEmployeeCost()">Calculate True Cost →</button>
+
+    <div class="results" id="ec-results">
+      <div class="results-header">True Cost Breakdown</div>
+
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Total Annual Cost (Year 1)</div>
+          <div class="result-value" id="r-ec-total-y1">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Total Annual Cost (Ongoing)</div>
+          <div class="result-value" id="r-ec-total-ongoing">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Monthly Cost (Ongoing)</div>
+          <div class="result-value" id="r-ec-monthly">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Cost on Top of Salary</div>
+          <div class="result-value" id="r-ec-loaded-pct">—</div>
+        </div>
+      </div>
+
+      <div class="rate-compare">
+        <div class="rate-box">
+          <div class="rate-box-label">Burden Rate</div>
+          <div class="rate-box-val" id="r-ec-burden">—</div>
+          <div class="rate-box-sub">Total cost ÷ base salary</div>
+        </div>
+        <div class="rate-box">
+          <div class="rate-box-label">Effective Hourly Cost</div>
+          <div class="rate-box-val" id="r-ec-hourly">—</div>
+          <div class="rate-box-sub">Based on 2,080 hrs/year</div>
+        </div>
+      </div>
+
+      <div class="donut-wrap" style="margin-top:1.2rem">
+        <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140" id="ec-donut">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="var(--bg-2)" stroke-width="22"/>
+        </svg>
+        <div class="donut-legend" id="ec-legend"></div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1rem">
+        <div class="breakdown-title">Full Cost Breakdown</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Component</th><th>Annual Cost</th></tr></thead>
+          <tbody id="ec-table"></tbody>
+        </table>
+      </div>
+
+      <div id="ec-insight" class="insight"><div class="insight-icon">💡</div><div id="ec-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is the "True Cost" of an Employee?</h2>
+  <p>A salary figure is only part of what an employer actually pays. Once you add employer-side payroll taxes, health benefits, retirement contributions, equipment, office overhead, and recruiting costs, the real number is typically 1.25 to 1.5 times the base salary — sometimes more.</p>
+
+  <h3>What Counts as Employer Payroll Tax?</h3>
+  <p>In the US, employers match the employee's FICA contribution: 6.2% for Social Security (up to the annual wage base) and 1.45% for Medicare, plus federal and state unemployment insurance. Combined, this typically lands around 7–9% of salary, though it varies by state and industry.</p>
+
+  <h3>Why Calculate Burden Rate?</h3>
+  <p>Burden rate (total cost divided by base salary) helps with budgeting, pricing services, and deciding between hiring an employee versus a contractor. A contractor's invoice rate already includes their own taxes and benefits, so comparing it to a fully-loaded employee cost — not just base salary — gives a fairer comparison.</p>
+
+  <div class="faq-item"><div class="faq-q">Is it cheaper to hire a contractor instead of an employee?</div><div class="faq-a"><p>It depends. Contractors avoid employer payroll taxes, benefits, and equipment costs, but typically charge higher rates to cover their own overhead. Compare a contractor's quoted rate against this calculator's fully-loaded employee cost, not against base salary alone, for an accurate comparison.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What's a typical overhead percentage?</div><div class="faq-a"><p>Overhead (office space, utilities, IT support, management time) commonly ranges from 8–15% of salary for in-office roles, and can be lower for fully remote teams without dedicated office space.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Should recruiting cost be included every year?</div><div class="faq-a"><p>No — recruiting cost is typically a one-time expense in the hiring year. This calculator separates Year 1 cost (including recruiting) from ongoing annual cost so you can budget for both.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var EC_COLORS = ['#4caf50','#ef5350','#42a5f5','#ffa726','#ab47bc','#26c6da'];
+
+function calcEmployeeCost(){
+  var salary     = v('ec-salary') || 0;
+  var bonus      = v('ec-bonus') || 0;
+  var taxPct     = v('ec-payroll-tax') / 100;
+  var benefits   = v('ec-benefits') || 0;
+  var retirement = v('ec-retirement') || 0;
+  var equipment  = v('ec-equipment') || 0;
+  var overheadPct= v('ec-overhead') / 100;
+  var recruiting = v('ec-recruiting') || 0;
+
+  if(salary <= 0){ showToast('Enter a valid salary'); return; }
+
+  var cashComp   = salary + bonus;
+  var payrollTax = cashComp * taxPct;
+  var overhead   = salary * overheadPct;
+
+  var ongoingTotal = cashComp + payrollTax + benefits + retirement + equipment + overhead;
+  var year1Total   = ongoingTotal + recruiting;
+
+  var burden = ongoingTotal / salary;
+  var loadedPct = (burden - 1) * 100;
+  var hourly = ongoingTotal / 2080;
+
+  setEl('r-ec-total-y1',      fmtCur(year1Total));
+  setEl('r-ec-total-ongoing', fmtCur(ongoingTotal));
+  setEl('r-ec-monthly',       fmtCur(ongoingTotal / 12));
+  setEl('r-ec-loaded-pct',    '+' + fmt(loadedPct, 0) + '%');
+  setEl('r-ec-burden',        fmt(burden, 2) + '×');
+  setEl('r-ec-hourly',        fmtCur(hourly) + '/hr');
+
+  var segments = [
+    { label: 'Base Salary',     val: salary,      color: EC_COLORS[0] },
+    { label: 'Bonus',           val: bonus,        color: EC_COLORS[1] },
+    { label: 'Employer Tax',    val: payrollTax,   color: EC_COLORS[2] },
+    { label: 'Benefits',        val: benefits,     color: EC_COLORS[3] },
+    { label: 'Retirement Match',val: retirement,   color: EC_COLORS[4] },
+    { label: 'Equipment',       val: equipment,    color: EC_COLORS[5] },
+    { label: 'Overhead',        val: overhead,     color: '#8d6e63' }
+  ].filter(function(s){ return s.val > 0; });
+
+  drawDonut(segments, ongoingTotal);
+  drawLegend(segments, ongoingTotal);
+
+  var rows = segments.map(function(s){
+    return '<tr><td>' + s.label + '</td><td class="td-mono">' + fmtCur(s.val) + '</td></tr>';
+  });
+  if(recruiting > 0){
+    rows.push('<tr><td>Recruiting (Year 1 only)</td><td class="td-mono">' + fmtCur(recruiting) + '</td></tr>');
+  }
+  document.getElementById('ec-table').innerHTML = rows.join('');
+
+  document.getElementById('ec-insight-text').innerHTML =
+    'A <strong>' + fmtCur(salary) + '</strong> salary actually costs <strong>' + fmtCur(ongoingTotal) + '</strong> per year once taxes, benefits, and overhead are included — a burden rate of <strong>' + fmt(burden,2) + '×</strong> base salary. '
+    + 'When comparing to a contractor quote, use the effective hourly cost of <strong>' + fmtCur(hourly) + '/hr</strong>, not the base salary alone.';
+
+  showRes('ec-results');
+}
+
+function drawDonut(segments, total){
+  var r = 52, cx = 70, cy = 70, stroke = 22;
+  var circ = 2 * Math.PI * r;
+  var offset = 0;
+  var svgCircles = '';
+  segments.forEach(function(s){
+    var dash = (s.val / total) * circ;
+    var gap  = circ - dash;
+    svgCircles += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none"'
+      + ' stroke="' + s.color + '"'
+      + ' stroke-width="' + stroke + '"'
+      + ' stroke-dasharray="' + dash.toFixed(2) + ' ' + gap.toFixed(2) + '"'
+      + ' stroke-dashoffset="' + (-(offset) + circ/4).toFixed(2) + '"'
+      + ' transform="rotate(-90 ' + cx + ' ' + cy + ')"'
+      + ' style="transition:stroke-dasharray .6s ease"/>';
+    offset += dash;
+  });
+  svgCircles += '<text x="70" y="66" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" font-weight="600" fill="var(--text)">TOTAL</text>';
+  svgCircles += '<text x="70" y="79" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" font-weight="600" fill="var(--text)">COST</text>';
+  document.getElementById('ec-donut').innerHTML = svgCircles;
+}
+
+function drawLegend(segments, total){
+  document.getElementById('ec-legend').innerHTML = segments.map(function(s){
+    return '<div class="legend-item">'
+      + '<div class="legend-dot" style="background:' + s.color + '"></div>'
+      + '<span class="legend-label">' + s.label + '</span>'
+      + '<span class="legend-val">' + fmtCur(s.val) + '</span>'
+      + '<span class="legend-pct">' + fmt(s.val/total*100,1) + '%</span>'
+      + '</div>';
+  }).join('');
+}
+
+window.addEventListener('load', calcEmployeeCost);
+</script>
+</body>
+</html>

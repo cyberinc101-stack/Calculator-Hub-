@@ -2,33 +2,56 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ── Light mode ── */
-  --bg:           #F7F6F3;
-  --bg2:          #EFEEE9;
+  --bg:           #F6F7FA;
+  --bg2:          #ECEEF3;
   --surface:      #FFFFFF;
-  --surface2:     #F3F2ED;
-  --border:       #E4E2DA;
-  --border2:      #D4D1C7;
-  --text:         #1C1B18;
-  --text-2:       #4A4740;
-  --text-muted:   #8C8880;
+  --surface2:     #F1F2F6;
+  --border:       #E3E5EB;
+  --border2:      #D2D5DE;
+  --text:         #15171C;
+  --text-2:       #474B55;
+  --text-muted:   #8B8F99;
 
-  --accent:       #1A3A6B;
-  --accent-mid:   #2552A3;
-  --accent-light: #EDF1FB;
-  --accent-glow:  rgba(37,82,163,0.10);
+  --accent:       #3A33B0;
+  --accent-mid:   #4F46E5;
+  --accent-light: #ECEBFD;
+  --accent-glow:  rgba(79,70,229,0.14);
 
-  --green:        #0F7B52;
-  --green-light:  #E8F7F2;
+  --green:        #0F9D62;
+  --green-light:  #E5F8EF;
   --amber:        #B45309;
   --amber-light:  #FEF3C7;
-  --red:          #C0392B;
-  --red-light:    #FEE9E7;
-  --violet:       #6D28D9;
-  --violet-light: #EDE9FE;
+  --red:          #D7372B;
+  --red-light:    #FDEAE8;
+  --violet:       #7C3AED;
+  --violet-light: #F1EBFF;
 
-  --shadow-sm:  0 1px 2px rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.04);
-  --shadow:     0 2px 4px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);
-  --shadow-lg:  0 4px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.10);
+  /* category accents — used on homepage icon badges & filter pills */
+  --cat-finance:        #4F46E5;
+  --cat-finance-light:  #ECEBFD;
+  --cat-health:         #DB2777;
+  --cat-health-light:   #FCE7F3;
+  --cat-fitness:        #EA580C;
+  --cat-fitness-light:  #FFEDD9;
+  --cat-math:           #7C3AED;
+  --cat-math-light:     #F1EBFF;
+  --cat-business:       #0D9488;
+  --cat-business-light: #E1F6F2;
+  --cat-everyday:       #D97706;
+  --cat-everyday-light: #FEF1D9;
+  --cat-science:        #0891B2;
+  --cat-science-light:  #E1F4F8;
+
+  /* LCD readout panel (hero ticker) */
+  --lcd-bg:    #181A20;
+  --lcd-bg2:   #20232B;
+  --lcd-text:  #8FFFC0;
+  --lcd-glow:  rgba(143,255,192,.45);
+  --lcd-led:   #34D399;
+
+  --shadow-sm:  0 1px 2px rgba(20,20,30,.05), 0 2px 8px rgba(20,20,30,.04);
+  --shadow:     0 2px 4px rgba(20,20,30,.06), 0 10px 28px rgba(20,20,30,.07);
+  --shadow-lg:  0 4px 10px rgba(20,20,30,.09), 0 18px 50px rgba(20,20,30,.12);
 
   --radius:    16px;
   --radius-sm: 10px;
@@ -38,32 +61,56 @@
   --font-serif:'Instrument Serif', Georgia, serif;
   --font-mono: 'DM Mono', 'Fira Mono', monospace;
 
-  --max-w: 920px;
+  --max-w: 1180px;
 }
 
 [data-theme="dark"] {
-  --bg:           #111210;
-  --bg2:          #181917;
-  --surface:      #1D1F1C;
-  --surface2:     #252723;
-  --border:       #2E312B;
-  --border2:      #3A3D36;
-  --text:         #ECEAE4;
-  --text-2:       #C0BDB4;
-  --text-muted:   #706D65;
-  --accent:       #5B8DEF;
-  --accent-mid:   #4A7ADE;
-  --accent-light: #1A2540;
-  --accent-glow:  rgba(91,141,239,.15);
-  --green:        #22C98B;
-  --green-light:  #0C2820;
-  --amber:        #F0B429;
-  --amber-light:  #231C08;
-  --red:          #F06B5B;
-  --red-light:    #2A1210;
+  --bg:           #0F1014;
+  --bg2:          #15171B;
+  --surface:      #1A1C21;
+  --surface2:     #21242A;
+  --border:       #2B2E35;
+  --border2:      #383C44;
+  --text:         #EEEFF2;
+  --text-2:       #BFC2CA;
+  --text-muted:   #74787F;
+
+  --accent:       #818CF8;
+  --accent-mid:   #6366F1;
+  --accent-light: #1E2040;
+  --accent-glow:  rgba(99,102,241,.22);
+
+  --green:        #34D399;
+  --green-light:  #0E2A22;
+  --amber:        #F2B544;
+  --amber-light:  #2A2008;
+  --red:          #F37468;
+  --red-light:    #2B1715;
   --violet:       #A78BFA;
-  --violet-light: #1E1840;
-  --shadow-sm:  0 1px 2px rgba(0,0,0,.3);
-  --shadow:     0 2px 4px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
-  --shadow-lg:  0 4px 8px rgba(0,0,0,.5), 0 16px 48px rgba(0,0,0,.4);
+  --violet-light: #221C42;
+
+  --cat-finance:        #818CF8;
+  --cat-finance-light:  #1E2040;
+  --cat-health:         #F472B6;
+  --cat-health-light:   #2E1A29;
+  --cat-fitness:        #FB923C;
+  --cat-fitness-light:  #2C1B0C;
+  --cat-math:           #A78BFA;
+  --cat-math-light:     #221C42;
+  --cat-business:       #2DD4BF;
+  --cat-business-light: #0E2624;
+  --cat-everyday:       #FBBF24;
+  --cat-everyday-light: #2A2008;
+  --cat-science:        #22D3EE;
+  --cat-science-light:  #0D2730;
+
+  --lcd-bg:    #0B0D10;
+  --lcd-bg2:   #14171C;
+  --lcd-text:  #9BFFCB;
+  --lcd-glow:  rgba(155,255,203,.5);
+  --lcd-led:   #34D399;
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,.35);
+  --shadow:     0 2px 4px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.35);
+  --shadow-lg:  0 4px 10px rgba(0,0,0,.55), 0 18px 50px rgba(0,0,0,.45);
 }

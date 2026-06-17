@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VO2 Max Estimator — Estimate Your Aerobic Fitness | CalcHub</title>
+<meta name="description" content="Free VO2 max estimator. Estimate your aerobic fitness level using the heart rate ratio method or the Rockport 1-mile walk test, with a fitness category breakdown.">
+<meta name="keywords" content="vo2 max calculator,vo2 max estimator,aerobic fitness calculator,rockport walk test,heart rate ratio vo2 max,cardio fitness level">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/vo2-max.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VO2 Max Estimator","description":"Estimate VO2 max and aerobic fitness category using the heart rate ratio method or the Rockport 1-mile walk test.","url":"https://yourdomain.com/calculator-types/vo2-max.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🫁 VO2 Max Estimator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">VO2 Max Estimator</h1>
+  <p class="hero-sub">Estimate your aerobic fitness level using a quick heart rate ratio, or the more involved Rockport 1-mile walk test.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🫁</div>
+    <div><div class="calc-card-title">VO2 Max Estimator</div><div class="calc-card-desc">Two estimation methods, with a fitness category breakdown</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Estimation Method</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="vo-method" value="hrr" checked> Heart Rate Ratio (Quick)</label>
+        <label class="radio-pill"><input type="radio" name="vo-method" value="walk"> 1-Mile Walk Test</label>
+      </div>
+    </div>
+
+    <div class="field-grid" id="vo-hrr-fields">
+      <div class="field">
+        <label for="vo-resting">Resting Heart Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-resting" value="62" min="30" max="120" step="1">
+          <span class="input-suffix">bpm</span>
+        </div>
+        <span class="field-hint">Measure first thing in the morning</span>
+      </div>
+      <div class="field">
+        <label for="vo-maxhr">Max Heart Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-maxhr" value="185" min="100" max="230" step="1">
+          <span class="input-suffix">bpm</span>
+        </div>
+        <span class="field-hint">No measured max? Try 208 − (0.7 × age)</span>
+      </div>
+    </div>
+
+    <div class="field-grid" id="vo-walk-fields" style="display:none">
+      <div class="field">
+        <label for="vo-age">Age</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-age" value="30" min="13" max="90" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="vo-sex">Biological Sex</label>
+        <select id="vo-sex">
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="vo-weight">Weight</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-weight" value="160" min="60" max="500" step="1">
+          <span class="input-suffix">lb</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="vo-walktime">1-Mile Walk Time</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-walktime" value="13.5" min="8" max="30" step="0.1">
+          <span class="input-suffix">minutes</span>
+        </div>
+        <span class="field-hint">e.g. 13:30 = 13.5 minutes</span>
+      </div>
+      <div class="field">
+        <label for="vo-finishhr">Heart Rate at Finish</label>
+        <div class="input-wrap">
+          <input type="number" id="vo-finishhr" value="135" min="80" max="220" step="1">
+          <span class="input-suffix">bpm</span>
+        </div>
+        <span class="field-hint">Taken immediately at the end of the walk</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcVO2()">Estimate My VO2 Max →</button>
+
+    <div class="results" id="vo-results">
+      <div class="results-header">Your Estimated VO2 Max</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">VO2 Max</div>
+          <div class="result-value" id="r-vo-value">—</div>
+          <div class="result-sub">ml/kg/min</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Fitness Category</div>
+          <div class="result-value" id="r-vo-category">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Method Used</div>
+          <div class="result-value" id="r-vo-method">—</div>
+        </div>
+      </div>
+
+      <div id="vo-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="vo-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is VO2 Max?</h2>
+  <p>VO2 max is the maximum amount of oxygen your body can use during intense exercise, measured in millilitres of oxygen per kilogram of body weight per minute. It's one of the most reliable single indicators of cardiovascular fitness and aerobic endurance capacity.</p>
+
+  <h3>Heart Rate Ratio Method</h3>
+  <p>This non-exercise method, developed by Uth, Sørensen, Overgaard, and Pedersen, estimates VO2 max from the ratio of your max heart rate to your resting heart rate. It's fast and requires no exercise test, but is less precise than a field or lab test.</p>
+
+  <h3>Rockport 1-Mile Walk Test</h3>
+  <p>Walk one flat mile as briskly as you safely can, record your finish time and heart rate immediately at the end, and the calculator estimates VO2 max from your walk time, ending heart rate, age, sex, and weight. It was developed for general adult populations rather than trained athletes.</p>
+
+  <div class="faq-item"><div class="faq-q">How accurate are these estimates compared to a lab test?</div><div class="faq-a"><p>Both methods are estimates, not direct measurements. A laboratory graded exercise test with gas analysis remains the gold standard; field tests like these are typically within about 10–15% of a true lab value for most people.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Which method should I use?</div><div class="faq-a"><p>The heart rate ratio method is faster and fine for tracking general trends over time. The walk test takes more effort but tends to be more accurate since it's based on an actual physical performance rather than resting numbers alone.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How can I improve my VO2 max?</div><div class="faq-a"><p>Consistent aerobic training is the main driver — a mix of steady-state cardio and higher-intensity interval sessions over several months reliably raises VO2 max in most people, including those starting from a low baseline.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var voMethod = 'hrr';
+
+document.querySelectorAll('input[name="vo-method"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="vo-method"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    voMethod = this.value;
+    document.getElementById('vo-hrr-fields').style.display  = voMethod === 'hrr'  ? '' : 'none';
+    document.getElementById('vo-walk-fields').style.display  = voMethod === 'walk' ? '' : 'none';
+  });
+});
+
+function vo2Category(vo2, sex){
+  // Simplified general adult guide, not age-adjusted
+  if(sex === 'female'){
+    if(vo2 < 24) return 'Below Average';
+    if(vo2 < 31) return 'Average';
+    if(vo2 < 38) return 'Good';
+    if(vo2 < 45) return 'Excellent';
+    return 'Superior';
+  }
+  if(vo2 < 30) return 'Below Average';
+  if(vo2 < 38) return 'Average';
+  if(vo2 < 46) return 'Good';
+  if(vo2 < 54) return 'Excellent';
+  return 'Superior';
+}
+
+function calcVO2(){
+  var vo2, methodLabel, sex;
+
+  if(voMethod === 'hrr'){
+    var resting = v('vo-resting'), maxHr = v('vo-maxhr');
+    if(resting <= 0 || maxHr <= resting){ showToast('Max heart rate must be higher than resting heart rate'); return; }
+    vo2 = 15.3 * (maxHr / resting);
+    methodLabel = 'Heart Rate Ratio';
+    sex = 'male';
+  } else {
+    var age = v('vo-age'), weight = v('vo-weight'), time = v('vo-walktime'), hr = v('vo-finishhr');
+    sex = vs('vo-sex');
+    if(weight <= 0 || time <= 0 || hr <= 0){ showToast('Please enter valid walk test values'); return; }
+    var sexVal = sex === 'male' ? 1 : 0;
+    vo2 = 132.853 - (0.0769 * weight) - (0.3877 * age) + (6.318 * sexVal) - (3.2649 * time) - (0.1565 * hr);
+    methodLabel = '1-Mile Walk Test';
+  }
+
+  vo2 = Math.max(10, vo2);
+  var category = vo2Category(vo2, sex);
+
+  setEl('r-vo-value', fmt(vo2,1));
+  setEl('r-vo-category', category);
+  setEl('r-vo-method', methodLabel);
+
+  document.getElementById('vo-insight-text').innerHTML =
+    'An estimated VO2 max of <strong>' + fmt(vo2,1) + ' ml/kg/min</strong> falls in the <strong>' + category + '</strong> range for general adult fitness. '
+    + (voMethod === 'hrr'
+      ? 'This quick method is great for tracking trends over time — retest every few weeks under similar conditions for the most useful comparison.'
+      : 'Walk test results can vary with effort and pacing, so try to walk at a consistent, brisk pace each time you retest for comparable results.');
+
+  showRes('vo-results');
+}
+
+window.addEventListener('load', calcVO2);
+</script>
+</body>
+</html>

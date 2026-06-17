@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blood Pressure Checker — Understand Your Reading | CalcHub</title>
+<meta name="description" content="Free blood pressure checker. Enter your systolic and diastolic numbers to see which category your reading falls into, based on American Heart Association guidelines.">
+<meta name="keywords" content="blood pressure checker,blood pressure calculator,what is normal blood pressure,systolic diastolic chart,blood pressure categories,is my blood pressure high,hypertension stages">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/blood-pressure.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Blood Pressure Checker","description":"Check which blood pressure category a systolic/diastolic reading falls into, based on AHA guidelines.","url":"https://yourdomain.com/calculator-types/blood-pressure.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.bp-verdict {
+  margin-top: 1rem; padding: 1.1rem; border-radius: 12px; text-align: center;
+}
+.bp-verdict-icon { font-size: 1.8rem; margin-bottom: 4px; }
+.bp-verdict-text { font-size: 1.25rem; font-weight: 700; }
+.bp-verdict-reading { font-family: var(--font-mono); font-size: 1rem; color: var(--text-2); margin-top: 4px; }
+
+.bp-scale { margin-top: 1rem; }
+.bp-scale-row {
+  display: flex; align-items: center; gap: 10px; padding: .55rem .7rem; border-radius: 8px; margin-bottom: 5px;
+  background: var(--bg-2); border: 1.5px solid var(--border); font-size: .82rem;
+}
+.bp-scale-row.current { border-color: var(--accent-mid); background: color-mix(in srgb, var(--accent-mid) 10%, var(--bg-2)); }
+.bp-scale-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.bp-scale-label { flex: 1; font-weight: 600; color: var(--text); }
+.bp-scale-range { font-family: var(--font-mono); color: var(--text-3); font-size: .78rem; }
+
+.bp-disclaimer {
+  margin-top: 1rem; padding: .8rem .9rem; border-radius: 10px; background: var(--bg-2);
+  font-size: .8rem; color: var(--text-2); border-left: 3px solid var(--accent-mid);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🩺 Health Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Blood Pressure Checker</h1>
+  <p class="hero-sub">Enter your systolic and diastolic numbers to see which category your reading falls into, based on American Heart Association guidelines.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🩺</div>
+    <div><div class="calc-card-title">Blood Pressure Category Checker</div><div class="calc-card-desc">Systolic / diastolic · AHA categories</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="bp-systolic">Systolic (top number)</label>
+        <div class="input-wrap"><input type="number" id="bp-systolic" value="120" min="50" max="300" step="1"><span class="input-suffix">mmHg</span></div>
+      </div>
+      <div class="field">
+        <label for="bp-diastolic">Diastolic (bottom number)</label>
+        <div class="input-wrap"><input type="number" id="bp-diastolic" value="80" min="30" max="200" step="1"><span class="input-suffix">mmHg</span></div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="checkBP()">Check Reading →</button>
+
+    <div class="results" id="bp-results">
+      <div class="bp-verdict" id="bp-verdict">
+        <div class="bp-verdict-icon" id="bp-verdict-icon">—</div>
+        <div class="bp-verdict-text" id="bp-verdict-text">—</div>
+        <div class="bp-verdict-reading" id="bp-verdict-reading">—</div>
+      </div>
+
+      <div class="bp-scale" id="bp-scale"></div>
+
+      <div id="bp-insight" class="insight"><div class="insight-icon">💡</div><div id="bp-insight-text"></div></div>
+
+      <div class="bp-disclaimer">
+        This tool reflects general American Heart Association reference ranges and is for informational purposes only — it is not a diagnosis. Blood pressure varies through the day and a single reading isn't conclusive. If your reading is consistently elevated, or if you have symptoms like chest pain, severe headache, or shortness of breath, contact a healthcare professional promptly.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>Understanding Blood Pressure Categories</h2>
+  <p>Blood pressure is recorded as two numbers: systolic pressure (the force in your arteries when your heart beats) over diastolic pressure (the force when your heart rests between beats). The American Heart Association groups readings into five categories, ranging from normal to hypertensive crisis.</p>
+
+  <h3>The Five AHA Categories</h3>
+  <p>Normal blood pressure is below 120/80 mmHg. Elevated is a systolic reading between 120–129 with a diastolic below 80. Stage 1 hypertension is 130–139 systolic or 80–89 diastolic. Stage 2 hypertension is 140 or higher systolic, or 90 or higher diastolic. A hypertensive crisis is above 180 systolic and/or above 120 diastolic, and requires immediate medical attention.</p>
+
+  <h3>Why Both Numbers Matter</h3>
+  <p>Your category is determined by whichever number falls into the higher-risk range — if your systolic reading suggests Stage 2 but your diastolic suggests normal, the reading is still classified as Stage 2. Both numbers need to be considered together rather than in isolation.</p>
+
+  <div class="faq-item"><div class="faq-q">What should I do if my reading shows a hypertensive crisis?</div><div class="faq-a"><p>A reading above 180/120 mmHg is considered a hypertensive crisis. If you have symptoms like chest pain, shortness of breath, severe headache, or vision changes, seek emergency medical care immediately. Even without symptoms, contact a healthcare provider promptly to confirm the reading and discuss next steps.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can one high reading mean I have hypertension?</div><div class="faq-a"><p>Not necessarily. Blood pressure naturally fluctuates with stress, activity, caffeine, and time of day. Healthcare providers typically diagnose hypertension based on multiple readings taken on different occasions, not a single measurement.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How can I get an accurate blood pressure reading at home?</div><div class="faq-a"><p>Sit quietly for 5 minutes beforehand, keep your feet flat on the floor and your arm supported at heart level, avoid caffeine or exercise in the prior 30 minutes, and take two or three readings a minute apart to average.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var BP_CATEGORIES = [
+  { label: 'Normal',                     color: '#4caf50', sys: [0, 119],   dia: [0, 79],    icon: '✓' },
+  { label: 'Elevated',                   color: '#d4e157', sys: [120, 129], dia: [0, 79],    icon: '⚠' },
+  { label: 'Hypertension Stage 1',       color: '#ffb300', sys: [130, 139], dia: [80, 89],   icon: '⚠' },
+  { label: 'Hypertension Stage 2',       color: '#ff7043', sys: [140, 179], dia: [90, 119],  icon: '⚠' },
+  { label: 'Hypertensive Crisis',        color: '#ef5350', sys: [180, 999], dia: [120, 999], icon: '🚨' }
+];
+
+function classifyBP(sys, dia){
+  // Crisis check first (either number)
+  if(sys >= 180 || dia >= 120) return BP_CATEGORIES[4];
+  if(sys >= 140 || dia >= 90)  return BP_CATEGORIES[3];
+  if(sys >= 130 || dia >= 80)  return BP_CATEGORIES[2];
+  if(sys >= 120 && dia < 80)   return BP_CATEGORIES[1];
+  if(sys < 120 && dia < 80)    return BP_CATEGORIES[0];
+  // Fallback (shouldn't normally hit, but covers edge combos)
+  return BP_CATEGORIES[2];
+}
+
+function checkBP(){
+  var sys = Math.round(v('bp-systolic'));
+  var dia = Math.round(v('bp-diastolic'));
+
+  if(!sys || !dia || sys < 50 || sys > 300 || dia < 30 || dia > 200){
+    showToast('Enter realistic systolic and diastolic values');
+    return;
+  }
+  if(dia >= sys){
+    showToast('Diastolic should be lower than systolic — double check your numbers');
+    return;
+  }
+
+  var cat = classifyBP(sys, dia);
+
+  var verdictEl = document.getElementById('bp-verdict');
+  verdictEl.style.background = 'color-mix(in srgb, ' + cat.color + ' 14%, var(--bg-2))';
+  document.getElementById('bp-verdict-icon').textContent = cat.icon;
+  document.getElementById('bp-verdict-text').textContent = cat.label;
+  document.getElementById('bp-verdict-text').style.color = cat.color;
+  document.getElementById('bp-verdict-reading').textContent = sys + ' / ' + dia + ' mmHg';
+
+  document.getElementById('bp-scale').innerHTML = BP_CATEGORIES.map(function(c){
+    var sysRange = c.sys[1] === 999 ? c.sys[0] + '+' : c.sys[0] + '–' + c.sys[1];
+    var diaRange = c.dia[1] === 999 ? c.dia[0] + '+' : c.dia[0] + '–' + c.dia[1];
+    var isCurrent = c.label === cat.label;
+    return '<div class="bp-scale-row' + (isCurrent ? ' current' : '') + '">'
+      + '<div class="bp-scale-dot" style="background:' + c.color + '"></div>'
+      + '<div class="bp-scale-label">' + c.label + (isCurrent ? ' ← your reading' : '') + '</div>'
+      + '<div class="bp-scale-range">' + sysRange + ' sys / ' + diaRange + ' dia</div>'
+      + '</div>';
+  }).join('');
+
+  var insightText = 'Your reading of <strong>' + sys + '/' + dia + ' mmHg</strong> falls into the <strong>' + cat.label + '</strong> category. ';
+  if(cat.label === 'Normal'){
+    insightText += 'This is within the typical healthy range for adults.';
+  } else if(cat.label === 'Elevated'){
+    insightText += 'This is a good time to monitor your blood pressure regularly and discuss lifestyle factors with a healthcare provider.';
+  } else if(cat.label === 'Hypertensive Crisis'){
+    insightText += 'This range requires prompt medical attention, especially if accompanied by symptoms like chest pain or shortness of breath.';
+  } else {
+    insightText += 'It is worth discussing this reading with a healthcare provider, particularly if it is consistent across multiple readings.';
+  }
+  document.getElementById('bp-insight-text').innerHTML = insightText;
+
+  showRes('bp-results');
+}
+
+window.addEventListener('load', checkBP);
+</script>
+</body>
+</html>

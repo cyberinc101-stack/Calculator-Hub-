@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SaaS MRR &amp; ARR Calculator — Recurring Revenue, Churn &amp; LTV | CalcHub</title>
+<meta name="description" content="Free SaaS MRR and ARR calculator. Calculate monthly and annual recurring revenue, net revenue churn, growth rate, and customer lifetime value (LTV).">
+<meta name="keywords" content="MRR calculator,ARR calculator,SaaS revenue calculator,monthly recurring revenue,annual recurring revenue,churn rate calculator,customer lifetime value calculator,LTV calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/saas-mrr-arr.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SaaS MRR & ARR Calculator","description":"Calculate monthly and annual recurring revenue, churn, growth rate, and customer lifetime value for a SaaS business.","url":"https://yourdomain.com/calculator-types/saas-mrr-arr.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.rate-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: .8rem; }
+@media (max-width:480px){ .rate-compare { grid-template-columns: 1fr; } }
+.rate-box { background: var(--bg-2); border-radius: 10px; padding: .7rem .9rem; text-align: center; }
+.rate-box-label { font-size: .72rem; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.rate-box-val { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent-mid); }
+.rate-box-val.danger { color: #ef5350; }
+.rate-box-val.good { color: #4caf50; }
+.rate-box-sub { font-size: .73rem; color: var(--text-3); margin-top: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📱 Business Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">SaaS MRR &amp; ARR Calculator</h1>
+  <p class="hero-sub">Calculate monthly and annual recurring revenue, net churn, growth rate, and customer lifetime value in one place.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📱</div>
+    <div><div class="calc-card-title">Recurring Revenue Calculator</div><div class="calc-card-desc">MRR · ARR · churn · growth rate · LTV</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="mrr-current">Current MRR</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-current" class="has-prefix" value="42000" min="0" step="100">
+        </div>
+        <span class="field-hint">Total recurring revenue this month</span>
+      </div>
+      <div class="field">
+        <label for="mrr-last">Last Month's MRR</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-last" class="has-prefix" value="38000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="mrr-new">New MRR This Month</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-new" class="has-prefix" value="6000" min="0" step="100">
+        </div>
+        <span class="field-hint">From new customers</span>
+      </div>
+      <div class="field">
+        <label for="mrr-expansion">Expansion MRR</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-expansion" class="has-prefix" value="1200" min="0" step="100">
+        </div>
+        <span class="field-hint">Upgrades from existing customers</span>
+      </div>
+      <div class="field">
+        <label for="mrr-churned">Churned MRR</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-churned" class="has-prefix" value="2800" min="0" step="100">
+        </div>
+        <span class="field-hint">Lost from cancellations</span>
+      </div>
+      <div class="field">
+        <label for="mrr-contraction">Contraction MRR</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-contraction" class="has-prefix" value="400" min="0" step="100">
+        </div>
+        <span class="field-hint">Lost from downgrades</span>
+      </div>
+      <div class="field">
+        <label for="mrr-customers">Total Active Customers</label>
+        <input type="number" id="mrr-customers" value="210" min="1" step="1">
+      </div>
+      <div class="field">
+        <label for="mrr-cac">Customer Acquisition Cost (CAC)</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="mrr-cac" class="has-prefix" value="450" min="0" step="10">
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcMRR()">Calculate Metrics →</button>
+
+    <div class="results" id="mrr-results">
+      <div class="results-header">Headline Numbers</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Current MRR</div>
+          <div class="result-value" id="r-mrr-current">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">ARR (Annual Run Rate)</div>
+          <div class="result-value" id="r-mrr-arr">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Net New MRR</div>
+          <div class="result-value" id="r-mrr-netnew">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Average Revenue Per Account</div>
+          <div class="result-value" id="r-mrr-arpa">—</div>
+        </div>
+      </div>
+
+      <div class="rate-compare">
+        <div class="rate-box">
+          <div class="rate-box-label">MoM Growth Rate</div>
+          <div class="rate-box-val" id="r-mrr-growth">—</div>
+          <div class="rate-box-sub">vs last month</div>
+        </div>
+        <div class="rate-box">
+          <div class="rate-box-label">Net Revenue Churn</div>
+          <div class="rate-box-val danger" id="r-mrr-churn">—</div>
+          <div class="rate-box-sub">of starting MRR</div>
+        </div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1.2rem">
+        <div class="breakdown-title">MRR Movement Bridge</div>
+        <table class="breakdown-table">
+          <thead><tr><th>Component</th><th>Amount</th></tr></thead>
+          <tbody id="mrr-bridge"></tbody>
+        </table>
+      </div>
+
+      <div class="rate-compare" style="margin-top:1rem">
+        <div class="rate-box">
+          <div class="rate-box-label">Customer LTV</div>
+          <div class="rate-box-val good" id="r-mrr-ltv">—</div>
+          <div class="rate-box-sub">at current churn rate</div>
+        </div>
+        <div class="rate-box">
+          <div class="rate-box-label">LTV : CAC Ratio</div>
+          <div class="rate-box-val" id="r-mrr-ltv-cac">—</div>
+          <div class="rate-box-sub">3:1 or higher is healthy</div>
+        </div>
+      </div>
+
+      <div id="mrr-insight" class="insight"><div class="insight-icon">💡</div><div id="mrr-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is MRR and Why It Matters</h2>
+  <p>Monthly Recurring Revenue (MRR) is the predictable revenue a subscription business can expect every month from active customers. It's the core metric SaaS companies use to track growth, since it strips out one-time fees and focuses purely on recurring income.</p>
+
+  <h3>MRR vs ARR</h3>
+  <p>Annual Recurring Revenue (ARR) is simply MRR multiplied by 12 — an annualised run rate. ARR is typically used for higher-level reporting and investor conversations, while MRR is the operational metric tracked month to month.</p>
+
+  <h3>Understanding the MRR Movement Bridge</h3>
+  <p>MRR doesn't move in a single direction. New MRR comes from new customers, expansion MRR comes from existing customers upgrading, contraction MRR comes from downgrades, and churned MRR comes from cancellations. Net new MRR is the sum of all four, and it explains exactly why MRR grew or shrank month over month.</p>
+
+  <h3>Why LTV:CAC Ratio Matters</h3>
+  <p>Customer Lifetime Value (LTV) divided by Customer Acquisition Cost (CAC) shows whether a business earns enough from a customer to justify what it spent to acquire them. A ratio of 3:1 or higher is generally considered healthy; below that, the business may be spending too much to grow.</p>
+
+  <div class="faq-item"><div class="faq-q">How is customer lifetime value (LTV) calculated?</div><div class="faq-a"><p>A common formula is LTV = Average Revenue Per Account ÷ Churn Rate. This estimates total revenue from an average customer over their expected lifetime, based on how long customers typically stay before churning.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What's a good monthly churn rate for a SaaS business?</div><div class="faq-a"><p>For small and mid-sized B2B SaaS companies, monthly revenue churn under 1–2% is generally considered healthy. Consumer subscription products often tolerate higher churn given lower price points and higher volume.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why use net revenue churn instead of customer churn?</div><div class="faq-a"><p>Net revenue churn accounts for expansion revenue offsetting losses from cancellations and downgrades, giving a more complete picture of revenue health than simply counting how many customers left.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function calcMRR(){
+  var current     = v('mrr-current') || 0;
+  var last        = v('mrr-last') || 0;
+  var newMrr      = v('mrr-new') || 0;
+  var expansion   = v('mrr-expansion') || 0;
+  var churned     = v('mrr-churned') || 0;
+  var contraction = v('mrr-contraction') || 0;
+  var customers   = v('mrr-customers') || 1;
+  var cac         = v('mrr-cac') || 0;
+
+  if(current <= 0){ showToast('Enter a valid current MRR'); return; }
+
+  var arr = current * 12;
+  var netNew = newMrr + expansion - churned - contraction;
+  var arpa = current / customers;
+  var growthRate = last > 0 ? ((current - last) / last) * 100 : 0;
+  var churnRate = last > 0 ? ((churned + contraction) / last) * 100 : 0;
+
+  setEl('r-mrr-current', fmtCur(current));
+  setEl('r-mrr-arr',      fmtCur(arr));
+  setEl('r-mrr-netnew',   (netNew >= 0 ? '+' : '') + fmtCur(netNew));
+  setEl('r-mrr-arpa',     fmtCur(arpa));
+  setEl('r-mrr-growth',   (growthRate >= 0 ? '+' : '') + fmt(growthRate, 1) + '%');
+  setEl('r-mrr-churn',    fmt(churnRate, 2) + '%');
+
+  document.getElementById('mrr-bridge').innerHTML =
+    '<tr><td>Starting MRR (last month)</td><td class="td-mono">' + fmtCur(last) + '</td></tr>'
+    + '<tr><td>+ New MRR</td><td class="td-mono td-green">+' + fmtCur(newMrr) + '</td></tr>'
+    + '<tr><td>+ Expansion MRR</td><td class="td-mono td-green">+' + fmtCur(expansion) + '</td></tr>'
+    + '<tr><td>− Churned MRR</td><td class="td-mono td-red">−' + fmtCur(churned) + '</td></tr>'
+    + '<tr><td>− Contraction MRR</td><td class="td-mono td-red">−' + fmtCur(contraction) + '</td></tr>'
+    + '<tr><td><strong>= Ending MRR</strong></td><td class="td-mono"><strong>' + fmtCur(last + netNew) + '</strong></td></tr>';
+
+  var monthlyChurnDecimal = churnRate / 100;
+  var ltv = monthlyChurnDecimal > 0 ? arpa / monthlyChurnDecimal : 0;
+  var ltvCacRatio = cac > 0 ? ltv / cac : 0;
+
+  setEl('r-mrr-ltv', ltv > 0 ? fmtCur(ltv) : 'N/A (no churn data)');
+  setEl('r-mrr-ltv-cac', ltvCacRatio > 0 ? fmt(ltvCacRatio, 1) + ' : 1' : 'N/A');
+
+  var insightParts = [];
+  insightParts.push('At <strong>' + fmtCur(current) + '</strong> MRR (<strong>' + fmtCur(arr) + '</strong> ARR), the business grew <strong>' + fmt(growthRate,1) + '%</strong> month-over-month.');
+  if(ltvCacRatio > 0){
+    if(ltvCacRatio >= 3){
+      insightParts.push('An LTV:CAC ratio of <strong>' + fmt(ltvCacRatio,1) + ':1</strong> is healthy — each customer returns well more than it costs to acquire them.');
+    } else {
+      insightParts.push('An LTV:CAC ratio of <strong>' + fmt(ltvCacRatio,1) + ':1</strong> is below the typical 3:1 healthy threshold — consider reducing churn or acquisition cost.');
+    }
+  }
+  document.getElementById('mrr-insight-text').innerHTML = insightParts.join(' ');
+
+  showRes('mrr-results');
+}
+
+window.addEventListener('load', calcMRR);
+</script>
+</body>
+</html>

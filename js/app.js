@@ -7,7 +7,7 @@
     var p = pre();
     return '<header class="site-header">'
       +'<a href="'+p+'index.html" class="logo">'
-      +'<span class="logo-mark">Calc<em>Hub</em></span>'
+      +'<span class="logo-mark">Calc<em style="font-style:normal;font-family:var(--font-sans)">Hub</em></span>'
       +'<span class="logo-tag">Free Calculators</span>'
       +'</a>'
       +'<div class="theme-pill">'
@@ -25,6 +25,7 @@
       +'<a href="'+p+'index.html">Home</a>'
       +'<a href="'+p+'pages/privacy.html">Privacy</a>'
       +'<a href="'+p+'pages/terms.html">Terms</a>'
+      +'<a href="'+p+'pages/contact.html">Contact</a>'
       +'</div>'
       +'</footer>'
       +'<div id="toast"></div>';

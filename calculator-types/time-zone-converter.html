@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Time Zone Converter — Convert Time Between Cities | CalcHub</title>
+<meta name="description" content="Free time zone converter. Convert any time between cities worldwide, see current local times, and find overlapping working hours for meetings and calls.">
+<meta name="keywords" content="time zone converter,convert time between time zones,world clock,meeting time planner,UTC converter,what time is it in,time difference calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/time-zone-converter.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Time Zone Converter","description":"Convert time between cities worldwide and compare current local times.","url":"https://yourdomain.com/calculator-types/time-zone-converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.tz-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: .7rem .9rem;
+  border-radius: 10px;
+  background: var(--bg-2);
+  margin-bottom: 8px;
+}
+.tz-card-name { font-weight: 600; color: var(--text); font-size: .9rem; }
+.tz-card-zone { font-size: .73rem; color: var(--text-3); }
+.tz-card-time { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; color: var(--accent-mid); text-align: right; }
+.tz-card-date { font-size: .72rem; color: var(--text-3); text-align: right; }
+.tz-card-offset { font-size: .7rem; color: var(--text-3); padding: 2px 7px; border-radius: 999px; background: var(--bg-3); margin-top:2px; display:inline-block; }
+.tz-remove { cursor: pointer; color: var(--text-3); font-size: 1rem; padding: 0 4px; }
+.tz-remove:hover { color: var(--text); }
+
+.tz-add-row { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; margin-top: .8rem; }
+.tz-add-row .field { flex: 1; min-width: 200px; margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🕐 Everyday Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Time Zone Converter</h1>
+  <p class="hero-sub">Set a time in your zone and instantly see what it is in any city worldwide — perfect for scheduling calls and meetings.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🕐</div>
+    <div><div class="calc-card-title">World Time Converter</div><div class="calc-card-desc">Set a source time · compare across cities</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="tz-source">Source City</label>
+        <select id="tz-source"></select>
+      </div>
+      <div class="field">
+        <label for="tz-date">Date</label>
+        <input type="date" id="tz-date">
+      </div>
+      <div class="field">
+        <label for="tz-time">Time</label>
+        <input type="time" id="tz-time">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="useNow()" style="background:var(--bg-2);color:var(--text);border:1.5px solid var(--border);margin-top:.4rem">Use Current Time</button>
+
+    <div class="tz-add-row">
+      <div class="field">
+        <label for="tz-add-city">Add a City to Compare</label>
+        <select id="tz-add-city"></select>
+      </div>
+      <button class="calc-btn" style="width:auto;flex-shrink:0" onclick="addCity()">+ Add</button>
+    </div>
+
+    <div class="results" id="tz-results">
+      <div class="results-header">Converted Times</div>
+      <div id="tz-cards"></div>
+      <div id="tz-insight" class="insight"><div class="insight-icon">💡</div><div id="tz-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Time Zones Work</h2>
+  <p>The world is divided into roughly 24 time zones, each generally offset from Coordinated Universal Time (UTC) by a set number of hours. Some countries use half-hour or 45-minute offsets, and many regions shift their clocks for Daylight Saving Time during part of the year.</p>
+
+  <h3>Why Meeting Times Get Confusing</h3>
+  <p>Daylight Saving Time changes don't happen on the same dates everywhere, and some countries don't observe it at all. This means the time difference between two cities can shift by an hour at different points in the year, which is why this converter calculates live using each city's actual time zone rules rather than a fixed offset.</p>
+
+  <h3>Finding Overlapping Working Hours</h3>
+  <p>When scheduling across time zones, look for hours where both locations fall within a typical 9am–6pm workday. Teams spread across more than 8–9 hours of time difference often need to rotate meeting times fairly, since a perfect overlap may not exist.</p>
+
+  <div class="faq-item"><div class="faq-q">Does this account for Daylight Saving Time automatically?</div><div class="faq-a"><p>Yes. This converter uses your browser's built-in time zone database, which automatically applies the correct Daylight Saving Time rules for the date you select in each location.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is UTC and how is it different from GMT?</div><div class="faq-a"><p>UTC (Coordinated Universal Time) is the modern time standard used worldwide. GMT (Greenwich Mean Time) is technically a time zone rather than a standard, but in practice the two are treated as equivalent for most everyday purposes.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why might a city show a time difference that isn't a whole number of hours?</div><div class="faq-a"><p>Some regions, including India, parts of Australia, and Iran, use 30 or 45-minute offsets from UTC rather than a full hour, which can make the difference between two cities a non-whole number.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var TZ_CITIES = [
+  { name: 'New York',      zone: 'America/New_York' },
+  { name: 'Los Angeles',   zone: 'America/Los_Angeles' },
+  { name: 'Chicago',       zone: 'America/Chicago' },
+  { name: 'Toronto',       zone: 'America/Toronto' },
+  { name: 'Mexico City',   zone: 'America/Mexico_City' },
+  { name: 'São Paulo',     zone: 'America/Sao_Paulo' },
+  { name: 'London',        zone: 'Europe/London' },
+  { name: 'Paris',         zone: 'Europe/Paris' },
+  { name: 'Berlin',        zone: 'Europe/Berlin' },
+  { name: 'Moscow',        zone: 'Europe/Moscow' },
+  { name: 'Dubai',         zone: 'Asia/Dubai' },
+  { name: 'Mumbai',        zone: 'Asia/Kolkata' },
+  { name: 'Singapore',     zone: 'Asia/Singapore' },
+  { name: 'Hong Kong',     zone: 'Asia/Hong_Kong' },
+  { name: 'Shanghai',      zone: 'Asia/Shanghai' },
+  { name: 'Tokyo',         zone: 'Asia/Tokyo' },
+  { name: 'Seoul',         zone: 'Asia/Seoul' },
+  { name: 'Sydney',        zone: 'Australia/Sydney' },
+  { name: 'Auckland',      zone: 'Pacific/Auckland' },
+  { name: 'Wellington',    zone: 'Pacific/Auckland' },
+  { name: 'Johannesburg',  zone: 'Africa/Johannesburg' },
+  { name: 'Cairo',         zone: 'Africa/Cairo' },
+  { name: 'Istanbul',      zone: 'Europe/Istanbul' },
+  { name: 'UTC',           zone: 'UTC' }
+];
+
+var compareList = [];
+
+function populateSelects(){
+  var srcSel = document.getElementById('tz-source');
+  var addSel = document.getElementById('tz-add-city');
+  TZ_CITIES.forEach(function(c, i){
+    srcSel.innerHTML += '<option value="' + i + '">' + c.name + '</option>';
+    addSel.innerHTML += '<option value="' + i + '">' + c.name + '</option>';
+  });
+  srcSel.value = TZ_CITIES.findIndex(function(c){ return c.name === 'London'; });
+  addSel.value = TZ_CITIES.findIndex(function(c){ return c.name === 'Tokyo'; });
+}
+
+function useNow(){
+  var now = new Date();
+  document.getElementById('tz-date').value = now.toISOString().slice(0,10);
+  document.getElementById('tz-time').value = now.toTimeString().slice(0,5);
+  calcTimeZones();
+}
+
+function addCity(){
+  var idx = parseInt(document.getElementById('tz-add-city').value);
+  if(compareList.indexOf(idx) === -1) compareList.push(idx);
+  calcTimeZones();
+}
+
+function removeCity(idx){
+  compareList = compareList.filter(function(i){ return i !== idx; });
+  calcTimeZones();
+}
+
+function getOffsetMinutes(date, timeZone){
+  // Returns the offset in minutes for a given UTC instant in the target timezone
+  var tzDate = new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
+  var utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  return (tzDate.getTime() - utcDate.getTime()) / 60000;
+}
+
+function calcTimeZones(){
+  var srcIdx = parseInt(document.getElementById('tz-source').value);
+  var srcCity = TZ_CITIES[srcIdx];
+  var dateStr = document.getElementById('tz-date').value;
+  var timeStr = document.getElementById('tz-time').value;
+  if(!dateStr || !timeStr){ showToast('Pick a date and time'); return; }
+
+  // Build the wall-clock moment as if it were UTC, then find what UTC instant
+  // produces that wall-clock time in the source zone (iterative correction
+  // handles any DST edge case within a fraction of a second of accuracy).
+  var naiveUTC = new Date(dateStr + 'T' + timeStr + ':00Z');
+  var offsetAtNaive = getOffsetMinutes(naiveUTC, srcCity.zone);
+  var trueUTCInstant = new Date(naiveUTC.getTime() - offsetAtNaive * 60000);
+  // Correct once more in case of DST boundary shift
+  var offsetAtTrue = getOffsetMinutes(trueUTCInstant, srcCity.zone);
+  if(offsetAtTrue !== offsetAtNaive){
+    trueUTCInstant = new Date(naiveUTC.getTime() - offsetAtTrue * 60000);
+  }
+
+  var fmtOpts = { weekday:'short', year:'numeric', month:'short', day:'numeric' };
+  var timeOpts = { hour:'2-digit', minute:'2-digit', hour12:true };
+
+  var cardsHtml = '';
+  var allCities = [srcIdx].concat(compareList.filter(function(i){ return i !== srcIdx; }));
+
+  allCities.forEach(function(idx, listPos){
+    var city = TZ_CITIES[idx];
+    var localTime = trueUTCInstant.toLocaleTimeString('en-US', Object.assign({ timeZone: city.zone }, timeOpts));
+    var localDate = trueUTCInstant.toLocaleDateString('en-US', Object.assign({ timeZone: city.zone }, fmtOpts));
+    var offsetMin = getOffsetMinutes(trueUTCInstant, city.zone);
+    var offsetHrs = offsetMin / 60;
+    var offsetStr = 'UTC' + (offsetHrs >= 0 ? '+' : '') + (offsetHrs % 1 === 0 ? offsetHrs : offsetHrs.toFixed(2));
+
+    var diffFromSource = (offsetMin - offsetAtTrue) / 60;
+    var diffStr = idx === srcIdx ? 'Source' : (diffFromSource > 0 ? '+' : '') + fmt(diffFromSource, diffFromSource % 1 === 0 ? 0 : 1) + ' hrs vs source';
+
+    cardsHtml += '<div class="tz-card">'
+      + '<div>'
+        + '<div class="tz-card-name">' + city.name + (idx === srcIdx ? ' (source)' : '') + '</div>'
+        + '<div class="tz-card-zone">' + diffStr + '</div>'
+        + '<span class="tz-card-offset">' + offsetStr + '</span>'
+      + '</div>'
+      + '<div>'
+        + '<div class="tz-card-time">' + localTime + '</div>'
+        + '<div class="tz-card-date">' + localDate + (idx !== srcIdx ? ' <span class="tz-remove" onclick="removeCity(' + idx + ')">✕</span>' : '') + '</div>'
+      + '</div>'
+    + '</div>';
+  });
+
+  document.getElementById('tz-cards').innerHTML = cardsHtml;
+
+  if(compareList.length > 0){
+    var firstCompare = TZ_CITIES[compareList[0]];
+    var diffMin = getOffsetMinutes(trueUTCInstant, firstCompare.zone) - offsetAtTrue;
+    var diffHrs = diffMin / 60;
+    document.getElementById('tz-insight-text').innerHTML =
+      'When it is the time you entered in <strong>' + srcCity.name + '</strong>, it is <strong>' + (diffHrs >= 0 ? diffHrs.toFixed(diffHrs % 1 === 0 ? 0 : 1) + ' hours ahead' : Math.abs(diffHrs).toFixed(diffHrs % 1 === 0 ? 0 : 1) + ' hours behind') + '</strong> in ' + firstCompare.name + '. Add more cities above to compare a full meeting schedule.';
+  } else {
+    document.getElementById('tz-insight-text').innerHTML =
+      'Add a city above to see the time difference compared to <strong>' + srcCity.name + '</strong>.';
+  }
+
+  showRes('tz-results');
+}
+
+document.getElementById('tz-source').addEventListener('change', calcTimeZones);
+document.getElementById('tz-date').addEventListener('change', calcTimeZones);
+document.getElementById('tz-time').addEventListener('change', calcTimeZones);
+
+populateSelects();
+useNow();
+</script>
+</body>
+</html>

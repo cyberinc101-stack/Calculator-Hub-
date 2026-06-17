@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prime Number Checker — Check & Find Prime Factors | CalcHub</title>
+<meta name="description" content="Free prime number checker. Instantly check if a number is prime, see its full prime factorization, and find the nearby primes around it.">
+<meta name="keywords" content="prime number checker,is this number prime,prime factorization calculator,prime factors of a number,find prime numbers,list of prime numbers near">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/prime-number-checker.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Prime Number Checker","description":"Check if a number is prime, find its prime factors, and see nearby primes.","url":"https://yourdomain.com/calculator-types/prime-number-checker.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+.prime-verdict {
+  margin-top: 1rem; padding: 1.1rem; border-radius: 12px; text-align: center;
+}
+.prime-verdict.is-prime { background: color-mix(in srgb, #4caf50 14%, var(--bg-2)); }
+.prime-verdict.not-prime { background: color-mix(in srgb, #ef5350 12%, var(--bg-2)); }
+.prime-verdict-icon { font-size: 2rem; margin-bottom: 4px; }
+.prime-verdict-text { font-size: 1.3rem; font-weight: 700; font-family: var(--font-mono); }
+.prime-verdict.is-prime .prime-verdict-text { color: #4caf50; }
+.prime-verdict.not-prime .prime-verdict-text { color: #ef5350; }
+
+.factor-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .6rem; justify-content: center; }
+.factor-chip {
+  padding: .35rem .7rem; border-radius: 999px; background: var(--bg-2); border: 1.5px solid var(--border);
+  font-family: var(--font-mono); font-weight: 600; font-size: .85rem; color: var(--text);
+}
+
+.nearby-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; margin-top: .6rem; }
+@media (max-width: 480px){ .nearby-grid { grid-template-columns: repeat(3,1fr); } }
+.nearby-chip {
+  padding: .4rem; border-radius: 8px; background: var(--bg-2); text-align: center;
+  font-family: var(--font-mono); font-size: .85rem; color: var(--text-2); border: 1.5px solid var(--border);
+}
+.nearby-chip.current { border-color: var(--accent-mid); color: var(--accent-mid); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🔑 Math Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Prime Number Checker</h1>
+  <p class="hero-sub">Check if a number is prime, see its full prime factorization, and find the primes nearest to it.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🔑</div>
+    <div><div class="calc-card-title">Prime Checker &amp; Factorizer</div><div class="calc-card-desc">Prime check · factor tree · nearby primes</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="max-width:240px">
+      <label for="pn-input">Enter a Whole Number</label>
+      <input type="number" id="pn-input" value="97" min="1" step="1">
+      <span class="field-hint">Works for numbers up to ~10 trillion</span>
+    </div>
+
+    <button class="calc-btn" onclick="checkPrime()">Check Number →</button>
+
+    <div class="results" id="pn-results">
+      <div class="prime-verdict" id="pn-verdict">
+        <div class="prime-verdict-icon" id="pn-verdict-icon">—</div>
+        <div class="prime-verdict-text" id="pn-verdict-text">—</div>
+      </div>
+
+      <div class="results-grid" style="margin-top:1rem">
+        <div class="result-item">
+          <div class="result-label">Number of Factors</div>
+          <div class="result-value" id="r-pn-factor-count">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Smallest Prime Factor</div>
+          <div class="result-value" id="r-pn-smallest">—</div>
+        </div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1rem">
+        <div class="breakdown-title">Prime Factorization</div>
+        <div class="factor-chips" id="pn-factor-chips"></div>
+      </div>
+
+      <div class="breakdown-wrap" style="margin-top:1rem">
+        <div class="breakdown-title">Nearby Primes</div>
+        <div class="nearby-grid" id="pn-nearby"></div>
+      </div>
+
+      <div id="pn-insight" class="insight"><div class="insight-icon">💡</div><div id="pn-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>What Is a Prime Number?</h2>
+  <p>A prime number is a whole number greater than 1 that has exactly two factors: 1 and itself. Numbers with more than two factors are called composite numbers. The number 1 is neither prime nor composite, since it only has one factor.</p>
+
+  <h3>How to Check If a Number Is Prime</h3>
+  <p>The simplest method is trial division: check whether any whole number from 2 up to the square root of the target number divides it evenly. If none do, the number is prime. This works because if a number has a factor larger than its square root, it must also have a matching factor smaller than its square root.</p>
+
+  <h3>What Is Prime Factorization?</h3>
+  <p>Prime factorization breaks a composite number down into the prime numbers that multiply together to produce it. For example, 60 factors into 2 × 2 × 3 × 5. Every whole number greater than 1 has exactly one prime factorization, which is why it's such a useful building block in number theory.</p>
+
+  <div class="faq-item"><div class="faq-q">Is 1 a prime number?</div><div class="faq-a"><p>No. By definition, a prime number must have exactly two distinct factors. Since 1 only has one factor (itself), it's excluded from both the prime and composite categories.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is 2 the only even prime number?</div><div class="faq-a"><p>Yes. Every other even number is divisible by 2, which means it has at least three factors (1, 2, and itself), making it composite. 2 is the only even number with exactly two factors.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why are prime numbers important?</div><div class="faq-a"><p>Prime numbers are the foundation of number theory and are heavily used in cryptography — many encryption systems, including RSA, rely on the fact that multiplying two large primes is easy, but factoring the result back into those primes is extremely difficult.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function isPrime(n){
+  if(n < 2) return false;
+  if(n === 2) return true;
+  if(n % 2 === 0) return false;
+  for(var i = 3; i*i <= n; i += 2){
+    if(n % i === 0) return false;
+  }
+  return true;
+}
+
+function primeFactorize(n){
+  var factors = [];
+  var num = n;
+  var d = 2;
+  while(d * d <= num){
+    while(num % d === 0){
+      factors.push(d);
+      num /= d;
+    }
+    d++;
+  }
+  if(num > 1) factors.push(num);
+  return factors;
+}
+
+function nextPrimes(n, count, direction){
+  var results = [];
+  var candidate = n + direction;
+  var safety = 0;
+  while(results.length < count && safety < 100000){
+    if(candidate >= 2 && isPrime(candidate)) results.push(candidate);
+    candidate += direction;
+    safety++;
+  }
+  if(direction < 0) results.reverse();
+  return results;
+}
+
+function checkPrime(){
+  var n = Math.round(v('pn-input'));
+  if(!n || n < 1){ showToast('Enter a whole number 1 or greater'); return; }
+  if(n > 10000000000000){ showToast('Number too large to factor quickly'); return; }
+
+  var prime = isPrime(n);
+  var verdictEl = document.getElementById('pn-verdict');
+  verdictEl.className = 'prime-verdict ' + (prime ? 'is-prime' : 'not-prime');
+  document.getElementById('pn-verdict-icon').textContent = prime ? '✓' : '✕';
+  document.getElementById('pn-verdict-text').textContent = n + ' is ' + (prime ? 'PRIME' : (n === 1 ? 'neither prime nor composite' : 'COMPOSITE'));
+
+  var factors = n === 1 ? [] : primeFactorize(n);
+  var uniqueFactors = factors.filter(function(f,i){ return factors.indexOf(f) === i; });
+
+  setEl('r-pn-factor-count', prime ? '2 (1 and itself)' : (n === 1 ? '1' : factors.length + ' prime factor(s)'));
+  setEl('r-pn-smallest', n === 1 ? 'N/A' : (prime ? n : factors[0]));
+
+  document.getElementById('pn-factor-chips').innerHTML = prime
+    ? '<span class="factor-chip">' + n + ' is prime — no factorization needed</span>'
+    : (n === 1 ? '<span class="factor-chip">1 has no prime factors</span>' : factors.map(function(f){ return '<span class="factor-chip">' + f + '</span>'; }).join('<span style="color:var(--text-3);align-self:center">×</span>'));
+
+  var before = nextPrimes(n, 4, -1);
+  var after  = nextPrimes(n, 5, 1);
+  var nearbyHtml = before.map(function(p){ return '<div class="nearby-chip">' + p + '</div>'; }).join('')
+    + '<div class="nearby-chip current">' + n + '</div>'
+    + after.map(function(p){ return '<div class="nearby-chip">' + p + '</div>'; }).join('');
+  document.getElementById('pn-nearby').innerHTML = nearbyHtml;
+
+  var insightText;
+  if(prime){
+    insightText = '<strong>' + n + '</strong> is a prime number — its only factors are 1 and ' + n + '.';
+  } else if(n === 1){
+    insightText = 'The number <strong>1</strong> is a special case: it is neither prime nor composite because it has only one factor.';
+  } else {
+    var factorStr = uniqueFactors.map(function(f){
+      var power = factors.filter(function(x){ return x === f; }).length;
+      return power > 1 ? f + '<sup>' + power + '</sup>' : '' + f;
+    }).join(' × ');
+    insightText = '<strong>' + n + '</strong> is composite. Its prime factorization is <strong>' + factorStr + '</strong>, meaning it breaks down into ' + factors.length + ' prime building blocks.';
+  }
+  document.getElementById('pn-insight-text').innerHTML = insightText;
+
+  showRes('pn-results');
+}
+
+window.addEventListener('load', checkPrime);
+</script>
+</body>
+</html>
