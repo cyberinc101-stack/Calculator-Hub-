@@ -20,4 +20,5 @@
   <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/percentage.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/pages/privacy.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/pages/terms.html</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/sleep.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 </urlset>
