@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auto Loan Calculator — Car Payment, APR & Amortisation Schedule | CalcHub</title>
+<meta name="description" content="Free auto loan calculator for new and used car financing. Calculate your monthly car payment, total interest, true APR, and amortisation schedule — including trade-in value, down payment, and sales tax.">
+<meta name="keywords" content="auto loan calculator,car loan calculator,car payment calculator,car finance calculator,monthly car payment calculator,used car loan calculator,new car loan calculator,vehicle loan calculator,how much car can I afford">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/auto-loan-calculator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Auto Loan Calculator","description":"Free auto loan calculator for new and used car financing. Calculate your monthly car payment, total interest, true APR, and amortisation schedule.","url":"https://calculator-hub-phi-five.vercel.app/calculator-types/auto-loan-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's a good APR for a car loan?","acceptedAnswer":{"@type":"Answer","text":"As of 2024-2025, well-qualified buyers (credit score 720+) typically see new car APRs of 5%-7% and used car APRs of 6%-9%. Below a 660 credit score, rates often climb to 12% or higher, and subprime borrowers can see APRs above 20%."}},{"@type":"Question","name":"Should I include sales tax in my car loan calculation?","acceptedAnswer":{"@type":"Answer","text":"Most buyers finance sales tax as part of the loan rather than paying it upfront. This calculator rolls sales tax into the amount financed by default, which is the most common real-world scenario, but you can set the tax rate to 0% if you plan to pay it separately."}},{"@type":"Question","name":"How does a down payment affect my car loan?","acceptedAnswer":{"@type":"Answer","text":"A larger down payment reduces the amount financed, which lowers your monthly payment and total interest paid. It also reduces the risk of being 'upside down' (owing more than the car is worth) since vehicles depreciate quickly in the first few years."}},{"@type":"Question","name":"What's the difference between a car loan and a lease?","acceptedAnswer":{"@type":"Answer","text":"With a car loan, you're financing the full purchase price and own the vehicle once it's paid off. With a lease, you're effectively paying for the vehicle's depreciation over a fixed term and returning it at the end, typically with lower monthly payments but no ownership equity."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9286981131873574" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🚗 Auto Loan Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Auto Loan Calculator</h1>
+  <p class="hero-sub">Calculate your monthly car payment, total interest, and true APR — including trade-in value, down payment, and sales tax.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🚗</div>
+    <div><div class="calc-card-title">Auto Loan Calculator</div><div class="calc-card-desc">New or used car payment estimator with trade-in and sales tax</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Vehicle Condition</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="vehicle-condition" value="new" checked> New</label>
+        <label class="radio-pill"><input type="radio" name="vehicle-condition" value="used"> Used</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="auto-price">Vehicle Price</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="auto-price" class="has-prefix" value="35000" min="0" step="500">
+        </div>
+      </div>
+      <div class="field">
+        <label for="auto-down">Down Payment</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="auto-down" class="has-prefix" value="3500" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="auto-tradein">Trade-In Value</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="auto-tradein" class="has-prefix" value="0" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="auto-tax">Sales Tax Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="auto-tax" value="7" min="0" max="20" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Applied to price minus trade-in</span>
+      </div>
+      <div class="field">
+        <label for="auto-rate">Annual Interest Rate (APR)</label>
+        <div class="input-wrap">
+          <input type="number" id="auto-rate" value="6.5" min="0" max="100" step="0.1">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="auto-term">Loan Term (Months)</label>
+        <input type="number" id="auto-term" value="60" min="0" max="120" step="1">
+        <span class="field-hint">Common terms: 36, 48, 60, 72, 84</span>
+      </div>
+      <div class="field">
+        <label for="auto-fees">Doc / Dealer Fees</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="auto-fees" class="has-prefix" value="150" min="0" step="25">
+        </div>
+        <span class="field-hint">Added to amount financed, affects APR</span>
+      </div>
+      <div class="field">
+        <label for="auto-extra">Extra Monthly Payment</label>
+        <div class="input-wrap"><span class="input-prefix">$</span>
+          <input type="number" id="auto-extra" class="has-prefix" value="0" min="0" step="25">
+        </div>
+      </div>
+      <div class="field">
+        <label for="auto-start">First Payment Date</label>
+        <input type="month" id="auto-start">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcAutoLoan()">Calculate Car Payment →</button>
+
+    <div class="results" id="auto-results">
+      <div class="results-header">Monthly Payment</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Monthly Payment</div>
+          <div class="result-value" id="r-a-monthly">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Amount Financed</div>
+          <div class="result-value" id="r-a-financed">—</div>
+        </div>
+        <div class="result-item red">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="r-a-interest">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Cost (inc. tax & fees)</div>
+          <div class="result-value" id="r-a-total">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item amber">
+          <div class="result-label">True APR</div>
+          <div class="result-value" id="r-a-apr">—</div>
+          <div class="result-sub">including fees</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Payoff Date</div>
+          <div class="result-value" id="r-a-payoff">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Sales Tax</div>
+          <div class="result-value" id="r-a-tax">—</div>
+        </div>
+        <div class="result-item" id="r-a-extra-block" style="display:none">
+          <div class="result-label">Interest Saved (extra pmt)</div>
+          <div class="result-value" id="r-a-saved">—</div>
+        </div>
+      </div>
+
+      <div id="auto-insight" class="insight"><div class="insight-icon">💡</div><div id="auto-insight-text"></div></div>
+
+      <div class="breakdown-wrap" style="margin-top:14px;max-height:320px;overflow-y:auto">
+        <div class="breakdown-title">Amortisation Schedule</div>
+        <table class="breakdown-table">
+          <thead><tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+          <tbody id="auto-amort-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Auto Loan Calculator</h2>
+  <p>Enter the vehicle price, any down payment or trade-in value, your sales tax rate, and the loan's APR and term. The calculator rolls sales tax and dealer fees into the amount financed by default — the most common real-world scenario — and shows your monthly payment, total interest, true APR, and a full amortisation schedule. Add an extra monthly payment to see how much interest you'd save.</p>
+
+  <h3>Auto Loan vs. Personal Loan</h3>
+  <p>Auto loans are secured against the vehicle itself, which is why their rates are typically lower than unsecured personal loans. They also involve extra variables a generic loan calculator doesn't account for — trade-in value, sales tax, and dealer fees — all of which affect the actual amount you finance. If you're comparing a vehicle purchase against a personal loan or just want a simpler payment estimate without these vehicle-specific factors, the <a href="loan.html">general Loan Calculator</a> covers personal, student, and other loan types.</p>
+
+  <h3>Typical Auto Loan Interest Rates (2024–2025)</h3>
+  <ul>
+    <li><strong>New car, excellent credit (720+):</strong> 5%–7%</li>
+    <li><strong>New car, average credit (660–719):</strong> 7%–10%</li>
+    <li><strong>Used car, excellent credit (720+):</strong> 6%–9%</li>
+    <li><strong>Used car, average credit (660–719):</strong> 9%–13%</li>
+    <li><strong>Subprime credit (below 600):</strong> 14%–21%+</li>
+  </ul>
+
+  <h3>How Much Should My Car Payment Be?</h3>
+  <p>A common budgeting guideline is the 20/4/10 rule: put at least 20% down, finance for no more than 4 years, and keep total monthly vehicle costs (payment, insurance, fuel) under 10% of your gross monthly income. It's a guideline, not a hard rule, but it's a useful sanity check against payments that look affordable today but stretch your budget over a 6- or 7-year term.</p>
+
+  <div class="faq-item"><div class="faq-q">What's a good APR for a car loan?</div><div class="faq-a"><p>As of 2024–2025, well-qualified buyers (credit score 720+) typically see new car APRs of 5%–7% and used car APRs of 6%–9%. Below a 660 credit score, rates often climb to 12% or higher, and subprime borrowers can see APRs above 20%.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Should I include sales tax in my car loan calculation?</div><div class="faq-a"><p>Most buyers finance sales tax as part of the loan rather than paying it upfront. This calculator rolls sales tax into the amount financed by default, which is the most common real-world scenario, but you can set the tax rate to 0% if you plan to pay it separately.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How does a down payment affect my car loan?</div><div class="faq-a"><p>A larger down payment reduces the amount financed, which lowers your monthly payment and total interest paid. It also reduces the risk of being "upside down" (owing more than the car is worth) since vehicles depreciate quickly in the first few years.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What's the difference between a car loan and a lease?</div><div class="faq-a"><p>With a car loan, you're financing the full purchase price and own the vehicle once it's paid off. With a lease, you're effectively paying for the vehicle's depreciation over a fixed term and returning it at the end, typically with lower monthly payments but no ownership equity.</p></div></div>
+
+  <h3>Related Calculators</h3>
+  <ul>
+    <li><a href="loan.html">Loan Calculator</a></li>
+    <li><a href="loan-comparison.html">Loan Comparison Calculator</a></li>
+    <li><a href="credit-card-payoff.html">Credit Card Payoff Calculator</a></li>
+    <li><a href="fuel-cost.html">Fuel Cost Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+// Set default start month
+(function(){
+  var now = new Date();
+  now.setMonth(now.getMonth()+1);
+  var str = now.getFullYear()+'-'+(now.getMonth()+1).toString().padStart(2,'0');
+  document.getElementById('auto-start').value = str;
+})();
+
+function calcAutoLoan(){
+  var price   = v('auto-price');
+  var down    = v('auto-down');
+  var tradeIn = v('auto-tradein');
+  var taxRate = v('auto-tax') / 100;
+  var rate    = v('auto-rate') / 100 / 12;
+  var n       = Math.round(v('auto-term'));
+  var fees    = v('auto-fees');
+  var extra   = v('auto-extra');
+  var startVal = vs('auto-start');
+
+  var taxableAmount = Math.max(0, price - tradeIn);
+  var salesTax = taxableAmount * taxRate;
+  var P = price - down - tradeIn + salesTax + fees;
+
+  if(P <= 0 || n < 1){ showToast('Please enter valid loan details'); return; }
+
+  // Monthly payment
+  var payment;
+  if(rate === 0){ payment = P / n; }
+  else { payment = P * (rate * Math.pow(1+rate,n)) / (Math.pow(1+rate,n)-1); }
+
+  // Amortise with extra payments
+  var bal = P, totalInt = 0, months = 0, rows = [];
+  while(bal > 0.005 && months < n*2){
+    var intPmt = bal * rate;
+    var prinPmt = Math.min(bal, payment - intPmt + extra);
+    if(rate === 0) prinPmt = Math.min(bal, P/n + extra);
+    if(prinPmt <= 0){ showToast('Payment too small to cover interest'); return; }
+    bal = Math.max(0, bal - prinPmt);
+    totalInt += intPmt;
+    months++;
+    rows.push({ mo:months, pay:payment+extra, prin:prinPmt, int:intPmt, bal:bal });
+    if(bal === 0) break;
+  }
+
+  // Without extra (for comparison)
+  var totalIntNoExtra = 0;
+  if(extra > 0){
+    var bal2 = P, m2 = 0;
+    while(bal2 > 0.005 && m2 < n*2){
+      var i2 = bal2*rate;
+      var pp2 = Math.min(bal2, payment - i2);
+      if(rate===0) pp2 = Math.min(bal2, P/n);
+      totalIntNoExtra += i2; bal2 = Math.max(0, bal2-pp2); m2++;
+      if(bal2===0) break;
+    }
+  }
+
+  // True APR (Newton's method approximation) — fees treated as cost, not benefit
+  var trueCost = P - fees;
+  var aprRate = rate;
+  for(var i=0;i<50;i++){
+    if(aprRate === 0) break;
+    var f = trueCost - payment * (1-Math.pow(1+aprRate,-n)) / aprRate;
+    var df = payment * (1-Math.pow(1+aprRate,-n)) / (aprRate*aprRate) - payment * n * Math.pow(1+aprRate,-n-1) / aprRate;
+    aprRate = aprRate - f/df;
+    if(aprRate < 0) { aprRate = rate; break; }
+  }
+  var apr = aprRate * 12 * 100;
+
+  // Payoff date
+  var startDate = startVal ? new Date(startVal+'-01') : new Date();
+  var payoffDate = new Date(startDate);
+  payoffDate.setMonth(payoffDate.getMonth() + months);
+
+  setEl('r-a-monthly',  fmtCur(payment + extra));
+  setEl('r-a-financed', fmtCur(P));
+  setEl('r-a-interest', fmtCur(totalInt));
+  setEl('r-a-total',    fmtCur(price - down - tradeIn + salesTax + fees + totalInt));
+  setEl('r-a-apr',      fmtPct(apr));
+  setEl('r-a-payoff',   payoffDate.toLocaleDateString('en-US',{year:'numeric',month:'short'}));
+  setEl('r-a-tax',      fmtCur(salesTax));
+
+  if(extra > 0){
+    document.getElementById('r-a-extra-block').style.display='';
+    setEl('r-a-saved', fmtCur(totalIntNoExtra - totalInt));
+  }
+
+  var equityPct = price > 0 ? ((down + tradeIn) / price * 100) : 0;
+  document.getElementById('auto-insight-text').innerHTML =
+    equityPct < 10 ? '<strong>Low upfront equity:</strong> Your down payment and trade-in cover only <strong>'+fmtPct(equityPct)+'</strong> of the vehicle price. New vehicles depreciate quickly, so a low starting equity raises the risk of owing more than the car is worth (being "upside down") for the first year or two.'
+    : '<strong>Total interest:</strong> <strong>'+fmtCur(totalInt)+'</strong> over the life of the loan. Your down payment and trade-in cover <strong>'+fmtPct(equityPct)+'</strong> of the vehicle price, which helps protect against early depreciation.';
+
+  // Build amort table (show monthly for loans up to 5 years, annual summary beyond)
+  var tbody = document.getElementById('auto-amort-body');
+  var showRows = rows.length <= 60 ? rows : rows.filter(function(_,i){ return (i+1)%12===0||i===rows.length-1; });
+  tbody.innerHTML = showRows.map(function(r){
+    return '<tr><td class="td-mono">'+(rows.length>60?'Yr '+Math.ceil(r.mo/12):r.mo)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.pay)+'</td>'
+      +'<td class="td-mono td-green">'+fmtCur(r.prin)+'</td>'
+      +'<td class="td-mono td-red">'+fmtCur(r.int)+'</td>'
+      +'<td class="td-mono">'+fmtCur(r.bal)+'</td></tr>';
+  }).join('');
+}
+</script>
+</body>
+</html>
