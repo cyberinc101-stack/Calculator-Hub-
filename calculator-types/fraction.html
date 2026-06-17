@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fraction Calculator — Add, Subtract, Multiply & Divide Fractions | CalcHub</title>
+<meta name="description" content="Free fraction calculator. Add, subtract, multiply, and divide fractions or mixed numbers. Results auto-simplified with step-by-step working shown. Supports whole numbers and improper fractions.">
+<meta name="keywords" content="fraction calculator,add fractions,subtract fractions,multiply fractions,divide fractions,simplify fractions,mixed number calculator,improper fraction calculator,fraction simplifier,how to add fractions">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/fraction.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Fraction Calculator","description":"Add, subtract, multiply, and divide fractions with step-by-step working and automatic simplification.","url":"https://yourdomain.com/calculator-types/fraction.html","applicationCategory":"EducationApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Operation selector tabs ── */
+.mode-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
+}
+.mode-tab{
+  padding:8px 18px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
+  background:transparent;color:var(--text-2);transition:all .15s;
+}
+.mode-tab.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+
+/* ── Visual fraction display ── */
+.frac-input-grid{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:12px;align-items:center;margin-bottom:18px;
+}
+.frac-op-symbol{
+  font-size:2rem;font-weight:700;
+  color:var(--accent,#22c55e);
+  font-family:var(--font-mono);
+  text-align:center;
+  line-height:1;
+}
+.frac-entry{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+}
+.frac-entry-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-2);margin-bottom:10px;
+}
+.frac-whole-row{
+  display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:6px;
+}
+.frac-whole-row label{
+  font-size:.72rem;color:var(--text-2);white-space:nowrap;
+}
+.frac-stack{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.frac-line{
+  width:100%;height:2px;background:var(--card-border,#1e3a1e);
+  border-radius:2px;margin:4px 0;
+}
+.frac-num-input{
+  width:60px;text-align:center;
+  padding:6px 4px;
+  font-family:var(--font-mono);font-size:1.05rem;font-weight:600;
+  background:var(--bg,#0a0f0a);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:6px;
+  color:var(--text,#e8f5e9);
+}
+.frac-num-input:focus{
+  outline:none;border-color:var(--accent,#22c55e);
+}
+.frac-denom-label{
+  font-size:.7rem;color:var(--text-2);margin-top:2px;
+}
+
+/* ── Big answer display ── */
+.frac-answer{
+  text-align:center;padding:28px 20px 20px;
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:14px;margin-bottom:14px;
+}
+.frac-answer-visual{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:12px;margin-bottom:8px;
+}
+.frac-display{
+  display:flex;flex-direction:column;align-items:center;
+}
+.frac-display-num{
+  font-family:var(--font-mono);font-size:clamp(1.8rem,6vw,3rem);
+  font-weight:700;color:var(--accent,#22c55e);line-height:1.1;
+}
+.frac-display-line{
+  width:100%;height:3px;background:var(--accent,#22c55e);
+  border-radius:2px;margin:4px 0;
+}
+.frac-display-denom{
+  font-family:var(--font-mono);font-size:clamp(1.8rem,6vw,3rem);
+  font-weight:700;color:var(--accent,#22c55e);line-height:1.1;
+}
+.frac-whole-display{
+  font-family:var(--font-mono);font-size:clamp(1.8rem,6vw,3rem);
+  font-weight:700;color:var(--accent,#22c55e);line-height:1;
+  align-self:center;
+}
+.frac-answer-decimal{
+  font-size:.9rem;color:var(--text-2);margin-top:4px;
+}
+.frac-answer-label{
+  font-size:.82rem;color:var(--text-2);margin-top:4px;
+}
+
+/* ── Steps box ── */
+.formula-box{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:10px;padding:14px 18px;margin-bottom:14px;
+}
+.formula-box-title{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-2);margin-bottom:8px;
+}
+.formula-step{
+  font-family:var(--font-mono);font-size:.88rem;
+  color:var(--text-2);margin:4px 0;line-height:1.6;
+}
+.formula-step b{ color:var(--accent,#22c55e); }
+
+/* ── Simplify mode ── */
+.simplify-wrap{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:12px;align-items:center;margin-bottom:18px;
+}
+.simplify-arrow{
+  font-size:1.6rem;color:var(--accent,#22c55e);
+  text-align:center;
+}
+
+@media(max-width:540px){
+  .frac-input-grid{ grid-template-columns:1fr; }
+  .frac-op-symbol{ font-size:1.5rem; transform:rotate(90deg); }
+  .simplify-wrap{ grid-template-columns:1fr; }
+  .simplify-arrow{ transform:rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">½ Fraction Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Fraction Calculator</h1>
+  <p class="hero-sub">Add, subtract, multiply, and divide fractions or mixed numbers. Every result is fully simplified with step-by-step working.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">½</div>
+    <div>
+      <div class="calc-card-title">Fraction Calculator</div>
+      <div class="calc-card-desc">Choose an operation — supports fractions, mixed numbers, and whole numbers</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Operation tabs -->
+    <div class="mode-tabs" id="frac-mode-tabs">
+      <button class="mode-tab active" onclick="setFracMode('add',this)">Add  (+)</button>
+      <button class="mode-tab" onclick="setFracMode('sub',this)">Subtract (−)</button>
+      <button class="mode-tab" onclick="setFracMode('mul',this)">Multiply (×)</button>
+      <button class="mode-tab" onclick="setFracMode('div',this)">Divide (÷)</button>
+      <button class="mode-tab" onclick="setFracMode('simplify',this)">Simplify</button>
+    </div>
+
+    <!-- Two-fraction input (add/sub/mul/div) -->
+    <div id="panel-two-frac">
+      <div class="frac-input-grid">
+        <!-- Fraction A -->
+        <div class="frac-entry">
+          <div class="frac-entry-label">First Fraction</div>
+          <div class="frac-whole-row">
+            <label>Whole</label>
+            <input class="frac-num-input" type="number" id="a-whole" value="0" min="0" step="1" style="width:50px">
+          </div>
+          <div class="frac-stack">
+            <input class="frac-num-input" type="number" id="a-num" value="1" step="1">
+            <div class="frac-line"></div>
+            <input class="frac-num-input" type="number" id="a-den" value="2" step="1" min="1">
+            <div class="frac-denom-label">numerator / denominator</div>
+          </div>
+        </div>
+        <!-- Operator -->
+        <div class="frac-op-symbol" id="op-symbol">+</div>
+        <!-- Fraction B -->
+        <div class="frac-entry">
+          <div class="frac-entry-label">Second Fraction</div>
+          <div class="frac-whole-row">
+            <label>Whole</label>
+            <input class="frac-num-input" type="number" id="b-whole" value="0" min="0" step="1" style="width:50px">
+          </div>
+          <div class="frac-stack">
+            <input class="frac-num-input" type="number" id="b-num" value="1" step="1">
+            <div class="frac-line"></div>
+            <input class="frac-num-input" type="number" id="b-den" value="3" step="1" min="1">
+            <div class="frac-denom-label">numerator / denominator</div>
+          </div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcFraction()">Calculate →</button>
+    </div>
+
+    <!-- Simplify-only input -->
+    <div id="panel-simplify" style="display:none">
+      <div class="frac-entry" style="max-width:220px;margin:0 auto 18px">
+        <div class="frac-entry-label">Fraction to Simplify</div>
+        <div class="frac-stack">
+          <input class="frac-num-input" type="number" id="s-num" value="12" step="1">
+          <div class="frac-line"></div>
+          <input class="frac-num-input" type="number" id="s-den" value="18" step="1" min="1">
+          <div class="frac-denom-label">numerator / denominator</div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSimplify()">Simplify →</button>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="frac-results">
+      <div class="frac-answer">
+        <div class="frac-answer-visual" id="frac-answer-visual">
+          <!-- injected by JS -->
+        </div>
+        <div class="frac-answer-decimal" id="frac-answer-decimal"></div>
+        <div class="frac-answer-label" id="frac-answer-label"></div>
+      </div>
+      <div class="formula-box">
+        <div class="formula-box-title">Step-by-step working</div>
+        <div id="frac-steps"></div>
+      </div>
+      <div id="frac-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="frac-insight-text"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate with Fractions</h2>
+  <p>A fraction represents a part of a whole. The top number (numerator) tells you how many parts you have; the bottom number (denominator) tells you how many equal parts the whole is divided into.</p>
+
+  <h3>Adding and Subtracting Fractions</h3>
+  <p>To add or subtract fractions, you must first find a common denominator — the lowest common multiple (LCM) of both denominators. Convert each fraction so both share that denominator, then add or subtract the numerators. Finally, simplify the result by dividing numerator and denominator by their greatest common factor (GCF).</p>
+
+  <h3>Multiplying Fractions</h3>
+  <p>Multiply the numerators together, then multiply the denominators together. Simplify the result. Example: ²⁄₃ × ³⁄₄ = ⁶⁄₁₂ = ½.</p>
+
+  <h3>Dividing Fractions</h3>
+  <p>To divide by a fraction, multiply by its reciprocal (flip numerator and denominator). Example: ²⁄₃ ÷ ⁴⁄₅ = ²⁄₃ × ⁵⁄₄ = ¹⁰⁄₁₂ = ⁵⁄₆.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What is a mixed number?</div>
+    <div class="faq-a"><p>A mixed number combines a whole number and a proper fraction, like 2½. To calculate with mixed numbers, convert them to improper fractions first: multiply the whole number by the denominator and add the numerator (so 2½ becomes ⁵⁄₂). This calculator handles that conversion automatically.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is simplifying a fraction?</div>
+    <div class="faq-a"><p>Simplifying (or reducing) a fraction means dividing both numerator and denominator by their greatest common factor until no common factor greater than 1 remains. For example, ¹²⁄₁₈ simplifies to ²⁄₃ because the GCF of 12 and 18 is 6.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is the lowest common denominator (LCD)?</div>
+    <div class="faq-a"><p>The LCD is the smallest number that is a multiple of both denominators. For ½ + ⅓, the LCD is 6 — so ½ becomes ³⁄₆ and ⅓ becomes ²⁄₆, giving ⁵⁄₆. Finding the LCD is the key step in adding and subtracting fractions.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ─────────────────────────────────────────────
+   State
+───────────────────────────────────────────── */
+var currentMode = 'add';
+var opSymbols   = { add:'+', sub:'−', mul:'×', div:'÷' };
+
+/* ─────────────────────────────────────────────
+   Mode switching
+───────────────────────────────────────────── */
+function setFracMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentMode = mode;
+
+  var isSimplify = mode === 'simplify';
+  document.getElementById('panel-two-frac').style.display = isSimplify ? 'none' : '';
+  document.getElementById('panel-simplify').style.display = isSimplify ? '' : 'none';
+
+  if(!isSimplify){
+    document.getElementById('op-symbol').textContent = opSymbols[mode];
+  }
+
+  // Hide results when switching modes
+  document.getElementById('frac-results').style.display = 'none';
+}
+
+/* ─────────────────────────────────────────────
+   Math helpers
+───────────────────────────────────────────── */
+function gcd(a, b){
+  a = Math.abs(a); b = Math.abs(b);
+  while(b){ var t = b; b = a % b; a = t; }
+  return a;
+}
+function lcm(a, b){ return Math.abs(a * b) / gcd(a, b); }
+
+function simplifyFrac(n, d){
+  if(d === 0) return { n: n, d: 0 };
+  var sign = (n < 0) !== (d < 0) ? -1 : 1;
+  n = Math.abs(n); d = Math.abs(d);
+  var g = gcd(n, d);
+  return { n: sign * (n / g), d: d / g };
+}
+
+// Convert mixed number entry to improper fraction { n, d }
+function toImproper(whole, num, den){
+  if(den === 0) return null;
+  var sign = whole < 0 ? -1 : 1;
+  whole = Math.abs(whole);
+  return { n: sign * (whole * den + num), d: den };
+}
+
+// Format fraction as mixed number string for display label
+function toMixed(n, d){
+  if(d === 0) return 'undefined';
+  var sign = n < 0 ? '-' : '';
+  n = Math.abs(n);
+  var whole = Math.floor(n / d);
+  var rem   = n % d;
+  if(rem === 0) return sign + whole;
+  if(whole === 0) return sign + n + '/' + d;
+  return sign + whole + ' ' + rem + '/' + d;
+}
+
+function decimalStr(n, d){
+  if(d === 0) return 'undefined';
+  var val = n / d;
+  return parseFloat(val.toFixed(6)).toString();
+}
+
+/* ─────────────────────────────────────────────
+   Build answer visual HTML
+───────────────────────────────────────────── */
+function buildFracHtml(n, d){
+  var sign = '';
+  if(n < 0){ sign = '<span class="frac-whole-display">−</span>'; n = Math.abs(n); }
+  var whole = Math.floor(n / d);
+  var rem   = n % d;
+  var html  = sign;
+  if(whole > 0){
+    html += '<span class="frac-whole-display">' + whole + '</span>';
+  }
+  if(rem > 0){
+    html += '<div class="frac-display">'
+          + '<span class="frac-display-num">' + rem + '</span>'
+          + '<div class="frac-display-line"></div>'
+          + '<span class="frac-display-denom">' + d + '</span>'
+          + '</div>';
+  } else if(whole === 0){
+    // result is 0
+    html += '<span class="frac-whole-display">0</span>';
+  }
+  return html;
+}
+
+/* ─────────────────────────────────────────────
+   Add a step line
+───────────────────────────────────────────── */
+function addStep(container, html){
+  var el = document.createElement('div');
+  el.className = 'formula-step';
+  el.innerHTML = html;
+  container.appendChild(el);
+}
+
+/* ─────────────────────────────────────────────
+   Main two-fraction calculation
+───────────────────────────────────────────── */
+function calcFraction(){
+  var aWhole = parseInt(document.getElementById('a-whole').value) || 0;
+  var aNum   = parseInt(document.getElementById('a-num').value)   || 0;
+  var aDen   = parseInt(document.getElementById('a-den').value)   || 1;
+  var bWhole = parseInt(document.getElementById('b-whole').value) || 0;
+  var bNum   = parseInt(document.getElementById('b-num').value)   || 0;
+  var bDen   = parseInt(document.getElementById('b-den').value)   || 1;
+
+  if(aDen === 0 || bDen === 0){ showToast('Denominator cannot be 0'); return; }
+
+  var a = toImproper(aWhole, aNum, aDen);
+  var b = toImproper(bWhole, bNum, bDen);
+
+  var stepsEl = document.getElementById('frac-steps');
+  stepsEl.innerHTML = '';
+
+  // Show conversion to improper if mixed
+  var aLabel = aWhole !== 0 ? aWhole + ' ' + aNum + '/' + aDen : aNum + '/' + aDen;
+  var bLabel = bWhole !== 0 ? bWhole + ' ' + bNum + '/' + bDen : bNum + '/' + bDen;
+
+  if(aWhole !== 0){
+    addStep(stepsEl, 'Convert ' + aWhole + ' ' + aNum + '/' + aDen + ' → <b>' + a.n + '/' + a.d + '</b>  (' + aWhole + '×' + aDen + '+' + aNum + '=' + a.n + ')');
+  }
+  if(bWhole !== 0){
+    addStep(stepsEl, 'Convert ' + bWhole + ' ' + bNum + '/' + bDen + ' → <b>' + b.n + '/' + b.d + '</b>  (' + bWhole + '×' + bDen + '+' + bNum + '=' + b.n + ')');
+  }
+
+  var rn, rd;
+
+  if(currentMode === 'add' || currentMode === 'sub'){
+    var lcd = lcm(a.d, b.d);
+    var aN2 = a.n * (lcd / a.d);
+    var bN2 = b.n * (lcd / b.d);
+    addStep(stepsEl, 'Find LCD of ' + a.d + ' and ' + b.d + ' → <b>LCD = ' + lcd + '</b>');
+    addStep(stepsEl, 'Convert: ' + a.n + '/' + a.d + ' = <b>' + aN2 + '/' + lcd + '</b>');
+    addStep(stepsEl, 'Convert: ' + b.n + '/' + b.d + ' = <b>' + bN2 + '/' + lcd + '</b>');
+    rn = currentMode === 'add' ? aN2 + bN2 : aN2 - bN2;
+    rd = lcd;
+    addStep(stepsEl, (currentMode === 'add' ? aN2 + ' + ' + bN2 : aN2 + ' − ' + bN2) + ' = <b>' + rn + '</b>  →  ' + rn + '/' + rd);
+  } else if(currentMode === 'mul'){
+    rn = a.n * b.n;
+    rd = a.d * b.d;
+    addStep(stepsEl, 'Multiply numerators: ' + a.n + ' × ' + b.n + ' = <b>' + rn + '</b>');
+    addStep(stepsEl, 'Multiply denominators: ' + a.d + ' × ' + b.d + ' = <b>' + rd + '</b>');
+    addStep(stepsEl, 'Result before simplification: <b>' + rn + '/' + rd + '</b>');
+  } else { // div
+    if(b.n === 0){ showToast('Cannot divide by zero'); return; }
+    rn = a.n * b.d;
+    rd = a.d * b.n;
+    addStep(stepsEl, 'Flip the second fraction: ' + b.n + '/' + b.d + ' → <b>' + b.d + '/' + b.n + '</b>');
+    addStep(stepsEl, 'Multiply: ' + a.n + '/' + a.d + ' × ' + b.d + '/' + b.n);
+    addStep(stepsEl, '= (' + a.n + '×' + b.d + ') / (' + a.d + '×' + b.n + ') = <b>' + rn + '/' + rd + '</b>');
+  }
+
+  // Simplify
+  var simplified = simplifyFrac(rn, rd);
+  var g = gcd(Math.abs(rn), Math.abs(rd));
+  if(g > 1){
+    addStep(stepsEl, 'GCF of ' + Math.abs(rn) + ' and ' + Math.abs(rd) + ' = <b>' + g + '</b>');
+    addStep(stepsEl, 'Simplify: ' + rn + '/' + rd + ' ÷ ' + g + '/' + g + ' = <b>' + simplified.n + '/' + simplified.d + '</b>');
+  } else {
+    addStep(stepsEl, 'Already in simplest form: <b>' + simplified.n + '/' + simplified.d + '</b>');
+  }
+
+  // Render answer
+  var visEl = document.getElementById('frac-answer-visual');
+  visEl.innerHTML = buildFracHtml(simplified.n, simplified.d);
+
+  document.getElementById('frac-answer-decimal').textContent =
+    '= ' + decimalStr(simplified.n, simplified.d) + ' (decimal)';
+  document.getElementById('frac-answer-label').textContent =
+    aLabel + ' ' + opSymbols[currentMode] + ' ' + bLabel + ' = ' + toMixed(simplified.n, simplified.d);
+
+  // Insight
+  var dec = simplified.n / simplified.d;
+  var insightText = '';
+  if(dec === Math.floor(dec)){
+    insightText = 'The result is a <strong>whole number</strong> — the fraction simplifies completely.';
+  } else if(simplified.d === 2){
+    insightText = 'The result is a <strong>half</strong> — it lies exactly between two whole numbers.';
+  } else {
+    insightText = 'As a decimal: <strong>' + decimalStr(simplified.n, simplified.d) + '</strong>. '
+      + 'The denominator <strong>' + simplified.d + '</strong> means the whole is divided into ' + simplified.d + ' equal parts.';
+  }
+  document.getElementById('frac-insight-text').innerHTML = insightText;
+
+  showRes('frac-results');
+}
+
+/* ─────────────────────────────────────────────
+   Simplify-only mode
+───────────────────────────────────────────── */
+function calcSimplify(){
+  var n = parseInt(document.getElementById('s-num').value);
+  var d = parseInt(document.getElementById('s-den').value);
+  if(isNaN(n) || isNaN(d) || d === 0){ showToast('Enter valid numbers (denominator cannot be 0)'); return; }
+
+  var stepsEl = document.getElementById('frac-steps');
+  stepsEl.innerHTML = '';
+
+  var g = gcd(Math.abs(n), Math.abs(d));
+  addStep(stepsEl, 'Find the GCF of ' + Math.abs(n) + ' and ' + Math.abs(d) + ' → <b>GCF = ' + g + '</b>');
+  addStep(stepsEl, 'Divide both by GCF: ' + n + '/' + d + ' ÷ ' + g + '/' + g);
+
+  var simplified = simplifyFrac(n, d);
+  addStep(stepsEl, '= <b>' + simplified.n + '/' + simplified.d + '</b>');
+
+  if(g === 1){
+    addStep(stepsEl, 'GCF is 1 — the fraction is <b>already in simplest form</b>.');
+  }
+
+  var visEl = document.getElementById('frac-answer-visual');
+  visEl.innerHTML = buildFracHtml(simplified.n, simplified.d);
+
+  document.getElementById('frac-answer-decimal').textContent =
+    '= ' + decimalStr(simplified.n, simplified.d) + ' (decimal)';
+  document.getElementById('frac-answer-label').textContent =
+    n + '/' + d + ' simplified = ' + toMixed(simplified.n, simplified.d);
+
+  var insightText = g > 1
+    ? 'Reduced by a factor of <strong>' + g + '</strong>. ' + n + '/' + d + ' → <strong>' + simplified.n + '/' + simplified.d + '</strong>.'
+    : '<strong>' + n + '/' + d + '</strong> is already fully simplified — no common factors to cancel.';
+  document.getElementById('frac-insight-text').innerHTML = insightText;
+
+  showRes('frac-results');
+}
+
+/* ── Auto-calculate on load ── */
+window.addEventListener('load', calcFraction);
+</script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Date Difference Calculator — Days, Weeks & Months Between Dates | CalcHub</title>
+<meta name="description" content="Free date difference calculator. Find the exact number of days, weeks, months, and years between any two dates. Includes business days, weekends, and countdown to future dates.">
+<meta name="keywords" content="date difference calculator,days between dates,how many days between two dates,date calculator,days until calculator,business days calculator,weeks between dates,months between dates,date duration calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/date-difference.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Date Difference Calculator","description":"Calculate the exact number of days, weeks, months, and years between any two dates, including business days.","url":"https://yourdomain.com/calculator-types/date-difference.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Mode tabs ── */
+.mode-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
+}
+.mode-tab{
+  padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
+  background:transparent;color:var(--text-2);transition:all .15s;
+}
+.mode-tab.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+
+/* ── Timeline bar ── */
+.timeline-bar{
+  position:relative;height:8px;
+  background:var(--card-border,#1e3a1e);
+  border-radius:999px;margin:18px 0 8px;overflow:hidden;
+}
+.timeline-fill{
+  height:100%;border-radius:999px;
+  background:var(--accent,#22c55e);
+  transition:width .6s ease;
+}
+.timeline-labels{
+  display:flex;justify-content:space-between;
+  font-size:.72rem;color:var(--text-2);margin-bottom:18px;
+}
+
+/* ── Big number stat cards ── */
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+.stat-card{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:12px;
+  padding:14px 12px;text-align:center;
+}
+.stat-card.highlight{
+  border-color:var(--accent,#22c55e);
+}
+.stat-value{
+  font-family:var(--font-mono);
+  font-size:clamp(1.4rem,4vw,2rem);
+  font-weight:700;
+  color:var(--accent,#22c55e);
+  line-height:1.1;
+}
+.stat-label{
+  font-size:.72rem;color:var(--text-2);
+  margin-top:4px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.05em;
+}
+
+/* ── Breakdown grid ── */
+.breakdown-detail{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:10px;padding:14px 18px;margin-bottom:14px;
+}
+.breakdown-detail-title{
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-2);margin-bottom:10px;
+}
+.detail-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:5px 0;border-bottom:1px solid var(--card-border,#1e3a1e);
+  font-size:.88rem;
+}
+.detail-row:last-child{ border-bottom:none; }
+.detail-row-label{ color:var(--text-2); }
+.detail-row-value{ font-family:var(--font-mono);color:var(--text);font-weight:600; }
+
+/* ── Add/subtract date mode ── */
+.add-date-grid{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:12px;align-items:center;margin-bottom:18px;
+}
+.add-date-mid{ text-align:center;color:var(--accent,#22c55e);font-size:1.4rem;font-weight:700; }
+
+/* ── Direction pill ── */
+.dir-pill-group{
+  display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;
+}
+.dir-pill{
+  padding:6px 14px;border-radius:999px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.8rem;font-weight:600;cursor:pointer;background:transparent;
+  color:var(--text-2);transition:all .15s;font-family:var(--font-sans);
+}
+.dir-pill.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+
+@media(max-width:480px){
+  .add-date-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📅 Date Difference Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Date Difference Calculator</h1>
+  <p class="hero-sub">Calculate the exact number of days, weeks, months, and years between any two dates — including business days and weekends.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📅</div>
+    <div>
+      <div class="calc-card-title">Date Difference Calculator</div>
+      <div class="calc-card-desc">Two modes — find the gap between dates, or add/subtract days</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Mode tabs -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="setDateMode('diff',this)">Between Two Dates</button>
+      <button class="mode-tab" onclick="setDateMode('add',this)">Add / Subtract Days</button>
+    </div>
+
+    <!-- ── MODE 1: Date Difference ── -->
+    <div id="panel-diff">
+      <div class="field-grid">
+        <div class="field">
+          <label for="date-start">Start Date</label>
+          <input type="date" id="date-start">
+        </div>
+        <div class="field">
+          <label for="date-end">End Date</label>
+          <input type="date" id="date-end">
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer;color:var(--text-2)">
+          <input type="checkbox" id="excl-ends" style="width:16px;height:16px;accent-color:var(--accent,#22c55e)">
+          Exclude start and end dates from count
+        </label>
+      </div>
+      <button class="calc-btn" onclick="calcDiff()">Calculate Difference →</button>
+    </div>
+
+    <!-- ── MODE 2: Add / Subtract Days ── -->
+    <div id="panel-add" style="display:none">
+      <div class="field-grid">
+        <div class="field">
+          <label for="add-base-date">Starting Date</label>
+          <input type="date" id="add-base-date">
+        </div>
+        <div class="field">
+          <label for="add-days">Number of Days</label>
+          <input type="number" id="add-days" value="30" min="0" step="1">
+        </div>
+      </div>
+      <div class="dir-pill-group">
+        <button class="dir-pill active" id="pill-add" onclick="setDir('add',this)">Add days →</button>
+        <button class="dir-pill" id="pill-sub" onclick="setDir('sub',this)">← Subtract days</button>
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer;color:var(--text-2)">
+          <input type="checkbox" id="skip-weekends" style="width:16px;height:16px;accent-color:var(--accent,#22c55e)">
+          Count business days only (skip weekends)
+        </label>
+      </div>
+      <button class="calc-btn" onclick="calcAdd()">Calculate Date →</button>
+    </div>
+
+    <!-- Results: Difference mode -->
+    <div class="results" id="diff-results">
+      <div id="diff-direction-badge" style="text-align:center;margin-bottom:12px;font-size:.82rem;font-weight:600"></div>
+
+      <!-- Timeline -->
+      <div class="timeline-bar"><div class="timeline-fill" id="timeline-fill" style="width:0%"></div></div>
+      <div class="timeline-labels">
+        <span id="tl-start-label"></span>
+        <span id="tl-end-label"></span>
+      </div>
+
+      <!-- Big stats -->
+      <div class="stat-grid">
+        <div class="stat-card highlight">
+          <div class="stat-value" id="r-total-days">—</div>
+          <div class="stat-label">Total Days</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-weeks">—</div>
+          <div class="stat-label">Weeks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-months">—</div>
+          <div class="stat-label">Months</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-years">—</div>
+          <div class="stat-label">Years</div>
+        </div>
+      </div>
+
+      <!-- Detailed breakdown -->
+      <div class="breakdown-detail">
+        <div class="breakdown-detail-title">Detailed Breakdown</div>
+        <div class="detail-row">
+          <span class="detail-row-label">Exact duration</span>
+          <span class="detail-row-value" id="r-exact"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Business days (Mon–Fri)</span>
+          <span class="detail-row-value" id="r-biz"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Weekend days (Sat–Sun)</span>
+          <span class="detail-row-value" id="r-wknd"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Complete weeks</span>
+          <span class="detail-row-value" id="r-full-weeks"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Remaining days</span>
+          <span class="detail-row-value" id="r-rem-days"></span>
+        </div>
+      </div>
+
+      <div id="diff-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="diff-insight-text"></div>
+      </div>
+    </div>
+
+    <!-- Results: Add/Subtract mode -->
+    <div class="results" id="add-results">
+      <div class="frac-answer" style="text-align:center;padding:28px 20px 20px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px">
+        <div style="font-family:var(--font-mono);font-size:clamp(1.6rem,5vw,2.8rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:6px" id="r-result-date">—</div>
+        <div style="font-size:.85rem;color:var(--text-2)" id="r-result-dayname"></div>
+      </div>
+      <div class="breakdown-detail">
+        <div class="breakdown-detail-title">Breakdown</div>
+        <div class="detail-row">
+          <span class="detail-row-label">Starting date</span>
+          <span class="detail-row-value" id="r-add-start"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Days added/subtracted</span>
+          <span class="detail-row-value" id="r-add-days-used"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Result date</span>
+          <span class="detail-row-value" id="r-add-end"></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label">Day of week</span>
+          <span class="detail-row-value" id="r-add-dow"></span>
+        </div>
+      </div>
+      <div id="add-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="add-insight-text"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate the Difference Between Two Dates</h2>
+  <p>The simplest approach is to count the number of days from the start date to the end date. To convert that into weeks, divide by 7. For months and years, you need to account for the varying lengths of months (28–31 days) and leap years, which is why a calculator is more reliable than mental arithmetic.</p>
+
+  <h3>What Are Business Days?</h3>
+  <p>Business days (also called working days) are Monday through Friday, excluding weekends. They don't automatically exclude public holidays — those vary by country and region. The business day count above excludes Saturdays and Sundays only.</p>
+
+  <h3>When Would I Add or Subtract Days from a Date?</h3>
+  <p>Common uses: calculating a payment due date, determining a deadline (e.g. "30 business days from today"), finding a date 90 days from an event, or working out a lease end date. The Add / Subtract tab handles all of these.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">How do leap years affect date calculations?</div>
+    <div class="faq-a"><p>A leap year adds an extra day (Feb 29) to the calendar every 4 years, with exceptions for century years not divisible by 400. This calculator accounts for leap years automatically — so a span crossing Feb 29 will correctly include that day in the total count.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Why might months and years not be whole numbers?</div>
+    <div class="faq-a"><p>Because months have different lengths (28–31 days), expressing a duration in months can produce a decimal. For example, 45 days is roughly 1.48 months. The calculator shows the exact breakdown of complete years, complete months, and remaining days to avoid ambiguity.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Does the calculator include the start and end dates in the count?</div>
+    <div class="faq-a"><p>By default, the day count is inclusive of the start date but exclusive of the end date — the standard mathematical interpretation. If you need to count both endpoints (as you might for event duration), tick the "Exclude start and end dates" option and add 2, or use the result as-is for total elapsed days.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ─────────────────────────────────────────────
+   Helpers
+───────────────────────────────────────────── */
+var DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var MONTHS = ['January','February','March','April','May','June',
+              'July','August','September','October','November','December'];
+
+function parseDate(id){
+  var v = document.getElementById(id).value;
+  if(!v) return null;
+  var parts = v.split('-');
+  return new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
+}
+
+function fmtDate(d){
+  return DAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+}
+function fmtDateShort(d){
+  return d.getDate() + ' ' + MONTHS[d.getMonth()].slice(0,3) + ' ' + d.getFullYear();
+}
+function fmtDateInput(d){
+  var y = d.getFullYear();
+  var m = String(d.getMonth()+1).padStart(2,'0');
+  var dd = String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+dd;
+}
+
+function totalDaysBetween(a, b){
+  return Math.round((b - a) / 86400000);
+}
+
+function countBusinessDays(start, end){
+  var count = 0;
+  var cur = new Date(start);
+  while(cur < end){
+    var dow = cur.getDay();
+    if(dow !== 0 && dow !== 6) count++;
+    cur.setDate(cur.getDate() + 1);
+  }
+  return count;
+}
+
+// Add N business days to a date
+function addBusinessDays(start, n){
+  var d = new Date(start);
+  var added = 0;
+  var dir = n >= 0 ? 1 : -1;
+  n = Math.abs(n);
+  while(added < n){
+    d.setDate(d.getDate() + dir);
+    var dow = d.getDay();
+    if(dow !== 0 && dow !== 6) added++;
+  }
+  return d;
+}
+
+function exactDuration(start, end){
+  // Returns { years, months, days }
+  var y = end.getFullYear() - start.getFullYear();
+  var m = end.getMonth()    - start.getMonth();
+  var d = end.getDate()     - start.getDate();
+  if(d < 0){
+    m--;
+    var prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    d += prevMonth.getDate();
+  }
+  if(m < 0){ y--; m += 12; }
+  return { years:y, months:m, days:d };
+}
+
+function pluralise(n, word){
+  return n + ' ' + word + (n === 1 ? '' : 's');
+}
+
+/* ─────────────────────────────────────────────
+   Mode / direction switching
+───────────────────────────────────────────── */
+var currentDateMode = 'diff';
+var addDirection    = 'add';
+
+function setDateMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentDateMode = mode;
+  document.getElementById('panel-diff').style.display  = mode === 'diff' ? '' : 'none';
+  document.getElementById('panel-add').style.display   = mode === 'add'  ? '' : 'none';
+  document.getElementById('diff-results').style.display = 'none';
+  document.getElementById('add-results').style.display  = 'none';
+}
+
+function setDir(dir, btn){
+  document.querySelectorAll('.dir-pill').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  addDirection = dir;
+}
+
+/* ─────────────────────────────────────────────
+   MODE 1: Date Difference
+───────────────────────────────────────────── */
+function calcDiff(){
+  var start = parseDate('date-start');
+  var end   = parseDate('date-end');
+  if(!start || !end){ showToast('Please select both dates'); return; }
+
+  var exclEnds = document.getElementById('excl-ends').checked;
+  var s = new Date(start);
+  var e = new Date(end);
+  if(exclEnds){
+    s.setDate(s.getDate() + 1);
+    e.setDate(e.getDate() - 1);
+  }
+
+  var forward = e >= s;
+  var a = forward ? s : e;
+  var b = forward ? e : s;
+
+  var totalDays  = totalDaysBetween(a, b);
+  var bizDays    = countBusinessDays(a, b);
+  var wkndDays   = totalDays - bizDays;
+  var fullWeeks  = Math.floor(totalDays / 7);
+  var remDays    = totalDays % 7;
+  var exact      = exactDuration(a, b);
+
+  // Build exact string
+  var exactParts = [];
+  if(exact.years  > 0) exactParts.push(pluralise(exact.years,'year'));
+  if(exact.months > 0) exactParts.push(pluralise(exact.months,'month'));
+  if(exact.days   > 0) exactParts.push(pluralise(exact.days,'day'));
+  var exactStr = exactParts.length ? exactParts.join(', ') : '0 days';
+
+  // Timeline: show progress through a "year's worth" capped at 100%
+  var fillPct = Math.min(100, (totalDays / 365 * 100)).toFixed(1);
+
+  document.getElementById('timeline-fill').style.width = fillPct + '%';
+  document.getElementById('tl-start-label').textContent = fmtDateShort(a);
+  document.getElementById('tl-end-label').textContent   = fmtDateShort(b);
+
+  var badge = document.getElementById('diff-direction-badge');
+  if(!forward && totalDays > 0){
+    badge.textContent = '⚠️ Start date is after end date — showing absolute difference';
+    badge.style.color = '#f59e0b';
+  } else {
+    badge.textContent = '';
+  }
+
+  // Stats
+  setEl('r-total-days', totalDays.toLocaleString());
+  setEl('r-weeks',  (totalDays / 7).toFixed(1));
+  setEl('r-months', (totalDays / 30.4375).toFixed(1));
+  setEl('r-years',  (totalDays / 365.25).toFixed(2));
+
+  // Detail rows
+  setEl('r-exact',      exactStr);
+  setEl('r-biz',        bizDays.toLocaleString() + ' days');
+  setEl('r-wknd',       wkndDays.toLocaleString() + ' days');
+  setEl('r-full-weeks', fullWeeks.toLocaleString() + ' weeks');
+  setEl('r-rem-days',   remDays + ' days');
+
+  // Insight
+  var insightHtml = '';
+  var now = new Date(); now.setHours(0,0,0,0);
+  var origEnd = forward ? e : s;
+  if(origEnd > now){
+    var daysUntil = totalDaysBetween(now, origEnd);
+    insightHtml = 'That date is <strong>' + pluralise(daysUntil,'day') + '</strong> from today '
+      + '(' + pluralise(Math.floor(daysUntil/7),'week') + ' and ' + (daysUntil%7) + ' days).';
+  } else if(totalDays >= 365){
+    insightHtml = 'This span covers roughly <strong>' + (totalDays/365.25).toFixed(1) + ' years</strong>. '
+      + 'It includes <strong>' + bizDays.toLocaleString() + ' working days</strong>.';
+  } else {
+    insightHtml = '<strong>' + totalDays + ' days</strong> = <strong>'
+      + bizDays + ' business days</strong> + <strong>' + wkndDays + ' weekend days</strong>.';
+  }
+  document.getElementById('diff-insight-text').innerHTML = insightHtml;
+
+  showRes('diff-results');
+}
+
+/* ─────────────────────────────────────────────
+   MODE 2: Add / Subtract Days
+───────────────────────────────────────────── */
+function calcAdd(){
+  var base = parseDate('add-base-date');
+  var days = parseInt(document.getElementById('add-days').value);
+  if(!base){ showToast('Please select a starting date'); return; }
+  if(isNaN(days) || days < 0){ showToast('Enter a valid number of days'); return; }
+
+  var skipWknd = document.getElementById('skip-weekends').checked;
+  var dir      = addDirection === 'add' ? 1 : -1;
+
+  var result;
+  if(skipWknd){
+    result = addBusinessDays(base, dir * days);
+  } else {
+    result = new Date(base);
+    result.setDate(result.getDate() + dir * days);
+  }
+
+  var dirWord  = addDirection === 'add' ? '+' : '−';
+  var dayType  = skipWknd ? 'business days' : 'calendar days';
+
+  setEl('r-result-date',    fmtDate(result));
+  setEl('r-result-dayname', DAYS[result.getDay()]);
+  setEl('r-add-start',      fmtDateShort(base));
+  setEl('r-add-days-used',  dirWord + days + ' ' + dayType);
+  setEl('r-add-end',        fmtDateShort(result));
+  setEl('r-add-dow',        DAYS[result.getDay()]);
+
+  // Insight
+  var now = new Date(); now.setHours(0,0,0,0);
+  var fromNow = totalDaysBetween(now, result);
+  var insightHtml;
+  if(fromNow === 0){
+    insightHtml = 'The result is <strong>today</strong>.';
+  } else if(fromNow > 0){
+    insightHtml = 'That date is <strong>' + pluralise(fromNow,'day') + '</strong> from today.';
+  } else {
+    insightHtml = 'That date was <strong>' + pluralise(Math.abs(fromNow),'day') + '</strong> ago.';
+  }
+
+  var dow = result.getDay();
+  if(dow === 0 || dow === 6){
+    insightHtml += ' Note: the result falls on a <strong>weekend</strong>.';
+  }
+
+  document.getElementById('add-insight-text').innerHTML = insightHtml;
+
+  showRes('add-results');
+}
+
+/* ── Set today and a month from now as defaults ── */
+window.addEventListener('load', function(){
+  var today = new Date();
+  var future = new Date();
+  future.setDate(today.getDate() + 30);
+
+  document.getElementById('date-start').value    = fmtDateInput(today);
+  document.getElementById('date-end').value      = fmtDateInput(future);
+  document.getElementById('add-base-date').value = fmtDateInput(today);
+
+  calcDiff();
+});
+</script>
+</body>
+</html>

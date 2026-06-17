@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Electricity Cost Calculator — Appliance Running Cost & kWh Bill | CalcHub</title>
+<meta name="description" content="Free electricity cost calculator. Find the running cost of any appliance per hour, day, month, and year. Enter your kWh rate and wattage — instant results with a full cost breakdown.">
+<meta name="keywords" content="electricity cost calculator,appliance running cost calculator,kWh cost calculator,how much does it cost to run an appliance,electricity bill calculator,power cost calculator,watt to cost calculator,monthly electricity cost,energy cost calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/electricity-cost.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Electricity Cost Calculator","description":"Calculate the running cost of any appliance per hour, day, month, and year based on wattage and your electricity rate.","url":"https://yourdomain.com/calculator-types/electricity-cost.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Mode tabs ── */
+.mode-tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
+}
+.mode-tab{
+  padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
+  background:transparent;color:var(--text-2);transition:all .15s;
+}
+.mode-tab.active{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+
+/* ── Appliance quick-pick grid ── */
+.appliance-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:8px;margin-bottom:18px;
+}
+.appliance-chip{
+  padding:8px 6px;border-radius:10px;
+  border:1.5px solid var(--card-border,#1e3a1e);
+  background:transparent;cursor:pointer;
+  font-family:var(--font-sans);font-size:.75rem;
+  font-weight:600;color:var(--text-2);
+  text-align:center;transition:all .15s;
+  line-height:1.3;
+}
+.appliance-chip:hover{
+  border-color:var(--accent,#22c55e);color:var(--text);
+}
+.appliance-chip.selected{
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+}
+.appliance-chip .chip-icon{ display:block;font-size:1.2rem;margin-bottom:3px; }
+.appliance-chip .chip-watts{ display:block;font-size:.68rem;opacity:.7;font-weight:400; }
+
+/* ── Cost display ── */
+.cost-answer{
+  text-align:center;padding:24px 20px 18px;
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:14px;margin-bottom:14px;
+}
+.cost-main{
+  font-family:var(--font-mono);
+  font-size:clamp(2rem,7vw,3.5rem);
+  font-weight:700;color:var(--accent,#22c55e);
+  line-height:1;margin-bottom:6px;
+}
+.cost-sublabel{ font-size:.85rem;color:var(--text-2); }
+
+/* ── Stats grid ── */
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;margin-bottom:14px;
+}
+.stat-card{
+  background:var(--card,#111a11);
+  border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:12px;padding:14px 10px;text-align:center;
+}
+.stat-value{
+  font-family:var(--font-mono);
+  font-size:clamp(1.1rem,3vw,1.5rem);
+  font-weight:700;color:var(--accent,#22c55e);line-height:1.1;
+}
+.stat-label{
+  font-size:.7rem;color:var(--text-2);margin-top:4px;
+  font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+}
+
+/* ── Multi-appliance table ── */
+.multi-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:8px;align-items:center;
+  margin-bottom:8px;
+}
+.multi-row input[type="text"]{ font-size:.85rem; }
+.multi-row input[type="number"]{ font-size:.85rem; }
+.remove-btn{
+  background:transparent;border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:8px;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text-2);font-size:1rem;
+  transition:all .15s;flex-shrink:0;
+}
+.remove-btn:hover{ border-color:#ef4444;color:#ef4444; }
+.add-appliance-btn{
+  background:transparent;border:1.5px dashed var(--card-border,#1e3a1e);
+  border-radius:10px;padding:10px;width:100%;
+  font-family:var(--font-sans);font-size:.82rem;font-weight:600;
+  color:var(--text-2);cursor:pointer;transition:all .15s;
+  margin-bottom:18px;
+}
+.add-appliance-btn:hover{ border-color:var(--accent,#22c55e);color:var(--accent,#22c55e); }
+
+/* ── Multi table results ── */
+.multi-results-table{
+  width:100%;border-collapse:collapse;font-size:.83rem;
+  margin-bottom:14px;
+}
+.multi-results-table th{
+  text-align:left;padding:6px 8px;
+  font-size:.7rem;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-2);
+  border-bottom:1.5px solid var(--card-border,#1e3a1e);
+}
+.multi-results-table td{
+  padding:8px 8px;border-bottom:1px solid var(--card-border,#1e3a1e);
+  vertical-align:middle;
+}
+.multi-results-table tr:last-child td{ border-bottom:none; }
+.multi-results-table td:last-child,.multi-results-table th:last-child{
+  text-align:right;font-family:var(--font-mono);
+  color:var(--accent,#22c55e);font-weight:700;
+}
+.multi-total-row td{
+  font-weight:700;border-top:1.5px solid var(--card-border,#1e3a1e);
+  padding-top:10px;
+}
+
+.multi-row-labels{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:8px;margin-bottom:4px;
+}
+.multi-row-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-2);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚡ Electricity Cost Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Electricity Cost Calculator</h1>
+  <p class="hero-sub">Find out exactly what any appliance costs to run — per hour, day, month, and year. Pick from common appliances or enter your own wattage.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚡</div>
+    <div>
+      <div class="calc-card-title">Electricity Cost Calculator</div>
+      <div class="calc-card-desc">Single appliance or full household — enter your kWh rate once</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Mode tabs -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="setElMode('single',this)">Single Appliance</button>
+      <button class="mode-tab" onclick="setElMode('multi',this)">Multiple Appliances</button>
+    </div>
+
+    <!-- Shared: kWh rate -->
+    <div class="field-grid" style="margin-bottom:0">
+      <div class="field">
+        <label for="kwh-rate">Your Electricity Rate</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="kwh-rate" class="has-prefix" value="0.13" min="0.01" step="0.01">
+          <span class="input-suffix">per kWh</span>
+        </div>
+        <span class="field-hint">US avg ~$0.13; UK ~$0.28; AU ~$0.25 — check your bill</span>
+      </div>
+    </div>
+
+    <!-- ── SINGLE APPLIANCE MODE ── -->
+    <div id="panel-single" style="margin-top:18px">
+
+      <!-- Quick-pick chips -->
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:10px">Quick pick an appliance</div>
+      <div class="appliance-grid" id="appliance-chips"></div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="s-watts">Appliance Wattage</label>
+          <div class="input-wrap">
+            <input type="number" id="s-watts" value="100" min="1" step="1">
+            <span class="input-suffix">W</span>
+          </div>
+          <span class="field-hint">Found on the label, plug, or manual</span>
+        </div>
+        <div class="field">
+          <label for="s-hours">Hours Used Per Day</label>
+          <div class="input-wrap">
+            <input type="number" id="s-hours" value="4" min="0.1" max="24" step="0.5">
+            <span class="input-suffix">hrs/day</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calcSingle()">Calculate Cost →</button>
+
+      <div class="results" id="single-results">
+        <div class="cost-answer">
+          <div class="cost-main" id="r-month-cost">—</div>
+          <div class="cost-sublabel" id="r-month-label">per month</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="r-hour-cost">—</div>
+            <div class="stat-label">Per Hour</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-day-cost">—</div>
+            <div class="stat-label">Per Day</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-month-cost2">—</div>
+            <div class="stat-label">Per Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-year-cost">—</div>
+            <div class="stat-label">Per Year</div>
+          </div>
+        </div>
+        <div class="results-header">Energy Usage</div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="r-kwh-day">—</div>
+            <div class="stat-label">kWh / Day</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-kwh-month">—</div>
+            <div class="stat-label">kWh / Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-kwh-year">—</div>
+            <div class="stat-label">kWh / Year</div>
+          </div>
+        </div>
+        <div id="single-insight" class="insight">
+          <div class="insight-icon">💡</div>
+          <div id="single-insight-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MULTI APPLIANCE MODE ── -->
+    <div id="panel-multi" style="display:none;margin-top:18px">
+      <div class="multi-row-labels">
+        <div class="multi-row-label">Appliance</div>
+        <div class="multi-row-label">Watts</div>
+        <div class="multi-row-label">Hrs/day</div>
+        <div class="multi-row-label"></div>
+      </div>
+      <div id="multi-rows"></div>
+      <button class="add-appliance-btn" onclick="addMultiRow()">+ Add another appliance</button>
+      <button class="calc-btn" onclick="calcMulti()">Calculate All Costs →</button>
+
+      <div class="results" id="multi-results">
+        <div class="results-header">Cost Breakdown</div>
+        <table class="multi-results-table">
+          <thead>
+            <tr>
+              <th>Appliance</th>
+              <th>kWh/month</th>
+              <th>$/month</th>
+              <th>$/year</th>
+            </tr>
+          </thead>
+          <tbody id="multi-table-body"></tbody>
+        </table>
+        <div class="cost-answer" style="margin-top:4px">
+          <div class="cost-main" id="r-multi-total-year">—</div>
+          <div class="cost-sublabel">total per year for all appliances</div>
+        </div>
+        <div id="multi-insight" class="insight">
+          <div class="insight-icon">💡</div>
+          <div id="multi-insight-text"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate Electricity Cost</h2>
+  <p>The formula is: Cost = (Watts ÷ 1000) × Hours × kWh Rate. For example, a 1,500W electric heater running for 8 hours at $0.13/kWh costs (1500 ÷ 1000) × 8 × 0.13 = $1.56 for that session.</p>
+
+  <h3>What Is a kWh?</h3>
+  <p>A kilowatt-hour (kWh) is the standard unit of electricity measurement on your bill. It equals 1,000 watts used for one hour. A 100W light bulb running for 10 hours uses 1 kWh. Your electricity rate is expressed as a price per kWh — typically between $0.10 and $0.35 depending on your country and provider.</p>
+
+  <h3>How to Find Appliance Wattage</h3>
+  <p>Check the appliance label (usually on the back or bottom), the power plug, the original packaging, or the manufacturer's website. For devices that vary in power use (like laptops or TVs), use the maximum wattage as a conservative estimate. "Standby" power consumption is much lower — typically 1–5W — but adds up across many always-on devices.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What appliances use the most electricity?</div>
+    <div class="faq-a"><p>The biggest consumers are typically electric water heaters (2,000–4,500W), electric clothes dryers (4,000–6,000W), electric ovens (2,000–5,000W), air conditioners (1,000–5,000W), and electric space heaters (750–1,500W). In contrast, LED bulbs use just 8–15W and laptops typically 25–75W.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I find my electricity rate?</div>
+    <div class="faq-a"><p>Check your most recent electricity bill — the rate (price per kWh) is usually listed in the usage breakdown section. US average is around $0.13/kWh, UK around $0.28/kWh, and Australia around $0.25/kWh, though rates vary significantly by state/region and time of use.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Does standby power really matter?</div>
+    <div class="faq-a"><p>Yes — "vampire power" from devices left on standby can account for 5–10% of a typical household electricity bill. A TV on standby at 2W costs about $2.28/year, but if you have 20 such devices, that's over $45/year for doing nothing.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ─────────────────────────────────────────────
+   Appliance presets  { label, icon, watts, hours }
+───────────────────────────────────────────── */
+var APPLIANCES = [
+  { label:'LED Bulb',      icon:'💡', watts:10,   hours:5  },
+  { label:'Laptop',        icon:'💻', watts:50,   hours:8  },
+  { label:'Desktop PC',    icon:'🖥️', watts:200,  hours:6  },
+  { label:'TV (55")',      icon:'📺', watts:120,  hours:5  },
+  { label:'Fridge',        icon:'🧊', watts:150,  hours:24 },
+  { label:'Washing Machine',icon:'🫧',watts:500,  hours:1  },
+  { label:'Tumble Dryer',  icon:'🌀', watts:5000, hours:1  },
+  { label:'Dishwasher',    icon:'🍽️', watts:1800, hours:1  },
+  { label:'Microwave',     icon:'📡', watts:1000, hours:.5 },
+  { label:'Electric Oven', icon:'🔥', watts:3000, hours:1  },
+  { label:'Air Con',       icon:'❄️', watts:3500, hours:8  },
+  { label:'Space Heater',  icon:'♨️', watts:1500, hours:6  },
+  { label:'EV Charger',    icon:'🔋', watts:7200, hours:8  },
+  { label:'Phone Charger', icon:'📱', watts:15,   hours:2  }
+];
+
+var elMode = 'single';
+var selectedChip = null;
+
+/* ─────────────────────────────────────────────
+   Mode switch
+───────────────────────────────────────────── */
+function setElMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  elMode = mode;
+  document.getElementById('panel-single').style.display = mode === 'single' ? '' : 'none';
+  document.getElementById('panel-multi').style.display  = mode === 'multi'  ? '' : 'none';
+}
+
+/* ─────────────────────────────────────────────
+   Build appliance chip grid
+───────────────────────────────────────────── */
+function buildChips(){
+  var grid = document.getElementById('appliance-chips');
+  grid.innerHTML = '';
+  APPLIANCES.forEach(function(a, i){
+    var btn = document.createElement('button');
+    btn.className = 'appliance-chip';
+    btn.innerHTML = '<span class="chip-icon">' + a.icon + '</span>'
+      + a.label
+      + '<span class="chip-watts">' + a.watts + 'W</span>';
+    btn.onclick = function(){
+      document.querySelectorAll('.appliance-chip').forEach(function(c){ c.classList.remove('selected'); });
+      btn.classList.add('selected');
+      selectedChip = i;
+      document.getElementById('s-watts').value = a.watts;
+      document.getElementById('s-hours').value = a.hours;
+      calcSingle();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   Core: cost from watts, hours/day, rate
+───────────────────────────────────────────── */
+function costCalc(watts, hoursPerDay, ratePerKwh){
+  var kwhPerHour  = watts / 1000;
+  var kwhPerDay   = kwhPerHour * hoursPerDay;
+  var kwhPerMonth = kwhPerDay * 30.4375;
+  var kwhPerYear  = kwhPerDay * 365.25;
+  return {
+    perHour:  kwhPerHour  * ratePerKwh,
+    perDay:   kwhPerDay   * ratePerKwh,
+    perMonth: kwhPerMonth * ratePerKwh,
+    perYear:  kwhPerYear  * ratePerKwh,
+    kwhDay:   kwhPerDay,
+    kwhMonth: kwhPerMonth,
+    kwhYear:  kwhPerYear
+  };
+}
+
+function fmtCost(n){
+  if(n < 0.01) return (n * 100).toFixed(2) + '¢';
+  if(n < 1)    return (n * 100).toFixed(1) + '¢';
+  return '$' + n.toFixed(2);
+}
+function fmtCostLong(n){ return '$' + n.toFixed(2); }
+function fmtKwh(n){
+  return parseFloat(n.toFixed(n < 1 ? 3 : 2)).toString() + ' kWh';
+}
+
+/* ─────────────────────────────────────────────
+   MODE 1: Single appliance
+───────────────────────────────────────────── */
+function calcSingle(){
+  var watts = parseFloat(document.getElementById('s-watts').value);
+  var hours = parseFloat(document.getElementById('s-hours').value);
+  var rate  = parseFloat(document.getElementById('kwh-rate').value);
+  if(isNaN(watts)||isNaN(hours)||isNaN(rate)||watts<=0||hours<=0||rate<=0){
+    showToast('Enter valid numbers'); return;
+  }
+
+  var c = costCalc(watts, hours, rate);
+
+  setEl('r-month-cost',  fmtCostLong(c.perMonth));
+  setEl('r-month-label', watts + 'W × ' + hours + 'h/day @ $' + rate + '/kWh');
+  setEl('r-hour-cost',   fmtCost(c.perHour));
+  setEl('r-day-cost',    fmtCost(c.perDay));
+  setEl('r-month-cost2', fmtCostLong(c.perMonth));
+  setEl('r-year-cost',   fmtCostLong(c.perYear));
+  setEl('r-kwh-day',     fmtKwh(c.kwhDay));
+  setEl('r-kwh-month',   fmtKwh(c.kwhMonth));
+  setEl('r-kwh-year',    fmtKwh(c.kwhYear));
+
+  // Insight
+  var insight = '';
+  var yearRounded = Math.round(c.perYear * 100) / 100;
+  if(yearRounded < 5){
+    insight = 'Very low cost — this appliance adds less than <strong>$5/year</strong> to your bill. Not worth worrying about.';
+  } else if(yearRounded < 50){
+    insight = 'Moderate cost — <strong>' + fmtCostLong(c.perYear) + '/year</strong>. Reducing daily usage by 1 hour would save <strong>' + fmtCostLong(costCalc(watts, 1, rate).perYear) + '/year</strong>.';
+  } else {
+    var halfHours = costCalc(watts, hours / 2, rate);
+    insight = 'High cost appliance — <strong>' + fmtCostLong(c.perYear) + '/year</strong>. Halving daily use would save <strong>' + fmtCostLong(c.perYear - halfHours.perYear) + '/year</strong>.';
+  }
+  // Compare to LED if watts > 100
+  if(watts > 100){
+    var ledCost = costCalc(10, hours, rate);
+    if(watts > 400){
+      insight += ' For lighting, an equivalent LED at 10W would cost just <strong>' + fmtCostLong(ledCost.perYear) + '/year</strong> for the same hours.';
+    }
+  }
+  document.getElementById('single-insight-text').innerHTML = insight;
+
+  showRes('single-results');
+}
+
+/* ─────────────────────────────────────────────
+   MODE 2: Multi-appliance
+───────────────────────────────────────────── */
+var multiRowCount = 0;
+
+function addMultiRow(name, watts, hours){
+  multiRowCount++;
+  var id = 'mrow-' + multiRowCount;
+  var div = document.createElement('div');
+  div.className = 'multi-row';
+  div.id = id;
+  div.innerHTML =
+    '<input type="text" id="' + id + '-name" placeholder="Appliance name" value="' + (name||'') + '">'
+    + '<div class="input-wrap"><input type="number" id="' + id + '-watts" value="' + (watts||100) + '" min="1" step="1"><span class="input-suffix" style="padding:0 6px">W</span></div>'
+    + '<div class="input-wrap"><input type="number" id="' + id + '-hours" value="' + (hours||4) + '" min="0.1" max="24" step="0.5"><span class="input-suffix" style="padding:0 6px">h</span></div>'
+    + '<button class="remove-btn" onclick="removeMultiRow(\'' + id + '\')">✕</button>';
+  document.getElementById('multi-rows').appendChild(div);
+}
+
+function removeMultiRow(id){
+  var el = document.getElementById(id);
+  if(el) el.parentNode.removeChild(el);
+}
+
+function calcMulti(){
+  var rate = parseFloat(document.getElementById('kwh-rate').value);
+  if(isNaN(rate)||rate<=0){ showToast('Enter a valid kWh rate'); return; }
+
+  var rows = document.querySelectorAll('#multi-rows .multi-row');
+  if(rows.length === 0){ showToast('Add at least one appliance'); return; }
+
+  var items = [];
+  rows.forEach(function(row){
+    var id    = row.id;
+    var name  = document.getElementById(id + '-name').value.trim() || 'Appliance';
+    var watts = parseFloat(document.getElementById(id + '-watts').value);
+    var hours = parseFloat(document.getElementById(id + '-hours').value);
+    if(!isNaN(watts) && !isNaN(hours) && watts > 0 && hours > 0){
+      items.push({ name: name, watts: watts, hours: hours, c: costCalc(watts, hours, rate) });
+    }
+  });
+
+  if(items.length === 0){ showToast('Enter valid watts and hours for at least one appliance'); return; }
+
+  // Sort by annual cost descending for insight
+  var sorted = items.slice().sort(function(a,b){ return b.c.perYear - a.c.perYear; });
+  var totalYear  = items.reduce(function(s,i){ return s + i.c.perYear; }, 0);
+  var totalMonth = items.reduce(function(s,i){ return s + i.c.perMonth; }, 0);
+
+  // Build table
+  var tbody = document.getElementById('multi-table-body');
+  tbody.innerHTML = '';
+  items.forEach(function(item){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + escH(item.name) + '</td>'
+      + '<td style="font-family:var(--font-mono)">' + item.c.kwhMonth.toFixed(1) + '</td>'
+      + '<td style="font-family:var(--font-mono)">' + fmtCostLong(item.c.perMonth) + '</td>'
+      + '<td>' + fmtCostLong(item.c.perYear) + '</td>';
+    tbody.appendChild(tr);
+  });
+  // Total row
+  var trTotal = document.createElement('tr');
+  trTotal.className = 'multi-total-row';
+  trTotal.innerHTML = '<td>Total</td>'
+    + '<td style="font-family:var(--font-mono)">' + items.reduce(function(s,i){ return s + i.c.kwhMonth; },0).toFixed(1) + '</td>'
+    + '<td style="font-family:var(--font-mono)">' + fmtCostLong(totalMonth) + '</td>'
+    + '<td>' + fmtCostLong(totalYear) + '</td>';
+  tbody.appendChild(trTotal);
+
+  setEl('r-multi-total-year', fmtCostLong(totalYear));
+
+  // Insight: biggest offender
+  var top = sorted[0];
+  var topPct = (top.c.perYear / totalYear * 100).toFixed(0);
+  document.getElementById('multi-insight-text').innerHTML =
+    '<strong>' + escH(top.name) + '</strong> is your biggest cost at <strong>'
+    + fmtCostLong(top.c.perYear) + '/year</strong> ('
+    + topPct + '% of total). '
+    + (sorted.length > 1 ? 'Your top 2 appliances account for <strong>'
+      + ((top.c.perYear + sorted[1].c.perYear) / totalYear * 100).toFixed(0)
+      + '%</strong> of the total.' : '');
+
+  showRes('multi-results');
+}
+
+function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── Init ── */
+window.addEventListener('load', function(){
+  buildChips();
+  // Pre-load multi with 3 common appliances
+  addMultiRow('Fridge', 150, 24);
+  addMultiRow('TV (55")', 120, 5);
+  addMultiRow('LED Bulbs (x6)', 60, 5);
+  calcSingle();
+});
+</script>
+</body>
+</html>
