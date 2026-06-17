@@ -1,22 +1,2192 @@
 [
-  { "category": "Length", "from": "km", "fromFull": "Kilometers", "to": "miles", "toFull": "Miles", "factor": 0.621371, "offset": 0 },
-  { "category": "Length", "from": "miles", "fromFull": "Miles", "to": "km", "toFull": "Kilometers", "factor": 1.60934, "offset": 0 },
-  { "category": "Length", "from": "meters", "fromFull": "Meters", "to": "feet", "toFull": "Feet", "factor": 3.28084, "offset": 0 },
-  { "category": "Length", "from": "feet", "fromFull": "Feet", "to": "meters", "toFull": "Meters", "factor": 0.3048, "offset": 0 },
-  { "category": "Length", "from": "inches", "fromFull": "Inches", "to": "cm", "toFull": "Centimeters", "factor": 2.54, "offset": 0 },
-  { "category": "Length", "from": "cm", "fromFull": "Centimeters", "to": "inches", "toFull": "Inches", "factor": 0.393701, "offset": 0 },
-  { "category": "Weight", "from": "kg", "fromFull": "Kilograms", "to": "lbs", "toFull": "Pounds", "factor": 2.20462, "offset": 0 },
-  { "category": "Weight", "from": "lbs", "fromFull": "Pounds", "to": "kg", "toFull": "Kilograms", "factor": 0.453592, "offset": 0 },
-  { "category": "Weight", "from": "kg", "fromFull": "Kilograms", "to": "stone", "toFull": "Stone", "factor": 0.157473, "offset": 0 },
-  { "category": "Weight", "from": "stone", "fromFull": "Stone", "to": "kg", "toFull": "Kilograms", "factor": 6.35029, "offset": 0 },
-  { "category": "Weight", "from": "oz", "fromFull": "Ounces", "to": "grams", "toFull": "Grams", "factor": 28.3495, "offset": 0 },
-  { "category": "Weight", "from": "grams", "fromFull": "Grams", "to": "oz", "toFull": "Ounces", "factor": 0.035274, "offset": 0 },
-  { "category": "Temperature", "from": "celsius", "fromFull": "Celsius", "to": "fahrenheit", "toFull": "Fahrenheit", "factor": 1.8, "offset": 32 },
-  { "category": "Temperature", "from": "fahrenheit", "fromFull": "Fahrenheit", "to": "celsius", "toFull": "Celsius", "factor": 0.555556, "offset": -17.7778 },
-  { "category": "Volume", "from": "liters", "fromFull": "Liters", "to": "gallons", "toFull": "Gallons (US)", "factor": 0.264172, "offset": 0 },
-  { "category": "Volume", "from": "gallons", "fromFull": "Gallons (US)", "to": "liters", "toFull": "Liters", "factor": 3.78541, "offset": 0 },
-  { "category": "Volume", "from": "cups", "fromFull": "Cups", "to": "ml", "toFull": "Milliliters", "factor": 236.588, "offset": 0 },
-  { "category": "Volume", "from": "ml", "fromFull": "Milliliters", "to": "cups", "toFull": "Cups", "factor": 0.00422675, "offset": 0 },
-  { "category": "Speed", "from": "mph", "fromFull": "Miles per Hour", "to": "kmh", "toFull": "Kilometers per Hour", "factor": 1.60934, "offset": 0 },
-  { "category": "Speed", "from": "kmh", "fromFull": "Kilometers per Hour", "to": "mph", "toFull": "Miles per Hour", "factor": 0.621371, "offset": 0 }
+  {
+    "category": "Length",
+    "from": "km",
+    "fromFull": "Kilometers",
+    "to": "miles",
+    "toFull": "Miles",
+    "factor": 0.621371,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "miles",
+    "fromFull": "Miles",
+    "to": "km",
+    "toFull": "Kilometers",
+    "factor": 1.60934,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "feet",
+    "toFull": "Feet",
+    "factor": 3.28084,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "feet",
+    "fromFull": "Feet",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 0.3048,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "inches",
+    "fromFull": "Inches",
+    "to": "cm",
+    "toFull": "Centimeters",
+    "factor": 2.54,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "cm",
+    "fromFull": "Centimeters",
+    "to": "inches",
+    "toFull": "Inches",
+    "factor": 0.393701,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "yards",
+    "toFull": "Yards",
+    "factor": 1.09361,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "yards",
+    "fromFull": "Yards",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 0.9144,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "feet",
+    "fromFull": "Feet",
+    "to": "inches",
+    "toFull": "Inches",
+    "factor": 12,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "inches",
+    "fromFull": "Inches",
+    "to": "feet",
+    "toFull": "Feet",
+    "factor": 0.0833333,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "yards",
+    "fromFull": "Yards",
+    "to": "feet",
+    "toFull": "Feet",
+    "factor": 3,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "feet",
+    "fromFull": "Feet",
+    "to": "yards",
+    "toFull": "Yards",
+    "factor": 0.333333,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "miles",
+    "fromFull": "Miles",
+    "to": "feet",
+    "toFull": "Feet",
+    "factor": 5280,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "feet",
+    "fromFull": "Feet",
+    "to": "miles",
+    "toFull": "Miles",
+    "factor": 0.000189394,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "miles",
+    "fromFull": "Miles",
+    "to": "yards",
+    "toFull": "Yards",
+    "factor": 1760,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "yards",
+    "fromFull": "Yards",
+    "to": "miles",
+    "toFull": "Miles",
+    "factor": 0.000568182,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "mm",
+    "fromFull": "Millimeters",
+    "to": "cm",
+    "toFull": "Centimeters",
+    "factor": 0.1,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "cm",
+    "fromFull": "Centimeters",
+    "to": "mm",
+    "toFull": "Millimeters",
+    "factor": 10,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "mm",
+    "fromFull": "Millimeters",
+    "to": "inches",
+    "toFull": "Inches",
+    "factor": 0.0393701,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "inches",
+    "fromFull": "Inches",
+    "to": "mm",
+    "toFull": "Millimeters",
+    "factor": 25.4,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "km",
+    "toFull": "Kilometers",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "km",
+    "fromFull": "Kilometers",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "cm",
+    "toFull": "Centimeters",
+    "factor": 100,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "cm",
+    "fromFull": "Centimeters",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 0.01,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "nauticalmiles",
+    "fromFull": "Nautical Miles",
+    "to": "km",
+    "toFull": "Kilometers",
+    "factor": 1.852,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "km",
+    "fromFull": "Kilometers",
+    "to": "nauticalmiles",
+    "toFull": "Nautical Miles",
+    "factor": 0.539957,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "nauticalmiles",
+    "fromFull": "Nautical Miles",
+    "to": "miles",
+    "toFull": "Miles",
+    "factor": 1.15078,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "miles",
+    "fromFull": "Miles",
+    "to": "nauticalmiles",
+    "toFull": "Nautical Miles",
+    "factor": 0.868976,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "micrometers",
+    "fromFull": "Micrometers",
+    "to": "mm",
+    "toFull": "Millimeters",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "mm",
+    "fromFull": "Millimeters",
+    "to": "micrometers",
+    "toFull": "Micrometers",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "lightyears",
+    "fromFull": "Light-Years",
+    "to": "km",
+    "toFull": "Kilometers",
+    "factor": 9460730472580.8,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "km",
+    "fromFull": "Kilometers",
+    "to": "lightyears",
+    "toFull": "Light-Years",
+    "factor": 1.05702e-13,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "fathoms",
+    "fromFull": "Fathoms",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 1.8288,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "fathoms",
+    "toFull": "Fathoms",
+    "factor": 0.546807,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "furlongs",
+    "fromFull": "Furlongs",
+    "to": "meters",
+    "toFull": "Meters",
+    "factor": 201.168,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Length",
+    "from": "meters",
+    "fromFull": "Meters",
+    "to": "furlongs",
+    "toFull": "Furlongs",
+    "factor": 0.00497097,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "kg",
+    "fromFull": "Kilograms",
+    "to": "lbs",
+    "toFull": "Pounds",
+    "factor": 2.20462,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "lbs",
+    "fromFull": "Pounds",
+    "to": "kg",
+    "toFull": "Kilograms",
+    "factor": 0.453592,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "kg",
+    "fromFull": "Kilograms",
+    "to": "stone",
+    "toFull": "Stone",
+    "factor": 0.157473,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "stone",
+    "fromFull": "Stone",
+    "to": "kg",
+    "toFull": "Kilograms",
+    "factor": 6.35029,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "oz",
+    "fromFull": "Ounces",
+    "to": "grams",
+    "toFull": "Grams",
+    "factor": 28.3495,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "grams",
+    "fromFull": "Grams",
+    "to": "oz",
+    "toFull": "Ounces",
+    "factor": 0.035274,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Weight",
+    "from": "lbs",
+    "fromFull": "Pounds",
+    "to": "oz",
+    "toFull": "Ounces",
+    "factor": 16,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "oz",
+    "fromFull": "Ounces",
+    "to": "lbs",
+    "toFull": "Pounds",
+    "factor": 0.0625,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "stone",
+    "fromFull": "Stone",
+    "to": "lbs",
+    "toFull": "Pounds",
+    "factor": 14,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "lbs",
+    "fromFull": "Pounds",
+    "to": "stone",
+    "toFull": "Stone",
+    "factor": 0.0714286,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "grams",
+    "fromFull": "Grams",
+    "to": "kg",
+    "toFull": "Kilograms",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "kg",
+    "fromFull": "Kilograms",
+    "to": "grams",
+    "toFull": "Grams",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "tonnes",
+    "fromFull": "Metric Tonnes",
+    "to": "kg",
+    "toFull": "Kilograms",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "kg",
+    "fromFull": "Kilograms",
+    "to": "tonnes",
+    "toFull": "Metric Tonnes",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "tons",
+    "fromFull": "US Tons",
+    "to": "kg",
+    "toFull": "Kilograms",
+    "factor": 907.185,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "kg",
+    "fromFull": "Kilograms",
+    "to": "tons",
+    "toFull": "US Tons",
+    "factor": 0.00110231,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Weight",
+    "from": "tons",
+    "fromFull": "US Tons",
+    "to": "lbs",
+    "toFull": "Pounds",
+    "factor": 2000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "lbs",
+    "fromFull": "Pounds",
+    "to": "tons",
+    "toFull": "US Tons",
+    "factor": 0.0005,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "carats",
+    "fromFull": "Carats",
+    "to": "grams",
+    "toFull": "Grams",
+    "factor": 0.2,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "grams",
+    "fromFull": "Grams",
+    "to": "carats",
+    "toFull": "Carats",
+    "factor": 5,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "milligrams",
+    "fromFull": "Milligrams",
+    "to": "grams",
+    "toFull": "Grams",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Weight",
+    "from": "grams",
+    "fromFull": "Grams",
+    "to": "milligrams",
+    "toFull": "Milligrams",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Temperature",
+    "from": "celsius",
+    "fromFull": "Celsius",
+    "to": "fahrenheit",
+    "toFull": "Fahrenheit",
+    "factor": 1.8,
+    "offset": 32,
+    "tier": "core"
+  },
+  {
+    "category": "Temperature",
+    "from": "fahrenheit",
+    "fromFull": "Fahrenheit",
+    "to": "celsius",
+    "toFull": "Celsius",
+    "factor": 0.555556,
+    "offset": -17.7778,
+    "tier": "core"
+  },
+  {
+    "category": "Temperature",
+    "from": "celsius",
+    "fromFull": "Celsius",
+    "to": "kelvin",
+    "toFull": "Kelvin",
+    "factor": 1,
+    "offset": 273.15,
+    "tier": "standard"
+  },
+  {
+    "category": "Temperature",
+    "from": "kelvin",
+    "fromFull": "Kelvin",
+    "to": "celsius",
+    "toFull": "Celsius",
+    "factor": 1,
+    "offset": -273.15,
+    "tier": "standard"
+  },
+  {
+    "category": "Temperature",
+    "from": "fahrenheit",
+    "fromFull": "Fahrenheit",
+    "to": "kelvin",
+    "toFull": "Kelvin",
+    "factor": 0.555556,
+    "offset": 255.372,
+    "tier": "niche"
+  },
+  {
+    "category": "Temperature",
+    "from": "kelvin",
+    "fromFull": "Kelvin",
+    "to": "fahrenheit",
+    "toFull": "Fahrenheit",
+    "factor": 1.8,
+    "offset": -459.67,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "gallons",
+    "toFull": "Gallons (US)",
+    "factor": 0.264172,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Volume",
+    "from": "gallons",
+    "fromFull": "Gallons (US)",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 3.78541,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Volume",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "ml",
+    "toFull": "Milliliters",
+    "factor": 236.588,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Volume",
+    "from": "ml",
+    "fromFull": "Milliliters",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.00422675,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Volume",
+    "from": "tsp",
+    "fromFull": "Teaspoons",
+    "to": "ml",
+    "toFull": "Milliliters",
+    "factor": 4.92892,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "ml",
+    "fromFull": "Milliliters",
+    "to": "tsp",
+    "toFull": "Teaspoons",
+    "factor": 0.202884,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "tbsp",
+    "fromFull": "Tablespoons",
+    "to": "ml",
+    "toFull": "Milliliters",
+    "factor": 14.7868,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "ml",
+    "fromFull": "Milliliters",
+    "to": "tbsp",
+    "toFull": "Tablespoons",
+    "factor": 0.067628,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "floz",
+    "fromFull": "Fluid Ounces (US)",
+    "to": "ml",
+    "toFull": "Milliliters",
+    "factor": 29.5735,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "ml",
+    "fromFull": "Milliliters",
+    "to": "floz",
+    "toFull": "Fluid Ounces (US)",
+    "factor": 0.033814,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "pint",
+    "fromFull": "Pints (US)",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 0.473176,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "pint",
+    "toFull": "Pints (US)",
+    "factor": 2.11338,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "quart",
+    "fromFull": "Quarts (US)",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 0.946353,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "quart",
+    "toFull": "Quarts (US)",
+    "factor": 1.05669,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Volume",
+    "from": "tbsp",
+    "fromFull": "Tablespoons",
+    "to": "tsp",
+    "toFull": "Teaspoons",
+    "factor": 3,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "tsp",
+    "fromFull": "Teaspoons",
+    "to": "tbsp",
+    "toFull": "Tablespoons",
+    "factor": 0.333333,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "tbsp",
+    "toFull": "Tablespoons",
+    "factor": 16,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "tbsp",
+    "fromFull": "Tablespoons",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.0625,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "floz",
+    "toFull": "Fluid Ounces (US)",
+    "factor": 8,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "floz",
+    "fromFull": "Fluid Ounces (US)",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.125,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "gallons",
+    "fromFull": "Gallons (US)",
+    "to": "quart",
+    "toFull": "Quarts (US)",
+    "factor": 4,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "quart",
+    "fromFull": "Quarts (US)",
+    "to": "gallons",
+    "toFull": "Gallons (US)",
+    "factor": 0.25,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "ml",
+    "fromFull": "Milliliters",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "ml",
+    "toFull": "Milliliters",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "imperialgallons",
+    "fromFull": "Imperial Gallons",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 4.54609,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "imperialgallons",
+    "toFull": "Imperial Gallons",
+    "factor": 0.219969,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "cubicmeters",
+    "fromFull": "Cubic Meters",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "cubicmeters",
+    "toFull": "Cubic Meters",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "barrels",
+    "fromFull": "Oil Barrels",
+    "to": "liters",
+    "toFull": "Liters",
+    "factor": 158.987,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Volume",
+    "from": "liters",
+    "fromFull": "Liters",
+    "to": "barrels",
+    "toFull": "Oil Barrels",
+    "factor": 0.00628981,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Speed",
+    "from": "mph",
+    "fromFull": "Miles per Hour",
+    "to": "kmh",
+    "toFull": "Kilometers per Hour",
+    "factor": 1.60934,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Speed",
+    "from": "kmh",
+    "fromFull": "Kilometers per Hour",
+    "to": "mph",
+    "toFull": "Miles per Hour",
+    "factor": 0.621371,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Speed",
+    "from": "mph",
+    "fromFull": "Miles per Hour",
+    "to": "ms",
+    "toFull": "Meters per Second",
+    "factor": 0.44704,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Speed",
+    "from": "ms",
+    "fromFull": "Meters per Second",
+    "to": "mph",
+    "toFull": "Miles per Hour",
+    "factor": 2.23694,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Speed",
+    "from": "kmh",
+    "fromFull": "Kilometers per Hour",
+    "to": "ms",
+    "toFull": "Meters per Second",
+    "factor": 0.277778,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Speed",
+    "from": "ms",
+    "fromFull": "Meters per Second",
+    "to": "kmh",
+    "toFull": "Kilometers per Hour",
+    "factor": 3.6,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Speed",
+    "from": "knots",
+    "fromFull": "Knots",
+    "to": "mph",
+    "toFull": "Miles per Hour",
+    "factor": 1.15078,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Speed",
+    "from": "mph",
+    "fromFull": "Miles per Hour",
+    "to": "knots",
+    "toFull": "Knots",
+    "factor": 0.868976,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Speed",
+    "from": "knots",
+    "fromFull": "Knots",
+    "to": "kmh",
+    "toFull": "Kilometers per Hour",
+    "factor": 1.852,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Speed",
+    "from": "kmh",
+    "fromFull": "Kilometers per Hour",
+    "to": "knots",
+    "toFull": "Knots",
+    "factor": 0.539957,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "sqft",
+    "fromFull": "Square Feet",
+    "to": "sqm",
+    "toFull": "Square Meters",
+    "factor": 0.092903,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Area",
+    "from": "sqm",
+    "fromFull": "Square Meters",
+    "to": "sqft",
+    "toFull": "Square Feet",
+    "factor": 10.7639,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Area",
+    "from": "acres",
+    "fromFull": "Acres",
+    "to": "hectares",
+    "toFull": "Hectares",
+    "factor": 0.404686,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Area",
+    "from": "hectares",
+    "fromFull": "Hectares",
+    "to": "acres",
+    "toFull": "Acres",
+    "factor": 2.47105,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Area",
+    "from": "sqmi",
+    "fromFull": "Square Miles",
+    "to": "sqkm",
+    "toFull": "Square Kilometers",
+    "factor": 2.58999,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Area",
+    "from": "sqkm",
+    "fromFull": "Square Kilometers",
+    "to": "sqmi",
+    "toFull": "Square Miles",
+    "factor": 0.386102,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Area",
+    "from": "sqyd",
+    "fromFull": "Square Yards",
+    "to": "sqm",
+    "toFull": "Square Meters",
+    "factor": 0.836127,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Area",
+    "from": "sqm",
+    "fromFull": "Square Meters",
+    "to": "sqyd",
+    "toFull": "Square Yards",
+    "factor": 1.19599,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Area",
+    "from": "acres",
+    "fromFull": "Acres",
+    "to": "sqft",
+    "toFull": "Square Feet",
+    "factor": 43560,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "sqft",
+    "fromFull": "Square Feet",
+    "to": "acres",
+    "toFull": "Acres",
+    "factor": 2.29568e-05,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "sqin",
+    "fromFull": "Square Inches",
+    "to": "sqcm",
+    "toFull": "Square Centimeters",
+    "factor": 6.4516,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "sqcm",
+    "fromFull": "Square Centimeters",
+    "to": "sqin",
+    "toFull": "Square Inches",
+    "factor": 0.155,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "hectares",
+    "fromFull": "Hectares",
+    "to": "sqm",
+    "toFull": "Square Meters",
+    "factor": 10000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Area",
+    "from": "sqm",
+    "fromFull": "Square Meters",
+    "to": "hectares",
+    "toFull": "Hectares",
+    "factor": 0.0001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "hours",
+    "fromFull": "Hours",
+    "to": "minutes",
+    "toFull": "Minutes",
+    "factor": 60,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Time",
+    "from": "minutes",
+    "fromFull": "Minutes",
+    "to": "hours",
+    "toFull": "Hours",
+    "factor": 0.0166667,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Time",
+    "from": "days",
+    "fromFull": "Days",
+    "to": "hours",
+    "toFull": "Hours",
+    "factor": 24,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Time",
+    "from": "hours",
+    "fromFull": "Hours",
+    "to": "days",
+    "toFull": "Days",
+    "factor": 0.0416667,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Time",
+    "from": "weeks",
+    "fromFull": "Weeks",
+    "to": "days",
+    "toFull": "Days",
+    "factor": 7,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "days",
+    "fromFull": "Days",
+    "to": "weeks",
+    "toFull": "Weeks",
+    "factor": 0.142857,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "minutes",
+    "fromFull": "Minutes",
+    "to": "seconds",
+    "toFull": "Seconds",
+    "factor": 60,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "seconds",
+    "fromFull": "Seconds",
+    "to": "minutes",
+    "toFull": "Minutes",
+    "factor": 0.0166667,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "years",
+    "fromFull": "Years",
+    "to": "days",
+    "toFull": "Days",
+    "factor": 365.25,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "days",
+    "fromFull": "Days",
+    "to": "years",
+    "toFull": "Years",
+    "factor": 0.00273785,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Time",
+    "from": "months",
+    "fromFull": "Months (avg)",
+    "to": "days",
+    "toFull": "Days",
+    "factor": 30.4368,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "days",
+    "fromFull": "Days",
+    "to": "months",
+    "toFull": "Months (avg)",
+    "factor": 0.0328549,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "years",
+    "fromFull": "Years",
+    "to": "months",
+    "toFull": "Months (avg)",
+    "factor": 12,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "months",
+    "fromFull": "Months (avg)",
+    "to": "years",
+    "toFull": "Years",
+    "factor": 0.0833333,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "hours",
+    "fromFull": "Hours",
+    "to": "seconds",
+    "toFull": "Seconds",
+    "factor": 3600,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "seconds",
+    "fromFull": "Seconds",
+    "to": "hours",
+    "toFull": "Hours",
+    "factor": 0.000277778,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "decades",
+    "fromFull": "Decades",
+    "to": "years",
+    "toFull": "Years",
+    "factor": 10,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Time",
+    "from": "years",
+    "fromFull": "Years",
+    "to": "decades",
+    "toFull": "Decades",
+    "factor": 0.1,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "kb",
+    "fromFull": "Kilobytes",
+    "to": "mb",
+    "toFull": "Megabytes",
+    "factor": 0.0009765625,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "mb",
+    "fromFull": "Megabytes",
+    "to": "kb",
+    "toFull": "Kilobytes",
+    "factor": 1024,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "mb",
+    "fromFull": "Megabytes",
+    "to": "gb",
+    "toFull": "Gigabytes",
+    "factor": 0.0009765625,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "gb",
+    "fromFull": "Gigabytes",
+    "to": "mb",
+    "toFull": "Megabytes",
+    "factor": 1024,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "gb",
+    "fromFull": "Gigabytes",
+    "to": "tb",
+    "toFull": "Terabytes",
+    "factor": 0.0009765625,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "tb",
+    "fromFull": "Terabytes",
+    "to": "gb",
+    "toFull": "Gigabytes",
+    "factor": 1024,
+    "offset": 0,
+    "tier": "core"
+  },
+  {
+    "category": "Data Storage",
+    "from": "bytes",
+    "fromFull": "Bytes",
+    "to": "kb",
+    "toFull": "Kilobytes",
+    "factor": 0.0009765625,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Data Storage",
+    "from": "kb",
+    "fromFull": "Kilobytes",
+    "to": "bytes",
+    "toFull": "Bytes",
+    "factor": 1024,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Data Storage",
+    "from": "tb",
+    "fromFull": "Terabytes",
+    "to": "pb",
+    "toFull": "Petabytes",
+    "factor": 0.0009765625,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "pb",
+    "fromFull": "Petabytes",
+    "to": "tb",
+    "toFull": "Terabytes",
+    "factor": 1024,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "bits",
+    "fromFull": "Bits",
+    "to": "bytes",
+    "toFull": "Bytes",
+    "factor": 0.125,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "bytes",
+    "fromFull": "Bytes",
+    "to": "bits",
+    "toFull": "Bits",
+    "factor": 8,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "gb",
+    "fromFull": "Gigabytes",
+    "to": "bytes",
+    "toFull": "Bytes",
+    "factor": 1073741824,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "mbps",
+    "fromFull": "Megabits per Second",
+    "to": "mbs",
+    "toFull": "Megabytes per Second",
+    "factor": 0.125,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Data Storage",
+    "from": "mbs",
+    "fromFull": "Megabytes per Second",
+    "to": "mbps",
+    "toFull": "Megabits per Second",
+    "factor": 8,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "joules",
+    "fromFull": "Joules",
+    "to": "calories",
+    "toFull": "Calories",
+    "factor": 0.239006,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "calories",
+    "fromFull": "Calories",
+    "to": "joules",
+    "toFull": "Joules",
+    "factor": 4.184,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "kwh",
+    "fromFull": "Kilowatt-Hours",
+    "to": "joules",
+    "toFull": "Joules",
+    "factor": 3600000,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "joules",
+    "fromFull": "Joules",
+    "to": "kwh",
+    "toFull": "Kilowatt-Hours",
+    "factor": 2.77778e-07,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "btu",
+    "fromFull": "BTU",
+    "to": "joules",
+    "toFull": "Joules",
+    "factor": 1055.06,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "joules",
+    "fromFull": "Joules",
+    "to": "btu",
+    "toFull": "BTU",
+    "factor": 0.000947817,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Energy",
+    "from": "kcal",
+    "fromFull": "Kilocalories",
+    "to": "joules",
+    "toFull": "Joules",
+    "factor": 4184,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "joules",
+    "fromFull": "Joules",
+    "to": "kcal",
+    "toFull": "Kilocalories",
+    "factor": 0.000239006,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "btu",
+    "fromFull": "BTU",
+    "to": "kwh",
+    "toFull": "Kilowatt-Hours",
+    "factor": 0.000293071,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "kwh",
+    "fromFull": "Kilowatt-Hours",
+    "to": "btu",
+    "toFull": "BTU",
+    "factor": 3412.14,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "calories",
+    "fromFull": "Calories",
+    "to": "kcal",
+    "toFull": "Kilocalories",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Energy",
+    "from": "kcal",
+    "fromFull": "Kilocalories",
+    "to": "calories",
+    "toFull": "Calories",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "psi",
+    "fromFull": "PSI",
+    "to": "bar",
+    "toFull": "Bar",
+    "factor": 0.0689476,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "bar",
+    "fromFull": "Bar",
+    "to": "psi",
+    "toFull": "PSI",
+    "factor": 14.5038,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "psi",
+    "fromFull": "PSI",
+    "to": "pascal",
+    "toFull": "Pascal",
+    "factor": 6894.76,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "pascal",
+    "fromFull": "Pascal",
+    "to": "psi",
+    "toFull": "PSI",
+    "factor": 0.000145038,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "atm",
+    "fromFull": "Atmospheres",
+    "to": "psi",
+    "toFull": "PSI",
+    "factor": 14.6959,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "psi",
+    "fromFull": "PSI",
+    "to": "atm",
+    "toFull": "Atmospheres",
+    "factor": 0.068046,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Pressure",
+    "from": "bar",
+    "fromFull": "Bar",
+    "to": "pascal",
+    "toFull": "Pascal",
+    "factor": 100000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "pascal",
+    "fromFull": "Pascal",
+    "to": "bar",
+    "toFull": "Bar",
+    "factor": 1e-05,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "atm",
+    "fromFull": "Atmospheres",
+    "to": "bar",
+    "toFull": "Bar",
+    "factor": 1.01325,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "bar",
+    "fromFull": "Bar",
+    "to": "atm",
+    "toFull": "Atmospheres",
+    "factor": 0.986923,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "mmhg",
+    "fromFull": "mmHg",
+    "to": "psi",
+    "toFull": "PSI",
+    "factor": 0.0193368,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pressure",
+    "from": "psi",
+    "fromFull": "PSI",
+    "to": "mmhg",
+    "toFull": "mmHg",
+    "factor": 51.7149,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Power",
+    "from": "watts",
+    "fromFull": "Watts",
+    "to": "hp",
+    "toFull": "Horsepower",
+    "factor": 0.00134102,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Power",
+    "from": "hp",
+    "fromFull": "Horsepower",
+    "to": "watts",
+    "toFull": "Watts",
+    "factor": 745.7,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Power",
+    "from": "kw",
+    "fromFull": "Kilowatts",
+    "to": "hp",
+    "toFull": "Horsepower",
+    "factor": 1.34102,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Power",
+    "from": "hp",
+    "fromFull": "Horsepower",
+    "to": "kw",
+    "toFull": "Kilowatts",
+    "factor": 0.7457,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Power",
+    "from": "watts",
+    "fromFull": "Watts",
+    "to": "kw",
+    "toFull": "Kilowatts",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Power",
+    "from": "kw",
+    "fromFull": "Kilowatts",
+    "to": "watts",
+    "toFull": "Watts",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Power",
+    "from": "mw",
+    "fromFull": "Megawatts",
+    "to": "kw",
+    "toFull": "Kilowatts",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Power",
+    "from": "kw",
+    "fromFull": "Kilowatts",
+    "to": "mw",
+    "toFull": "Megawatts",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Angle",
+    "from": "degrees",
+    "fromFull": "Degrees",
+    "to": "radians",
+    "toFull": "Radians",
+    "factor": 0.0174533,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Angle",
+    "from": "radians",
+    "fromFull": "Radians",
+    "to": "degrees",
+    "toFull": "Degrees",
+    "factor": 57.2958,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Angle",
+    "from": "degrees",
+    "fromFull": "Degrees",
+    "to": "gradians",
+    "toFull": "Gradians",
+    "factor": 1.11111,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Angle",
+    "from": "gradians",
+    "fromFull": "Gradians",
+    "to": "degrees",
+    "toFull": "Degrees",
+    "factor": 0.9,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Angle",
+    "from": "radians",
+    "fromFull": "Radians",
+    "to": "gradians",
+    "toFull": "Gradians",
+    "factor": 63.662,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Angle",
+    "from": "gradians",
+    "fromFull": "Gradians",
+    "to": "radians",
+    "toFull": "Radians",
+    "factor": 0.015708,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Frequency",
+    "from": "hz",
+    "fromFull": "Hertz",
+    "to": "khz",
+    "toFull": "Kilohertz",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "khz",
+    "fromFull": "Kilohertz",
+    "to": "hz",
+    "toFull": "Hertz",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "khz",
+    "fromFull": "Kilohertz",
+    "to": "mhz",
+    "toFull": "Megahertz",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "mhz",
+    "fromFull": "Megahertz",
+    "to": "khz",
+    "toFull": "Kilohertz",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "mhz",
+    "fromFull": "Megahertz",
+    "to": "ghz",
+    "toFull": "Gigahertz",
+    "factor": 0.001,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "ghz",
+    "fromFull": "Gigahertz",
+    "to": "mhz",
+    "toFull": "Megahertz",
+    "factor": 1000,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Frequency",
+    "from": "hz",
+    "fromFull": "Hertz",
+    "to": "ghz",
+    "toFull": "Gigahertz",
+    "factor": 1e-09,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Frequency",
+    "from": "ghz",
+    "fromFull": "Gigahertz",
+    "to": "hz",
+    "toFull": "Hertz",
+    "factor": 1000000000,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Force",
+    "from": "newtons",
+    "fromFull": "Newtons",
+    "to": "lbf",
+    "toFull": "Pound-Force",
+    "factor": 0.224809,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Force",
+    "from": "lbf",
+    "fromFull": "Pound-Force",
+    "to": "newtons",
+    "toFull": "Newtons",
+    "factor": 4.44822,
+    "offset": 0,
+    "tier": "standard"
+  },
+  {
+    "category": "Force",
+    "from": "newtons",
+    "fromFull": "Newtons",
+    "to": "kgf",
+    "toFull": "Kilogram-Force",
+    "factor": 0.101972,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Force",
+    "from": "kgf",
+    "fromFull": "Kilogram-Force",
+    "to": "newtons",
+    "toFull": "Newtons",
+    "factor": 9.80665,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Force",
+    "from": "lbf",
+    "fromFull": "Pound-Force",
+    "to": "kgf",
+    "toFull": "Kilogram-Force",
+    "factor": 0.453592,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Force",
+    "from": "kgf",
+    "fromFull": "Kilogram-Force",
+    "to": "lbf",
+    "toFull": "Pound-Force",
+    "factor": 2.20462,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "grams_flour",
+    "toFull": "Grams (All-Purpose Flour)",
+    "factor": 125,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "grams_flour",
+    "fromFull": "Grams (All-Purpose Flour)",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.008,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "grams_sugar",
+    "toFull": "Grams (Granulated Sugar)",
+    "factor": 200,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "grams_sugar",
+    "fromFull": "Grams (Granulated Sugar)",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.005,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "grams_butter",
+    "toFull": "Grams (Butter)",
+    "factor": 227,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "grams_butter",
+    "fromFull": "Grams (Butter)",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.00440529,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "sticks_butter",
+    "fromFull": "Sticks of Butter",
+    "to": "cups",
+    "toFull": "Cups",
+    "factor": 0.5,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "cups",
+    "fromFull": "Cups",
+    "to": "sticks_butter",
+    "toFull": "Sticks of Butter",
+    "factor": 2,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "oz",
+    "fromFull": "Ounces",
+    "to": "cups_water",
+    "toFull": "Cups (Water)",
+    "factor": 0.125,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Cooking",
+    "from": "cups_water",
+    "fromFull": "Cups (Water)",
+    "to": "oz",
+    "toFull": "Ounces",
+    "factor": 8,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pace",
+    "from": "minperkm",
+    "fromFull": "Minutes per Kilometer",
+    "to": "minpermile",
+    "toFull": "Minutes per Mile",
+    "factor": 1.60934,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Pace",
+    "from": "minpermile",
+    "fromFull": "Minutes per Mile",
+    "to": "minperkm",
+    "toFull": "Minutes per Kilometer",
+    "factor": 0.621371,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Torque",
+    "from": "nm",
+    "fromFull": "Newton-Meters",
+    "to": "lbft",
+    "toFull": "Pound-Feet",
+    "factor": 0.737562,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Torque",
+    "from": "lbft",
+    "fromFull": "Pound-Feet",
+    "to": "nm",
+    "toFull": "Newton-Meters",
+    "factor": 1.35582,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Torque",
+    "from": "nm",
+    "fromFull": "Newton-Meters",
+    "to": "lbin",
+    "toFull": "Pound-Inches",
+    "factor": 8.85075,
+    "offset": 0,
+    "tier": "niche"
+  },
+  {
+    "category": "Torque",
+    "from": "lbin",
+    "fromFull": "Pound-Inches",
+    "to": "nm",
+    "toFull": "Newton-Meters",
+    "factor": 0.112985,
+    "offset": 0,
+    "tier": "niche"
+  }
 ]

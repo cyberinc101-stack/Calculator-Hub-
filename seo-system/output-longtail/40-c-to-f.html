@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>40°C to °F | CalcHub</title>
+<meta name="description" content="40 °C = 104 °F. 40°C is a commonly referenced temperature for weather, body temperature, or general conversion lookups.">
+<meta name="keywords" content="40°c to °f,40 °C to °F,°C to °F converter">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/longtail/40-c-to-f.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is 40 °C in °F?","acceptedAnswer":{"@type":"Answer","text":"40 °C equals 104 °F."}},{"@type":"Question","name":"Is 40 °C a common conversion to look up?","acceptedAnswer":{"@type":"Answer","text":"40°C is a commonly referenced temperature for weather, body temperature, or general conversion lookups."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🌡️ Temperature Conversion</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">40°C to °F</h1>
+  <p class="hero-sub">40°C is a commonly referenced temperature for weather, body temperature, or general conversion lookups.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🌡️</div>
+    <div><div class="calc-card-title">40°C to °F</div><div class="calc-card-desc">The direct answer, plus a calculator if you need a different value</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="results active" id="conv-results">
+      <div class="results-header">Answer</div>
+      <div class="results-grid">
+        <div class="result-item highlight" style="text-align:center;padding:1.25rem">
+          <div class="result-label">40 °C equals</div>
+          <div class="result-value" style="font-size:2rem">104 °F</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-grid" style="margin-top:1.5rem">
+      <div class="field">
+        <label for="inputValue">Need a different °C value? Try it here:</label>
+        <input type="number" id="inputValue" value="40" step="any">
+      </div>
+    </div>
+    <div class="results active">
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">°F</div>
+          <div class="result-value" id="liveResultValue">—</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-size:0.9rem"><a href="../calculator-types/convert-celsius-to-fahrenheit.html">Use the full Temperature converter →</a></p>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>40°C to °F: Quick Answer</h2>
+  <p>40 °C is equal to <strong>104 °F</strong>. 40°C is a commonly referenced temperature for weather, body temperature, or general conversion lookups.</p>
+
+  <h3>Other Common Temperature Conversions</h3>
+  <div class="breakdown-wrap">
+    <table class="breakdown-table">
+      <thead><tr><th>°C</th><th>°F</th></tr></thead>
+      <tbody>
+        <tr><td>0 °C</td><td>32 °F</td></tr>
+        <tr><td>10 °C</td><td>50 °F</td></tr>
+        <tr><td>15 °C</td><td>59 °F</td></tr>
+        <tr><td>20 °C</td><td>68 °F</td></tr>
+        <tr><td>21 °C</td><td>69.8 °F</td></tr>
+        <tr><td>25 °C</td><td>77 °F</td></tr>
+        <tr><td>30 °C</td><td>86 °F</td></tr>
+        <tr><td>35 °C</td><td>95 °F</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="faq-item"><div class="faq-q">What is 40 °C in °F?</div><div class="faq-a"><p>40 °C equals 104 °F.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is 40 °C a common conversion to look up?</div><div class="faq-a"><p>40°C is a commonly referenced temperature for weather, body temperature, or general conversion lookups.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+  const factor = 1.8;
+  const offset = 32;
+  const input = document.getElementById('inputValue');
+  const resultEl = document.getElementById('liveResultValue');
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    resultEl.textContent = out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' °F';
+  }
+  input.addEventListener('input', convert);
+  convert();
+</script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 ﻿// generate-pages.js
-// Usage: node generate-pages.js
+// Usage: node generate-pages.js                 -> generates core + standard tier pages (recommended default)
+//        node generate-pages.js --tiers=all      -> generates every tier including niche
+//        node generate-pages.js --tiers=core      -> generates only the highest-confidence/highest-traffic pairs
+//
 // Reads data/conversions.json, fills templates/converter.template.html,
 // writes one real HTML file per row into output/ (you then move these into calculator-types/)
 
@@ -18,12 +21,38 @@ const CATEGORY_ICONS = {
   Weight: '⚖️',
   Temperature: '🌡️',
   Volume: '🧪',
-  Speed: '🚀'
+  Speed: '🚀',
+  Area: '📐',
+  Time: '⏱️',
+  'Data Storage': '💾',
+  Energy: '⚡',
+  Pressure: '🌬️',
+  Power: '🔌',
+  Angle: '📐',
+  Frequency: '📶',
+  Force: '💪',
+  Cooking: '🍳',
+  Pace: '🏃',
+  Torque: '🔧'
 };
+
+// --- Tier selection -------------------------------------------------------
+// Default behaviour: only publish "core" and "standard" tier pairs as real
+// pages. "niche" pairs stay in the data file (so they're available, sized,
+// and ready) but are NOT turned into live indexed pages unless explicitly
+// requested with --tiers=all. This keeps page count tied to real demand
+// instead of just dumping every accurate-but-low-traffic pair onto the site.
+const argTiers = (process.argv.find(a => a.startsWith('--tiers=')) || '').split('=')[1];
+const TIERS_TO_BUILD = argTiers === 'all'
+  ? ['core', 'standard', 'niche']
+  : argTiers === 'core'
+    ? ['core']
+    : ['core', 'standard']; // default
 
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+const allData = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+const data = allData.filter(row => TIERS_TO_BUILD.includes(row.tier || 'standard'));
 const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
 function slugFor(row) {
@@ -58,9 +87,20 @@ function buildFormulaText(row) {
 
 const sitemapEntries = [];
 let count = 0;
+const seenSlugs = new Set();
 
 data.forEach(row => {
   const slug = slugFor(row);
+
+  // Guard against duplicate slugs (can happen if two rows share the same
+  // from/to short codes, e.g. two different "Cooking" pairs both using
+  // generic unit names). Skip and warn rather than silently overwrite.
+  if (seenSlugs.has(slug)) {
+    console.warn(`Skipping duplicate slug: ${slug} (category: ${row.category})`);
+    return;
+  }
+  seenSlugs.add(slug);
+
   const icon = CATEGORY_ICONS[row.category] || '🔢';
   const title = `${row.fromFull} to ${row.toFull} Converter | CalcHub`;
   const metaDescription = `Convert ${row.fromFull} to ${row.toFull} instantly with our free calculator. Includes a quick-reference table for common ${row.from} to ${row.to} conversions.`;
@@ -121,7 +161,7 @@ const hubPage = `<!DOCTYPE html>
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>All Unit Converters | CalcHub</title>
-<meta name="description" content="Browse all unit conversion calculators by category: length, weight, temperature, volume, and speed.">
+<meta name="description" content="Browse all unit conversion calculators by category: length, weight, temperature, volume, speed, area, time, data storage, energy, pressure, power, and more.">
 <link rel="canonical" href="${SITE_BASE_URL}/calculator-types/convert-index.html">
 <link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
 </head>
@@ -144,4 +184,6 @@ ${hubSections}
 
 fs.writeFileSync(path.join(OUTPUT_DIR, 'convert-index.html'), hubPage, 'utf8');
 
+const skipped = allData.length - data.length;
 console.log(`Generated ${count} pages + 1 hub page + 1 sitemap snippet into ${OUTPUT_DIR}`);
+console.log(`Tiers built: ${TIERS_TO_BUILD.join(', ')} | ${skipped} lower-tier entries skipped (run with --tiers=all to include them)`);

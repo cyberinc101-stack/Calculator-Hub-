@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{META_DESCRIPTION}}">
+<meta name="keywords" content="{{META_KEYWORDS}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"{{FAQ_Q1}}","acceptedAnswer":{"@type":"Answer","text":"{{FAQ_A1}}"}},{"@type":"Question","name":"{{FAQ_Q2}}","acceptedAnswer":{"@type":"Answer","text":"{{FAQ_A2}}"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">{{ICON}} {{CATEGORY}} Conversion</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">{{H1}}</h1>
+  <p class="hero-sub">{{CONTEXT_NOTE}}</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">{{ICON}}</div>
+    <div><div class="calc-card-title">{{H1}}</div><div class="calc-card-desc">The direct answer, plus a calculator if you need a different value</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="results active" id="conv-results">
+      <div class="results-header">Answer</div>
+      <div class="results-grid">
+        <div class="result-item highlight" style="text-align:center;padding:1.25rem">
+          <div class="result-label">{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} equals</div>
+          <div class="result-value" style="font-size:2rem">{{RESULT_VALUE}} {{RESULT_UNIT}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-grid" style="margin-top:1.5rem">
+      <div class="field">
+        <label for="inputValue">Need a different {{PRIMARY_UNIT}} value? Try it here:</label>
+        <input type="number" id="inputValue" value="{{PRIMARY_VALUE_RAW}}" step="any">
+      </div>
+    </div>
+    <div class="results active">
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">{{RESULT_UNIT}}</div>
+          <div class="result-value" id="liveResultValue">—</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-size:0.9rem"><a href="{{GENERIC_CONVERTER_LINK}}">Use the full {{CATEGORY}} converter →</a></p>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>{{H1}}: Quick Answer</h2>
+  <p>{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} is equal to <strong>{{RESULT_VALUE}} {{RESULT_UNIT}}</strong>. {{CONTEXT_NOTE}}</p>
+
+  <h3>Other Common {{RELATED_GROUP_LABEL}}</h3>
+  <div class="breakdown-wrap">
+    <table class="breakdown-table">
+      <thead><tr><th>{{PRIMARY_UNIT}}</th><th>{{RESULT_UNIT}}</th></tr></thead>
+      <tbody>
+{{RELATED_TABLE_ROWS}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="faq-item"><div class="faq-q">{{FAQ_Q1}}</div><div class="faq-a"><p>{{FAQ_A1}}</p></div></div>
+  <div class="faq-item"><div class="faq-q">{{FAQ_Q2}}</div><div class="faq-a"><p>{{FAQ_A2}}</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+  const factor = {{FACTOR}};
+  const offset = {{OFFSET}};
+  const input = document.getElementById('inputValue');
+  const resultEl = document.getElementById('liveResultValue');
+
+  function convert() {
+    const val = parseFloat(input.value) || 0;
+    const out = (val * factor) + offset;
+    resultEl.textContent = out.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' {{RESULT_UNIT}}';
+  }
+
+  input.addEventListener('input', convert);
+  convert();
+</script>
+</body>
+</html>
