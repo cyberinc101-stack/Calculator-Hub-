@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speed Distance Time Calculator — Solve for Any Variable | CalcHub</title>
+<meta name="description" content="Free speed, distance, and time calculator. Solve for any variable given the other two. Supports mph, km/h, m/s, knots, Mach. Includes unit conversion and real-world reference speeds.">
+<meta name="keywords" content="speed distance time calculator,speed calculator,distance calculator,time calculator,mph calculator,kmh calculator,how long to travel calculator,average speed calculator,velocity calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/speed-distance-time.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Speed Distance Time Calculator","description":"Solve for speed, distance, or time given the other two variables. Supports multiple units.","url":"https://yourdomain.com/calculator-types/speed-distance-time.html","applicationCategory":"EducationApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Solve-for selector — large tap targets ── */
+.solve-for-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.solve-for-btn {
+  padding: 14px 10px;
+  border-radius: 12px;
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all .15s;
+  text-align: center;
+}
+.solve-for-btn:hover { border-color: var(--accent, #22c55e); }
+.solve-for-btn.active {
+  background: var(--accent, #22c55e);
+  border-color: var(--accent, #22c55e);
+}
+.sfb-icon  { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+.sfb-label { font-size: .82rem; font-weight: 700; color: var(--text); display: block; }
+.sfb-sub   { font-size: .7rem; color: var(--text-2); display: block; margin-top: 2px; }
+.solve-for-btn.active .sfb-label,
+.solve-for-btn.active .sfb-sub { color: #0a0f0a; }
+
+/* ── Input group with unit dropdown inline ── */
+.unit-field { display: flex; gap: 8px; align-items: stretch; }
+.unit-field input { flex: 1; min-width: 0; }
+.unit-field select {
+  background: var(--card, #111a11);
+  color: var(--text);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+  font-size: .83rem;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+.unit-field select:focus { border-color: var(--accent, #22c55e); }
+
+/* ── Time compound input ── */
+.time-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.time-inputs .input-wrap { position: relative; }
+
+/* ── Big answer ── */
+.sdt-answer {
+  text-align: center;
+  padding: 28px 20px 18px;
+  background: var(--card, #111a11);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.sdt-answer-label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-2); margin-bottom: 6px;
+}
+.sdt-answer-value {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent, #22c55e);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.sdt-answer-unit { font-size: .88rem; color: var(--text-2); }
+
+/* ── SDT triangle diagram ── */
+.sdt-triangle {
+  text-align: center;
+  margin: 0 auto 16px;
+  max-width: 260px;
+}
+.sdt-triangle svg { width: 100%; max-width: 220px; }
+
+/* ── Reference speeds ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+.ref-card {
+  background: var(--card, #111a11);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.ref-card-icon { font-size: 1.2rem; margin-bottom: 4px; }
+.ref-card-name { font-size: .78rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.ref-card-val  { font-family: var(--font-mono, monospace); font-size: .8rem; color: var(--accent, #22c55e); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🚀 Speed / Distance / Time</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Speed, Distance &amp; Time Calculator</h1>
+  <p class="hero-sub">Solve for any one of the three variables given the other two. Supports all common speed and distance units — mph, km/h, m/s, knots, Mach, and more.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🚀</div>
+    <div>
+      <div class="calc-card-title">Speed / Distance / Time</div>
+      <div class="calc-card-desc">Solve for any variable — multiple unit systems</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Solve-for selector -->
+    <div style="margin-bottom:10px;font-size:.8rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em">Solve For</div>
+    <div class="solve-for-grid">
+      <button class="solve-for-btn active" id="sfb-speed"    onclick="setSolveFor('speed',this)">
+        <span class="sfb-icon">⚡</span>
+        <span class="sfb-label">Speed</span>
+        <span class="sfb-sub">D ÷ T</span>
+      </button>
+      <button class="solve-for-btn" id="sfb-distance" onclick="setSolveFor('distance',this)">
+        <span class="sfb-icon">📍</span>
+        <span class="sfb-label">Distance</span>
+        <span class="sfb-sub">S × T</span>
+      </button>
+      <button class="solve-for-btn" id="sfb-time"     onclick="setSolveFor('time',this)">
+        <span class="sfb-icon">⏱️</span>
+        <span class="sfb-label">Time</span>
+        <span class="sfb-sub">D ÷ S</span>
+      </button>
+    </div>
+
+    <!-- Input fields — shown/hidden based on solve-for -->
+    <!-- Speed input -->
+    <div class="field" id="field-speed" style="display:none">
+      <label>Speed</label>
+      <div class="unit-field">
+        <input type="number" id="inp-speed" value="60" min="0" step="any">
+        <select id="unit-speed" onchange="onSpeedUnitChange()">
+          <option value="mph">mph</option>
+          <option value="kmh" selected>km/h</option>
+          <option value="ms">m/s</option>
+          <option value="knots">knots</option>
+          <option value="mach">Mach</option>
+          <option value="fps">ft/s</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Distance input -->
+    <div class="field" id="field-distance" style="display:none">
+      <label>Distance</label>
+      <div class="unit-field">
+        <input type="number" id="inp-distance" value="120" min="0" step="any">
+        <select id="unit-distance">
+          <option value="km" selected>km</option>
+          <option value="miles">miles</option>
+          <option value="m">metres</option>
+          <option value="ft">feet</option>
+          <option value="nm">naut. mi</option>
+          <option value="ly">light-years</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Time input (compound h/m/s) -->
+    <div class="field" id="field-time" style="display:none">
+      <label>Time</label>
+      <div class="time-inputs">
+        <div class="input-wrap">
+          <input type="number" id="inp-hours" value="2" min="0" step="1" placeholder="0">
+          <span class="input-suffix">hr</span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="inp-minutes" value="0" min="0" max="59" step="1" placeholder="0">
+          <span class="input-suffix">min</span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="inp-seconds" value="0" min="0" max="59" step="1" placeholder="0">
+          <span class="input-suffix">sec</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcSDT()">Calculate →</button>
+
+    <div class="results" id="sdt-results">
+
+      <div class="sdt-answer">
+        <div class="sdt-answer-label" id="sdt-ans-label">Speed</div>
+        <div class="sdt-answer-value" id="sdt-ans-value">—</div>
+        <div class="sdt-answer-unit" id="sdt-ans-unit"></div>
+      </div>
+
+      <!-- All-units conversion -->
+      <div class="results-header">Result in All Units</div>
+      <div class="results-grid" id="sdt-all-units"></div>
+
+      <!-- Formula box -->
+      <div style="background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:10px;padding:14px 18px;margin:14px 0">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:8px">Formula Used</div>
+        <div style="font-family:var(--font-mono,monospace);font-size:.88rem;color:var(--text-2);line-height:1.7" id="sdt-formula"></div>
+      </div>
+
+      <div id="sdt-insight" class="insight"><div class="insight-icon">💡</div><div id="sdt-insight-text"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Reference speeds -->
+<div class="calc-card" style="margin-top:1.5rem">
+  <div class="calc-card-header">
+    <div class="calc-icon">📊</div>
+    <div>
+      <div class="calc-card-title">Reference Speeds</div>
+      <div class="calc-card-desc">Common real-world speeds for context</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+    <div class="ref-grid">
+      <div class="ref-card"><div class="ref-card-icon">🚶</div><div class="ref-card-name">Walking</div><div class="ref-card-val">5 km/h · 3.1 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🚴</div><div class="ref-card-name">Cycling (casual)</div><div class="ref-card-val">20 km/h · 12 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🏃</div><div class="ref-card-name">Sprinting (elite)</div><div class="ref-card-val">44 km/h · 27 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🚗</div><div class="ref-card-name">Motorway driving</div><div class="ref-card-val">110 km/h · 68 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🚄</div><div class="ref-card-name">High-speed rail</div><div class="ref-card-val">320 km/h · 199 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">✈️</div><div class="ref-card-name">Commercial aircraft</div><div class="ref-card-val">900 km/h · 560 mph</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🔊</div><div class="ref-card-name">Speed of sound</div><div class="ref-card-val">1,235 km/h · Mach 1</div></div>
+      <div class="ref-card"><div class="ref-card-icon">🌍</div><div class="ref-card-name">Earth orbital speed</div><div class="ref-card-val">29,800 m/s</div></div>
+      <div class="ref-card"><div class="ref-card-icon">💡</div><div class="ref-card-name">Speed of light</div><div class="ref-card-val">299,792,458 m/s</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>The Speed, Distance, Time Formula</h2>
+  <p>The three variables are linked by a single relationship: <strong>Speed = Distance ÷ Time</strong>. Rearranging gives you <strong>Distance = Speed × Time</strong> and <strong>Time = Distance ÷ Speed</strong>. This triangle relationship is one of the most fundamental in physics and everyday life.</p>
+
+  <h3>Unit Conversions Used</h3>
+  <ul>
+    <li>1 mile = 1.60934 km</li>
+    <li>1 knot = 1.852 km/h</li>
+    <li>1 Mach ≈ 1,235 km/h (at sea level, 20°C)</li>
+    <li>1 m/s = 3.6 km/h</li>
+    <li>1 ft/s = 1.09728 km/h</li>
+    <li>1 light-year ≈ 9.461 × 10¹² km</li>
+  </ul>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I calculate average speed for a trip?</div>
+    <div class="faq-a"><p>Average speed is total distance divided by total time — not the average of your speeds. If you drive 100 km at 50 km/h and another 100 km at 100 km/h, your average speed is 200 km ÷ 3 hours = 66.7 km/h, not (50+100) ÷ 2 = 75 km/h. The slower leg takes proportionally more time and dominates the average.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is Mach speed?</div>
+    <div class="faq-a"><p>Mach is the ratio of an object's speed to the local speed of sound. Mach 1 at sea level and 20°C is approximately 1,235 km/h (767 mph). It changes with altitude and temperature — at cruise altitude where commercial aircraft fly, the speed of sound is closer to 1,062 km/h, which is why aircraft quote airspeed in both km/h and Mach number.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How long does it take to travel a light-year?</div>
+    <div class="faq-a"><p>A light-year is the distance light travels in one year: about 9.461 trillion kilometres. At a commercial aircraft cruise speed of 900 km/h it would take roughly 1.2 million years. At the speed of Voyager 1 (the fastest human-made object, about 61,500 km/h), it would still take around 17,500 years. Use the calculator above with light-years as your distance unit to explore this.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ═══════════════════════════════════════
+   Unit conversion factors to km/h (speed)
+   and km (distance)
+═══════════════════════════════════════ */
+var SPEED_TO_KMH = {
+  mph:   1.60934,
+  kmh:   1,
+  ms:    3.6,
+  knots: 1.852,
+  mach:  1235.0,    // sea level 20°C
+  fps:   1.09728
+};
+var DIST_TO_KM = {
+  km:    1,
+  miles: 1.60934,
+  m:     0.001,
+  ft:    0.0003048,
+  nm:    1.852,
+  ly:    9.461e12    // light-years
+};
+
+var solveFor = 'speed';
+
+function setSolveFor(mode, btn){
+  solveFor = mode;
+  document.querySelectorAll('.solve-for-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  // Show the two input fields that aren't being solved for
+  var fields = { speed: 'field-speed', distance: 'field-distance', time: 'field-time' };
+  Object.keys(fields).forEach(function(k){
+    document.getElementById(fields[k]).style.display = k === mode ? 'none' : '';
+  });
+}
+
+function onSpeedUnitChange(){
+  // When speed unit changes, keep input value but note the change
+}
+
+/* ── Parse time to hours ── */
+function parseTimeToHours(){
+  var h = parseFloat(document.getElementById('inp-hours').value)   || 0;
+  var m = parseFloat(document.getElementById('inp-minutes').value) || 0;
+  var s = parseFloat(document.getElementById('inp-seconds').value) || 0;
+  return h + m/60 + s/3600;
+}
+
+/* ── Format hours back to h m s ── */
+function fmtHours(totalHours){
+  if(totalHours < 0) return '0 sec';
+  var h = Math.floor(totalHours);
+  var rem = (totalHours - h) * 60;
+  var m = Math.floor(rem);
+  var s = Math.round((rem - m) * 60);
+  // Handle seconds rollover
+  if(s === 60){ m++; s = 0; }
+  if(m === 60){ h++; m = 0; }
+  var parts = [];
+  if(h > 0) parts.push(h + ' hr');
+  if(m > 0) parts.push(m + ' min');
+  if(s > 0 || parts.length === 0) parts.push(s + ' sec');
+  return parts.join(' ');
+}
+
+/* ── Format large numbers nicely ── */
+function fmtN(n, dp){
+  dp = (dp === undefined) ? 3 : dp;
+  if(Math.abs(n) >= 1e12) return (n/1e12).toFixed(dp) + ' T';
+  if(Math.abs(n) >= 1e9)  return (n/1e9).toFixed(dp) + ' B';
+  if(Math.abs(n) >= 1e6)  return (n/1e6).toFixed(dp) + ' M';
+  if(Math.abs(n) >= 1e3)  return n.toLocaleString('en-US',{maximumFractionDigits:dp});
+  return parseFloat(n.toFixed(dp)).toString();
+}
+
+/* ══ MAIN CALCULATION ══ */
+function calcSDT(){
+  var resultKmh, resultKm, resultHours; // always compute all three in SI (km/h, km, h)
+
+  if(solveFor === 'speed'){
+    var distKm    = parseFloat(document.getElementById('inp-distance').value);
+    var distUnit  = document.getElementById('unit-distance').value;
+    var timeHours = parseTimeToHours();
+    if(isNaN(distKm) || distKm < 0){ showToast('Enter a valid distance'); return; }
+    if(timeHours <= 0){ showToast('Enter a valid time (at least 1 second)'); return; }
+    distKm     = distKm * DIST_TO_KM[distUnit];
+    resultKmh  = distKm / timeHours;
+    resultKm   = distKm;
+    resultHours = timeHours;
+  } else if(solveFor === 'distance'){
+    var spd      = parseFloat(document.getElementById('inp-speed').value);
+    var spdUnit  = document.getElementById('unit-speed').value;
+    var timeHours = parseTimeToHours();
+    if(isNaN(spd) || spd < 0){ showToast('Enter a valid speed'); return; }
+    if(timeHours <= 0){ showToast('Enter a valid time (at least 1 second)'); return; }
+    resultKmh   = spd * SPEED_TO_KMH[spdUnit];
+    resultKm    = resultKmh * timeHours;
+    resultHours = timeHours;
+  } else { // time
+    var spd      = parseFloat(document.getElementById('inp-speed').value);
+    var spdUnit  = document.getElementById('unit-speed').value;
+    var distKm   = parseFloat(document.getElementById('inp-distance').value);
+    var distUnit = document.getElementById('unit-distance').value;
+    if(isNaN(spd) || spd <= 0){ showToast('Enter a valid speed'); return; }
+    if(isNaN(distKm) || distKm < 0){ showToast('Enter a valid distance'); return; }
+    resultKmh   = spd * SPEED_TO_KMH[spdUnit];
+    distKm      = distKm * DIST_TO_KM[distUnit];
+    resultHours = distKm / resultKmh;
+    resultKm    = distKm;
+  }
+
+  /* ── Display main answer ── */
+  var ansLabel, ansValue, ansUnit;
+  if(solveFor === 'speed'){
+    ansLabel = 'Speed';
+    // Show in the unit the user had selected (or default to km/h)
+    var displayUnit = document.getElementById('unit-speed') ? document.getElementById('unit-speed').value : 'kmh';
+    var dispVal = resultKmh / SPEED_TO_KMH[displayUnit];
+    var unitLabels = { mph:'mph', kmh:'km/h', ms:'m/s', knots:'knots', mach:'Mach', fps:'ft/s' };
+    ansValue = fmtN(dispVal, 3);
+    ansUnit  = unitLabels[displayUnit];
+  } else if(solveFor === 'distance'){
+    ansLabel = 'Distance';
+    var displayUnit = document.getElementById('unit-distance').value;
+    var dispVal = resultKm / DIST_TO_KM[displayUnit];
+    var unitLabels = { km:'km', miles:'miles', m:'metres', ft:'feet', nm:'naut. miles', ly:'light-years' };
+    ansValue = fmtN(dispVal, 3);
+    ansUnit  = unitLabels[displayUnit];
+  } else {
+    ansLabel = 'Time';
+    ansValue = fmtHours(resultHours);
+    ansUnit  = '(' + fmtN(resultHours, 4) + ' hours)';
+  }
+
+  setEl('sdt-ans-label', ansLabel);
+  setEl('sdt-ans-value', ansValue);
+  setEl('sdt-ans-unit',  ansUnit);
+
+  /* ── All-units grid ── */
+  var allUnitsHtml = '';
+  if(solveFor === 'speed'){
+    var speedUnits = [
+      { key:'kmh',   label:'km/h' },
+      { key:'mph',   label:'mph' },
+      { key:'ms',    label:'m/s' },
+      { key:'knots', label:'knots' },
+      { key:'mach',  label:'Mach' },
+      { key:'fps',   label:'ft/s' }
+    ];
+    allUnitsHtml = speedUnits.map(function(u){
+      var val = resultKmh / SPEED_TO_KMH[u.key];
+      return '<div class="result-item"><div class="result-label">'+u.label+'</div><div class="result-value">'+fmtN(val,4)+'</div></div>';
+    }).join('');
+  } else if(solveFor === 'distance'){
+    var distUnits = [
+      { key:'km',    label:'Kilometres' },
+      { key:'miles', label:'Miles' },
+      { key:'m',     label:'Metres' },
+      { key:'ft',    label:'Feet' },
+      { key:'nm',    label:'Nautical miles' }
+    ];
+    allUnitsHtml = distUnits.map(function(u){
+      var val = resultKm / DIST_TO_KM[u.key];
+      return '<div class="result-item"><div class="result-label">'+u.label+'</div><div class="result-value">'+fmtN(val,3)+'</div></div>';
+    }).join('');
+  } else {
+    var secs = resultHours * 3600;
+    var timeRows = [
+      { label:'Hours',   val: fmtN(resultHours, 4) },
+      { label:'Minutes', val: fmtN(resultHours * 60, 3) },
+      { label:'Seconds', val: fmtN(secs, 1) },
+      { label:'Days',    val: fmtN(resultHours / 24, 4) }
+    ];
+    allUnitsHtml = timeRows.map(function(r){
+      return '<div class="result-item"><div class="result-label">'+r.label+'</div><div class="result-value">'+r.val+'</div></div>';
+    }).join('');
+  }
+  document.getElementById('sdt-all-units').innerHTML = allUnitsHtml;
+
+  /* ── Formula ── */
+  var formulaLines;
+  if(solveFor === 'speed'){
+    formulaLines = 'Speed = Distance ÷ Time\n'
+      + '      = ' + fmtN(resultKm,3) + ' km ÷ ' + fmtN(resultHours,4) + ' h\n'
+      + '      = <b>' + fmtN(resultKmh,4) + ' km/h</b>';
+  } else if(solveFor === 'distance'){
+    formulaLines = 'Distance = Speed × Time\n'
+      + '         = ' + fmtN(resultKmh,3) + ' km/h × ' + fmtN(resultHours,4) + ' h\n'
+      + '         = <b>' + fmtN(resultKm,4) + ' km</b>';
+  } else {
+    formulaLines = 'Time = Distance ÷ Speed\n'
+      + '     = ' + fmtN(resultKm,3) + ' km ÷ ' + fmtN(resultKmh,3) + ' km/h\n'
+      + '     = <b>' + fmtN(resultHours,4) + ' h (' + fmtHours(resultHours) + ')</b>';
+  }
+  document.getElementById('sdt-formula').innerHTML = formulaLines;
+
+  /* ── Insight — contextualise the result ── */
+  var insight = '';
+  if(solveFor === 'speed'){
+    var ref = resultKmh < 6 ? 'slower than a walking pace (5 km/h)' :
+              resultKmh < 25 ? 'about cycling speed' :
+              resultKmh < 130 ? 'typical road or motorway speed' :
+              resultKmh < 400 ? 'high-speed rail territory' :
+              resultKmh < 1300 ? 'approaching or exceeding commercial aircraft cruise speed' :
+              resultKmh < 1400 ? 'around the speed of sound (Mach 1 ≈ 1,235 km/h)' :
+              'supersonic — faster than the speed of sound';
+    insight = 'At <strong>' + fmtN(resultKmh,2) + ' km/h</strong>, this is ' + ref + '.';
+  } else if(solveFor === 'distance'){
+    insight = 'Travelling at <strong>' + fmtN(resultKmh,2) + ' km/h</strong> for <strong>'
+      + fmtHours(resultHours) + '</strong> covers <strong>' + fmtN(resultKm,3) + ' km</strong> ('
+      + fmtN(resultKm/1.60934,3) + ' miles).';
+  } else {
+    insight = 'At <strong>' + fmtN(resultKmh,2) + ' km/h</strong>, covering <strong>'
+      + fmtN(resultKm,3) + ' km</strong> takes <strong>' + fmtHours(resultHours) + '</strong>.';
+  }
+  setEl('sdt-insight-text', insight);
+
+  showRes('sdt-results');
+}
+
+/* ── Init: show the two non-solved fields ── */
+window.addEventListener('load', function(){
+  setSolveFor('speed', document.getElementById('sfb-speed'));
+  calcSDT();
+});
+</script>
+</body>
+</html>

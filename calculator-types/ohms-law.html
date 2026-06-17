@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ohm's Law Calculator — Voltage, Current, Resistance & Power | CalcHub</title>
+<meta name="description" content="Free Ohm's Law calculator. Solve for voltage, current, resistance, or power — enter any two values to find the rest. Includes the power formula P = VI.">
+<meta name="keywords" content="ohms law calculator,voltage current resistance calculator,V=IR calculator,power calculator electrical,ohms law formula,electrical circuit calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/ohms-law.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ohm's Law Calculator","description":"Solve for voltage, current, resistance, or power using Ohm's Law and the power formula, from any two known values.","url":"https://yourdomain.com/calculator-types/ohms-law.html","applicationCategory":"EducationApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚡ Ohm's Law Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Ohm's Law Calculator</h1>
+  <p class="hero-sub">Enter any two known values to solve for voltage, current, resistance, and power.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚡</div>
+    <div><div class="calc-card-title">Ohm's Law Calculator</div><div class="calc-card-desc">V = IR and P = VI</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Which Two Values Do You Know?</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="oh-mode" value="vi" checked> Voltage &amp; Current</label>
+        <label class="radio-pill"><input type="radio" name="oh-mode" value="vr"> Voltage &amp; Resistance</label>
+        <label class="radio-pill"><input type="radio" name="oh-mode" value="ir"> Current &amp; Resistance</label>
+        <label class="radio-pill"><input type="radio" name="oh-mode" value="pr"> Power &amp; Resistance</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field" id="oh-v-field">
+        <label for="oh-v">Voltage (V)</label>
+        <div class="input-wrap">
+          <input type="number" id="oh-v" value="12" min="0" step="0.1">
+          <span class="input-suffix">V</span>
+        </div>
+      </div>
+      <div class="field" id="oh-i-field">
+        <label for="oh-i">Current (I)</label>
+        <div class="input-wrap">
+          <input type="number" id="oh-i" value="2" min="0" step="0.01">
+          <span class="input-suffix">A</span>
+        </div>
+      </div>
+      <div class="field" id="oh-r-field" style="display:none">
+        <label for="oh-r">Resistance (R)</label>
+        <div class="input-wrap">
+          <input type="number" id="oh-r" value="6" min="0" step="0.1">
+          <span class="input-suffix">Ω</span>
+        </div>
+      </div>
+      <div class="field" id="oh-p-field" style="display:none">
+        <label for="oh-p">Power (P)</label>
+        <div class="input-wrap">
+          <input type="number" id="oh-p" value="24" min="0" step="0.1">
+          <span class="input-suffix">W</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcOhms()">Calculate →</button>
+
+    <div class="results" id="oh-results">
+      <div class="results-header">All Values</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Voltage</div>
+          <div class="result-value" id="r-oh-v">—</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="result-label">Current</div>
+          <div class="result-value" id="r-oh-i">—</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="result-label">Resistance</div>
+          <div class="result-value" id="r-oh-r">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Power</div>
+          <div class="result-value" id="r-oh-p">—</div>
+        </div>
+      </div>
+
+      <div id="oh-insight" class="insight"><div class="insight-icon">💡</div><div id="oh-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Ohm's Law Calculator</h2>
+  <p>Choose which two quantities you already know, enter their values, and the calculator solves for the remaining two using Ohm's Law and the power formula. All four electrical quantities — voltage, current, resistance, and power — are shown together once calculated, so you can see the full picture of the circuit.</p>
+
+  <h3>Ohm's Law</h3>
+  <p>Ohm's Law states that voltage equals current multiplied by resistance: V = I × R. This relationship can be rearranged to solve for any one of the three quantities given the other two: I = V / R, or R = V / I.</p>
+
+  <h3>The Power Formula</h3>
+  <p>Electrical power is calculated as P = V × I, the product of voltage and current. Combined with Ohm's Law, power can also be expressed purely in terms of current and resistance (P = I²R) or purely in terms of voltage and resistance (P = V²/R), which is how this calculator solves for power when only resistance and one other value are known.</p>
+
+  <div class="faq-item"><div class="faq-q">What units does this calculator use?</div><div class="faq-a"><p>Voltage is in volts (V), current is in amperes/amps (A), resistance is in ohms (Ω), and power is in watts (W) — the standard SI units for each quantity in basic circuit analysis.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I find power if I only know voltage and resistance?</div><div class="faq-a"><p>Using P = V²/R, power can be calculated directly from voltage and resistance without needing current as an intermediate step. The calculator handles this automatically once it derives current from your two known values.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Does this work for AC circuits?</div><div class="faq-a"><p>This calculator applies to simple DC (direct current) circuits or to the resistive (real) portion of AC circuits. AC circuits with reactive components like capacitors and inductors involve impedance and phase angles, which require a more complete AC circuit analysis beyond basic Ohm's Law.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var ohMode = 'vi';
+
+document.querySelectorAll('input[name="oh-mode"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="oh-mode"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    ohMode = this.value;
+    var vField = document.getElementById('oh-v-field');
+    var iField = document.getElementById('oh-i-field');
+    var rField = document.getElementById('oh-r-field');
+    var pField = document.getElementById('oh-p-field');
+
+    vField.style.display = (ohMode === 'vi' || ohMode === 'vr') ? '' : 'none';
+    iField.style.display = (ohMode === 'vi' || ohMode === 'ir') ? '' : 'none';
+    rField.style.display = (ohMode === 'vr' || ohMode === 'ir' || ohMode === 'pr') ? '' : 'none';
+    pField.style.display = (ohMode === 'pr') ? '' : 'none';
+  });
+});
+
+function calcOhms(){
+  var V, I, R, P;
+
+  if(ohMode === 'vi'){
+    V = v('oh-v'); I = v('oh-i');
+    if(I === 0){ showToast('Current cannot be zero'); return; }
+    R = V / I; P = V * I;
+  } else if(ohMode === 'vr'){
+    V = v('oh-v'); R = v('oh-r');
+    if(R === 0){ showToast('Resistance cannot be zero'); return; }
+    I = V / R; P = V * I;
+  } else if(ohMode === 'ir'){
+    I = v('oh-i'); R = v('oh-r');
+    V = I * R; P = V * I;
+  } else {
+    P = v('oh-p'); R = v('oh-r');
+    if(R === 0){ showToast('Resistance cannot be zero'); return; }
+    V = Math.sqrt(P * R); I = V / R;
+  }
+
+  if([V,I,R,P].some(function(n){ return isNaN(n) || n < 0; })){
+    showToast('Please enter valid non-negative values');
+    return;
+  }
+
+  setEl('r-oh-v', fmt(V,3)+' V');
+  setEl('r-oh-i', fmt(I,3)+' A');
+  setEl('r-oh-r', fmt(R,3)+' Ω');
+  setEl('r-oh-p', fmt(P,3)+' W');
+
+  var insightTxt = document.getElementById('oh-insight-text');
+  insightTxt.innerHTML = 'With <strong>'+fmt(V,2)+' V</strong> across <strong>'+fmt(R,2)+' Ω</strong> of resistance, the circuit draws <strong>'+fmt(I,3)+' A</strong> of current and dissipates <strong>'+fmt(P,2)+' W</strong> of power.';
+
+  showRes('oh-results');
+}
+
+window.addEventListener('load', calcOhms);
+</script>
+</body></html>

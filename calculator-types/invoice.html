@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invoice Calculator — Line Items, Discount, Tax & Total | CalcHub</title>
+<meta name="description" content="Free invoice calculator. Add line items with quantity and rate, apply a discount and tax rate, and get an instant subtotal, discount, tax, and grand total breakdown.">
+<meta name="keywords" content="invoice calculator,invoice total calculator,line item calculator,invoice tax calculator,freelance invoice calculator,quote calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/invoice.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Invoice Calculator","description":"Calculate an invoice total from line items, with discount and tax applied, including subtotal and grand total breakdown.","url":"https://yourdomain.com/calculator-types/invoice.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🧾 Invoice Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Invoice Calculator</h1>
+  <p class="hero-sub">Add your line items, apply discount and tax, and get an instant invoice total.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🧾</div>
+    <div><div class="calc-card-title">Invoice Calculator</div><div class="calc-card-desc">Line items, discount, tax, and total</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div id="inv-items-wrap">
+      <div class="breakdown-title">Line Items</div>
+      <table class="breakdown-table" id="inv-items-table">
+        <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Line Total</th><th></th></tr></thead>
+        <tbody id="inv-items-body"></tbody>
+      </table>
+    </div>
+    <button type="button" class="cc-swap-btn" style="margin:10px 0 16px" onclick="invAddRow()">+ Add Line Item</button>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="inv-discount">Discount</label>
+        <div class="input-wrap">
+          <input type="number" id="inv-discount" value="0" min="0" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="inv-tax">Tax Rate</label>
+        <div class="input-wrap">
+          <input type="number" id="inv-tax" value="15" min="0" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">e.g. GST/VAT/sales tax rate</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcInvoice()">Calculate Total →</button>
+
+    <div class="results" id="inv-results">
+      <div class="results-header">Invoice Summary</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Subtotal</div>
+          <div class="result-value" id="r-inv-subtotal">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Discount</div>
+          <div class="result-value" id="r-inv-discount">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Tax</div>
+          <div class="result-value" id="r-inv-tax">—</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="result-label">Total Due</div>
+          <div class="result-value" id="r-inv-total">—</div>
+        </div>
+      </div>
+
+      <div id="inv-insight" class="insight"><div class="insight-icon">💡</div><div id="inv-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Invoice Calculator</h2>
+  <p>Add a line item for each product or service, entering a description, quantity, and rate per unit — the line total calculates automatically. Add as many line items as needed, then enter any overall discount percentage and the applicable tax rate. The calculator totals everything into a subtotal, discount amount, tax amount, and final total due.</p>
+
+  <h3>Order of Operations: Discount Before Tax</h3>
+  <p>This calculator applies the discount to the subtotal first, then calculates tax on the discounted amount — which matches standard invoicing practice in most jurisdictions and most accounting software. Calculating tax before discount would result in the customer being taxed on an amount they're not actually paying.</p>
+
+  <h3>Tips for Clear Invoices</h3>
+  <p>Clear, itemised line items make it easy for a client to see exactly what they're being charged for, which reduces back-and-forth questions and payment delays. Keeping descriptions specific (a service and the time period, or a product and the quantity) is generally more effective than a single lump-sum line.</p>
+
+  <div class="faq-item"><div class="faq-q">Should tax be calculated before or after a discount?</div><div class="faq-a"><p>Tax should be calculated after the discount is applied, on the discounted subtotal. This is standard practice because the discount reduces what the customer actually owes, and tax should reflect the real amount being paid, not the original undiscounted price.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What tax rate should I use?</div><div class="faq-a"><p>This depends on your location and the type of goods or services — for example, GST is commonly 15% in New Zealand and 10% in Australia, while VAT and sales tax rates vary by country and sometimes by region or product category. Check your local tax authority's current rate, since this calculator simply applies whatever percentage you enter.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can I use this for quotes as well as invoices?</div><div class="faq-a"><p>Yes — the calculation is identical whether you're preparing a quote for a prospective job or an invoice for completed work. The only difference is typically the heading and payment terms on the document you actually send to the client.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<style>
+.cc-swap-btn{
+  background:var(--surface-2,#f1f1f1);
+  border:1px solid var(--border,#ddd);
+  border-radius:999px;
+  padding:6px 16px;
+  font-family:var(--font-sans);
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text-2,#555);
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.cc-swap-btn:hover{ background:var(--surface-3,#e6e6e6); }
+.inv-row-input{
+  width:100%;
+  font-family:var(--font-sans);
+  font-size:.85rem;
+  padding:6px 8px;
+  border:1px solid var(--border,#ddd);
+  border-radius:6px;
+  background:var(--surface,#fff);
+  color:var(--text,#222);
+}
+.inv-line-total{
+  font-family:var(--font-mono,monospace);
+  font-size:.85rem;
+  white-space:nowrap;
+}
+.inv-remove-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--text-3,#999);font-size:1.1rem;line-height:1;
+}
+.inv-remove-btn:hover{ color:var(--danger,#c0392b); }
+</style>
+
+<script src="../js/app.js"></script>
+<script>
+var invRowCount = 0;
+
+function invAddRow(desc, qty, rate){
+  invRowCount++;
+  var id = invRowCount;
+  var tbody = document.getElementById('inv-items-body');
+  var tr = document.createElement('tr');
+  tr.id = 'inv-row-'+id;
+  tr.innerHTML =
+    '<td><input class="inv-row-input" type="text" id="inv-desc-'+id+'" value="'+(desc||'')+'" placeholder="Item description"></td>'
+    +'<td><input class="inv-row-input" type="number" id="inv-qty-'+id+'" value="'+(qty!==undefined?qty:1)+'" min="0" step="1" oninput="invUpdateLineTotal('+id+')" style="max-width:70px"></td>'
+    +'<td><input class="inv-row-input" type="number" id="inv-rate-'+id+'" value="'+(rate!==undefined?rate:0)+'" min="0" step="0.01" oninput="invUpdateLineTotal('+id+')" style="max-width:100px"></td>'
+    +'<td class="inv-line-total" id="inv-linetotal-'+id+'">$0.00</td>'
+    +'<td><button type="button" class="inv-remove-btn" onclick="invRemoveRow('+id+')" title="Remove">✕</button></td>';
+  tbody.appendChild(tr);
+  invUpdateLineTotal(id);
+}
+
+function invRemoveRow(id){
+  var row = document.getElementById('inv-row-'+id);
+  if(row) row.remove();
+  calcInvoice();
+}
+
+function invUpdateLineTotal(id){
+  var qty = v('inv-qty-'+id) || 0;
+  var rate = v('inv-rate-'+id) || 0;
+  setEl('inv-linetotal-'+id, fmtCur(qty*rate));
+}
+
+function invGetLines(){
+  var rows = document.querySelectorAll('#inv-items-body tr');
+  var lines = [];
+  rows.forEach(function(row){
+    var id = row.id.replace('inv-row-','');
+    var desc = vs('inv-desc-'+id) || 'Item';
+    var qty = v('inv-qty-'+id) || 0;
+    var rate = v('inv-rate-'+id) || 0;
+    lines.push({ desc:desc, qty:qty, rate:rate, total: qty*rate });
+  });
+  return lines;
+}
+
+function calcInvoice(){
+  var lines = invGetLines();
+  var discountPct = v('inv-discount') || 0;
+  var taxPct = v('inv-tax') || 0;
+
+  var subtotal = lines.reduce(function(s,l){ return s + l.total; }, 0);
+  var discountAmt = subtotal * (discountPct/100);
+  var afterDiscount = subtotal - discountAmt;
+  var taxAmt = afterDiscount * (taxPct/100);
+  var total = afterDiscount + taxAmt;
+
+  setEl('r-inv-subtotal', fmtCur(subtotal));
+  setEl('r-inv-discount', discountAmt > 0 ? '-'+fmtCur(discountAmt) : fmtCur(0));
+  setEl('r-inv-tax', fmtCur(taxAmt));
+  setEl('r-inv-total', fmtCur(total));
+
+  var insightTxt = document.getElementById('inv-insight-text');
+  if(subtotal === 0){
+    insightTxt.innerHTML = 'Add at least one line item with a quantity and rate to calculate an invoice total.';
+  } else {
+    insightTxt.innerHTML = 'Subtotal of <strong>'+fmtCur(subtotal)+'</strong>'+(discountAmt>0?' less a '+fmt(discountPct,1)+'% discount ('+fmtCur(discountAmt)+')':'')+', plus '+fmt(taxPct,1)+'% tax ('+fmtCur(taxAmt)+'), comes to a total of <strong>'+fmtCur(total)+'</strong> due.';
+  }
+
+  showRes('inv-results');
+}
+
+invAddRow('Consulting services — 10 hrs', 10, 95);
+invAddRow('Project setup fee', 1, 250);
+
+window.addEventListener('load', calcInvoice);
+</script>
+</body></html>

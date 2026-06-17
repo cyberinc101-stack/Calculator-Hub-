@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Running Pace Calculator — Pace, Speed & Finish Time | CalcHub</title>
+<meta name="description" content="Free running pace calculator. Calculate your pace, speed, and finish time for any race distance — 5K, 10K, half marathon, marathon, or custom distance. Supports min/km and min/mile.">
+<meta name="keywords" content="running pace calculator,race pace calculator,finish time calculator,5k pace calculator,marathon pace calculator,min per km calculator,min per mile calculator,running speed calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/running-pace.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Running Pace Calculator","description":"Calculate running pace, speed, and finish time for any race distance.","url":"https://yourdomain.com/calculator-types/running-pace.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* Mode tabs */
+.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.mode-tab{padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s;}
+.mode-tab.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;}
+
+/* Unit toggle */
+.unit-toggle{display:flex;gap:0;margin-bottom:18px;border-radius:10px;overflow:hidden;border:1.5px solid var(--card-border,#1e3a1e);width:fit-content;}
+.unit-toggle-btn{padding:7px 16px;font-size:.8rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:var(--text-2);font-family:var(--font-sans);transition:all .15s;}
+.unit-toggle-btn.active{background:var(--accent,#22c55e);color:#0a0f0a;}
+
+/* Race distance pills */
+.dist-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.dist-pill{padding:7px 13px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-mono);background:transparent;color:var(--text-2);transition:all .15s;}
+.dist-pill.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;}
+
+/* Big answer */
+.pace-answer{text-align:center;padding:24px 20px 18px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px;}
+.pace-value{font-family:var(--font-mono);font-size:clamp(2rem,7vw,3.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:6px;}
+.pace-sub{font-size:.85rem;color:var(--text-2);}
+
+/* Stat grid */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px;}
+.stat-card{background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:12px;padding:14px 12px;text-align:center;}
+.stat-value{font-family:var(--font-mono);font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1.1;}
+.stat-label{font-size:.72rem;color:var(--text-2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+
+/* Split table */
+.split-table{width:100%;border-collapse:collapse;font-size:.82rem;}
+.split-table th{text-align:left;padding:6px 8px;color:var(--text-2);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--card-border,#1e3a1e);}
+.split-table td{padding:7px 8px;border-bottom:1px solid var(--card-border,#1e3a1e);font-family:var(--font-mono);font-size:.82rem;}
+.split-table tr:last-child td{border-bottom:none;}
+.split-table tr.highlight-row td{color:var(--accent,#22c55e);font-weight:700;}
+
+/* Time input row */
+.time-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:14px;flex-wrap:wrap;}
+.time-field{flex:1;min-width:70px;}
+.time-field label{display:block;font-size:.82rem;font-weight:600;color:var(--text-2);margin-bottom:6px;}
+.time-field input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);background:var(--card,#111a11);color:var(--text);font-family:var(--font-mono);font-size:1rem;box-sizing:border-box;}
+.time-sep{font-size:1.4rem;font-weight:700;color:var(--text-2);padding-bottom:10px;align-self:flex-end;}
+
+/* Pace input (mm:ss) */
+.pace-input-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:14px;}
+.pace-input-row .time-sep{padding-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🏃 Running Pace Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Running Pace Calculator</h1>
+  <p class="hero-sub">Calculate your pace, finish time, or required speed for any race distance — 5K, 10K, half marathon, marathon, or custom.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🏃</div>
+    <div>
+      <div class="calc-card-title">Running Pace Calculator</div>
+      <div class="calc-card-desc">Solve for pace, time, or distance — with splits breakdown</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Mode: what to solve for -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="setRunMode('pace',this)">Find Pace</button>
+      <button class="mode-tab" onclick="setRunMode('time',this)">Find Finish Time</button>
+      <button class="mode-tab" onclick="setRunMode('dist',this)">Find Distance</button>
+    </div>
+
+    <!-- Unit toggle -->
+    <div class="unit-toggle">
+      <button class="unit-toggle-btn active" onclick="setRunUnits('km',this)">km / min:km</button>
+      <button class="unit-toggle-btn" onclick="setRunUnits('mi',this)">miles / min:mi</button>
+    </div>
+
+    <!-- Race distance quick-pick -->
+    <div id="dist-row">
+      <label style="font-size:.82rem;font-weight:600;color:var(--text-2);display:block;margin-bottom:8px;">Race Distance</label>
+      <div class="dist-pills">
+        <button class="dist-pill" onclick="setDist(5,'5K',this)">5K</button>
+        <button class="dist-pill" onclick="setDist(10,'10K',this)">10K</button>
+        <button class="dist-pill" onclick="setDist(21.0975,'Half Marathon',this)">Half Marathon</button>
+        <button class="dist-pill" onclick="setDist(42.195,'Marathon',this)">Marathon</button>
+        <button class="dist-pill active" onclick="setDist(null,'Custom',this)">Custom</button>
+      </div>
+      <div class="field" id="custom-dist-field">
+        <div class="input-wrap">
+          <input type="number" id="run-dist" value="10" min="0.1" step="0.1">
+          <span class="input-suffix" id="run-dist-unit">km</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: Find Pace — needs distance + time -->
+    <div id="panel-pace">
+      <div class="field" style="margin-top:14px">
+        <label>Finish Time</label>
+        <div class="time-row">
+          <div class="time-field"><label>Hours</label><input type="number" id="fp-h" value="0" min="0" max="23" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field"><label>Minutes</label><input type="number" id="fp-m" value="55" min="0" max="59" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field"><label>Seconds</label><input type="number" id="fp-s" value="0" min="0" max="59" step="1"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcPace()">Calculate Pace →</button>
+    </div>
+
+    <!-- PANEL: Find Finish Time — needs distance + pace -->
+    <div id="panel-time" style="display:none">
+      <div class="field" style="margin-top:14px">
+        <label id="pace-input-label">Pace (min:sec per km)</label>
+        <div class="pace-input-row">
+          <div class="time-field" style="max-width:90px"><label>Min</label><input type="number" id="ft-min" value="5" min="0" max="59" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field" style="max-width:90px"><label>Sec</label><input type="number" id="ft-sec" value="30" min="0" max="59" step="1"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcTime()">Calculate Finish Time →</button>
+    </div>
+
+    <!-- PANEL: Find Distance — needs time + pace -->
+    <div id="panel-dist" style="display:none">
+      <div class="field" style="margin-top:14px">
+        <label>Total Running Time</label>
+        <div class="time-row">
+          <div class="time-field"><label>Hours</label><input type="number" id="fd-h" value="0" min="0" max="23" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field"><label>Minutes</label><input type="number" id="fd-m" value="30" min="0" max="59" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field"><label>Seconds</label><input type="number" id="fd-s" value="0" min="0" max="59" step="1"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label id="pace-input-label2">Pace (min:sec per km)</label>
+        <div class="pace-input-row">
+          <div class="time-field" style="max-width:90px"><label>Min</label><input type="number" id="fd-pm" value="5" min="0" max="59" step="1"></div>
+          <div class="time-sep">:</div>
+          <div class="time-field" style="max-width:90px"><label>Sec</label><input type="number" id="fd-ps" value="30" min="0" max="59" step="1"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDist()">Calculate Distance →</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results" id="run-results">
+      <div class="pace-answer">
+        <div class="pace-value" id="r-main">—</div>
+        <div class="pace-sub" id="r-main-label"></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="r-pace">—</div>
+          <div class="stat-label" id="r-pace-label">Pace</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-speed">—</div>
+          <div class="stat-label" id="r-speed-label">Speed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-finish">—</div>
+          <div class="stat-label">Finish Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="r-dist-out">—</div>
+          <div class="stat-label" id="r-dist-label">Distance</div>
+        </div>
+      </div>
+
+      <!-- Race equivalent times -->
+      <div class="breakdown-wrap" id="equiv-wrap">
+        <div class="breakdown-title">Race Equivalent Times at This Pace</div>
+        <table class="split-table">
+          <thead><tr><th>Race</th><th>Distance</th><th>Finish Time</th></tr></thead>
+          <tbody id="equiv-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Splits -->
+      <div class="breakdown-wrap" id="splits-wrap" style="margin-top:14px">
+        <div class="breakdown-title" id="splits-title">Per-km Splits</div>
+        <table class="split-table">
+          <thead><tr><th id="split-col-label">km</th><th>Split Time</th><th>Elapsed</th></tr></thead>
+          <tbody id="splits-body"></tbody>
+        </table>
+      </div>
+
+      <div id="run-insight" class="insight">
+        <div class="insight-icon">💡</div>
+        <div id="run-insight-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Running Pace Calculator</h2>
+  <p>Choose what you want to solve for — pace, finish time, or distance — then enter the other two values. Use the race distance quick-pick buttons for common distances, or enter a custom distance. The calculator shows your pace per kilometre or mile, equivalent speed, finish time, and a full splits table so you know exactly where you should be at each kilometre marker.</p>
+
+  <h3>Understanding Running Pace</h3>
+  <p>Pace is expressed as time per unit of distance (e.g. 5:30 min/km), while speed is distance per unit of time (e.g. 10.9 km/h). They are inverses of each other. Most runners think in pace during a race, while speed is more useful for comparing performance or programming training zones on a treadmill.</p>
+
+  <h3>Common Race Pace Benchmarks</h3>
+  <p>For a 5K, a sub-25 minute finish requires a pace around 5:00/km. For a marathon, qualifying for the Boston Marathon (men open 18–34) requires finishing under 3:00, which is approximately 4:16/km. Most recreational runners complete a marathon between 4:00 and 6:30/km.</p>
+
+  <div class="faq-item"><div class="faq-q">How do I convert min/km to min/mile?</div><div class="faq-a"><p>Multiply your min/km pace by 1.60934. So a 5:00/km pace is 5:00 × 1.609 = 8:03/mile. To go the other way, multiply min/mile by 0.6214. The calculator handles this conversion automatically when you switch units.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is a negative split?</div><div class="faq-a"><p>A negative split means running the second half of a race faster than the first. It's widely considered the optimal race strategy for most distances — starting slightly slower than goal pace and gradually accelerating. Elite marathon runners almost always run negative splits in their fastest performances.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I use this to pace a race?</div><div class="faq-a"><p>Enter your target finish time and distance (Find Pace mode). The splits table shows the exact elapsed time you should hit at each kilometre or mile marker. Screenshot or print this before your race to wear on your wrist or keep in your pocket.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var runMode  = 'pace';
+var runUnits = 'km';
+var customDist = null; // null = use input field; number = preset
+
+/* Race presets in km */
+var RACES = [
+  { name: '5K',            dist: 5 },
+  { name: '10K',           dist: 10 },
+  { name: 'Half Marathon', dist: 21.0975 },
+  { name: 'Marathon',      dist: 42.195 }
+];
+
+function setRunMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  runMode = mode;
+  document.getElementById('panel-pace').style.display = mode === 'pace' ? '' : 'none';
+  document.getElementById('panel-time').style.display = mode === 'time' ? '' : 'none';
+  document.getElementById('panel-dist').style.display = mode === 'dist' ? '' : 'none';
+  // Hide distance row when solving for distance
+  document.getElementById('dist-row').style.display   = mode === 'dist' ? 'none' : '';
+}
+
+function setRunUnits(unit, btn){
+  document.querySelectorAll('.unit-toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  runUnits = unit;
+  var isKm = unit === 'km';
+  document.getElementById('run-dist-unit').textContent = isKm ? 'km' : 'mi';
+  document.getElementById('pace-input-label').textContent  = 'Pace (min:sec per ' + unit + ')';
+  document.getElementById('pace-input-label2').textContent = 'Pace (min:sec per ' + unit + ')';
+  document.getElementById('split-col-label').textContent   = isKm ? 'km' : 'mi';
+  // Adjust default distance if it looks like it was a preset
+  var distEl = document.getElementById('run-dist');
+  var cur = parseFloat(distEl.value);
+  if(isKm){
+    if(Math.abs(cur - 6.2137) < 0.1) distEl.value = 10;
+    if(Math.abs(cur - 3.1069) < 0.1) distEl.value = 5;
+  } else {
+    if(Math.abs(cur - 10) < 0.01) distEl.value = 6.2137;
+    if(Math.abs(cur - 5)  < 0.01) distEl.value = 3.1069;
+  }
+  if(customDist !== null){
+    var km = customDist;
+    distEl.value = isKm ? km.toFixed(4) : (km * 0.621371).toFixed(4);
+  }
+}
+
+function setDist(km, name, btn){
+  document.querySelectorAll('.dist-pill').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  if(km === null){
+    customDist = null;
+    document.getElementById('custom-dist-field').style.display = '';
+  } else {
+    customDist = km;
+    document.getElementById('custom-dist-field').style.display = 'none';
+    var distEl = document.getElementById('run-dist');
+    distEl.value = runUnits === 'km' ? km.toFixed(4) : (km * 0.621371).toFixed(4);
+  }
+}
+
+/* ── Time helpers ── */
+function secsToHMS(s){
+  s = Math.round(s);
+  var h = Math.floor(s/3600); s -= h*3600;
+  var m = Math.floor(s/60);   s -= m*60;
+  return (h > 0 ? h + ':' : '') + pad(m) + ':' + pad(s);
+}
+function secsToMMSS(s){
+  s = Math.round(s);
+  var m = Math.floor(s/60); s -= m*60;
+  return pad(m) + ':' + pad(s);
+}
+function pad(n){ return n < 10 ? '0'+n : ''+n; }
+function getDistKm(){
+  var d = parseFloat(document.getElementById('run-dist').value);
+  if(isNaN(d) || d <= 0) return null;
+  return runUnits === 'km' ? d : d * 1.60934;
+}
+function paceSecPerKm(minEl, secEl){
+  var m = parseInt(document.getElementById(minEl).value)||0;
+  var s = parseInt(document.getElementById(secEl).value)||0;
+  var secKm = m*60 + s;
+  // if miles, convert: 1 mi = 1.60934 km → sec/km = sec/mi / 1.60934
+  return runUnits === 'km' ? secKm : secKm / 1.60934;
+}
+
+/* ── Shared display ── */
+function displayResults(distKm, totalSecs, paceSecKm){
+  var isKm    = runUnits === 'km';
+  var distDisp = isKm ? distKm : distKm * 0.621371;
+  var paceDisp = isKm ? paceSecKm : paceSecKm * 1.60934; // sec/unit
+  var speedKmh = 3600 / paceSecKm;
+  var speedDisp = isKm ? speedKmh : speedKmh * 0.621371;
+  var unit = isKm ? 'km' : 'mi';
+
+  setEl('r-pace',       secsToMMSS(paceDisp));
+  document.getElementById('r-pace-label').textContent = 'min:sec / ' + unit;
+  setEl('r-speed',      speedDisp.toFixed(1) + ' ' + unit + '/h');
+  setEl('r-finish',     secsToHMS(totalSecs));
+  setEl('r-dist-out',   distDisp.toFixed(2) + ' ' + unit);
+
+  // Race equivalents
+  var equivRows = '';
+  RACES.forEach(function(r){
+    var rSecs = r.dist * paceSecKm;
+    var isMatch = Math.abs(r.dist - distKm) < 0.01;
+    equivRows += '<tr' + (isMatch ? ' class="highlight-row"' : '') + '>'
+      + '<td>' + r.name + '</td>'
+      + '<td>' + (isKm ? r.dist.toFixed(3) + ' km' : (r.dist * 0.621371).toFixed(3) + ' mi') + '</td>'
+      + '<td>' + secsToHMS(rSecs) + '</td>'
+      + '</tr>';
+  });
+  document.getElementById('equiv-body').innerHTML = equivRows;
+
+  // Splits — limit to 50 rows max
+  var splitDistKm = isKm ? 1 : 1.60934;
+  var numSplits   = Math.ceil(distKm / splitDistKm);
+  numSplits = Math.min(numSplits, 50);
+  document.getElementById('splits-title').textContent = 'Per-' + unit + ' Splits';
+  document.getElementById('split-col-label').textContent = unit;
+  var splitRows = '';
+  var elapsed = 0;
+  for(var i = 1; i <= numSplits; i++){
+    var thisDist = Math.min(splitDistKm, distKm - (i-1)*splitDistKm);
+    var thisSec  = thisDist * paceSecKm;
+    elapsed     += thisSec;
+    var isLast   = i === numSplits && Math.abs(thisDist - splitDistKm) > 0.001;
+    splitRows += '<tr><td>' + (isLast ? distDisp.toFixed(2) : i) + (isLast ? ' (' + unit + ')' : '') + '</td>'
+      + '<td>' + secsToMMSS(thisSec) + '</td>'
+      + '<td>' + secsToHMS(elapsed) + '</td>'
+      + '</tr>';
+  }
+  document.getElementById('splits-body').innerHTML = splitRows;
+
+  // Insight — category
+  var secMi = paceSecKm * 1.60934;
+  var cat = '';
+  if(secMi < 6*60) cat = 'elite / competitive';
+  else if(secMi < 8*60) cat = 'strong recreational';
+  else if(secMi < 10*60) cat = 'recreational';
+  else cat = 'beginner / easy effort';
+
+  document.getElementById('run-insight-text').innerHTML =
+    'At <strong>' + secsToMMSS(paceDisp) + '/' + unit + '</strong> you are running at a <strong>' + cat + '</strong> level. '
+    + 'Speed: <strong>' + speedDisp.toFixed(2) + ' ' + unit + '/h</strong>. '
+    + (isKm
+      ? 'In miles that\'s <strong>' + secsToMMSS(paceSecKm * 1.60934) + '/mi</strong>.'
+      : 'In km that\'s <strong>' + secsToMMSS(paceSecKm) + '/km</strong>.');
+
+  showRes('run-results');
+}
+
+/* ── MODE: Find Pace ── */
+function calcPace(){
+  var distKm = getDistKm();
+  if(!distKm){ showToast('Enter a valid distance'); return; }
+  var h = parseInt(document.getElementById('fp-h').value)||0;
+  var m = parseInt(document.getElementById('fp-m').value)||0;
+  var s = parseInt(document.getElementById('fp-s').value)||0;
+  var totalSecs = h*3600 + m*60 + s;
+  if(totalSecs <= 0){ showToast('Enter a valid time'); return; }
+  var paceSecKm = totalSecs / distKm;
+  var paceDisp  = runUnits === 'km' ? paceSecKm : paceSecKm * 1.60934;
+  setEl('r-main', secsToMMSS(paceDisp));
+  document.getElementById('r-main-label').textContent = 'per ' + (runUnits === 'km' ? 'kilometre' : 'mile');
+  displayResults(distKm, totalSecs, paceSecKm);
+}
+
+/* ── MODE: Find Finish Time ── */
+function calcTime(){
+  var distKm = getDistKm();
+  if(!distKm){ showToast('Enter a valid distance'); return; }
+  var paceSecKm = paceSecPerKm('ft-min','ft-sec');
+  if(paceSecKm <= 0){ showToast('Enter a valid pace'); return; }
+  var totalSecs = distKm * paceSecKm;
+  setEl('r-main', secsToHMS(totalSecs));
+  document.getElementById('r-main-label').textContent = 'finish time';
+  displayResults(distKm, totalSecs, paceSecKm);
+}
+
+/* ── MODE: Find Distance ── */
+function calcDist(){
+  var h = parseInt(document.getElementById('fd-h').value)||0;
+  var m = parseInt(document.getElementById('fd-m').value)||0;
+  var s = parseInt(document.getElementById('fd-s').value)||0;
+  var totalSecs = h*3600 + m*60 + s;
+  if(totalSecs <= 0){ showToast('Enter a valid time'); return; }
+  var paceSecKm = paceSecPerKm('fd-pm','fd-ps');
+  if(paceSecKm <= 0){ showToast('Enter a valid pace'); return; }
+  var distKm   = totalSecs / paceSecKm;
+  var distDisp = runUnits === 'km' ? distKm : distKm * 0.621371;
+  setEl('r-main', distDisp.toFixed(2) + ' ' + runUnits);
+  document.getElementById('r-main-label').textContent = 'covered at this pace';
+  // set the hidden dist input so displayResults works
+  document.getElementById('run-dist').value = runUnits === 'km' ? distKm.toFixed(4) : distDisp.toFixed(4);
+  displayResults(distKm, totalSecs, paceSecKm);
+}
+
+window.addEventListener('load', calcPace);
+</script>
+</body>
+</html>

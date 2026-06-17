@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bill Split Calculator — Split Any Bill Unevenly or Equally | CalcHub</title>
+<meta name="description" content="Free bill split calculator. Split restaurant bills equally or by what each person ordered. Add tip, tax, and shared items. See exactly what everyone owes — no arguments.">
+<meta name="keywords" content="bill split calculator,split bill calculator,restaurant bill splitter,how to split a bill,uneven bill split,tip split calculator,group dinner calculator,who owes what calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/bill-split.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Bill Split Calculator","description":"Split restaurant and group bills equally or by individual orders, with tip and tax.","url":"https://yourdomain.com/calculator-types/bill-split.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* Mode toggle */
+.mode-tabs {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+.mode-tab {
+  flex: 1;
+  padding: .55rem .5rem;
+  text-align: center;
+  font-size: .85rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  background: var(--bg-2);
+  color: var(--text-3);
+  border: none;
+  transition: background .15s, color .15s;
+}
+.mode-tab.active {
+  background: var(--accent-mid);
+  color: #fff;
+}
+
+/* Tip quick-pick */
+.tip-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+}
+.tip-pill {
+  padding: .3rem .75rem;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-2);
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  color: var(--text-2);
+  transition: background .12s, border-color .12s, color .12s;
+}
+.tip-pill.active {
+  background: var(--accent-mid);
+  border-color: var(--accent-mid);
+  color: #fff;
+}
+
+/* Person rows */
+.person-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: .8rem; }
+.person-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 36px;
+  gap: 8px;
+  align-items: center;
+}
+.person-row input[type="text"] { font-size: .88rem; }
+.person-row input[type="number"] { font-size: .88rem; }
+.person-remove {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-3);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .12s, color .12s;
+  line-height: 1;
+}
+.person-remove:hover { background: #fce4ec; color: #c62828; border-color: #ef9a9a; }
+.add-person-btn {
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  padding: .45rem 1rem;
+  width: 100%;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: border-color .12s, color .12s;
+}
+.add-person-btn:hover { border-color: var(--accent-mid); color: var(--accent-mid); }
+
+/* Result cards per person */
+.person-results { display: flex; flex-direction: column; gap: 8px; margin-top: .8rem; }
+.person-result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-2);
+  border-radius: 10px;
+  border-left: 4px solid var(--accent-mid);
+}
+.person-result-name {
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--text);
+}
+.person-result-sub {
+  font-size: .75rem;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+.person-result-total {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-mid);
+}
+
+/* Shared items */
+.shared-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: .8rem; }
+.shared-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 36px;
+  gap: 8px;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🧾 Everyday Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Bill Split Calculator</h1>
+  <p class="hero-sub">Split any bill equally or by what each person ordered. Add tip, tax, and shared items. See exactly what everyone owes — instantly.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🧾</div>
+    <div><div class="calc-card-title">Bill Split Calculator</div><div class="calc-card-desc">Equal split or itemised — with tip, tax, and shared costs</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Mode -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-equal"    onclick="setMode('equal')">⚖️ Split Equally</button>
+      <button class="mode-tab"        id="tab-itemised" onclick="setMode('itemised')">🍽️ By What I Ordered</button>
+    </div>
+
+    <!-- ── EQUAL MODE ── -->
+    <div id="mode-equal">
+      <div class="field-grid">
+        <div class="field">
+          <label for="eq-total">Total Bill</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="eq-total" class="has-prefix" value="120" min="0" step="0.01" oninput="calcEqual()">
+          </div>
+        </div>
+        <div class="field">
+          <label for="eq-tax">Sales Tax</label>
+          <div class="input-wrap">
+            <input type="number" id="eq-tax" value="0" min="0" max="30" step="0.1" oninput="calcEqual()">
+            <span class="input-suffix">%</span>
+          </div>
+          <span class="field-hint">Leave 0 if tax already included</span>
+        </div>
+        <div class="field">
+          <label for="eq-people">Number of People</label>
+          <div class="input-wrap">
+            <input type="number" id="eq-people" value="4" min="1" max="100" step="1" oninput="calcEqual()">
+            <span class="input-suffix">ppl</span>
+          </div>
+        </div>
+      </div>
+
+      <label style="font-size:.85rem;font-weight:600;color:var(--text-2);display:block;margin-bottom:.4rem">Tip Amount</label>
+      <div class="tip-pills">
+        <button class="tip-pill" onclick="setTip(0,this)">No tip</button>
+        <button class="tip-pill" onclick="setTip(10,this)">10%</button>
+        <button class="tip-pill active" onclick="setTip(15,this)">15%</button>
+        <button class="tip-pill" onclick="setTip(18,this)">18%</button>
+        <button class="tip-pill" onclick="setTip(20,this)">20%</button>
+        <button class="tip-pill" onclick="setTip(25,this)">25%</button>
+      </div>
+      <div class="field" style="margin-top:.4rem">
+        <div class="input-wrap">
+          <input type="number" id="eq-tip" value="15" min="0" max="100" step="1" oninput="onManualTip()">
+          <span class="input-suffix">% tip</span>
+        </div>
+      </div>
+
+      <div class="results" id="eq-results" style="display:block">
+        <div class="results-header">Split Results</div>
+        <div class="results-grid">
+          <div class="result-item highlight">
+            <div class="result-label">Each Person Pays</div>
+            <div class="result-value" id="r-eq-each">—</div>
+          </div>
+          <div class="result-item green">
+            <div class="result-label">Tip per Person</div>
+            <div class="result-value" id="r-eq-tip-pp">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Bill + Tax</div>
+            <div class="result-value" id="r-eq-subtotal">—</div>
+          </div>
+          <div class="result-item amber">
+            <div class="result-label">Total with Tip</div>
+            <div class="result-value" id="r-eq-grand">—</div>
+          </div>
+        </div>
+        <div id="eq-insight" class="insight" style="margin-top:.8rem"><div class="insight-icon">💡</div><div id="eq-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ── ITEMISED MODE ── -->
+    <div id="mode-itemised" style="display:none">
+      <div class="field-grid" style="margin-bottom:.8rem">
+        <div class="field">
+          <label for="it-tax">Sales Tax</label>
+          <div class="input-wrap">
+            <input type="number" id="it-tax" value="0" min="0" max="30" step="0.1" oninput="calcItemised()">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="it-tip">Tip</label>
+          <div class="input-wrap">
+            <input type="number" id="it-tip" value="18" min="0" max="100" step="1" oninput="calcItemised()">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- People & their subtotals -->
+      <label style="font-size:.85rem;font-weight:600;color:var(--text-2);display:block;margin-bottom:.5rem">People & Their Orders</label>
+      <div class="person-list" id="person-list"></div>
+      <button class="add-person-btn" onclick="addPerson()">+ Add Person</button>
+
+      <!-- Shared items -->
+      <label style="font-size:.85rem;font-weight:600;color:var(--text-2);display:block;margin:.9rem 0 .5rem">Shared Items (split equally)</label>
+      <div class="shared-list" id="shared-list"></div>
+      <button class="add-person-btn" onclick="addShared()">+ Add Shared Item</button>
+
+      <button class="calc-btn" style="margin-top:1rem" onclick="calcItemised()">Calculate Split →</button>
+
+      <div class="results" id="it-results">
+        <div class="results-header">Who Owes What</div>
+        <div class="results-grid">
+          <div class="result-item highlight">
+            <div class="result-label">Grand Total</div>
+            <div class="result-value" id="r-it-grand">—</div>
+          </div>
+          <div class="result-item green">
+            <div class="result-label">Total Tip</div>
+            <div class="result-value" id="r-it-tip">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Tax</div>
+            <div class="result-value" id="r-it-tax">—</div>
+          </div>
+          <div class="result-item amber">
+            <div class="result-label">Shared Items Total</div>
+            <div class="result-value" id="r-it-shared">—</div>
+          </div>
+        </div>
+        <div class="person-results" id="person-results"></div>
+        <div id="it-insight" class="insight" style="margin-top:.8rem"><div class="insight-icon">💡</div><div id="it-insight-text"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Split a Bill Fairly</h2>
+  <p>Equal splits work great for group meals where everyone orders roughly the same amount. But when one person has the Caesar salad and water while another has the steak and two cocktails, itemised splitting is fairer. This calculator handles both scenarios — plus shared starters and bottles that everyone split.</p>
+  <h3>How Tip Is Calculated</h3>
+  <p>Tip is typically calculated on the pre-tax subtotal, though customs vary. In the US, 18–20% is standard for sit-down restaurants. In the UK and Australia, tipping is discretionary and 10% is common. This calculator applies tip to the food subtotal before tax.</p>
+  <div class="faq-item"><div class="faq-q">Should I tip before or after tax?</div><div class="faq-a"><p>Conventionally, tip is calculated on the pre-tax bill. In practice the difference is small — on a $100 bill with 10% tax, tipping 20% pre-tax gives $20 in tip versus $22 post-tax. Both approaches are acceptable; this calculator uses pre-tax by default.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I handle someone who didn't drink alcohol?</div><div class="faq-a"><p>Use itemised mode. Enter each person's food and drink total separately. Alcohol, cocktails, and wine can be entered as individual items for whoever consumed them. The shared item section works well for bottles of wine the whole table shared.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var currentMode = 'equal';
+var currentTipPct = 15;
+var persons = [];
+var sharedItems = [];
+var personIdCounter = 0;
+var sharedIdCounter = 0;
+
+function setMode(mode){
+  currentMode = mode;
+  document.getElementById('mode-equal').style.display    = mode === 'equal'    ? '' : 'none';
+  document.getElementById('mode-itemised').style.display = mode === 'itemised' ? '' : 'none';
+  document.getElementById('tab-equal').classList.toggle('active',    mode === 'equal');
+  document.getElementById('tab-itemised').classList.toggle('active', mode === 'itemised');
+}
+
+function setTip(pct, btn){
+  document.querySelectorAll('.tip-pill').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentTipPct = pct;
+  document.getElementById('eq-tip').value = pct;
+  calcEqual();
+}
+function onManualTip(){
+  document.querySelectorAll('.tip-pill').forEach(function(b){ b.classList.remove('active'); });
+  currentTipPct = parseFloat(document.getElementById('eq-tip').value) || 0;
+  calcEqual();
+}
+
+function calcEqual(){
+  var total   = parseFloat(document.getElementById('eq-total').value)  || 0;
+  var taxPct  = parseFloat(document.getElementById('eq-tax').value)    || 0;
+  var people  = parseInt(document.getElementById('eq-people').value)   || 1;
+  var tipPct  = parseFloat(document.getElementById('eq-tip').value)    || 0;
+
+  var taxAmt     = total * taxPct / 100;
+  var subtotal   = total + taxAmt;
+  var tipAmt     = total * tipPct / 100; // tip on pre-tax
+  var grand      = subtotal + tipAmt;
+  var perPerson  = grand / people;
+  var tipPP      = tipAmt / people;
+
+  setEl('r-eq-each',     fmtCur(perPerson));
+  setEl('r-eq-tip-pp',   fmtCur(tipPP));
+  setEl('r-eq-subtotal', fmtCur(subtotal));
+  setEl('r-eq-grand',    fmtCur(grand));
+
+  document.getElementById('eq-insight-text').innerHTML =
+    'Split ' + people + ' ways, everyone pays <strong>' + fmtCur(perPerson) + '</strong> — that includes <strong>' + fmtCur(tipPP) + '</strong> tip each'
+    + (taxPct > 0 ? ' and a proportional share of the ' + taxPct + '% tax' : '') + '. Total tip left: <strong>' + fmtCur(tipAmt) + '</strong>.';
+}
+
+/* ── ITEMISED MODE ── */
+function renderPersonList(){
+  var html = persons.map(function(p){
+    return '<div class="person-row" id="prow-' + p.id + '">'
+      + '<input type="text" value="' + escAttr(p.name) + '" placeholder="Person\'s name" oninput="persons.find(function(x){return x.id===' + p.id + ';}).name=this.value">'
+      + '<div class="input-wrap"><span class="input-prefix">$</span><input type="number" class="has-prefix" value="' + p.amount + '" min="0" step="0.01" placeholder="0.00" oninput="persons.find(function(x){return x.id===' + p.id + ';}).amount=parseFloat(this.value)||0;calcItemised()"></div>'
+      + '<button class="person-remove" onclick="removePerson(' + p.id + ')" title="Remove">×</button>'
+      + '</div>';
+  }).join('');
+  document.getElementById('person-list').innerHTML = html;
+}
+
+function renderSharedList(){
+  var html = sharedItems.map(function(s){
+    return '<div class="shared-row" id="srow-' + s.id + '">'
+      + '<input type="text" value="' + escAttr(s.name) + '" placeholder="e.g. Bottle of wine" oninput="sharedItems.find(function(x){return x.id===' + s.id + ';}).name=this.value">'
+      + '<div class="input-wrap"><span class="input-prefix">$</span><input type="number" class="has-prefix" value="' + s.amount + '" min="0" step="0.01" placeholder="0.00" oninput="sharedItems.find(function(x){return x.id===' + s.id + ';}).amount=parseFloat(this.value)||0;calcItemised()"></div>'
+      + '<button class="person-remove" onclick="removeShared(' + s.id + ')" title="Remove">×</button>'
+      + '</div>';
+  }).join('');
+  document.getElementById('shared-list').innerHTML = html;
+}
+
+function escAttr(s){ return (s || '').replace(/"/g,'&quot;'); }
+
+function addPerson(){
+  persons.push({ id: ++personIdCounter, name: 'Person ' + personIdCounter, amount: 0 });
+  renderPersonList();
+}
+function removePerson(id){
+  persons = persons.filter(function(p){ return p.id !== id; });
+  renderPersonList();
+  calcItemised();
+}
+function addShared(){
+  sharedItems.push({ id: ++sharedIdCounter, name: 'Shared item', amount: 0 });
+  renderSharedList();
+}
+function removeShared(id){
+  sharedItems = sharedItems.filter(function(s){ return s.id !== id; });
+  renderSharedList();
+  calcItemised();
+}
+
+function calcItemised(){
+  if(persons.length === 0){ return; }
+  var taxPct  = parseFloat(document.getElementById('it-tax').value) || 0;
+  var tipPct  = parseFloat(document.getElementById('it-tip').value) || 0;
+  var n       = persons.length;
+
+  var foodTotal   = persons.reduce(function(s,p){ return s + (p.amount||0); }, 0);
+  var sharedTotal = sharedItems.reduce(function(s,i){ return s + (i.amount||0); }, 0);
+  var subtotal    = foodTotal + sharedTotal;
+  var taxAmt      = subtotal * taxPct / 100;
+  var tipAmt      = subtotal * tipPct / 100;
+  var grand       = subtotal + taxAmt + tipAmt;
+
+  setEl('r-it-grand',  fmtCur(grand));
+  setEl('r-it-tip',    fmtCur(tipAmt));
+  setEl('r-it-tax',    fmtCur(taxAmt));
+  setEl('r-it-shared', fmtCur(sharedTotal));
+
+  var sharedPP = (sharedTotal + sharedTotal * taxPct/100 + sharedTotal * tipPct/100) / n;
+
+  var resHtml = persons.map(function(p){
+    var base    = p.amount || 0;
+    var personTax = base * taxPct / 100;
+    var personTip = base * tipPct / 100;
+    var personShared = sharedPP;
+    var total   = base + personTax + personTip + personShared;
+    var subText = fmtCur(base) + ' food'
+      + (personTip > 0 ? ' + ' + fmtCur(personTip) + ' tip' : '')
+      + (personTax > 0 ? ' + ' + fmtCur(personTax) + ' tax' : '')
+      + (sharedPP  > 0 ? ' + ' + fmtCur(sharedPP)  + ' shared' : '');
+    return '<div class="person-result-row">'
+      + '<div><div class="person-result-name">' + (p.name || 'Person') + '</div>'
+      + '<div class="person-result-sub">' + subText + '</div></div>'
+      + '<div class="person-result-total">' + fmtCur(total) + '</div>'
+      + '</div>';
+  }).join('');
+  document.getElementById('person-results').innerHTML = resHtml;
+
+  var highest = persons.reduce(function(a,b){ return (a.amount||0)>(b.amount||0)?a:b; });
+  document.getElementById('it-insight-text').innerHTML =
+    'Total bill of <strong>' + fmtCur(grand) + '</strong> split across ' + n + ' people.'
+    + (sharedTotal > 0 ? ' Shared items (' + fmtCur(sharedTotal) + ') add <strong>' + fmtCur(sharedPP) + '</strong> each.' : '')
+    + (n > 1 ? ' <strong>' + (highest.name || 'Person') + '</strong> ordered the most.' : '');
+
+  showRes('it-results');
+}
+
+// Init
+(function(){
+  addPerson(); addPerson(); addPerson(); addPerson();
+  renderPersonList(); renderSharedList();
+  calcEqual();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAC Calculator — Blood Alcohol Content Estimator | CalcHub</title>
+<meta name="description" content="Free blood alcohol content (BAC) calculator. Estimate your BAC based on drinks, weight, sex, and time elapsed. See how long until sober and what each BAC level means.">
+<meta name="keywords" content="BAC calculator,blood alcohol content calculator,how drunk am I,alcohol calculator,drink driving limit,how long until sober,standard drinks calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/bac-calculator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BAC Calculator","description":"Estimate blood alcohol content based on drinks consumed, body weight, sex, and time elapsed.","url":"https://yourdomain.com/calculator-types/bac-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* BAC meter */
+.bac-meter-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.4rem auto .8rem;
+}
+.bac-meter {
+  width: 100%;
+  max-width: 480px;
+  height: 36px;
+  border-radius: 18px;
+  background: linear-gradient(90deg,
+    #43a047 0%,
+    #43a047 20%,
+    #fdd835 20%,
+    #fdd835 40%,
+    #fb8c00 40%,
+    #fb8c00 65%,
+    #e53935 65%,
+    #e53935 85%,
+    #7b1fa2 85%,
+    #7b1fa2 100%
+  );
+  position: relative;
+  overflow: visible;
+}
+.bac-needle {
+  position: absolute;
+  top: -10px;
+  width: 4px;
+  height: 56px;
+  background: var(--text);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: left .7s cubic-bezier(.34,1.56,.64,1);
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.bac-needle::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+}
+.bac-meter-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 6px;
+  font-size: .7rem;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+}
+.bac-big {
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent-mid);
+  line-height: 1;
+  margin: .5rem 0 .2rem;
+  letter-spacing: -.03em;
+}
+.bac-unit {
+  font-size: .85rem;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+}
+.bac-status {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: .35rem 1.1rem;
+  border-radius: 99px;
+  display: inline-block;
+  margin-top: .4rem;
+}
+
+/* Drink builder */
+.drink-builder {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.drink-tile {
+  background: var(--bg-2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+.drink-tile-icon { font-size: 1.6rem; line-height: 1; }
+.drink-tile-name { font-size: .75rem; font-weight: 600; color: var(--text-2); text-align: center; }
+.drink-tile-abv  { font-size: .7rem; color: var(--text-3); }
+.drink-tile-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+.drink-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, border-color .15s;
+  line-height: 1;
+}
+.drink-btn:hover { background: var(--accent-mid); border-color: var(--accent-mid); color: #fff; }
+.drink-count {
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+  color: var(--text);
+}
+
+.sober-track {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: .8rem;
+}
+.sober-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .88rem;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--bg-2);
+}
+.sober-row-label { color: var(--text-2); }
+.sober-row-val   { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+
+.disclaimer-box {
+  margin-top: 1.2rem;
+  padding: .8rem 1rem;
+  background: #fff3e0;
+  border-left: 4px solid #fb8c00;
+  border-radius: 0 8px 8px 0;
+  font-size: .82rem;
+  color: #5d4037;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🍺 Everyday Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">BAC Calculator</h1>
+  <p class="hero-sub">Estimate your blood alcohol content based on what you've had to drink, your body weight, sex, and how long you've been drinking.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🍺</div>
+    <div><div class="calc-card-title">Blood Alcohol Content Estimator</div><div class="calc-card-desc">Widmark formula — the same method used by medical and legal professionals</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Unit System</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="bac-units" value="metric" checked> Metric (kg)</label>
+        <label class="radio-pill"><input type="radio" name="bac-units" value="imperial"> Imperial (lb)</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="bac-weight">Body Weight</label>
+        <div class="input-wrap">
+          <input type="number" id="bac-weight" value="75" min="30" max="300" step="1">
+          <span class="input-suffix" id="bac-weight-unit">kg</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="bac-sex">Biological Sex</label>
+        <select id="bac-sex">
+          <option value="male" selected>Male (r = 0.68)</option>
+          <option value="female">Female (r = 0.55)</option>
+        </select>
+        <span class="field-hint">Affects body water distribution</span>
+      </div>
+      <div class="field">
+        <label for="bac-hours">Hours Since First Drink</label>
+        <div class="input-wrap">
+          <input type="number" id="bac-hours" value="2" min="0" max="24" step="0.5">
+          <span class="input-suffix">hrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="bac-food">Food Consumed</label>
+        <select id="bac-food">
+          <option value="1.0">No food (empty stomach)</option>
+          <option value="0.75" selected>Light snacks</option>
+          <option value="0.5">Full meal</option>
+          <option value="0.3">Heavy meal (high fat/protein)</option>
+        </select>
+        <span class="field-hint">Food slows alcohol absorption</span>
+      </div>
+    </div>
+
+    <!-- Drink builder -->
+    <div class="field" style="margin-top: .5rem">
+      <label>Drinks Consumed</label>
+      <div class="drink-builder" id="drink-builder"></div>
+    </div>
+
+    <div class="field">
+      <label for="bac-custom-std">Or enter standard drinks directly</label>
+      <div class="input-wrap">
+        <input type="number" id="bac-custom-std" value="" min="0" max="50" step="0.5" placeholder="e.g. 3.5">
+        <span class="input-suffix">std drinks</span>
+      </div>
+      <span class="field-hint">1 standard drink = 14g pure alcohol (US) / 10g (AU/NZ)</span>
+    </div>
+
+    <button class="calc-btn" onclick="calcBAC()">Estimate My BAC →</button>
+
+    <div class="results" id="bac-results">
+      <div class="results-header">Your Estimated BAC</div>
+
+      <!-- Big BAC display -->
+      <div style="text-align:center;padding:.5rem 0 .8rem">
+        <div class="bac-big" id="r-bac-value">0.000</div>
+        <div class="bac-unit">% blood alcohol content (g/dL)</div>
+        <div id="r-bac-status" class="bac-status" style="background:#e8f5e9;color:#2e7d32">Sober</div>
+      </div>
+
+      <!-- Meter -->
+      <div class="bac-meter-wrap">
+        <div class="bac-meter">
+          <div class="bac-needle" id="bac-needle" style="left:0%"></div>
+        </div>
+        <div class="bac-meter-labels">
+          <span>0.00</span><span>0.04</span><span>0.08</span><span>0.15</span><span>0.25+</span>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:1rem">
+        <div class="result-item highlight">
+          <div class="result-label">Current BAC</div>
+          <div class="result-value" id="r-bac-now">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Time Until Sober (0.00)</div>
+          <div class="result-value" id="r-bac-sober-time">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Legal Limit (US / most countries)</div>
+          <div class="result-value" id="r-bac-legal">0.08%</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Time Until Legal to Drive</div>
+          <div class="result-value" id="r-bac-drive-time">—</div>
+        </div>
+      </div>
+
+      <!-- Sober timeline -->
+      <div class="sober-track" id="bac-timeline"></div>
+
+      <div class="disclaimer-box">
+        ⚠️ <strong>This is an estimate only.</strong> BAC is affected by many factors not captured here — hydration, medications, genetics, fatigue, and tolerance. <strong>Never drive based on a calculated BAC.</strong> If you've been drinking, the only safe choice is not to drive.
+      </div>
+
+      <div id="bac-insight" class="insight"><div class="insight-icon">💡</div><div id="bac-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How BAC Is Calculated — The Widmark Formula</h2>
+  <p>The Widmark formula is the internationally accepted method for estimating blood alcohol concentration: BAC = (alcohol consumed in grams) ÷ (body weight in grams × distribution ratio r) − (elimination rate × hours). The distribution ratio r accounts for body water content — approximately 0.68 for males and 0.55 for females, reflecting differences in body composition.</p>
+
+  <h3>What the BAC Levels Mean</h3>
+  <p>At 0.02–0.03% you may feel mild relaxation and slight mood lift. At 0.05–0.08%, coordination begins to deteriorate and reaction time slows — this is the range where most countries set the legal driving limit. At 0.08–0.15%, impairment becomes significant: slurred speech, poor balance, impaired judgement. Above 0.15%, nausea and disorientation are common. Above 0.30%, loss of consciousness is possible. Above 0.40% can be fatal.</p>
+
+  <h3>How Long Does Alcohol Take to Leave Your System?</h3>
+  <p>The liver metabolises alcohol at a roughly fixed rate of 0.015% BAC per hour — about one standard drink per hour for an average adult. No method — coffee, food, cold showers, exercise — speeds this up. Only time sobers you up.</p>
+
+  <div class="faq-item"><div class="faq-q">What is a standard drink?</div><div class="faq-a"><p>In the United States, one standard drink contains 14 grams of pure alcohol — equivalent to a 12 oz regular beer (5%), a 5 oz glass of wine (12%), or a 1.5 oz shot of spirits (40%). In Australia and New Zealand, a standard drink contains 10 grams of alcohol, so the same beer equals about 1.4 standard drinks.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why does food lower BAC?</div><div class="faq-a"><p>Food — particularly fats and proteins — slows gastric emptying, which delays alcohol entering the small intestine where it's absorbed into the bloodstream. Food doesn't reduce the total amount of alcohol absorbed, but it spreads absorption over a longer period, resulting in a lower peak BAC.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is the 0.08% limit the same everywhere?</div><div class="faq-a"><p>No. The US, UK, Canada, and Australia use 0.05% or 0.08% limits for standard drivers, but many European countries use 0.05%, and some countries (Sweden, Czech Republic, Hungary) use 0.02% or zero tolerance. Professional drivers and those under 21 often face stricter limits. Always check local laws.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var bacUnits = 'metric';
+
+// Drink definitions: [icon, name, abv%, volumeML, stdDrinksUS]
+var DRINKS = [
+  { icon: '🍺', name: 'Beer',        abv: 5,  vol: 355,  std: 1.0  },
+  { icon: '🍻', name: 'Craft Beer',  abv: 7,  vol: 355,  std: 1.4  },
+  { icon: '🍷', name: 'Wine',        abv: 13, vol: 148,  std: 1.0  },
+  { icon: '🥃', name: 'Shot',        abv: 40, vol: 44,   std: 1.0  },
+  { icon: '🍸', name: 'Cocktail',    abv: 15, vol: 177,  std: 1.5  },
+  { icon: '🍾', name: 'Champagne',   abv: 12, vol: 148,  std: 1.0  },
+];
+
+var drinkCounts = DRINKS.map(function(){ return 0; });
+
+document.querySelectorAll('input[name="bac-units"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="bac-units"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    bacUnits = this.value;
+    var isMetric = bacUnits === 'metric';
+    document.getElementById('bac-weight-unit').textContent = isMetric ? 'kg' : 'lb';
+    var wEl = document.getElementById('bac-weight');
+    var wVal = parseFloat(wEl.value) || 0;
+    wEl.value = isMetric ? Math.round(wVal / 2.205) : Math.round(wVal * 2.205);
+  });
+});
+
+function buildDrinkTiles(){
+  var html = DRINKS.map(function(d, i){
+    return '<div class="drink-tile">'
+      + '<div class="drink-tile-icon">' + d.icon + '</div>'
+      + '<div class="drink-tile-name">' + d.name + '</div>'
+      + '<div class="drink-tile-abv">' + d.abv + '% · ' + d.vol + 'ml</div>'
+      + '<div class="drink-tile-ctrl">'
+      + '<button class="drink-btn" onclick="changeDrink(' + i + ',-1)">−</button>'
+      + '<span class="drink-count" id="dc-' + i + '">0</span>'
+      + '<button class="drink-btn" onclick="changeDrink(' + i + ',1)">+</button>'
+      + '</div></div>';
+  }).join('');
+  document.getElementById('drink-builder').innerHTML = html;
+}
+
+function changeDrink(idx, delta){
+  drinkCounts[idx] = Math.max(0, drinkCounts[idx] + delta);
+  document.getElementById('dc-' + idx).textContent = drinkCounts[idx];
+}
+
+function totalAlcoholGrams(){
+  // Check manual override first
+  var customStd = parseFloat(document.getElementById('bac-custom-std').value);
+  if(!isNaN(customStd) && customStd > 0){
+    return customStd * 14; // US standard drinks = 14g each
+  }
+  var grams = 0;
+  DRINKS.forEach(function(d, i){
+    // alcohol grams = volume(ml) × abv × 0.789 (density of ethanol)
+    grams += drinkCounts[i] * d.vol * (d.abv / 100) * 0.789;
+  });
+  return grams;
+}
+
+var BAC_LEVELS = [
+  { max: 0.02,  label: 'Sober',               bg: '#e8f5e9', fg: '#2e7d32' },
+  { max: 0.05,  label: 'Mildly Relaxed',       bg: '#f9fbe7', fg: '#558b2f' },
+  { max: 0.08,  label: 'Noticeable Impairment',bg: '#fffde7', fg: '#f57f17' },
+  { max: 0.15,  label: 'Legally Drunk (most)', bg: '#fff3e0', fg: '#e65100' },
+  { max: 0.25,  label: 'Severely Impaired',    bg: '#fce4ec', fg: '#c62828' },
+  { max: 99,    label: 'Dangerously Drunk',    bg: '#f3e5f5', fg: '#6a1b9a' }
+];
+
+function calcBAC(){
+  var weightRaw = v('bac-weight');
+  var sex       = vs('bac-sex');
+  var hours     = v('bac-hours');
+  var foodMult  = parseFloat(vs('bac-food'));
+
+  if(!weightRaw || weightRaw <= 0){ showToast('Enter a valid body weight'); return; }
+
+  var weightKg = bacUnits === 'imperial' ? weightRaw / 2.205 : weightRaw;
+  var weightG  = weightKg * 1000;
+  var r        = sex === 'male' ? 0.68 : 0.55;
+  var elimRate = 0.015; // % BAC per hour
+
+  var alcoholG = totalAlcoholGrams() * foodMult;
+
+  if(alcoholG <= 0){ showToast('Add at least one drink or enter standard drinks'); return; }
+
+  // Widmark formula
+  var rawBAC  = (alcoholG / (weightG * r)) * 100;
+  var bac     = Math.max(0, rawBAC - elimRate * hours);
+
+  // Sober time = current BAC / elimination rate
+  var hoursToSober = bac / elimRate;
+  var hoursToLegal = bac > 0.08 ? (bac - 0.08) / elimRate : 0;
+
+  // Status
+  var statusObj = BAC_LEVELS.find(function(l){ return bac < l.max; }) || BAC_LEVELS[BAC_LEVELS.length-1];
+
+  // Meter position (0–100% mapped to 0.00–0.25+)
+  var meterPct = Math.min((bac / 0.25) * 100, 100);
+
+  document.getElementById('r-bac-value').textContent = bac.toFixed(3);
+  document.getElementById('r-bac-now').textContent   = bac.toFixed(3) + '%';
+
+  var statusEl = document.getElementById('r-bac-status');
+  statusEl.textContent         = statusObj.label;
+  statusEl.style.background    = statusObj.bg;
+  statusEl.style.color         = statusObj.fg;
+
+  document.getElementById('bac-needle').style.left = meterPct + '%';
+
+  // Sober / drive times
+  function fmtHours(h){
+    if(h <= 0) return 'Now';
+    var hh = Math.floor(h);
+    var mm = Math.round((h - hh) * 60);
+    if(hh === 0) return mm + ' min';
+    return hh + 'h ' + (mm > 0 ? mm + 'm' : '');
+  }
+  setEl('r-bac-sober-time', hoursToSober > 0 ? fmtHours(hoursToSober) : 'Already sober');
+  setEl('r-bac-drive-time', bac > 0.08 ? fmtHours(hoursToLegal) : (bac > 0 ? 'Below limit — but impaired' : 'N/A'));
+
+  // Timeline
+  var milestones = [
+    { label: 'Now',              h: 0 },
+    { label: 'Below 0.08% (legal limit)', h: hoursToLegal },
+    { label: 'Below 0.05%',     h: bac > 0.05 ? (bac - 0.05) / elimRate : 0 },
+    { label: 'Fully sober (0.00%)', h: hoursToSober }
+  ];
+  var timelineHtml = milestones.filter(function(m){ return m.h >= 0; }).map(function(m){
+    var now = new Date();
+    now.setMinutes(now.getMinutes() + Math.round(m.h * 60));
+    var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return '<div class="sober-row">'
+      + '<span class="sober-row-label">' + m.label + '</span>'
+      + '<span class="sober-row-val">' + timeStr + (m.h === 0 ? ' (now)' : ' (+' + fmtHours(m.h) + ')') + '</span>'
+      + '</div>';
+  }).join('');
+  document.getElementById('bac-timeline').innerHTML = timelineHtml;
+
+  // Insight
+  document.getElementById('bac-insight-text').innerHTML =
+    'Your estimated BAC of <strong>' + bac.toFixed(3) + '%</strong> puts you in the <strong>' + statusObj.label.toLowerCase() + '</strong> range. '
+    + (bac >= 0.08 ? 'You are <strong>above the 0.08% legal driving limit</strong> in most jurisdictions — do not drive. ' : '')
+    + (hoursToSober > 0 ? 'At the standard elimination rate of 0.015%/hour, you should be fully sober in approximately <strong>' + fmtHours(hoursToSober) + '</strong>. Remember: only time reduces BAC.' : 'Your estimated BAC is already at or near zero.');
+
+  showRes('bac-results');
+}
+
+buildDrinkTiles();
+</script>
+</body>
+</html>

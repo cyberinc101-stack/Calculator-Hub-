@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Net Worth Calculator — Total Assets Minus Liabilities | CalcHub</title>
+<meta name="description" content="Free net worth calculator. Add up your assets — cash, investments, property, vehicles — and subtract liabilities like mortgages, loans, and credit card debt to see your total net worth.">
+<meta name="keywords" content="net worth calculator,personal net worth calculator,assets minus liabilities calculator,how to calculate net worth,household net worth calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/net-worth.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Net Worth Calculator","description":"Calculate personal net worth by totalling assets and subtracting liabilities, with a breakdown by category.","url":"https://yourdomain.com/calculator-types/net-worth.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚖️ Net Worth Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Net Worth Calculator</h1>
+  <p class="hero-sub">Total up your assets, subtract your liabilities, and see your net worth broken down by category.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚖️</div>
+    <div><div class="calc-card-title">Net Worth Calculator</div><div class="calc-card-desc">Assets minus liabilities, with category breakdown</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="dir-section-title" style="font-size:.95rem;margin:0 0 10px">Assets</div>
+    <div class="field-grid">
+      <div class="field">
+        <label for="nw-cash">Cash &amp; Savings Accounts</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-cash" class="has-prefix" value="15000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-investments">Investments (stocks, funds, crypto)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-investments" class="has-prefix" value="35000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-retirement">Retirement Accounts (401k, IRA, KiwiSaver)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-retirement" class="has-prefix" value="60000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-property">Property Value (home, real estate)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-property" class="has-prefix" value="550000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-vehicles">Vehicles (current resale value)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-vehicles" class="has-prefix" value="18000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-other-assets">Other Assets</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-other-assets" class="has-prefix" value="5000" min="0" step="100">
+        </div>
+      </div>
+    </div>
+
+    <div class="dir-section-title" style="font-size:.95rem;margin:20px 0 10px">Liabilities</div>
+    <div class="field-grid">
+      <div class="field">
+        <label for="nw-mortgage">Mortgage Balance</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-mortgage" class="has-prefix" value="360000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-auto-loan">Auto Loans</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-auto-loan" class="has-prefix" value="8000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-student-loan">Student Loans</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-student-loan" class="has-prefix" value="12000" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-credit-card">Credit Card Debt</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-credit-card" class="has-prefix" value="2500" min="0" step="50">
+        </div>
+      </div>
+      <div class="field">
+        <label for="nw-other-debt">Other Debt</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="nw-other-debt" class="has-prefix" value="0" min="0" step="100">
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcNetWorth()">Calculate Net Worth →</button>
+
+    <div class="results" id="nw-results">
+      <div class="results-header">Net Worth Summary</div>
+      <div class="results-grid">
+        <div class="result-item green">
+          <div class="result-label">Total Assets</div>
+          <div class="result-value" id="r-nw-assets">—</div>
+        </div>
+        <div class="result-item red">
+          <div class="result-label">Total Liabilities</div>
+          <div class="result-value" id="r-nw-liabilities">—</div>
+        </div>
+        <div class="result-item highlight" id="r-nw-networth-card">
+          <div class="result-label">Net Worth</div>
+          <div class="result-value" id="r-nw-networth">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Debt-to-Asset Ratio</div>
+          <div class="result-value" id="r-nw-ratio">—</div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Breakdown by Category</div>
+      <div class="breakdown-wrap" id="nw-breakdown-wrap">
+        <table class="breakdown-table" id="nw-breakdown-table">
+          <thead><tr><th>Category</th><th>Type</th><th>Amount</th></tr></thead>
+          <tbody id="nw-breakdown-body"></tbody>
+        </table>
+      </div>
+
+      <div id="nw-insight" class="insight"><div class="insight-icon">💡</div><div id="nw-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Net Worth Calculator</h2>
+  <p>List everything you own with monetary value under Assets — cash, investments, retirement accounts, property, and vehicles — using current market value rather than what you originally paid. Then list everything you owe under Liabilities, including mortgage balance, loans, and credit card debt. The calculator subtracts liabilities from assets to give your net worth.</p>
+
+  <h3>What Counts as an Asset?</h3>
+  <p>An asset is anything of monetary value that you own: bank balances, investment and brokerage accounts, retirement savings, the current market value of property (not the original purchase price), and the resale value of vehicles. Items with sentimental but limited resale value, like furniture or personal belongings, are usually excluded from net worth calculations since they're rarely converted to cash.</p>
+
+  <h3>Why Track Net Worth Over Time?</h3>
+  <p>A single net worth figure is a snapshot, but tracking it monthly or quarterly reveals the trend — whether you're building wealth, treading water, or losing ground. Because net worth combines the effects of saving, debt repayment, and asset growth or decline into one number, it's often a clearer long-term financial health signal than income alone.</p>
+
+  <div class="faq-item"><div class="faq-q">Should I use the purchase price or current value for my home and vehicles?</div><div class="faq-a"><p>Always use current market value, not what you originally paid. For property, this might mean checking a recent appraisal or comparable local sales. For vehicles, use a current resale estimate, since vehicles typically depreciate significantly from their purchase price.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is a negative net worth bad?</div><div class="faq-a"><p>A negative net worth simply means liabilities currently exceed assets, which is common earlier in life — for example, shortly after taking on a mortgage or student loans, before assets have had time to grow. What matters more than the snapshot is the trend over time.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How often should I recalculate my net worth?</div><div class="faq-a"><p>Many people find a quarterly or annual check-in strikes a good balance — frequent enough to track meaningful progress, but not so frequent that day-to-day market fluctuations in investments cause unnecessary stress.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function calcNetWorth(){
+  var assets = {
+    'Cash & Savings': v('nw-cash'),
+    'Investments': v('nw-investments'),
+    'Retirement Accounts': v('nw-retirement'),
+    'Property': v('nw-property'),
+    'Vehicles': v('nw-vehicles'),
+    'Other Assets': v('nw-other-assets')
+  };
+  var liabilities = {
+    'Mortgage': v('nw-mortgage'),
+    'Auto Loans': v('nw-auto-loan'),
+    'Student Loans': v('nw-student-loan'),
+    'Credit Card Debt': v('nw-credit-card'),
+    'Other Debt': v('nw-other-debt')
+  };
+
+  var totalAssets = Object.values(assets).reduce(function(a,b){ return a+b; }, 0);
+  var totalLiabilities = Object.values(liabilities).reduce(function(a,b){ return a+b; }, 0);
+  var netWorth = totalAssets - totalLiabilities;
+  var debtToAssetRatio = totalAssets > 0 ? (totalLiabilities/totalAssets)*100 : 0;
+
+  setEl('r-nw-assets', fmtCur(totalAssets));
+  setEl('r-nw-liabilities', fmtCur(totalLiabilities));
+  setEl('r-nw-networth', (netWorth>=0?'':'-')+fmtCur(Math.abs(netWorth)));
+  setEl('r-nw-ratio', fmt(debtToAssetRatio,1)+'%');
+
+  var card = document.getElementById('r-nw-networth-card');
+  card.classList.remove('highlight','red','green');
+  card.classList.add(netWorth >= 0 ? 'highlight' : 'red');
+
+  var tbody = document.getElementById('nw-breakdown-body');
+  var rows = [];
+  Object.keys(assets).forEach(function(k){
+    if(assets[k] > 0) rows.push('<tr><td>'+k+'</td><td class="td-green">Asset</td><td class="td-mono td-green">'+fmtCur(assets[k])+'</td></tr>');
+  });
+  Object.keys(liabilities).forEach(function(k){
+    if(liabilities[k] > 0) rows.push('<tr><td>'+k+'</td><td class="td-red">Liability</td><td class="td-mono td-red">-'+fmtCur(liabilities[k])+'</td></tr>');
+  });
+  tbody.innerHTML = rows.join('');
+
+  var insightTxt = document.getElementById('nw-insight-text');
+  if(netWorth < 0){
+    insightTxt.innerHTML = '<strong>Negative net worth:</strong> liabilities currently exceed assets by '+fmtCur(Math.abs(netWorth))+'. This is common earlier in life, especially with a mortgage or student loans in place — the trend over time matters more than this single snapshot.';
+  } else if(debtToAssetRatio > 60){
+    insightTxt.innerHTML = 'Net worth is positive at <strong>'+fmtCur(netWorth)+'</strong>, but debt makes up <strong>'+fmt(debtToAssetRatio,1)+'%</strong> of total assets — a fairly leveraged position. Paying down high-interest debt first is usually the most effective way to grow net worth from here.';
+  } else {
+    insightTxt.innerHTML = 'Net worth comes out to <strong>'+fmtCur(netWorth)+'</strong>, with liabilities at <strong>'+fmt(debtToAssetRatio,1)+'%</strong> of total assets. Recalculating this every few months is a simple way to track whether you are building wealth over time.';
+  }
+
+  showRes('nw-results');
+}
+
+window.addEventListener('load', calcNetWorth);
+</script>
+</body></html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calories Burned Calculator — Exercise & Activity | CalcHub</title>
+<meta name="description" content="Free calories burned calculator. Find out how many calories you burn for 40+ exercises and activities based on your weight and duration. Uses MET values. Instant results.">
+<meta name="keywords" content="calories burned calculator,exercise calories calculator,how many calories do i burn,calories burned walking,calories burned running,calories burned cycling,MET calculator,activity calorie calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/calories-burned.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calories Burned Calculator","description":"Calculate calories burned for 40+ activities using MET values and body weight.","url":"https://yourdomain.com/calculator-types/calories-burned.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Activity category tabs ── */
+.act-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+.act-tab {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  background: transparent;
+  color: var(--text-2);
+  transition: all .15s;
+}
+.act-tab.active {
+  background: var(--accent, #22c55e);
+  border-color: var(--accent, #22c55e);
+  color: #0a0f0a;
+}
+
+/* ── Activity select grid ── */
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.act-card {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  cursor: pointer;
+  transition: all .15s;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-sans);
+}
+.act-card:hover {
+  border-color: var(--accent, #22c55e);
+  background: rgba(34, 197, 94, 0.05);
+}
+.act-card.selected {
+  border-color: var(--accent, #22c55e);
+  background: rgba(34, 197, 94, 0.1);
+}
+.act-card-name {
+  font-size: .83rem;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+  margin-bottom: 2px;
+}
+.act-card-met {
+  font-size: .72rem;
+  color: var(--text-2);
+}
+
+/* ── Big calorie display ── */
+.cal-result {
+  text-align: center;
+  padding: 28px 20px 20px;
+  background: var(--card, #111a11);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.cal-result-value {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--accent, #22c55e);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cal-result-unit {
+  font-size: .9rem;
+  color: var(--text-2);
+  margin-bottom: 2px;
+}
+.cal-result-activity {
+  font-size: .82rem;
+  color: var(--text-2);
+  font-style: italic;
+}
+
+/* ── Equivalency bars ── */
+.equiv-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--card-border, #1e3a1e);
+}
+.equiv-row:last-child { border-bottom: none; }
+.equiv-icon { font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center; }
+.equiv-text { flex: 1; font-size: .83rem; color: var(--text-2); }
+.equiv-text strong { color: var(--text); }
+
+/* ── Intensity badge ── */
+.intensity-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.int-low    { background: rgba(96,165,250,.15); color: #60a5fa; }
+.int-mod    { background: rgba(251,191,36,.15); color: #fbbf24; }
+.int-high   { background: rgba(239,68,68,.15);  color: #ef4444; }
+.int-vhigh  { background: rgba(168,85,247,.15); color: #a855f7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🔥 Calories Burned Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Calories Burned Calculator</h1>
+  <p class="hero-sub">Pick an activity, enter your weight and duration — and see exactly how many calories you burn, based on published MET (Metabolic Equivalent of Task) values.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🔥</div>
+    <div>
+      <div class="calc-card-title">Calories Burned Calculator</div>
+      <div class="calc-card-desc">40+ activities using MET values</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Weight & unit -->
+    <div class="field" style="margin-bottom:14px">
+      <label>Weight Unit</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="cb-unit" value="kg" checked> Kilograms (kg)</label>
+        <label class="radio-pill"><input type="radio" name="cb-unit" value="lb"> Pounds (lb)</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="cb-weight">Body Weight</label>
+        <div class="input-wrap">
+          <input type="number" id="cb-weight" value="75" min="20" max="300" step="0.5">
+          <span class="input-suffix" id="cb-weight-suffix">kg</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cb-duration">Duration</label>
+        <div class="input-wrap">
+          <input type="number" id="cb-duration" value="30" min="1" max="600" step="1">
+          <span class="input-suffix">min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div style="margin-bottom:8px;font-size:.8rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em">Activity Category</div>
+    <div class="act-tabs" id="act-tabs">
+      <button class="act-tab active" onclick="filterActs('all', this)">All</button>
+      <button class="act-tab" onclick="filterActs('cardio', this)">Cardio</button>
+      <button class="act-tab" onclick="filterActs('strength', this)">Strength</button>
+      <button class="act-tab" onclick="filterActs('sport', this)">Sports</button>
+      <button class="act-tab" onclick="filterActs('everyday', this)">Everyday</button>
+      <button class="act-tab" onclick="filterActs('water', this)">Water</button>
+      <button class="act-tab" onclick="filterActs('winter', this)">Winter</button>
+    </div>
+
+    <!-- Activity picker -->
+    <div style="margin-bottom:8px;font-size:.8rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em">Select Activity</div>
+    <div class="act-grid" id="act-grid"></div>
+
+    <div id="selected-activity-info" style="display:none;margin-bottom:14px;padding:10px 14px;border-radius:10px;border:1.5px solid var(--accent,#22c55e);background:rgba(34,197,94,.06)">
+      <span style="font-size:.83rem;font-weight:700;color:var(--accent)">Selected: </span>
+      <span style="font-size:.83rem;color:var(--text)" id="selected-act-name">—</span>
+      <span style="margin-left:8px" id="selected-act-badge"></span>
+      <span style="font-size:.75rem;color:var(--text-2);margin-left:6px" id="selected-act-met"></span>
+    </div>
+
+    <button class="calc-btn" onclick="calcCaloriesBurned()">Calculate Calories →</button>
+
+    <div class="results" id="cb-results">
+
+      <div class="cal-result">
+        <div class="cal-result-value" id="cb-calories">—</div>
+        <div class="cal-result-unit">kcal burned</div>
+        <div class="cal-result-activity" id="cb-activity-label"></div>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Per Minute</div>
+          <div class="result-value" id="cb-per-min">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Per Hour</div>
+          <div class="result-value" id="cb-per-hour">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">MET Value</div>
+          <div class="result-value" id="cb-met-val">—</div>
+        </div>
+      </div>
+
+      <!-- Equivalencies -->
+      <div class="breakdown-wrap" style="margin-top:14px">
+        <div class="breakdown-title">What does that burn equal?</div>
+        <div id="cb-equiv"></div>
+      </div>
+
+      <div id="cb-insight" class="insight"><div class="insight-icon">💡</div><div id="cb-insight-text"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Calories Burned Is Calculated</h2>
+  <p>This calculator uses the standard MET-based formula: <strong>Calories = MET × weight (kg) × duration (hours)</strong>. MET (Metabolic Equivalent of Task) is a standardised measure of how much energy an activity requires relative to sitting quietly. Sitting has a MET of 1.0; walking briskly is around 3.5–4.0; running at moderate pace is around 9–11.</p>
+
+  <h3>What Is a MET Value?</h3>
+  <p>MET values are drawn from the Compendium of Physical Activities, first published by Ainsworth et al. in 1993 and updated in 2011. The compendium lists over 800 activities and their associated MET values. These values represent the average calorie expenditure for a given activity at a given intensity — individual variation (fitness level, body composition, efficiency of movement) means your actual burn may differ by 15–20%.</p>
+
+  <h3>Why Weight Matters So Much</h3>
+  <p>Calories burned scales directly with body weight — a heavier person burns more calories doing the same activity for the same duration. Two people running for 30 minutes at the same pace: a 60 kg person burns roughly 300 kcal while a 90 kg person burns around 450 kcal — 50% more for 50% more body mass.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">How accurate are these calorie estimates?</div>
+    <div class="faq-a"><p>MET-based estimates are reasonably accurate for moderate activities in average-weight adults — typically within 15–20% of measured calorie expenditure. Accuracy decreases for very high-intensity activities, activities requiring significant skill (where efficiency varies widely), and for people who are significantly above or below average fitness. Wearable fitness trackers use similar methods, often augmented with heart rate data, and typically achieve similar accuracy.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Does the calculator include resting calories?</div>
+    <div class="faq-a"><p>The formula calculates <em>total</em> energy expenditure for the activity, which includes the baseline metabolic rate for that period. To find only the "extra" calories burned beyond what you'd burn resting, subtract approximately 1 MET worth of calories. In practice, the difference is small for short sessions and most people don't need to make this adjustment.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Why does running burn so many more calories than walking?</div>
+    <div class="faq-a"><p>Running has a much higher MET value than walking — roughly 9–11 compared to 3–4 for brisk walking. Although you cover more ground per minute when running, the main driver is simply that running requires more energy per unit time. Over the same distance (not time), walking and running burn surprisingly similar amounts — the time difference is most of the gap.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ═══════════════════════════════════════════════
+   Activity data — MET values from the
+   Compendium of Physical Activities (Ainsworth 2011)
+═══════════════════════════════════════════════ */
+var ACTIVITIES = [
+  // Cardio
+  { id:'walk-slow',    name:'Walking (slow, 2 mph)',         met:2.5,  cat:'cardio',   intensity:'low'   },
+  { id:'walk-mod',     name:'Walking (moderate, 3 mph)',     met:3.5,  cat:'cardio',   intensity:'low'   },
+  { id:'walk-brisk',   name:'Walking (brisk, 4 mph)',        met:4.3,  cat:'cardio',   intensity:'mod'   },
+  { id:'walk-hill',    name:'Walking uphill (moderate)',     met:6.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'hike',         name:'Hiking (cross-country)',        met:6.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'jog',          name:'Jogging (light)',               met:7.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'run-5',        name:'Running (5 mph / 8 km/h)',      met:8.3,  cat:'cardio',   intensity:'high'  },
+  { id:'run-6',        name:'Running (6 mph / 10 km/h)',     met:9.8,  cat:'cardio',   intensity:'high'  },
+  { id:'run-8',        name:'Running (8 mph / 13 km/h)',     met:11.8, cat:'cardio',   intensity:'vhigh' },
+  { id:'run-10',       name:'Running (10 mph / 16 km/h)',    met:14.5, cat:'cardio',   intensity:'vhigh' },
+  { id:'bike-mod',     name:'Cycling (moderate, 12–14 mph)', met:8.0,  cat:'cardio',   intensity:'high'  },
+  { id:'bike-fast',    name:'Cycling (fast, 16–19 mph)',     met:10.0, cat:'cardio',   intensity:'vhigh' },
+  { id:'bike-spin',    name:'Spinning / indoor cycling',     met:8.5,  cat:'cardio',   intensity:'high'  },
+  { id:'bike-leisure', name:'Cycling (leisure, <10 mph)',    met:4.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'jump-rope',    name:'Jump rope (moderate)',          met:11.8, cat:'cardio',   intensity:'vhigh' },
+  { id:'elliptical',   name:'Elliptical trainer (moderate)', met:5.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'stair-climb',  name:'Stair climbing (moderate)',     met:8.0,  cat:'cardio',   intensity:'high'  },
+  { id:'rowing-mod',   name:'Rowing machine (moderate)',     met:7.0,  cat:'cardio',   intensity:'mod'   },
+  { id:'aerobics-hi',  name:'Aerobics (high impact)',        met:7.3,  cat:'cardio',   intensity:'high'  },
+  { id:'zumba',        name:'Zumba / dance cardio',          met:6.5,  cat:'cardio',   intensity:'mod'   },
+
+  // Strength
+  { id:'weights-light',  name:'Weight training (light)',     met:3.0,  cat:'strength', intensity:'low'   },
+  { id:'weights-mod',    name:'Weight training (moderate)',  met:5.0,  cat:'strength', intensity:'mod'   },
+  { id:'weights-heavy',  name:'Weight training (heavy)',     met:6.0,  cat:'strength', intensity:'mod'   },
+  { id:'crossfit',       name:'CrossFit / functional HIIT',  met:9.0,  cat:'strength', intensity:'high'  },
+  { id:'calisthenics',   name:'Calisthenics (moderate)',     met:4.0,  cat:'strength', intensity:'mod'   },
+  { id:'yoga',           name:'Yoga (hatha)',                met:2.5,  cat:'strength', intensity:'low'   },
+  { id:'yoga-vinyasa',   name:'Yoga (vinyasa / power)',      met:4.0,  cat:'strength', intensity:'mod'   },
+  { id:'pilates',        name:'Pilates (moderate)',          met:3.0,  cat:'strength', intensity:'low'   },
+  { id:'stretching',     name:'Stretching / flexibility',   met:2.3,  cat:'strength', intensity:'low'   },
+
+  // Sports
+  { id:'basketball',  name:'Basketball (game)',          met:8.0,  cat:'sport',    intensity:'high'  },
+  { id:'soccer',      name:'Soccer (game)',              met:10.0, cat:'sport',    intensity:'high'  },
+  { id:'tennis-sing', name:'Tennis (singles)',           met:8.0,  cat:'sport',    intensity:'high'  },
+  { id:'tennis-doub', name:'Tennis (doubles)',           met:6.0,  cat:'sport',    intensity:'mod'   },
+  { id:'volleyball',  name:'Volleyball (competitive)',   met:8.0,  cat:'sport',    intensity:'high'  },
+  { id:'golf',        name:'Golf (carrying clubs)',      met:4.8,  cat:'sport',    intensity:'mod'   },
+  { id:'baseball',    name:'Baseball / softball',        met:5.0,  cat:'sport',    intensity:'mod'   },
+  { id:'martial',     name:'Martial arts (moderate)',    met:10.0, cat:'sport',    intensity:'high'  },
+  { id:'boxing-bag',  name:'Boxing (heavy bag)',         met:9.0,  cat:'sport',    intensity:'high'  },
+  { id:'boxing-spar', name:'Boxing (sparring)',          met:12.0, cat:'sport',    intensity:'vhigh' },
+
+  // Everyday
+  { id:'sitting',     name:'Sitting (desk work)',        met:1.5,  cat:'everyday', intensity:'low'   },
+  { id:'standing',    name:'Standing',                   met:2.0,  cat:'everyday', intensity:'low'   },
+  { id:'cleaning',    name:'House cleaning (moderate)',  met:3.5,  cat:'everyday', intensity:'low'   },
+  { id:'gardening',   name:'Gardening (general)',        met:4.0,  cat:'everyday', intensity:'mod'   },
+  { id:'mowing',      name:'Mowing lawn (push mower)',   met:5.5,  cat:'everyday', intensity:'mod'   },
+  { id:'shopping',    name:'Shopping (walking)',         met:2.5,  cat:'everyday', intensity:'low'   },
+  { id:'cooking',     name:'Cooking',                   met:2.0,  cat:'everyday', intensity:'low'   },
+  { id:'childcare',   name:'Playing with kids (active)', met:4.0,  cat:'everyday', intensity:'mod'   },
+
+  // Water
+  { id:'swim-mod',    name:'Swimming (moderate)',        met:7.0,  cat:'water',    intensity:'mod'   },
+  { id:'swim-fast',   name:'Swimming (fast / laps)',     met:10.0, cat:'water',    intensity:'high'  },
+  { id:'swim-breast', name:'Breaststroke',               met:5.3,  cat:'water',    intensity:'mod'   },
+  { id:'kayak',       name:'Kayaking (moderate)',        met:5.0,  cat:'water',    intensity:'mod'   },
+  { id:'water-polo',  name:'Water polo',                 met:10.0, cat:'water',    intensity:'high'  },
+  { id:'surfing',     name:'Surfing',                    met:3.0,  cat:'water',    intensity:'low'   },
+
+  // Winter
+  { id:'ski-down',    name:'Downhill skiing (moderate)', met:6.0,  cat:'winter',   intensity:'mod'   },
+  { id:'ski-cross',   name:'Cross-country skiing',       met:9.0,  cat:'winter',   intensity:'high'  },
+  { id:'ice-skate',   name:'Ice skating (moderate)',     met:7.0,  cat:'winter',   intensity:'mod'   },
+  { id:'snowboard',   name:'Snowboarding',               met:5.3,  cat:'winter',   intensity:'mod'   }
+];
+
+var selectedActivity = ACTIVITIES[4]; // default: running 5mph
+
+/* ── Render activity grid ── */
+function renderGrid(cat){
+  var filtered = cat === 'all' ? ACTIVITIES : ACTIVITIES.filter(function(a){ return a.cat === cat; });
+  var html = filtered.map(function(a){
+    var isCls = a.id === selectedActivity.id ? ' selected' : '';
+    var intMap = { low:'Low', mod:'Moderate', high:'High', vhigh:'Very High' };
+    return '<button class="act-card' + isCls + '" onclick="selectActivity(\'' + a.id + '\')" data-id="' + a.id + '">'
+      + '<span class="act-card-name">' + a.name + '</span>'
+      + '<span class="act-card-met">MET ' + a.met + ' · ' + intMap[a.intensity] + '</span>'
+      + '</button>';
+  }).join('');
+  document.getElementById('act-grid').innerHTML = html;
+}
+
+function filterActs(cat, btn){
+  document.querySelectorAll('.act-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderGrid(cat);
+}
+
+function selectActivity(id){
+  var act = ACTIVITIES.find(function(a){ return a.id === id; });
+  if(!act) return;
+  selectedActivity = act;
+  // Update selection visuals
+  document.querySelectorAll('.act-card').forEach(function(c){
+    c.classList.toggle('selected', c.dataset.id === id);
+  });
+  // Show selected info
+  var intLabels = { low:'Low intensity', mod:'Moderate intensity', high:'High intensity', vhigh:'Very high intensity' };
+  var intCls    = { low:'int-low', mod:'int-mod', high:'int-high', vhigh:'int-vhigh' };
+  document.getElementById('selected-act-name').textContent = act.name;
+  document.getElementById('selected-act-badge').innerHTML =
+    '<span class="intensity-badge ' + intCls[act.intensity] + '">' + intLabels[act.intensity] + '</span>';
+  document.getElementById('selected-act-met').textContent = 'MET = ' + act.met;
+  document.getElementById('selected-activity-info').style.display = '';
+}
+
+/* ── Main calculation ── */
+function calcCaloriesBurned(){
+  var unit = document.querySelector('input[name="cb-unit"]:checked').value;
+  var weightRaw = parseFloat(document.getElementById('cb-weight').value);
+  var duration  = parseFloat(document.getElementById('cb-duration').value);
+
+  if(isNaN(weightRaw) || weightRaw <= 0){ showToast('Enter a valid body weight'); return; }
+  if(isNaN(duration) || duration <= 0)  { showToast('Enter a valid duration'); return; }
+
+  var weightKg = unit === 'lb' ? weightRaw / 2.20462 : weightRaw;
+  var met = selectedActivity.met;
+  var durationHrs = duration / 60;
+
+  var calories = met * weightKg * durationHrs;
+  var perMin   = calories / duration;
+  var perHour  = perMin * 60;
+
+  setEl('cb-calories',      Math.round(calories).toLocaleString());
+  setEl('cb-per-min',       perMin.toFixed(1) + ' kcal');
+  setEl('cb-per-hour',      Math.round(perHour) + ' kcal');
+  setEl('cb-met-val',       met.toFixed(1));
+  setEl('cb-activity-label', duration + ' min of ' + selectedActivity.name);
+
+  // Equivalencies
+  var equivData = [
+    { icon:'🍌', name:'Bananas (~90 kcal each)',     amount: (calories / 90).toFixed(1) },
+    { icon:'🍕', name:'Slices of pizza (~285 kcal)', amount: (calories / 285).toFixed(1) },
+    { icon:'🍺', name:'Beers (~150 kcal each)',       amount: (calories / 150).toFixed(1) },
+    { icon:'🍫', name:'Squares of dark chocolate',   amount: (calories / 50).toFixed(1) },
+    { icon:'🧈', name:'Tablespoons of butter (~100 kcal)', amount: (calories / 100).toFixed(1) }
+  ];
+  document.getElementById('cb-equiv').innerHTML = equivData.map(function(e){
+    return '<div class="equiv-row">'
+      + '<span class="equiv-icon">' + e.icon + '</span>'
+      + '<span class="equiv-text">Equivalent to <strong>' + e.amount + '</strong> ' + e.name + '</span>'
+      + '</div>';
+  }).join('');
+
+  // Insight
+  var intMap = { low:'light', mod:'moderate', high:'high', vhigh:'very high' };
+  document.getElementById('cb-insight-text').innerHTML =
+    '<strong>' + selectedActivity.name + '</strong> has a MET of <strong>' + met + '</strong>, '
+    + 'making it a <strong>' + intMap[selectedActivity.intensity] + '</strong> intensity activity. '
+    + 'At your weight of <strong>' + weightRaw + ' ' + unit + '</strong>, '
+    + duration + ' minutes burns approximately <strong>' + Math.round(calories) + ' kcal</strong> '
+    + '(' + perMin.toFixed(1) + ' kcal per minute). '
+    + (met >= 9 ? 'This is an intense activity — ensure proper warm-up and hydration.' :
+       met <= 3 ? 'Low-intensity activities burn fewer calories per minute but can add up significantly over longer durations.' :
+       'A consistent 30–60 minutes daily at this intensity supports a healthy energy balance.');
+
+  showRes('cb-results');
+}
+
+/* ── Unit toggle ── */
+document.querySelectorAll('input[name="cb-unit"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    document.querySelectorAll('input[name="cb-unit"]').forEach(function(x){
+      x.closest('.radio-pill').classList.toggle('checked', x.checked);
+    });
+    document.getElementById('cb-weight-suffix').textContent = this.value;
+  });
+});
+
+/* ── Init ── */
+window.addEventListener('load', function(){
+  renderGrid('all');
+  selectActivity('run-5');
+  document.getElementById('selected-activity-info').style.display = '';
+});
+</script>
+</body>
+</html>

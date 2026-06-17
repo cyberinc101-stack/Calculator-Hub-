@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loan Comparison Calculator — Compare Two Loan Offers Side by Side | CalcHub</title>
+<meta name="description" content="Free loan comparison calculator. Compare two loan offers side by side — monthly payment, total interest, true APR, and total cost. Find which loan actually costs less.">
+<meta name="keywords" content="loan comparison calculator,compare loans,best loan calculator,side by side loan comparison,which loan is better,loan APR comparison,total cost of loan calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/loan-comparison.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Loan Comparison Calculator","description":"Compare two loan offers side by side to find which costs less in total interest and monthly payments.","url":"https://yourdomain.com/calculator-types/loan-comparison.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* Side-by-side loan input panels */
+.loan-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 1.2rem;
+}
+@media (max-width: 600px) {
+  .loan-panels { grid-template-columns: 1fr; }
+}
+.loan-panel {
+  background: var(--bg-2);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1rem .8rem;
+}
+.loan-panel.winner {
+  border-color: var(--accent-mid);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-mid) 15%, transparent);
+}
+.loan-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .8rem;
+}
+.loan-panel-title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+.loan-letter {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  font-family: var(--font-sans);
+}
+.loan-a .loan-letter { background: #e3f2fd; color: #1565c0; }
+.loan-b .loan-letter { background: #f3e5f5; color: #6a1b9a; }
+
+/* Comparison results table */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: .88rem;
+}
+.compare-table th {
+  padding: 9px 12px;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 2px solid var(--border);
+  background: var(--bg-2);
+}
+.compare-table th.col-a { color: #1565c0; }
+.compare-table th.col-b { color: #6a1b9a; }
+.compare-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table .row-label {
+  font-weight: 500;
+  color: var(--text-2);
+}
+.compare-table .mono { font-family: var(--font-mono); color: var(--text); }
+.compare-table .better { color: #2e7d32; font-weight: 700; }
+.compare-table .worse  { color: #b71c1c; }
+
+.winner-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: .95rem;
+  font-family: var(--font-sans);
+}
+.winner-banner.a { background: #e3f2fd; color: #1565c0; }
+.winner-banner.b { background: #f3e5f5; color: #6a1b9a; }
+.winner-banner.tie { background: var(--bg-2); color: var(--text-2); }
+
+/* Break-even section */
+.breakeven-box {
+  margin-top: 1rem;
+  padding: .8rem 1rem;
+  background: var(--bg-2);
+  border-radius: 8px;
+  font-size: .85rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* Chart bars */
+.cost-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 1.2rem 0 .4rem;
+  justify-content: center;
+}
+.cost-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; max-width: 160px; }
+.cost-bar-outer { width: 100%; background: var(--bg-2); border-radius: 6px 6px 0 0; height: 140px; display: flex; align-items: flex-end; }
+.cost-bar-fill  { width: 100%; border-radius: 6px 6px 0 0; transition: height .7s cubic-bezier(.34,1.56,.64,1); }
+.cost-bar-a { background: linear-gradient(180deg, #42a5f5, #1565c0); }
+.cost-bar-b { background: linear-gradient(180deg, #ce93d8, #6a1b9a); }
+.cost-bar-label { font-size: .78rem; font-weight: 600; color: var(--text-2); font-family: var(--font-sans); }
+.cost-bar-val   { font-family: var(--font-mono); font-size: .85rem; font-weight: 600; color: var(--text); }
+
+.field-grid-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px){ .field-grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">💰 Finance Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Loan Comparison Calculator</h1>
+  <p class="hero-sub">Enter two loan offers and instantly see which one costs less — monthly payment, total interest, true APR, and total cost side by side.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚖️</div>
+    <div><div class="calc-card-title">Side-by-Side Loan Comparison</div><div class="calc-card-desc">Two loans, one clear winner — includes fees and true APR</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="loan-panels">
+      <!-- Loan A -->
+      <div class="loan-panel loan-a" id="panel-a">
+        <div class="loan-panel-header">
+          <div class="loan-panel-title">Loan A</div>
+          <div class="loan-letter">A</div>
+        </div>
+        <div class="field">
+          <label for="la-name">Lender / Label</label>
+          <input type="text" id="la-name" value="Bank Offer" placeholder="e.g. My Bank">
+        </div>
+        <div class="field">
+          <label for="la-amount">Loan Amount</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="la-amount" class="has-prefix" value="25000" min="0" step="500">
+          </div>
+        </div>
+        <div class="field">
+          <label for="la-rate">Annual Interest Rate</label>
+          <div class="input-wrap">
+            <input type="number" id="la-rate" value="6.5" min="0" max="60" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="la-term">Loan Term</label>
+          <div class="input-wrap">
+            <input type="number" id="la-term" value="60" min="1" max="360" step="1">
+            <span class="input-suffix">months</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="la-fees">Upfront Fees</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="la-fees" class="has-prefix" value="0" min="0" step="50">
+          </div>
+          <span class="field-hint">Origination fee, closing costs, etc.</span>
+        </div>
+        <div class="field">
+          <label for="la-type">Loan Type</label>
+          <select id="la-type">
+            <option value="fixed" selected>Fixed Rate</option>
+            <option value="io">Interest Only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Loan B -->
+      <div class="loan-panel loan-b" id="panel-b">
+        <div class="loan-panel-header">
+          <div class="loan-panel-title">Loan B</div>
+          <div class="loan-letter">B</div>
+        </div>
+        <div class="field">
+          <label for="lb-name">Lender / Label</label>
+          <input type="text" id="lb-name" value="Credit Union" placeholder="e.g. Credit Union">
+        </div>
+        <div class="field">
+          <label for="lb-amount">Loan Amount</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="lb-amount" class="has-prefix" value="25000" min="0" step="500">
+          </div>
+        </div>
+        <div class="field">
+          <label for="lb-rate">Annual Interest Rate</label>
+          <div class="input-wrap">
+            <input type="number" id="lb-rate" value="7.9" min="0" max="60" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lb-term">Loan Term</label>
+          <div class="input-wrap">
+            <input type="number" id="lb-term" value="48" min="1" max="360" step="1">
+            <span class="input-suffix">months</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lb-fees">Upfront Fees</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="lb-fees" class="has-prefix" value="250" min="0" step="50">
+          </div>
+          <span class="field-hint">Origination fee, closing costs, etc.</span>
+        </div>
+        <div class="field">
+          <label for="lb-type">Loan Type</label>
+          <select id="lb-type">
+            <option value="fixed" selected>Fixed Rate</option>
+            <option value="io">Interest Only</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcCompare()">Compare Loans →</button>
+
+    <div class="results" id="lc-results">
+      <div class="results-header">Loan Comparison Results</div>
+
+      <!-- Visual bar chart -->
+      <div class="cost-bars">
+        <div class="cost-bar-wrap">
+          <div class="cost-bar-val" id="cb-a-val">—</div>
+          <div class="cost-bar-outer"><div class="cost-bar-fill cost-bar-a" id="cb-a-bar" style="height:0%"></div></div>
+          <div class="cost-bar-label" id="cb-a-name">Loan A</div>
+        </div>
+        <div class="cost-bar-wrap">
+          <div class="cost-bar-val" id="cb-b-val">—</div>
+          <div class="cost-bar-outer"><div class="cost-bar-fill cost-bar-b" id="cb-b-bar" style="height:0%"></div></div>
+          <div class="cost-bar-label" id="cb-b-name">Loan B</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:.75rem;color:var(--text-3);margin-bottom:.5rem">Total cost (principal + interest + fees)</div>
+
+      <!-- Winner banner -->
+      <div class="winner-banner" id="lc-winner-banner">
+        <span>⏳</span><span id="lc-winner-text">Calculating…</span>
+      </div>
+
+      <!-- Comparison table -->
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="col-a" id="th-a">Loan A</th>
+            <th class="col-b" id="th-b">Loan B</th>
+          </tr>
+        </thead>
+        <tbody id="lc-tbody"></tbody>
+      </table>
+
+      <!-- Break-even -->
+      <div class="breakeven-box" id="lc-breakeven"></div>
+
+      <div id="lc-insight" class="insight"><div class="insight-icon">💡</div><div id="lc-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Compare Loan Offers</h2>
+  <p>A lower interest rate doesn't always mean a cheaper loan. Upfront fees, loan term length, and whether the rate is fixed all affect the true cost. This calculator shows you the total cost — principal, interest, and fees — so you can make a fully informed decision.</p>
+
+  <h3>Monthly Payment vs Total Cost — What to Prioritise</h3>
+  <p>A longer loan term gives you a lower monthly payment, but you pay significantly more interest over the life of the loan. A shorter term means higher monthly payments but much less total interest. The right choice depends on your cash flow needs versus your total cost tolerance.</p>
+
+  <h3>What Is True APR?</h3>
+  <p>Annual Percentage Rate (APR) includes fees in the effective interest rate, unlike the nominal rate shown by lenders. Two loans with the same interest rate but different origination fees will have different APRs — the one with higher fees has a higher true APR and costs more overall.</p>
+
+  <div class="faq-item"><div class="faq-q">Should I always choose the loan with the lowest interest rate?</div><div class="faq-a"><p>Not necessarily. A loan with a lower rate but higher fees or longer term can cost more in total. Always compare total cost of the loan (principal + all interest + all fees) rather than just the headline rate.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is an origination fee?</div><div class="faq-a"><p>An origination fee is a charge by the lender for processing the loan, typically 0.5–2% of the loan amount. It's paid upfront or rolled into the loan balance. Even a 1% fee on a $25,000 loan is $250 — and if it's rolled in, you pay interest on it too.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What does break-even mean in loan comparison?</div><div class="faq-a"><p>If one loan has lower monthly payments but higher total cost (common when comparing short vs long terms), there is a break-even point — the month at which the lower-rate loan has saved you enough in interest to offset higher upfront fees. If you plan to pay off the loan before that point, the fee-heavy loan may not be worth it.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function loanMonthly(principal, annualRate, months, type){
+  if(type === 'io') return principal * (annualRate / 100 / 12);
+  var r = annualRate / 100 / 12;
+  if(r === 0) return principal / months;
+  return principal * r * Math.pow(1+r, months) / (Math.pow(1+r, months) - 1);
+}
+
+function trueAPR(principal, fees, monthlyPayment, months){
+  // Newton-Raphson to find monthly rate for net proceeds = principal - fees
+  var net = principal - fees;
+  if(net <= 0 || monthlyPayment <= 0) return 0;
+  var r = 0.01;
+  for(var i = 0; i < 200; i++){
+    var pv = monthlyPayment * (1 - Math.pow(1+r, -months)) / r;
+    var dpv = monthlyPayment * (Math.pow(1+r,-months)*months/r - (1-Math.pow(1+r,-months))/(r*r));
+    var err = pv - net;
+    if(Math.abs(err) < 0.0001) break;
+    r -= err / dpv;
+    if(r <= 0) r = 0.0001;
+  }
+  return r * 12 * 100; // annual %
+}
+
+function calcLoan(prefix){
+  var amount = v(prefix + 'amount');
+  var rate   = v(prefix + 'rate');
+  var term   = Math.round(v(prefix + 'term'));
+  var fees   = v(prefix + 'fees') || 0;
+  var type   = vs(prefix + 'type');
+  var monthly = loanMonthly(amount, rate, term, type);
+  var totalPaid = type === 'io'
+    ? monthly * term + amount
+    : monthly * term;
+  var totalInterest = totalPaid - amount;
+  var totalCost = totalPaid + fees;
+  var apr = trueAPR(amount, fees, monthly, term);
+  return { amount, rate, term, fees, type, monthly, totalPaid, totalInterest, totalCost, apr };
+}
+
+function calcCompare(){
+  var nameA = document.getElementById('la-name').value || 'Loan A';
+  var nameB = document.getElementById('lb-name').value || 'Loan B';
+  var a = calcLoan('la-');
+  var b = calcLoan('lb-');
+
+  if(a.amount <= 0 || b.amount <= 0){ showToast('Enter valid loan amounts'); return; }
+
+  // Update table headers
+  document.getElementById('th-a').textContent = nameA;
+  document.getElementById('th-b').textContent = nameB;
+
+  // Bar chart
+  var maxCost = Math.max(a.totalCost, b.totalCost);
+  document.getElementById('cb-a-val').textContent  = fmtCur(a.totalCost);
+  document.getElementById('cb-b-val').textContent  = fmtCur(b.totalCost);
+  document.getElementById('cb-a-bar').style.height = (a.totalCost / maxCost * 100) + '%';
+  document.getElementById('cb-b-bar').style.height = (b.totalCost / maxCost * 100) + '%';
+  document.getElementById('cb-a-name').textContent = nameA;
+  document.getElementById('cb-b-name').textContent = nameB;
+
+  // Winner
+  var winnerEl = document.getElementById('lc-winner-banner');
+  var winnerText = document.getElementById('lc-winner-text');
+  var saving = Math.abs(a.totalCost - b.totalCost);
+  var panelA = document.getElementById('panel-a');
+  var panelB = document.getElementById('panel-b');
+  panelA.classList.remove('winner');
+  panelB.classList.remove('winner');
+
+  if(saving < 10){
+    winnerEl.className = 'winner-banner tie';
+    winnerText.textContent = 'These loans cost nearly the same — choose based on flexibility and terms.';
+  } else if(a.totalCost < b.totalCost){
+    winnerEl.className = 'winner-banner a';
+    winnerText.innerHTML = '🏆 ' + nameA + ' saves you <strong>' + fmtCur(saving) + '</strong> overall';
+    panelA.classList.add('winner');
+  } else {
+    winnerEl.className = 'winner-banner b';
+    winnerText.innerHTML = '🏆 ' + nameB + ' saves you <strong>' + fmtCur(saving) + '</strong> overall';
+    panelB.classList.add('winner');
+  }
+
+  // Table rows
+  function bestLow(av, bv){ // lower is better
+    var abetter = av < bv - 0.005;
+    var bbetter = bv < av - 0.005;
+    return [
+      abetter ? 'better' : (bbetter ? 'worse' : ''),
+      bbetter ? 'better' : (abetter ? 'worse' : '')
+    ];
+  }
+  var rows = [
+    { label: 'Loan Amount',        av: fmtCur(a.amount),        bv: fmtCur(b.amount),        rawA: a.amount,       rawB: b.amount,       lowerBetter: false },
+    { label: 'Interest Rate',      av: fmtPct(a.rate),          bv: fmtPct(b.rate),          rawA: a.rate,         rawB: b.rate,         lowerBetter: true  },
+    { label: 'Term',               av: a.term + ' months',      bv: b.term + ' months',      rawA: a.term,         rawB: b.term,         lowerBetter: false },
+    { label: 'Monthly Payment',    av: fmtCur(a.monthly),       bv: fmtCur(b.monthly),       rawA: a.monthly,      rawB: b.monthly,      lowerBetter: true  },
+    { label: 'Total Interest',     av: fmtCur(a.totalInterest), bv: fmtCur(b.totalInterest), rawA: a.totalInterest,rawB: b.totalInterest,lowerBetter: true  },
+    { label: 'Upfront Fees',       av: fmtCur(a.fees),         bv: fmtCur(b.fees),          rawA: a.fees,         rawB: b.fees,         lowerBetter: true  },
+    { label: 'Total Cost',         av: fmtCur(a.totalCost),     bv: fmtCur(b.totalCost),     rawA: a.totalCost,    rawB: b.totalCost,    lowerBetter: true  },
+    { label: 'True APR (with fees)',av: fmtPct(a.apr),          bv: fmtPct(b.apr),           rawA: a.apr,          rawB: b.apr,          lowerBetter: true  },
+  ];
+
+  var tbodyHtml = rows.map(function(row){
+    var cls = ['', ''];
+    if(row.lowerBetter){
+      var diff = Math.abs(row.rawA - row.rawB);
+      if(diff > 0.005){
+        cls[0] = row.rawA < row.rawB ? 'better' : 'worse';
+        cls[1] = row.rawB < row.rawA ? 'better' : 'worse';
+      }
+    }
+    return '<tr>'
+      + '<td class="row-label">' + row.label + '</td>'
+      + '<td class="mono ' + cls[0] + '">' + row.av + '</td>'
+      + '<td class="mono ' + cls[1] + '">' + row.bv + '</td>'
+      + '</tr>';
+  }).join('');
+  document.getElementById('lc-tbody').innerHTML = tbodyHtml;
+
+  // Break-even note
+  var beHtml = '';
+  if(a.amount === b.amount){
+    if(a.monthly !== b.monthly && a.totalCost !== b.totalCost){
+      var cheaperMonthly = a.monthly < b.monthly ? nameA : nameB;
+      var cheaperTotal   = a.totalCost < b.totalCost ? nameA : nameB;
+      if(cheaperMonthly !== cheaperTotal){
+        beHtml = '<strong>Monthly vs total trade-off:</strong> ' + cheaperMonthly + ' has the lower monthly payment, but ' + cheaperTotal + ' costs less overall. If keeping monthly payments low is your priority (cash flow), ' + cheaperMonthly + ' wins. If minimising total interest paid is your priority, ' + cheaperTotal + ' wins.';
+      } else {
+        beHtml = cheaperTotal + ' wins on both monthly payment and total cost.';
+      }
+    }
+  } else {
+    beHtml = 'The loan amounts differ — total cost comparison reflects different principal levels. Focus on <strong>total interest as a % of principal</strong> for a fair rate comparison.';
+  }
+  document.getElementById('lc-breakeven').innerHTML = beHtml || 'Compare the <strong>Total Cost</strong> and <strong>True APR</strong> rows above for the clearest like-for-like comparison.';
+
+  // Insight
+  var winner = a.totalCost <= b.totalCost ? nameA : nameB;
+  var loser  = a.totalCost <= b.totalCost ? nameB : nameA;
+  document.getElementById('lc-insight-text').innerHTML =
+    saving > 10
+    ? '<strong>' + winner + '</strong> costs <strong>' + fmtCur(saving) + '</strong> less in total than ' + loser + '. '
+      + 'The key driver is ' + (Math.abs(a.rate - b.rate) > 0.5 ? 'the interest rate difference' : Math.abs(a.term - b.term) > 6 ? 'the difference in loan term' : 'a combination of rate, term, and fees') + '. '
+      + 'Always verify fees and rate with your lender before signing — introductory rates, prepayment penalties, and variable clauses can change the picture.'
+    : 'These two offers are very close in total cost. Consider other factors: lender reputation, prepayment flexibility, rate-lock period, and customer service.';
+
+  showRes('lc-results');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-Even Calculator — Units, Revenue & Time to Break Even | CalcHub</title>
+<meta name="description" content="Free break-even calculator. Find out how many units you need to sell and how much revenue you need to cover fixed and variable costs. Instant results with visual breakdown.">
+<meta name="keywords" content="break-even calculator,break even point,break even analysis,units to break even,fixed costs variable costs,break even revenue,contribution margin calculator,business break even">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/break-even.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Break-Even Calculator","description":"Calculate break-even point in units and revenue. Find how many units you must sell to cover all costs.","url":"https://yourdomain.com/calculator-types/break-even.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Mode tabs ── */
+.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.mode-tab{padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s}
+.mode-tab.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a}
+
+/* ── Big answer ── */
+.be-answer{text-align:center;padding:24px 20px 18px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px}
+.be-value{font-family:var(--font-mono);font-size:clamp(2rem,7vw,3.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:6px}
+.be-label{font-size:.85rem;color:var(--text-2)}
+
+/* ── Stats ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.stat-card{background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:12px;padding:14px 12px;text-align:center}
+.stat-value{font-family:var(--font-mono);font-size:clamp(1.1rem,3vw,1.6rem);font-weight:700;color:var(--accent,#22c55e);line-height:1.1}
+.stat-label{font-size:.72rem;color:var(--text-2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── Visual bar ── */
+.be-bar-wrap{background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:12px;padding:16px;margin-bottom:14px}
+.be-bar-title{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:12px}
+.be-bar-track{height:20px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden;margin-bottom:8px}
+.be-bar-fill{height:100%;border-radius:999px;transition:width .5s ease;background:linear-gradient(90deg,var(--accent,#22c55e),#16a34a)}
+.be-bar-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-2)}
+.be-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.be-legend-item{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--text-2)}
+.be-legend-dot{width:10px;height:10px;border-radius:50%}
+
+/* ── Target profit panel ── */
+.target-note{font-size:.8rem;color:var(--text-2);margin-bottom:14px;padding:10px 14px;background:rgba(34,197,94,.07);border-radius:8px;border-left:3px solid var(--accent,#22c55e)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚖️ Break-Even Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Break-Even Calculator</h1>
+  <p class="hero-sub">Find exactly how many units you need to sell — and how much revenue you need — to cover all your costs. Add a profit target to see what it takes to hit your goals.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚖️</div>
+    <div>
+      <div class="calc-card-title">Break-Even Calculator</div>
+      <div class="calc-card-desc">Units, revenue, and contribution margin from fixed vs variable costs</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <!-- Mode tabs -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="setBeMode('basic',this)">Break-Even Point</button>
+      <button class="mode-tab" onclick="setBeMode('profit',this)">With Profit Target</button>
+      <button class="mode-tab" onclick="setBeMode('margin',this)">Contribution Margin</button>
+    </div>
+
+    <!-- ── MODE: Basic / Profit ── (shared inputs) -->
+    <div id="panel-basic">
+      <div class="field-grid">
+        <div class="field">
+          <label for="be-fixed">Total Fixed Costs</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="be-fixed" class="has-prefix" value="10000" min="0" step="100">
+          </div>
+          <span class="field-hint">Rent, salaries, insurance, subscriptions — costs that don't change with volume</span>
+        </div>
+        <div class="field">
+          <label for="be-price">Selling Price (per unit)</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="be-price" class="has-prefix" value="50" min="0.01" step="0.5">
+          </div>
+        </div>
+        <div class="field">
+          <label for="be-vcpu">Variable Cost (per unit)</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="be-vcpu" class="has-prefix" value="20" min="0" step="0.5">
+          </div>
+          <span class="field-hint">Materials, packaging, shipping, commission — costs that scale with each sale</span>
+        </div>
+        <div class="field" id="profit-target-field" style="display:none">
+          <label for="be-profit-target">Desired Profit Target</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="be-profit-target" class="has-prefix" value="5000" min="0" step="100">
+          </div>
+          <span class="field-hint">How much profit you want to make, on top of covering all costs</span>
+        </div>
+        <div class="field">
+          <label for="be-monthly">Estimated Monthly Sales (optional)</label>
+          <input type="number" id="be-monthly" value="200" min="0" step="10">
+          <span class="field-hint">To calculate how many months to break even</span>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBreakEven()">Calculate Break-Even →</button>
+
+      <div class="results" id="be-results">
+        <div class="be-answer">
+          <div class="be-value" id="r-be-units">—</div>
+          <div class="be-label" id="r-be-units-label">units to break even</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="r-be-revenue">—</div>
+            <div class="stat-label">Break-Even Revenue</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-be-cm">—</div>
+            <div class="stat-label">Contribution Margin</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-be-cmr">—</div>
+            <div class="stat-label">CM Ratio</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-be-months">—</div>
+            <div class="stat-label">Months to Break Even</div>
+          </div>
+        </div>
+
+        <!-- Visual progress bar: current sales vs break-even -->
+        <div class="be-bar-wrap">
+          <div class="be-bar-title">Current Sales vs Break-Even</div>
+          <div class="be-bar-track">
+            <div class="be-bar-fill" id="be-bar" style="width:0%"></div>
+          </div>
+          <div class="be-bar-labels">
+            <span>0 units</span>
+            <span id="be-bar-mid"></span>
+            <span id="be-bar-max"></span>
+          </div>
+          <div class="be-legend">
+            <div class="be-legend-item"><div class="be-legend-dot" style="background:var(--accent,#22c55e)"></div>Current monthly sales</div>
+            <div class="be-legend-item"><div class="be-legend-dot" style="background:rgba(255,255,255,.2)"></div>Break-even point</div>
+          </div>
+        </div>
+
+        <div id="be-insight" class="insight">
+          <div class="insight-icon">💡</div>
+          <div id="be-insight-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODE: Contribution Margin ── -->
+    <div id="panel-margin" style="display:none">
+      <div class="target-note">Enter multiple products to compare their contribution margins and see which drives the most profit per sale.</div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="cm-price">Selling Price</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="cm-price" class="has-prefix" value="80" min="0.01" step="1">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cm-vc">Variable Cost per Unit</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="cm-vc" class="has-prefix" value="32" min="0" step="1">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cm-units">Units Sold (optional)</label>
+          <input type="number" id="cm-units" value="500" min="0" step="10">
+        </div>
+        <div class="field">
+          <label for="cm-fixed">Fixed Costs (optional)</label>
+          <div class="input-wrap"><span class="input-prefix">$</span>
+            <input type="number" id="cm-fixed" class="has-prefix" value="15000" min="0" step="100">
+          </div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcCM()">Calculate →</button>
+
+      <div class="results" id="cm-results">
+        <div class="be-answer">
+          <div class="be-value" id="r-cm-val">—</div>
+          <div class="be-label">contribution margin per unit</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="r-cm-ratio">—</div>
+            <div class="stat-label">CM Ratio</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-cm-total">—</div>
+            <div class="stat-label">Total CM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-cm-net">—</div>
+            <div class="stat-label">Net Profit</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="r-cm-be">—</div>
+            <div class="stat-label">Break-Even Units</div>
+          </div>
+        </div>
+        <div id="cm-insight" class="insight">
+          <div class="insight-icon">💡</div>
+          <div id="cm-insight-text"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Calculate Your Break-Even Point</h2>
+  <p>The break-even point is where total revenue equals total costs — no profit, no loss. The formula is: Break-Even Units = Fixed Costs ÷ (Selling Price − Variable Cost per Unit). The denominator is called the contribution margin — how much each sale "contributes" toward covering fixed costs.</p>
+
+  <h3>Fixed Costs vs Variable Costs</h3>
+  <p>Fixed costs stay the same regardless of how much you sell — rent, salaries, software subscriptions, insurance. Variable costs scale directly with each unit sold — raw materials, packaging, payment processing fees, shipping. Knowing which is which is the foundation of break-even analysis.</p>
+
+  <h3>Contribution Margin</h3>
+  <p>Contribution margin (CM) = Selling Price − Variable Cost per Unit. It's the amount each sale contributes to covering fixed costs and eventually generating profit. The CM ratio (CM ÷ Selling Price) tells you what percentage of every dollar in revenue is available to cover fixed costs — a higher ratio means you need fewer sales to break even.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the break-even formula?</div>
+    <div class="faq-a"><p>Break-Even Units = Fixed Costs ÷ (Price per Unit − Variable Cost per Unit). To find break-even revenue: Break-Even Revenue = Fixed Costs ÷ Contribution Margin Ratio, where CM Ratio = (Price − Variable Cost) ÷ Price.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What does break-even analysis tell me?</div>
+    <div class="faq-a"><p>It tells you the minimum sales volume needed to avoid a loss. Below the break-even point, every unit sold reduces your loss. Above it, every unit generates profit equal to its contribution margin. It helps with pricing decisions, cost control, and evaluating business viability.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I include a profit target in break-even analysis?</div>
+    <div class="faq-a"><p>Add your profit target to fixed costs in the formula: Required Units = (Fixed Costs + Target Profit) ÷ Contribution Margin per Unit. This tells you how many units you need to sell not just to break even, but to hit your specific profit goal.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var beMode = 'basic';
+
+function setBeMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  beMode = mode;
+  document.getElementById('panel-basic').style.display  = mode !== 'margin' ? '' : 'none';
+  document.getElementById('panel-margin').style.display = mode === 'margin' ? '' : 'none';
+  document.getElementById('profit-target-field').style.display = mode === 'profit' ? '' : 'none';
+}
+
+function calcBreakEven(){
+  var fixed   = v('be-fixed');
+  var price   = v('be-price');
+  var vcpu    = v('be-vcpu');
+  var monthly = v('be-monthly') || 0;
+  var target  = beMode === 'profit' ? v('be-profit-target') : 0;
+
+  if(isNaN(fixed)||isNaN(price)||isNaN(vcpu)){ showToast('Please fill in all fields'); return; }
+  var cm = price - vcpu;
+  if(cm <= 0){ showToast('Selling price must be greater than variable cost'); return; }
+
+  var beUnits   = Math.ceil((fixed + target) / cm);
+  var beRevenue = beUnits * price;
+  var cmRatio   = (cm / price) * 100;
+  var months    = monthly > 0 ? (beUnits / monthly).toFixed(1) : '—';
+
+  var labelSuffix = beMode === 'profit' ? ' units to reach your profit target' : ' units to break even';
+  setEl('r-be-units',       beUnits.toLocaleString());
+  setEl('r-be-units-label', labelSuffix);
+  setEl('r-be-revenue',     fmtCur(beRevenue));
+  setEl('r-be-cm',          fmtCur(cm));
+  setEl('r-be-cmr',         cmRatio.toFixed(1) + '%');
+  setEl('r-be-months',      monthly > 0 ? months + ' mo' : '—');
+
+  // Bar
+  if(monthly > 0){
+    var pct = Math.min(100, (monthly / beUnits * 100)).toFixed(1);
+    document.getElementById('be-bar').style.width = pct + '%';
+    document.getElementById('be-bar-mid').textContent = monthly.toLocaleString() + ' / mo';
+    document.getElementById('be-bar-max').textContent = beUnits.toLocaleString() + ' needed';
+  }
+
+  var insight = '';
+  if(beMode === 'profit'){
+    insight = 'To cover <strong>' + fmtCur(fixed) + '</strong> in fixed costs and hit your <strong>' + fmtCur(target) + '</strong> profit target, you need to sell <strong>' + beUnits.toLocaleString() + ' units</strong> generating <strong>' + fmtCur(beRevenue) + '</strong> in revenue.';
+  } else {
+    insight = 'Every unit sold above <strong>' + beUnits.toLocaleString() + '</strong> generates <strong>' + fmtCur(cm) + '</strong> in pure profit. ';
+    if(monthly > 0 && monthly >= beUnits / 3){
+      insight += 'At your current monthly sales rate, you should break even in about <strong>' + months + ' months</strong>.';
+    } else if(monthly > 0){
+      var needed = Math.ceil(beUnits / (parseFloat(months)));
+      insight += 'Consider ways to increase monthly sales or reduce fixed costs to shorten the break-even timeline.';
+    }
+  }
+  document.getElementById('be-insight-text').innerHTML = insight;
+  showRes('be-results');
+}
+
+function calcCM(){
+  var price  = v('cm-price');
+  var vc     = v('cm-vc');
+  var units  = v('cm-units') || 0;
+  var fixed  = v('cm-fixed') || 0;
+  if(isNaN(price)||isNaN(vc)||price<=0){ showToast('Enter valid price and variable cost'); return; }
+
+  var cm      = price - vc;
+  var cmRatio = (cm / price) * 100;
+  var totalCM = cm * units;
+  var net     = totalCM - fixed;
+  var beU     = fixed > 0 && cm > 0 ? Math.ceil(fixed / cm) : null;
+
+  setEl('r-cm-val',   fmtCur(cm));
+  setEl('r-cm-ratio', cmRatio.toFixed(1) + '%');
+  setEl('r-cm-total', units > 0 ? fmtCur(totalCM) : '—');
+  setEl('r-cm-net',   units > 0 && fixed > 0 ? fmtCur(net) : '—');
+  setEl('r-cm-be',    beU !== null ? beU.toLocaleString() + ' units' : '—');
+
+  var ins = 'Each unit sold contributes <strong>' + fmtCur(cm) + '</strong> (' + cmRatio.toFixed(1) + '% of selling price) toward covering fixed costs and generating profit. ';
+  if(cmRatio > 60) ins += 'This is a <strong>high contribution margin</strong> — excellent for scaling.';
+  else if(cmRatio < 20) ins += 'This is a <strong>low contribution margin</strong> — you\'ll need high volume to be profitable.';
+  document.getElementById('cm-insight-text').innerHTML = ins;
+  showRes('cm-results');
+}
+
+window.addEventListener('load', calcBreakEven);
+</script>
+</body>
+</html>

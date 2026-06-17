@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Budget Planner Calculator — 50/30/20 Rule & Monthly Budget | CalcHub</title>
+<meta name="description" content="Free budget planner calculator. Enter your income and expenses to see your monthly surplus or deficit, spending breakdown, and how you compare to the 50/30/20 budgeting rule.">
+<meta name="keywords" content="budget planner calculator,monthly budget calculator,50 30 20 rule calculator,income and expenses calculator,personal budget calculator,household budget planner">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/budget-planner.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Budget Planner Calculator","description":"Plan a monthly budget from income and expenses, with a 50/30/20 rule comparison and spending breakdown.","url":"https://yourdomain.com/calculator-types/budget-planner.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">📋 Budget Planner</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Budget Planner Calculator</h1>
+  <p class="hero-sub">See your monthly surplus or deficit and how your spending compares to the 50/30/20 rule.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📋</div>
+    <div><div class="calc-card-title">Budget Planner</div><div class="calc-card-desc">Monthly income, expenses, and savings breakdown</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="bp-income">Monthly Take-Home Income</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-income" class="has-prefix" value="5000" min="0" step="50">
+        </div>
+        <span class="field-hint">After tax, per month</span>
+      </div>
+    </div>
+
+    <div class="field-grid" style="margin-top:8px">
+      <div class="field">
+        <label for="bp-housing">Housing (rent/mortgage, utilities)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-housing" class="has-prefix" value="1600" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-food">Food &amp; Groceries</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-food" class="has-prefix" value="600" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-transport">Transport</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-transport" class="has-prefix" value="350" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-insurance">Insurance &amp; Healthcare</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-insurance" class="has-prefix" value="250" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-debt">Debt Payments (loans, credit cards)</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-debt" class="has-prefix" value="300" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-subscriptions">Subscriptions &amp; Bills</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-subscriptions" class="has-prefix" value="120" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-entertainment">Entertainment &amp; Dining Out</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-entertainment" class="has-prefix" value="400" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-other">Other Discretionary Spending</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-other" class="has-prefix" value="250" min="0" step="10">
+        </div>
+      </div>
+      <div class="field">
+        <label for="bp-savings">Current Monthly Savings/Investing</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="bp-savings" class="has-prefix" value="400" min="0" step="10">
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcBudget()">Calculate Budget →</button>
+
+    <div class="results" id="bp-results">
+      <div class="results-header">Monthly Summary</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Total Income</div>
+          <div class="result-value" id="r-bp-income">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Expenses</div>
+          <div class="result-value" id="r-bp-expenses">—</div>
+        </div>
+        <div class="result-item highlight" id="r-bp-leftover-card">
+          <div class="result-label">Leftover / Shortfall</div>
+          <div class="result-value" id="r-bp-leftover">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Savings Rate</div>
+          <div class="result-value" id="r-bp-savings-rate">—</div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">50/30/20 Rule Comparison</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Needs (target 50%)</div>
+          <div class="result-value" id="r-bp-needs">—</div>
+          <div class="result-sub" id="r-bp-needs-pct"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Wants (target 30%)</div>
+          <div class="result-value" id="r-bp-wants">—</div>
+          <div class="result-sub" id="r-bp-wants-pct"></div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Savings/Debt Payoff (target 20%)</div>
+          <div class="result-value" id="r-bp-savings20">—</div>
+          <div class="result-sub" id="r-bp-savings20-pct"></div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Spending Breakdown</div>
+      <div class="breakdown-wrap" id="bp-breakdown-wrap">
+        <table class="breakdown-table" id="bp-breakdown-table">
+          <thead><tr><th>Category</th><th>Amount</th><th>% of Income</th></tr></thead>
+          <tbody id="bp-breakdown-body"></tbody>
+        </table>
+      </div>
+
+      <div id="bp-insight" class="insight"><div class="insight-icon">💡</div><div id="bp-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Budget Planner</h2>
+  <p>Enter your monthly take-home income, then fill in your typical spending across each category. The calculator totals your expenses, shows what's left over (or how far short you are), and breaks your spending into needs, wants, and savings so you can compare it against the popular 50/30/20 guideline.</p>
+
+  <h3>What Is the 50/30/20 Rule?</h3>
+  <p>The 50/30/20 rule is a simple budgeting guideline that suggests allocating about 50% of after-tax income to needs (housing, food, transport, insurance, minimum debt payments), 30% to wants (entertainment, dining out, discretionary spending), and 20% to savings and extra debt repayment. It's a starting point rather than a strict rule — high cost-of-living areas often push the needs percentage higher.</p>
+
+  <h3>Why Track a Monthly Budget?</h3>
+  <p>A budget makes the gap between income and spending visible before it becomes a problem. Categorising expenses also reveals where money is going that might otherwise be invisible in day-to-day spending, such as recurring subscriptions or frequent small discretionary purchases that add up over a month.</p>
+
+  <div class="faq-item"><div class="faq-q">What counts as a "need" versus a "want"?</div><div class="faq-a"><p>Needs are expenses required to maintain a basic standard of living and meet obligations: housing, utilities, groceries, transport, insurance, healthcare, and minimum debt payments. Wants are discretionary: entertainment, dining out, hobbies, and non-essential subscriptions. The line isn't always clean — a portion of a grocery bill spent on treats could be considered a want — so treat the split as a useful approximation.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What if my expenses are higher than my income?</div><div class="faq-a"><p>A negative leftover amount means spending currently exceeds income, which isn't sustainable long-term without drawing down savings or increasing debt. The breakdown table can help identify which categories take up the largest share of spending, which is usually the most effective place to look for reductions first.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is 20% in savings always achievable?</div><div class="faq-a"><p>Not always, especially in high cost-of-living areas or during periods of reduced income. The 20% figure is a target to work toward over time rather than a baseline everyone should expect to hit immediately. Even a smaller, consistent savings rate compounds meaningfully over years.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+function calcBudget(){
+  var income = v('bp-income');
+  var housing = v('bp-housing');
+  var food = v('bp-food');
+  var transport = v('bp-transport');
+  var insurance = v('bp-insurance');
+  var debt = v('bp-debt');
+  var subscriptions = v('bp-subscriptions');
+  var entertainment = v('bp-entertainment');
+  var other = v('bp-other');
+  var savings = v('bp-savings');
+
+  if(income <= 0){ showToast('Please enter your monthly income'); return; }
+
+  // Needs vs wants classification
+  var needs = housing + food + transport + insurance + debt;
+  var wants = subscriptions + entertainment + other;
+  var totalExpenses = needs + wants + savings;
+  var leftover = income - totalExpenses;
+  var savingsRate = (savings / income) * 100;
+
+  setEl('r-bp-income', fmtCur(income));
+  setEl('r-bp-expenses', fmtCur(totalExpenses - savings));
+  setEl('r-bp-leftover', (leftover >= 0 ? '' : '-') + fmtCur(Math.abs(leftover)));
+  setEl('r-bp-savings-rate', fmt(savingsRate,1)+'%');
+
+  var leftoverCard = document.getElementById('r-bp-leftover-card');
+  leftoverCard.classList.remove('highlight','red','green');
+  leftoverCard.classList.add(leftover < 0 ? 'red' : 'green');
+
+  var needsPct = (needs/income)*100;
+  var wantsPct = (wants/income)*100;
+  var savingsPct = (savings/income)*100;
+
+  setEl('r-bp-needs', fmtCur(needs));
+  setEl('r-bp-needs-pct', fmt(needsPct,1)+'% of income (target 50%)');
+  setEl('r-bp-wants', fmtCur(wants));
+  setEl('r-bp-wants-pct', fmt(wantsPct,1)+'% of income (target 30%)');
+  setEl('r-bp-savings20', fmtCur(savings));
+  setEl('r-bp-savings20-pct', fmt(savingsPct,1)+'% of income (target 20%)');
+
+  var categories = [
+    { label:'Housing', amount:housing },
+    { label:'Food & Groceries', amount:food },
+    { label:'Transport', amount:transport },
+    { label:'Insurance & Healthcare', amount:insurance },
+    { label:'Debt Payments', amount:debt },
+    { label:'Subscriptions & Bills', amount:subscriptions },
+    { label:'Entertainment & Dining Out', amount:entertainment },
+    { label:'Other Discretionary', amount:other },
+    { label:'Savings/Investing', amount:savings }
+  ];
+  var tbody = document.getElementById('bp-breakdown-body');
+  tbody.innerHTML = categories.map(function(c){
+    var pct = (c.amount/income)*100;
+    return '<tr><td>'+c.label+'</td>'
+      +'<td class="td-mono">'+fmtCur(c.amount)+'</td>'
+      +'<td class="td-mono">'+fmt(pct,1)+'%</td></tr>';
+  }).join('');
+
+  var insightTxt = document.getElementById('bp-insight-text');
+  if(leftover < 0){
+    insightTxt.innerHTML = '<strong>Spending exceeds income</strong> by '+fmtCur(Math.abs(leftover))+' per month. Review the breakdown table to find the largest categories first — small cuts to big categories usually beat large cuts to small ones.';
+  } else if(needsPct > 55){
+    insightTxt.innerHTML = 'Needs are taking up <strong>'+fmt(needsPct,1)+'%</strong> of income, above the 50% guideline. This is common in high cost-of-living areas, but worth monitoring since it leaves less room for wants and savings.';
+  } else if(savingsPct < 10){
+    insightTxt.innerHTML = 'Savings rate is <strong>'+fmt(savingsRate,1)+'%</strong>, below the 20% target. There is also <strong>'+fmtCur(leftover)+'</strong> unallocated this month — consider directing some of it toward savings or debt payoff.';
+  } else if(leftover > 0){
+    insightTxt.innerHTML = 'Budget looks healthy with <strong>'+fmtCur(leftover)+'</strong> left over after all categories including savings. Consider directing the surplus toward extra debt payoff or boosting your savings rate further.';
+  } else {
+    insightTxt.innerHTML = 'Income and expenses are balanced for this month, with savings already factored in at <strong>'+fmt(savingsRate,1)+'%</strong> of income.';
+  }
+
+  showRes('bp-results');
+}
+
+window.addEventListener('load', calcBudget);
+</script>
+</body></html>

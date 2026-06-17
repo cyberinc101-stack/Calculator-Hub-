@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markup Calculator — Cost, Selling Price & Margin Converter | CalcHub</title>
+<meta name="description" content="Free markup calculator. Calculate selling price from cost and markup percentage, or find the markup percentage from cost and price. Includes markup-to-margin conversion.">
+<meta name="keywords" content="markup calculator,markup percentage calculator,cost to selling price calculator,markup vs margin calculator,retail markup calculator,pricing calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/markup.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Markup Calculator","description":"Calculate selling price from cost and markup percentage, or find markup percentage from cost and price, with markup-to-margin conversion.","url":"https://yourdomain.com/calculator-types/markup.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">💼 Markup Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Markup Calculator</h1>
+  <p class="hero-sub">Find your selling price, markup percentage, or profit margin — and see how the two relate.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">💼</div>
+    <div><div class="calc-card-title">Markup Calculator</div><div class="calc-card-desc">Cost, selling price, markup %, and margin %</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Solve For</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="mk-mode" value="price" checked> Selling Price</label>
+        <label class="radio-pill"><input type="radio" name="mk-mode" value="markup"> Markup %</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="mk-cost">Cost Price</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="mk-cost" class="has-prefix" value="40" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="field" id="mk-markup-field">
+        <label for="mk-markup">Markup Percentage</label>
+        <div class="input-wrap">
+          <input type="number" id="mk-markup" value="50" min="0" step="0.5">
+          <span class="input-suffix">%</span>
+        </div>
+        <span class="field-hint">Markup is calculated on cost, not on selling price</span>
+      </div>
+      <div class="field" id="mk-price-field" style="display:none">
+        <label for="mk-price">Selling Price</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="mk-price" class="has-prefix" value="60" min="0" step="0.01">
+        </div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcMarkup()">Calculate →</button>
+
+    <div class="results" id="mk-results">
+      <div class="results-header">Pricing Breakdown</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Cost Price</div>
+          <div class="result-value" id="r-mk-cost">—</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="result-label">Selling Price</div>
+          <div class="result-value" id="r-mk-price">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Gross Profit</div>
+          <div class="result-value" id="r-mk-profit">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Markup %</div>
+          <div class="result-value" id="r-mk-markup-pct">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item amber">
+          <div class="result-label">Profit Margin %</div>
+          <div class="result-value" id="r-mk-margin-pct">—</div>
+        </div>
+      </div>
+
+      <div id="mk-insight" class="insight"><div class="insight-icon">💡</div><div id="mk-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Markup Calculator</h2>
+  <p>Choose whether you want to find a selling price from a known cost and markup percentage, or find the markup percentage from a known cost and selling price. Enter the cost price, then either the markup percentage or the selling price, and the calculator fills in the rest — including the equivalent profit margin.</p>
+
+  <h3>Markup vs. Margin: What's the Difference?</h3>
+  <p>Markup is calculated as a percentage of cost: how much you add on top of what something cost you. Margin is calculated as a percentage of the selling price: how much of the final price is profit. The two numbers are always different for the same transaction, and confusing them is one of the most common pricing mistakes in retail and small business.</p>
+
+  <h3>Why the Numbers Diverge as Markup Increases</h3>
+  <p>At low percentages, markup and margin look similar, but they spread apart quickly. A 100% markup, for example, results in only a 50% margin, not a 100% margin — because the markup is added on top of a smaller base (cost) while the margin is measured against a larger base (the resulting selling price).</p>
+
+  <div class="faq-item"><div class="faq-q">Is a 50% markup the same as a 50% margin?</div><div class="faq-a"><p>No. A 50% markup on a $40 cost gives a $60 selling price, which works out to a 33.3% margin. Margin and markup only become close to each other at very small percentages, and diverge significantly as the percentage grows.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How do I convert markup percentage to margin percentage?</div><div class="faq-a"><p>Margin % = Markup % ÷ (100 + Markup %) × 100. So a 25% markup converts to a 20% margin, and a 100% markup converts to a 50% margin. This calculator performs that conversion automatically.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What markup percentage should I use for my product?</div><div class="faq-a"><p>This varies widely by industry — grocery retail often runs on thin markups of 10–15%, while apparel and jewellery commonly use markups of 100% or more. The right number depends on your costs beyond the product itself (overhead, labour, marketing) and what the market will bear, so it's worth comparing against typical margins in your specific industry.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var mkMode = 'price';
+
+document.querySelectorAll('input[name="mk-mode"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="mk-mode"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    mkMode = this.value;
+    document.getElementById('mk-markup-field').style.display = (mkMode === 'price') ? '' : 'none';
+    document.getElementById('mk-price-field').style.display = (mkMode === 'markup') ? '' : 'none';
+  });
+});
+
+function calcMarkup(){
+  var cost = v('mk-cost');
+  if(cost <= 0){ showToast('Please enter a valid cost price'); return; }
+
+  var price, markupPct, profit;
+
+  if(mkMode === 'price'){
+    markupPct = v('mk-markup');
+    if(markupPct < 0){ showToast('Please enter a valid markup percentage'); return; }
+    profit = cost * (markupPct / 100);
+    price = cost + profit;
+  } else {
+    price = v('mk-price');
+    if(price <= 0){ showToast('Please enter a valid selling price'); return; }
+    profit = price - cost;
+    markupPct = (profit / cost) * 100;
+  }
+
+  var marginPct = price > 0 ? (profit / price) * 100 : 0;
+
+  setEl('r-mk-cost', fmtCur(cost));
+  setEl('r-mk-price', fmtCur(price));
+  setEl('r-mk-profit', fmtCur(profit));
+  setEl('r-mk-markup-pct', fmt(markupPct,1)+'%');
+  setEl('r-mk-margin-pct', fmt(marginPct,1)+'%');
+
+  var insightTxt = document.getElementById('mk-insight-text');
+  if(profit < 0){
+    insightTxt.innerHTML = '<strong>Selling below cost:</strong> the selling price is lower than the cost price, resulting in a loss of '+fmtCur(Math.abs(profit))+' per unit.';
+  } else {
+    insightTxt.innerHTML = 'A <strong>'+fmt(markupPct,1)+'% markup</strong> on a '+fmtCur(cost)+' cost gives a selling price of <strong>'+fmtCur(price)+'</strong>, which is equivalent to a <strong>'+fmt(marginPct,1)+'% profit margin</strong>. Remember: markup is measured against cost, margin is measured against selling price.';
+  }
+
+  showRes('mk-results');
+}
+
+window.addEventListener('load', calcMarkup);
+</script>
+</body></html>

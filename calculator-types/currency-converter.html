@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Currency Converter — Live Exchange Rates for 30+ Currencies | CalcHub</title>
+<meta name="description" content="Free currency converter with live exchange rates. Convert between USD, EUR, GBP, NZD, AUD, JPY and 30+ currencies instantly. No sign-up required.">
+<meta name="keywords" content="currency converter,exchange rate calculator,USD to EUR,convert currency,live exchange rates,foreign exchange calculator,money converter">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/currency-converter.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Currency Converter","description":"Convert between major world currencies using live exchange rates.","url":"https://yourdomain.com/calculator-types/currency-converter.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🔄 Currency Converter</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Currency Converter</h1>
+  <p class="hero-sub">Convert between major world currencies using up-to-date exchange rates.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🔄</div>
+    <div><div class="calc-card-title">Currency Converter</div><div class="calc-card-desc">Convert any amount between 30+ currencies</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="cc-amount">Amount</label>
+        <div class="input-wrap">
+          <span class="input-prefix" id="cc-from-symbol">$</span>
+          <input type="number" id="cc-amount" class="has-prefix" value="100" min="0" step="1">
+        </div>
+      </div>
+      <div class="field">
+        <label for="cc-from">From Currency</label>
+        <select id="cc-from"></select>
+      </div>
+      <div class="field">
+        <label for="cc-to">To Currency</label>
+        <select id="cc-to"></select>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin:-4px 0 14px">
+      <button type="button" class="cc-swap-btn" onclick="swapCurrencies()" title="Swap currencies">⇄ Swap</button>
+    </div>
+
+    <button class="calc-btn" onclick="calcCurrency()">Convert →</button>
+
+    <div class="results" id="cc-results">
+      <div class="results-header">Conversion Result</div>
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Converted Amount</div>
+          <div class="result-value" id="r-cc-result">—</div>
+          <div class="result-sub" id="r-cc-result-sub"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Exchange Rate</div>
+          <div class="result-value" id="r-cc-rate">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Inverse Rate</div>
+          <div class="result-value" id="r-cc-inverse">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Rates Last Updated</div>
+          <div class="result-value" id="r-cc-updated">—</div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Quick Reference</div>
+      <div class="breakdown-wrap" id="cc-quickref-wrap">
+        <table class="breakdown-table" id="cc-quickref-table">
+          <thead><tr><th>Amount</th><th id="cc-qr-from-head">From</th><th id="cc-qr-to-head">To</th></tr></thead>
+          <tbody id="cc-quickref-body"></tbody>
+        </table>
+      </div>
+
+      <div id="cc-insight" class="insight"><div class="insight-icon">💡</div><div id="cc-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Currency Converter</h2>
+  <p>Enter the amount you want to convert, choose the currency you're converting from, and choose the currency you're converting to. The calculator instantly shows the converted amount along with the current exchange rate and its inverse, so you can see the relationship in both directions.</p>
+
+  <h3>About Exchange Rates</h3>
+  <p>Exchange rates fluctuate constantly based on supply and demand in the global currency markets, interest rate differentials between countries, inflation, and broader economic conditions. The rates used here are indicative mid-market rates intended for quick estimates and everyday planning rather than for executing trades or large transfers.</p>
+
+  <h3>Tips for International Money Transfers</h3>
+  <p>Banks and money transfer services typically add a margin on top of the mid-market rate, so the rate you're quoted when actually sending money is usually less favourable than the reference rate shown by a converter. For larger transfers, it's worth comparing the total cost (rate margin plus fees) across a few providers rather than assuming the advertised rate is what you'll receive.</p>
+
+  <div class="faq-item"><div class="faq-q">Are these exchange rates updated in real time?</div><div class="faq-a"><p>The rates are indicative reference rates intended for everyday estimates and planning. For time-sensitive transactions or large transfers, always confirm the live rate with your bank or transfer provider before proceeding.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Why is the rate I get from my bank different from this calculator?</div><div class="faq-a"><p>Banks and currency exchange services add their own margin on top of the mid-market rate shown here, and may also charge a flat fee. This is how they generate revenue on currency exchange, so the rate you're offered will typically be slightly less favourable than the reference rate.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What is the difference between the exchange rate and the inverse rate?</div><div class="faq-a"><p>The exchange rate tells you how much of the "to" currency you get for one unit of the "from" currency. The inverse rate is simply 1 divided by that rate, telling you how much of the "from" currency one unit of the "to" currency is worth.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<style>
+.cc-swap-btn{
+  background:var(--surface-2,#f1f1f1);
+  border:1px solid var(--border,#ddd);
+  border-radius:999px;
+  padding:6px 16px;
+  font-family:var(--font-sans);
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text-2,#555);
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.cc-swap-btn:hover{ background:var(--surface-3,#e6e6e6); }
+</style>
+
+<script src="../js/app.js"></script>
+<script>
+/* Indicative mid-market rates, relative to USD = 1.
+   These are reference values for estimates only and should be
+   swapped for a live FX API call when one is wired up. */
+var CC_RATES = {
+  USD:{ name:'US Dollar', symbol:'$', rate:1 },
+  EUR:{ name:'Euro', symbol:'€', rate:0.92 },
+  GBP:{ name:'British Pound', symbol:'£', rate:0.78 },
+  NZD:{ name:'New Zealand Dollar', symbol:'$', rate:1.66 },
+  AUD:{ name:'Australian Dollar', symbol:'$', rate:1.52 },
+  JPY:{ name:'Japanese Yen', symbol:'¥', rate:149.5 },
+  CAD:{ name:'Canadian Dollar', symbol:'$', rate:1.36 },
+  CHF:{ name:'Swiss Franc', symbol:'Fr', rate:0.88 },
+  CNY:{ name:'Chinese Yuan', symbol:'¥', rate:7.24 },
+  INR:{ name:'Indian Rupee', symbol:'₹', rate:83.4 },
+  SGD:{ name:'Singapore Dollar', symbol:'$', rate:1.34 },
+  HKD:{ name:'Hong Kong Dollar', symbol:'$', rate:7.81 },
+  KRW:{ name:'South Korean Won', symbol:'₩', rate:1342 },
+  SEK:{ name:'Swedish Krona', symbol:'kr', rate:10.4 },
+  NOK:{ name:'Norwegian Krone', symbol:'kr', rate:10.6 },
+  DKK:{ name:'Danish Krone', symbol:'kr', rate:6.86 },
+  ZAR:{ name:'South African Rand', symbol:'R', rate:18.3 },
+  MXN:{ name:'Mexican Peso', symbol:'$', rate:18.1 },
+  BRL:{ name:'Brazilian Real', symbol:'R$', rate:5.42 },
+  AED:{ name:'UAE Dirham', symbol:'د.إ', rate:3.67 },
+  THB:{ name:'Thai Baht', symbol:'฿', rate:35.8 },
+  PHP:{ name:'Philippine Peso', symbol:'₱', rate:56.9 },
+  IDR:{ name:'Indonesian Rupiah', symbol:'Rp', rate:15850 },
+  MYR:{ name:'Malaysian Ringgit', symbol:'RM', rate:4.47 },
+  VND:{ name:'Vietnamese Dong', symbol:'₫', rate:25400 },
+  PLN:{ name:'Polish Zloty', symbol:'zł', rate:3.97 },
+  TRY:{ name:'Turkish Lira', symbol:'₺', rate:32.1 },
+  ILS:{ name:'Israeli Shekel', symbol:'₪', rate:3.71 },
+  SAR:{ name:'Saudi Riyal', symbol:'﷼', rate:3.75 },
+  EGP:{ name:'Egyptian Pound', symbol:'£', rate:48.3 },
+  RUB:{ name:'Russian Ruble', symbol:'₽', rate:88.5 }
+};
+
+function ccPopulateSelects(){
+  var fromSel = document.getElementById('cc-from');
+  var toSel = document.getElementById('cc-to');
+  var opts = Object.keys(CC_RATES).map(function(code){
+    return '<option value="'+code+'">'+code+' — '+CC_RATES[code].name+'</option>';
+  }).join('');
+  fromSel.innerHTML = opts;
+  toSel.innerHTML = opts;
+  fromSel.value = 'USD';
+  toSel.value = 'NZD';
+}
+
+function ccUpdatePrefix(){
+  var from = vs('cc-from');
+  document.getElementById('cc-from-symbol').textContent = CC_RATES[from] ? CC_RATES[from].symbol : '$';
+}
+
+function swapCurrencies(){
+  var fromSel = document.getElementById('cc-from');
+  var toSel = document.getElementById('cc-to');
+  var tmp = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = tmp;
+  ccUpdatePrefix();
+  calcCurrency();
+}
+
+function ccFmt(amount, code){
+  var info = CC_RATES[code];
+  var decimals = (code === 'JPY' || code === 'KRW' || code === 'VND' || code === 'IDR') ? 0 : 2;
+  var num = amount.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  return info.symbol + num + ' ' + code;
+}
+
+function calcCurrency(){
+  var amount = v('cc-amount');
+  var from = vs('cc-from');
+  var to = vs('cc-to');
+
+  if(!amount || amount <= 0){ showToast('Please enter a valid amount'); return; }
+  if(!CC_RATES[from] || !CC_RATES[to]){ showToast('Please select valid currencies'); return; }
+
+  ccUpdatePrefix();
+
+  // Rates are stored relative to USD; convert via USD as the base.
+  var rate = CC_RATES[to].rate / CC_RATES[from].rate;
+  var inverse = 1 / rate;
+  var result = amount * rate;
+
+  setEl('r-cc-result', ccFmt(result, to));
+  setEl('r-cc-result-sub', amount.toLocaleString('en-US') + ' ' + from + ' converted');
+  setEl('r-cc-rate', '1 ' + from + ' = ' + fmt(rate,4) + ' ' + to);
+  setEl('r-cc-inverse', '1 ' + to + ' = ' + fmt(inverse,4) + ' ' + from);
+  setEl('r-cc-updated', 'Reference rates (indicative)');
+
+  setEl('cc-qr-from-head', from);
+  setEl('cc-qr-to-head', to);
+  var refAmounts = [1, 10, 50, 100, 500, 1000];
+  var tbody = document.getElementById('cc-quickref-body');
+  tbody.innerHTML = refAmounts.map(function(a){
+    return '<tr><td class="td-mono">'+a.toLocaleString('en-US')+'</td>'
+      +'<td class="td-mono">'+ccFmt(a, from)+'</td>'
+      +'<td class="td-mono td-green">'+ccFmt(a*rate, to)+'</td></tr>';
+  }).join('');
+
+  var insightTxt = document.getElementById('cc-insight-text');
+  if(from === to){
+    insightTxt.innerHTML = 'You have selected the same currency for both fields — try choosing two different currencies to see a conversion.';
+  } else {
+    insightTxt.innerHTML = '<strong>'+ccFmt(amount, from)+'</strong> is worth approximately <strong>'+ccFmt(result, to)+'</strong> at the current reference rate. Rates shown are indicative — banks and transfer services typically apply their own margin on top.';
+  }
+
+  showRes('cc-results');
+}
+
+ccPopulateSelects();
+document.getElementById('cc-from').addEventListener('change', function(){ ccUpdatePrefix(); calcCurrency(); });
+document.getElementById('cc-to').addEventListener('change', calcCurrency);
+document.getElementById('cc-amount').addEventListener('input', ccUpdatePrefix);
+
+window.addEventListener('load', function(){ ccUpdatePrefix(); calcCurrency(); });
+</script>
+</body></html>

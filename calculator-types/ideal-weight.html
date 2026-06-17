@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ideal Weight Calculator — Healthy Weight Range by Height | CalcHub</title>
+<meta name="description" content="Free ideal weight calculator. Find your healthy weight range using four proven formulas (Devine, Robinson, Miller, Hamwi) plus BMI-based range. Works in kg and lb. Instant results.">
+<meta name="keywords" content="ideal weight calculator,healthy weight calculator,ideal body weight calculator,ideal weight for height,normal weight calculator,devine formula,robinson formula,hamwi formula">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/ideal-weight.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ideal Weight Calculator","description":"Find your ideal weight range by height and sex using four clinical formulas plus BMI-based range.","url":"https://yourdomain.com/calculator-types/ideal-weight.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Formula comparison bar chart ── */
+.formula-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.formula-row-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-2);
+  min-width: 110px;
+  flex-shrink: 0;
+}
+.formula-bar-wrap {
+  flex: 1;
+  background: var(--card-border, #1e3a1e);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+.formula-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent, #22c55e);
+  transition: width .5s ease;
+}
+.formula-bar.secondary {
+  background: #86efac;
+  opacity: .7;
+}
+.formula-row-val {
+  font-family: var(--font-mono, monospace);
+  font-size: .82rem;
+  color: var(--accent, #22c55e);
+  min-width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── BMI healthy range band ── */
+.bmi-band {
+  background: var(--card, #111a11);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bmi-band-val {
+  text-align: center;
+}
+.bmi-band-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent, #22c55e);
+  line-height: 1;
+}
+.bmi-band-lbl {
+  font-size: .72rem;
+  color: var(--text-2);
+  margin-top: 3px;
+}
+.bmi-band-arrow {
+  font-size: 1.2rem;
+  color: var(--text-2);
+}
+
+/* ── Current weight indicator ── */
+.weight-status {
+  text-align: center;
+  padding: 22px 20px 18px;
+  background: var(--card, #111a11);
+  border: 1.5px solid var(--card-border, #1e3a1e);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.weight-status-label {
+  font-size: .78rem;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.weight-status-value {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.weight-status-sub {
+  font-size: .82rem;
+  color: var(--text-2);
+}
+.status-ideal   { color: #22c55e; }
+.status-over    { color: #f59e0b; }
+.status-under   { color: #60a5fa; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">⚖️ Ideal Weight Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Ideal Weight Calculator</h1>
+  <p class="hero-sub">Find your healthy weight range using four clinical formulas — Devine, Robinson, Miller, and Hamwi — plus the BMI-based healthy range. Compare them all at a glance.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">⚖️</div>
+    <div>
+      <div class="calc-card-title">Ideal Weight Calculator</div>
+      <div class="calc-card-desc">4 formulas + BMI healthy range</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Unit System</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="iw-unit" value="metric" checked> Metric (cm / kg)</label>
+        <label class="radio-pill"><input type="radio" name="iw-unit" value="imperial"> Imperial (ft-in / lb)</label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Biological Sex</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="iw-sex" value="male" checked> Male</label>
+        <label class="radio-pill"><input type="radio" name="iw-sex" value="female"> Female</label>
+      </div>
+    </div>
+
+    <!-- Metric height -->
+    <div id="height-metric">
+      <div class="field">
+        <label for="iw-cm">Height</label>
+        <div class="input-wrap">
+          <input type="number" id="iw-cm" value="175" min="100" max="250" step="1">
+          <span class="input-suffix">cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imperial height -->
+    <div id="height-imperial" style="display:none">
+      <div class="field-grid">
+        <div class="field">
+          <label for="iw-ft">Height (feet)</label>
+          <div class="input-wrap">
+            <input type="number" id="iw-ft" value="5" min="3" max="8" step="1">
+            <span class="input-suffix">ft</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="iw-in">Inches</label>
+          <div class="input-wrap">
+            <input type="number" id="iw-in" value="9" min="0" max="11" step="1">
+            <span class="input-suffix">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:4px">
+      <label for="iw-current">Current Weight <span style="font-weight:400;color:var(--text-2)">(optional — shows where you stand)</span></label>
+      <div class="input-wrap">
+        <input type="number" id="iw-current" placeholder="e.g. 80" min="0" step="0.5">
+        <span class="input-suffix" id="iw-current-suffix">kg</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcIdealWeight()">Calculate →</button>
+
+    <div class="results" id="iw-results">
+
+      <!-- Current weight status (shows only if entered) -->
+      <div id="iw-status-wrap" style="display:none">
+        <div class="weight-status">
+          <div class="weight-status-label">Your current weight vs ideal range</div>
+          <div class="weight-status-value" id="iw-status-value">—</div>
+          <div class="weight-status-sub" id="iw-status-sub"></div>
+        </div>
+      </div>
+
+      <!-- BMI-based healthy range -->
+      <div class="results-header">BMI Healthy Range (18.5 – 25)</div>
+      <div class="bmi-band">
+        <div class="bmi-band-val">
+          <div class="bmi-band-num" id="iw-bmi-low">—</div>
+          <div class="bmi-band-lbl">Lower bound</div>
+        </div>
+        <div class="bmi-band-arrow">→</div>
+        <div class="bmi-band-val">
+          <div class="bmi-band-num" id="iw-bmi-high">—</div>
+          <div class="bmi-band-lbl">Upper bound</div>
+        </div>
+        <div class="bmi-band-val" style="margin-left:auto">
+          <div class="bmi-band-num" id="iw-bmi-mid" style="color:var(--text-2);font-size:1.1rem">—</div>
+          <div class="bmi-band-lbl">Midpoint (BMI 22)</div>
+        </div>
+      </div>
+
+      <!-- Formula comparison -->
+      <div class="results-header" style="margin-top:6px">Formula Comparison</div>
+      <div id="iw-formula-rows" style="margin-bottom:14px"></div>
+
+      <!-- Avg -->
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Average Ideal Weight</div>
+          <div class="result-value" id="iw-avg">—</div>
+          <div class="result-sub">across all 4 formulas</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Devine Formula</div>
+          <div class="result-value" id="iw-devine">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Robinson Formula</div>
+          <div class="result-value" id="iw-robinson">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Miller Formula</div>
+          <div class="result-value" id="iw-miller">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Hamwi Formula</div>
+          <div class="result-value" id="iw-hamwi">—</div>
+        </div>
+      </div>
+
+      <div id="iw-insight" class="insight"><div class="insight-icon">💡</div><div id="iw-insight-text"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Ideal Weight Is Calculated</h2>
+  <p>There is no single universally agreed ideal weight — it varies by formula, frame size, sex, age, and individual health factors. The four formulas below were developed for clinical use and remain the most widely referenced in medical and nutrition research.</p>
+
+  <h3>The Four Formulas Explained</h3>
+  <p>All formulas below use height in inches and produce a result in kilograms. The first 5 feet (60 inches) is the baseline; each additional inch adds a fixed amount depending on sex and formula.</p>
+  <ul>
+    <li><strong>Devine (1974):</strong> Male: 50 + 2.3 × (inches over 5 ft). Female: 45.5 + 2.3 × (inches over 5 ft). Originally developed for drug dosing in clinical settings — the most widely cited formula.</li>
+    <li><strong>Robinson (1983):</strong> Male: 52 + 1.9 × (inches over 5 ft). Female: 49 + 1.7 × (inches over 5 ft). A revision of Devine intended to better reflect population data.</li>
+    <li><strong>Miller (1983):</strong> Male: 56.2 + 1.41 × (inches over 5 ft). Female: 53.1 + 1.36 × (inches over 5 ft). Tends to produce slightly higher values than Devine and Robinson.</li>
+    <li><strong>Hamwi (1964):</strong> Male: 48 + 2.7 × (inches over 5 ft). Female: 45.5 + 2.2 × (inches over 5 ft). One of the oldest formulas, developed by Dr. G.J. Hamwi for the American Diabetes Association.</li>
+  </ul>
+
+  <h3>BMI Range vs. Formula Results</h3>
+  <p>The BMI healthy range (18.5–25) tends to produce a wider band than the clinical formulas above. Neither approach accounts for muscle mass, bone density, age, or ethnicity — both are population-level estimates. Use these numbers as a general reference, not a precise target.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">Are these formulas accurate for everyone?</div>
+    <div class="faq-a"><p>Not perfectly. These formulas were validated on Western adult populations and do not fully account for frame size, muscle mass, age, or ethnicity. Athletes and highly muscular individuals will typically weigh more than these formulas suggest without being "overweight" in any meaningful sense. Use the results as a general reference point, not a clinical diagnosis.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Which formula should I use?</div>
+    <div class="faq-a"><p>The Devine formula is the most commonly cited in clinical settings (particularly for medication dosing). For a general health and fitness target, the average across all four formulas provides a balanced estimate that smooths out the individual quirks of any single formula — which is what this calculator reports as "Average Ideal Weight."</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is a healthy BMI range?</div>
+    <div class="faq-a"><p>The World Health Organization defines a healthy BMI as 18.5–24.9. Below 18.5 is considered underweight; 25–29.9 is overweight; 30 and above is obese. BMI has known limitations as a health metric — it does not distinguish between fat and muscle, and its thresholds may not apply equally across different ethnic backgrounds.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ── Unit toggle ── */
+document.querySelectorAll('input[name="iw-unit"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    document.querySelectorAll('input[name="iw-unit"]').forEach(function(x){
+      x.closest('.radio-pill').classList.toggle('checked', x.checked);
+    });
+    var isMetric = this.value === 'metric';
+    document.getElementById('height-metric').style.display   = isMetric ? '' : 'none';
+    document.getElementById('height-imperial').style.display = isMetric ? 'none' : '';
+    document.getElementById('iw-current-suffix').textContent = isMetric ? 'kg' : 'lb';
+  });
+});
+document.querySelectorAll('input[name="iw-sex"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    document.querySelectorAll('input[name="iw-sex"]').forEach(function(x){
+      x.closest('.radio-pill').classList.toggle('checked', x.checked);
+    });
+  });
+});
+
+/* ── Helpers ── */
+function fmtW(kg, unit){
+  if(unit === 'imperial'){
+    return (kg * 2.20462).toFixed(1) + ' lb';
+  }
+  return kg.toFixed(1) + ' kg';
+}
+
+function calcIdealWeight(){
+  var unit   = document.querySelector('input[name="iw-unit"]:checked').value;
+  var sex    = document.querySelector('input[name="iw-sex"]:checked').value;
+
+  // Convert to inches for all formulas
+  var heightInches;
+  if(unit === 'metric'){
+    var cm = parseFloat(document.getElementById('iw-cm').value);
+    if(isNaN(cm) || cm < 100 || cm > 250){ showToast('Enter a height between 100–250 cm'); return; }
+    heightInches = cm / 2.54;
+  } else {
+    var ft = parseFloat(document.getElementById('iw-ft').value) || 0;
+    var inches = parseFloat(document.getElementById('iw-in').value) || 0;
+    heightInches = ft * 12 + inches;
+    if(heightInches < 36 || heightInches > 96){ showToast('Enter a valid height'); return; }
+  }
+
+  var over5ft = Math.max(0, heightInches - 60); // inches above 5 ft
+
+  // All formula results in kg
+  var devine, robinson, miller, hamwi;
+  if(sex === 'male'){
+    devine   = 50    + 2.3   * over5ft;
+    robinson = 52    + 1.9   * over5ft;
+    miller   = 56.2  + 1.41  * over5ft;
+    hamwi    = 48    + 2.7   * over5ft;
+  } else {
+    devine   = 45.5  + 2.3   * over5ft;
+    robinson = 49    + 1.7   * over5ft;
+    miller   = 53.1  + 1.36  * over5ft;
+    hamwi    = 45.5  + 2.2   * over5ft;
+  }
+
+  var avg = (devine + robinson + miller + hamwi) / 4;
+
+  // BMI-based range: weight = BMI × (height_m)²
+  var heightM = heightInches * 0.0254;
+  var bmiLow  = 18.5 * heightM * heightM;
+  var bmiHigh = 25.0 * heightM * heightM;
+  var bmiMid  = 22.0 * heightM * heightM;
+
+  // Display formula results
+  setEl('iw-avg',      fmtW(avg, unit));
+  setEl('iw-devine',   fmtW(devine, unit));
+  setEl('iw-robinson', fmtW(robinson, unit));
+  setEl('iw-miller',   fmtW(miller, unit));
+  setEl('iw-hamwi',    fmtW(hamwi, unit));
+
+  // BMI band
+  setEl('iw-bmi-low',  fmtW(bmiLow, unit));
+  setEl('iw-bmi-high', fmtW(bmiHigh, unit));
+  setEl('iw-bmi-mid',  fmtW(bmiMid, unit));
+
+  // Formula bar chart
+  var formulas = [
+    { name: 'Devine',   val: devine },
+    { name: 'Robinson', val: robinson },
+    { name: 'Miller',   val: miller },
+    { name: 'Hamwi',    val: hamwi }
+  ];
+  var maxVal = Math.max.apply(null, formulas.map(function(f){ return f.val; }));
+  var html = formulas.map(function(f, i){
+    var pct = (f.val / maxVal * 100).toFixed(1);
+    var cls = i === 0 ? '' : 'secondary';
+    return '<div class="formula-row">'
+      + '<span class="formula-row-label">' + f.name + '</span>'
+      + '<div class="formula-bar-wrap"><div class="formula-bar ' + cls + '" style="width:' + pct + '%"></div></div>'
+      + '<span class="formula-row-val">' + fmtW(f.val, unit) + '</span>'
+      + '</div>';
+  }).join('');
+  document.getElementById('iw-formula-rows').innerHTML = html;
+
+  // Current weight status
+  var currentRaw = parseFloat(document.getElementById('iw-current').value);
+  var statusWrap = document.getElementById('iw-status-wrap');
+  if(!isNaN(currentRaw) && currentRaw > 0){
+    var currentKg = unit === 'imperial' ? currentRaw / 2.20462 : currentRaw;
+    var diff = currentKg - avg;
+    var absDiff = Math.abs(diff);
+    var statusEl  = document.getElementById('iw-status-value');
+    var statusSub = document.getElementById('iw-status-sub');
+
+    if(currentKg >= bmiLow && currentKg <= bmiHigh){
+      statusEl.className = 'weight-status-value status-ideal';
+      statusEl.textContent = 'Within healthy range';
+      statusSub.textContent = 'Your weight is within the BMI healthy range (' + fmtW(bmiLow, unit) + ' – ' + fmtW(bmiHigh, unit) + ').';
+    } else if(currentKg < bmiLow){
+      statusEl.className = 'weight-status-value status-under';
+      statusEl.textContent = fmtW(absDiff, unit) + ' below ideal';
+      statusSub.textContent = 'Gaining approximately ' + fmtW(absDiff, unit) + ' would bring you to the average ideal weight.';
+    } else {
+      statusEl.className = 'weight-status-value status-over';
+      statusEl.textContent = fmtW(absDiff, unit) + ' above ideal';
+      statusSub.textContent = 'Losing approximately ' + fmtW(absDiff, unit) + ' would bring you to the average ideal weight.';
+    }
+    statusWrap.style.display = '';
+  } else {
+    statusWrap.style.display = 'none';
+  }
+
+  // Insight
+  var heightDisplay = unit === 'metric'
+    ? document.getElementById('iw-cm').value + ' cm'
+    : document.getElementById('iw-ft').value + ' ft ' + (document.getElementById('iw-in').value || 0) + ' in';
+
+  document.getElementById('iw-insight-text').innerHTML =
+    'For a <strong>' + sex + '</strong> at <strong>' + heightDisplay + '</strong>, the four clinical formulas agree within '
+    + fmtW(Math.max.apply(null, formulas.map(function(f){ return f.val; })) - Math.min.apply(null, formulas.map(function(f){ return f.val; })), unit)
+    + ' of each other. The BMI-based healthy range (<strong>' + fmtW(bmiLow, unit) + ' – ' + fmtW(bmiHigh, unit) + '</strong>) is typically wider than the formula estimates.'
+    + ' These are reference values — body composition, muscle mass, and frame size all affect what a healthy weight looks like for you individually.';
+
+  showRes('iw-results');
+}
+
+window.addEventListener('load', calcIdealWeight);
+</script>
+</body>
+</html>

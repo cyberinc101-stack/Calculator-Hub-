@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debt Snowball vs Avalanche Calculator — Compare Payoff Strategies | CalcHub</title>
+<meta name="description" content="Free debt snowball vs avalanche calculator. Compare paying off smallest balances first against highest interest rates first. See payoff order, time saved, and interest saved.">
+<meta name="keywords" content="debt snowball calculator,debt avalanche calculator,debt payoff calculator,snowball vs avalanche,pay off multiple debts calculator,debt payoff strategy">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/debt-snowball-avalanche.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Debt Snowball / Avalanche Calculator","description":"Compare the debt snowball and debt avalanche payoff strategies across multiple debts, including payoff order, time, and interest saved.","url":"https://yourdomain.com/calculator-types/debt-snowball-avalanche.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">❄️ Debt Payoff Strategies</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Debt Snowball vs Avalanche Calculator</h1>
+  <p class="hero-sub">Compare paying off smallest balances first against highest interest rates first — see which saves more time and money.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">❄️</div>
+    <div><div class="calc-card-title">Debt Payoff Calculator</div><div class="calc-card-desc">Enter each debt, compare snowball vs avalanche</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label for="ds-extra">Extra Monthly Payment (beyond minimums)</label>
+      <div class="input-wrap" style="max-width:240px">
+        <span class="input-prefix">$</span>
+        <input type="number" id="ds-extra" class="has-prefix" value="200" min="0" step="10">
+      </div>
+      <span class="field-hint">Applied to one debt at a time, by strategy order</span>
+    </div>
+
+    <div id="ds-debts-wrap">
+      <div class="breakdown-title">Your Debts</div>
+      <table class="breakdown-table" id="ds-debts-table">
+        <thead><tr><th>Name</th><th>Balance</th><th>APR %</th><th>Min Payment</th><th></th></tr></thead>
+        <tbody id="ds-debts-body"></tbody>
+      </table>
+    </div>
+    <button type="button" class="cc-swap-btn" style="margin:10px 0 16px" onclick="dsAddRow()">+ Add Another Debt</button>
+
+    <button class="calc-btn" onclick="calcDebtPayoff()">Compare Strategies →</button>
+
+    <div class="results" id="ds-results">
+      <div class="results-header">Strategy Comparison</div>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-label">Snowball: Months to Debt-Free</div>
+          <div class="result-value" id="r-ds-snow-months">—</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Snowball: Total Interest Paid</div>
+          <div class="result-value" id="r-ds-snow-interest">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Avalanche: Months to Debt-Free</div>
+          <div class="result-value" id="r-ds-aval-months">—</div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Avalanche: Total Interest Paid</div>
+          <div class="result-value" id="r-ds-aval-interest">—</div>
+        </div>
+      </div>
+
+      <div class="results-grid" style="margin-top:10px">
+        <div class="result-item highlight">
+          <div class="result-label">Interest Saved by Choosing Avalanche</div>
+          <div class="result-value" id="r-ds-saved">—</div>
+        </div>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Snowball Payoff Order (smallest balance first)</div>
+      <div class="breakdown-wrap" id="ds-snow-order-wrap">
+        <table class="breakdown-table" id="ds-snow-order-table">
+          <thead><tr><th>Order</th><th>Debt</th><th>Balance</th><th>APR</th></tr></thead>
+          <tbody id="ds-snow-order-body"></tbody>
+        </table>
+      </div>
+
+      <div class="results-header" style="margin-top:14px">Avalanche Payoff Order (highest APR first)</div>
+      <div class="breakdown-wrap" id="ds-aval-order-wrap">
+        <table class="breakdown-table" id="ds-aval-order-table">
+          <thead><tr><th>Order</th><th>Debt</th><th>Balance</th><th>APR</th></tr></thead>
+          <tbody id="ds-aval-order-body"></tbody>
+        </table>
+      </div>
+
+      <div id="ds-insight" class="insight"><div class="insight-icon">💡</div><div id="ds-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to Use the Debt Snowball vs Avalanche Calculator</h2>
+  <p>List each debt with its current balance, annual interest rate, and minimum monthly payment. Enter how much extra you can put toward debt each month beyond the minimums. The calculator then simulates two payoff orders side by side: snowball, which targets the smallest balance first, and avalanche, which targets the highest interest rate first.</p>
+
+  <h3>Debt Snowball Method</h3>
+  <p>The snowball method directs all extra payment toward the debt with the smallest balance, regardless of its interest rate, while paying minimums on everything else. Once that debt is paid off, its former payment rolls into the next smallest balance, and so on. The appeal is psychological: quick wins early on tend to build motivation to keep going.</p>
+
+  <h3>Debt Avalanche Method</h3>
+  <p>The avalanche method directs all extra payment toward the debt with the highest interest rate first, regardless of its balance size. Mathematically, this minimises total interest paid and the total time to become debt-free, since high-interest balances are the most expensive to carry over time.</p>
+
+  <div class="faq-item"><div class="faq-q">Which method should I actually use?</div><div class="faq-a"><p>Avalanche is mathematically optimal and will save the most money in interest, but snowball's quick early wins help some people stay motivated and consistent. If you're confident you'll stick with a plan either way, avalanche saves more; if early momentum matters more to you for follow-through, snowball can still be the better real-world choice.</p></div></div>
+  <div class="faq-item"><div class="faq-q">What if two debts have the same balance or the same interest rate?</div><div class="faq-a"><p>When balances are tied under the snowball method, or interest rates are tied under the avalanche method, the order between them doesn't meaningfully affect the result — either can be tackled first without a real cost difference.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Does this calculator account for minimum payments on every debt?</div><div class="faq-a"><p>Yes. Minimum payments continue on every debt throughout the simulation; only the extra monthly amount you specify is redirected toward the targeted debt in each strategy, following that strategy's payoff order.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<style>
+.cc-swap-btn{
+  background:var(--surface-2,#f1f1f1);
+  border:1px solid var(--border,#ddd);
+  border-radius:999px;
+  padding:6px 16px;
+  font-family:var(--font-sans);
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text-2,#555);
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.cc-swap-btn:hover{ background:var(--surface-3,#e6e6e6); }
+.ds-row-input{
+  width:100%;
+  font-family:var(--font-sans);
+  font-size:.85rem;
+  padding:6px 8px;
+  border:1px solid var(--border,#ddd);
+  border-radius:6px;
+  background:var(--surface,#fff);
+  color:var(--text,#222);
+}
+.ds-remove-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--text-3,#999);font-size:1.1rem;line-height:1;
+}
+.ds-remove-btn:hover{ color:var(--danger,#c0392b); }
+</style>
+
+<script src="../js/app.js"></script>
+<script>
+var dsRowCount = 0;
+
+function dsAddRow(name, balance, apr, minPay){
+  dsRowCount++;
+  var id = dsRowCount;
+  var tbody = document.getElementById('ds-debts-body');
+  var tr = document.createElement('tr');
+  tr.id = 'ds-row-'+id;
+  tr.innerHTML =
+    '<td><input class="ds-row-input" type="text" id="ds-name-'+id+'" value="'+(name||'Debt '+id)+'"></td>'
+    +'<td><input class="ds-row-input" type="number" id="ds-balance-'+id+'" value="'+(balance!==undefined?balance:'')+'" min="0" step="10"></td>'
+    +'<td><input class="ds-row-input" type="number" id="ds-apr-'+id+'" value="'+(apr!==undefined?apr:'')+'" min="0" step="0.1"></td>'
+    +'<td><input class="ds-row-input" type="number" id="ds-min-'+id+'" value="'+(minPay!==undefined?minPay:'')+'" min="0" step="5"></td>'
+    +'<td><button type="button" class="ds-remove-btn" onclick="dsRemoveRow('+id+')" title="Remove">✕</button></td>';
+  tbody.appendChild(tr);
+}
+
+function dsRemoveRow(id){
+  var row = document.getElementById('ds-row-'+id);
+  if(row) row.remove();
+}
+
+function dsGetDebts(){
+  var rows = document.querySelectorAll('#ds-debts-body tr');
+  var debts = [];
+  rows.forEach(function(row){
+    var id = row.id.replace('ds-row-','');
+    var name = vs('ds-name-'+id) || ('Debt '+id);
+    var balance = v('ds-balance-'+id);
+    var apr = v('ds-apr-'+id);
+    var minPay = v('ds-min-'+id);
+    if(balance > 0) debts.push({ name:name, balance:balance, apr:apr||0, minPay:minPay||0 });
+  });
+  return debts;
+}
+
+function dsSimulate(debts, extra, orderFn){
+  var working = debts.map(function(d){ return { name:d.name, balance:d.balance, apr:d.apr, minPay:d.minPay }; });
+  var order = working.slice().sort(orderFn).map(function(d){ return d.name; });
+  var months = 0, totalInterest = 0;
+  var maxMonths = 1200;
+
+  while(working.some(function(d){ return d.balance > 0.01; }) && months < maxMonths){
+    months++;
+    var monthlyInterestTotal = 0;
+    working.forEach(function(d){
+      if(d.balance > 0){
+        var interest = d.balance * (d.apr/100/12);
+        monthlyInterestTotal += interest;
+        d.balance += interest;
+      }
+    });
+    totalInterest += monthlyInterestTotal;
+
+    // Pay minimums on all
+    working.forEach(function(d){
+      if(d.balance > 0){
+        var pay = Math.min(d.balance, d.minPay);
+        d.balance -= pay;
+      }
+    });
+
+    // Apply extra to target order: first non-zero-balance debt in sorted order
+    var sorted = working.slice().sort(orderFn);
+    var remainingExtra = extra;
+    for(var i=0; i<sorted.length && remainingExtra > 0; i++){
+      if(sorted[i].balance > 0){
+        var pay2 = Math.min(sorted[i].balance, remainingExtra);
+        sorted[i].balance -= pay2;
+        remainingExtra -= pay2;
+      }
+    }
+  }
+
+  return { months: months, totalInterest: totalInterest, order: order };
+}
+
+function calcDebtPayoff(){
+  var debts = dsGetDebts();
+  var extra = v('ds-extra') || 0;
+
+  if(debts.length === 0){ showToast('Please add at least one debt with a balance'); return; }
+
+  var minPaySum = debts.reduce(function(s,d){ return s + d.minPay; }, 0);
+  if(minPaySum === 0 && extra === 0){ showToast('Please enter minimum payments or an extra payment amount'); return; }
+
+  var snowball = dsSimulate(debts, extra, function(a,b){ return a.balance - b.balance; });
+  var avalanche = dsSimulate(debts, extra, function(a,b){ return b.apr - a.apr; });
+
+  setEl('r-ds-snow-months', snowball.months + ' mo');
+  setEl('r-ds-snow-interest', fmtCur(snowball.totalInterest));
+  setEl('r-ds-aval-months', avalanche.months + ' mo');
+  setEl('r-ds-aval-interest', fmtCur(avalanche.totalInterest));
+
+  var saved = snowball.totalInterest - avalanche.totalInterest;
+  setEl('r-ds-saved', fmtCur(Math.max(0,saved)));
+
+  var snowOrderBody = document.getElementById('ds-snow-order-body');
+  snowOrderBody.innerHTML = debts.slice().sort(function(a,b){return a.balance-b.balance;}).map(function(d,i){
+    return '<tr><td class="td-mono">'+(i+1)+'</td><td>'+d.name+'</td><td class="td-mono">'+fmtCur(d.balance)+'</td><td class="td-mono">'+fmt(d.apr,1)+'%</td></tr>';
+  }).join('');
+
+  var avalOrderBody = document.getElementById('ds-aval-order-body');
+  avalOrderBody.innerHTML = debts.slice().sort(function(a,b){return b.apr-a.apr;}).map(function(d,i){
+    return '<tr><td class="td-mono">'+(i+1)+'</td><td>'+d.name+'</td><td class="td-mono">'+fmtCur(d.balance)+'</td><td class="td-mono">'+fmt(d.apr,1)+'%</td></tr>';
+  }).join('');
+
+  var insightTxt = document.getElementById('ds-insight-text');
+  if(snowball.months >= 1200 || avalanche.months >= 1200){
+    insightTxt.innerHTML = 'With the current minimum and extra payments, one or both strategies take an extremely long time to pay off — consider increasing the extra monthly payment.';
+  } else if(saved > 0){
+    insightTxt.innerHTML = 'The <strong>avalanche</strong> method saves <strong>'+fmtCur(saved)+'</strong> in interest compared to snowball, and pays off debt '+(snowball.months-avalanche.months > 0 ? (snowball.months-avalanche.months)+' months faster' : 'in about the same time')+'. Snowball may still suit you better if quick wins help you stay consistent.';
+  } else {
+    insightTxt.innerHTML = 'Both strategies come out roughly equal here — your debts may have similar interest rates, in which case payoff order matters less.';
+  }
+
+  showRes('ds-results');
+}
+
+dsAddRow('Credit Card', 3200, 22.9, 90);
+dsAddRow('Car Loan', 9500, 7.5, 220);
+dsAddRow('Personal Loan', 5000, 12.5, 150);
+
+window.addEventListener('load', calcDebtPayoff);
+</script>
+</body></html>

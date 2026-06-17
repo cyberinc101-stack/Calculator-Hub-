@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GPA Calculator — Grade Point Average & Final Grade | CalcHub</title>
+<meta name="description" content="Free GPA calculator for 4.0 and 5.0 scales. Add courses with grades and credit hours to calculate weighted GPA. Also calculates what grade you need on a final exam. Instant results.">
+<meta name="keywords" content="GPA calculator,grade point average calculator,college GPA calculator,weighted GPA calculator,final grade calculator,cumulative GPA calculator,4.0 scale GPA,semester GPA calculator">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/grade-gpa.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GPA Calculator","description":"Calculate weighted GPA on 4.0 or 5.0 scale plus final exam grade needed.","url":"https://yourdomain.com/calculator-types/grade-gpa.html","applicationCategory":"EducationApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Mode tabs ── */
+.mode-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+.mode-tab {
+  padding:8px 14px; border-radius:10px; border:1.5px solid var(--card-border,#1e3a1e);
+  font-size:.8rem; font-weight:600; cursor:pointer; font-family:var(--font-sans);
+  background:transparent; color:var(--text-2); transition:all .15s; line-height:1.3; text-align:left;
+}
+.mode-tab .mode-tab-title { display:block; color:inherit; }
+.mode-tab .mode-tab-eg    { display:block; font-weight:400; font-size:.72rem; opacity:.65; margin-top:1px; }
+.mode-tab.active { background:var(--accent,#22c55e); border-color:var(--accent,#22c55e); color:#0a0f0a; }
+.mode-tab.active .mode-tab-eg { opacity:.75; }
+.mode-panel { display:none; }
+.mode-panel.active { display:block; }
+
+/* ── Course rows ── */
+.course-table { width:100%; border-collapse:collapse; margin-bottom:10px; }
+.course-table th {
+  font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--text-2); padding:0 8px 8px 0; text-align:left;
+}
+.course-table td { padding:4px 8px 4px 0; vertical-align:top; }
+.course-table td input, .course-table td select {
+  width:100%; font-family:var(--font-sans); font-size:.85rem;
+  background:var(--card,#111a11); color:var(--text); border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:8px; padding:7px 10px; outline:none; box-sizing:border-box;
+}
+.course-table td input:focus, .course-table td select:focus { border-color:var(--accent,#22c55e); }
+.course-table td.td-del { width:36px; }
+.del-btn {
+  background:transparent; border:1.5px solid var(--card-border,#1e3a1e); border-radius:8px;
+  color:var(--text-2); font-size:.9rem; cursor:pointer; padding:6px 8px; line-height:1;
+  transition:all .15s;
+}
+.del-btn:hover { border-color:#ef4444; color:#ef4444; }
+.add-course-btn {
+  background:transparent; border:1.5px dashed var(--card-border,#1e3a1e); border-radius:10px;
+  color:var(--text-2); font-size:.83rem; font-weight:600; font-family:var(--font-sans);
+  cursor:pointer; padding:9px 16px; width:100%; margin-bottom:14px; transition:all .15s;
+}
+.add-course-btn:hover { border-color:var(--accent,#22c55e); color:var(--accent,#22c55e); }
+
+/* ── GPA gauge ── */
+.gpa-gauge-wrap {
+  text-align:center; padding:24px 20px 16px;
+  background:var(--card,#111a11); border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:14px; margin-bottom:14px;
+}
+.gpa-value {
+  font-family:var(--font-mono,monospace); font-size:clamp(3rem,10vw,5rem);
+  font-weight:700; color:var(--accent,#22c55e); line-height:1; margin-bottom:4px;
+}
+.gpa-scale { font-size:.82rem; color:var(--text-2); margin-bottom:14px; }
+.gpa-track-wrap { background:var(--card-border,#1e3a1e); border-radius:999px; height:12px; overflow:hidden; margin:0 auto; max-width:380px; }
+.gpa-track { height:100%; border-radius:999px; background:var(--accent,#22c55e); transition:width .6s ease; }
+.gpa-letter { font-size:1.4rem; font-weight:700; margin-top:10px; color:var(--text); }
+
+/* ── Grade letter badge colors ── */
+.grade-a  { color:#22c55e; }
+.grade-b  { color:#86efac; }
+.grade-c  { color:#fbbf24; }
+.grade-d  { color:#f97316; }
+.grade-f  { color:#ef4444; }
+
+/* ── Final grade result ── */
+.final-result-box {
+  text-align:center; padding:24px 20px 18px;
+  background:var(--card,#111a11); border:1.5px solid var(--card-border,#1e3a1e);
+  border-radius:14px; margin-bottom:14px;
+}
+.final-result-pct {
+  font-family:var(--font-mono,monospace); font-size:clamp(2.2rem,7vw,3.5rem);
+  font-weight:700; color:var(--accent,#22c55e); line-height:1; margin-bottom:4px;
+}
+.final-result-sub { font-size:.85rem; color:var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">🎓 GPA Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">GPA Calculator</h1>
+  <p class="hero-sub">Calculate your semester or cumulative GPA on a 4.0 or 5.0 scale — or find out exactly what grade you need on your final exam.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🎓</div>
+    <div>
+      <div class="calc-card-title">GPA Calculator</div>
+      <div class="calc-card-desc">Semester GPA, cumulative GPA, or final grade needed</div>
+    </div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="setMode('semester',this)">
+        <span class="mode-tab-title">Semester GPA</span>
+        <span class="mode-tab-eg">Enter courses &amp; grades</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('cumulative',this)">
+        <span class="mode-tab-title">Cumulative GPA</span>
+        <span class="mode-tab-eg">New semester + existing GPA</span>
+      </button>
+      <button class="mode-tab" onclick="setMode('final',this)">
+        <span class="mode-tab-title">Final Grade Needed</span>
+        <span class="mode-tab-eg">What do I need on the final?</span>
+      </button>
+    </div>
+
+    <!-- ══ MODE 1: Semester GPA ══ -->
+    <div class="mode-panel active" id="panel-semester">
+
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
+        <div class="field" style="margin-bottom:0">
+          <label>GPA Scale</label>
+          <div class="radio-group">
+            <label class="radio-pill checked"><input type="radio" name="gpa-scale" value="4" checked> 4.0</label>
+            <label class="radio-pill"><input type="radio" name="gpa-scale" value="5"> 5.0</label>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="course-table" id="course-table">
+          <thead>
+            <tr>
+              <th style="min-width:130px">Course Name</th>
+              <th style="min-width:100px">Grade</th>
+              <th style="min-width:80px">Credits</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="course-tbody"></tbody>
+        </table>
+      </div>
+      <button class="add-course-btn" onclick="addCourse()">+ Add Course</button>
+      <button class="calc-btn" onclick="calcGPA()">Calculate GPA →</button>
+
+      <div class="results" id="res-semester">
+        <div class="gpa-gauge-wrap">
+          <div class="gpa-value" id="sem-gpa-val">—</div>
+          <div class="gpa-scale" id="sem-gpa-scale">out of 4.0</div>
+          <div class="gpa-track-wrap"><div class="gpa-track" id="sem-gpa-track" style="width:0%"></div></div>
+          <div class="gpa-letter" id="sem-gpa-letter"></div>
+        </div>
+        <div class="results-grid">
+          <div class="result-item highlight">
+            <div class="result-label">Semester GPA</div>
+            <div class="result-value" id="sem-r-gpa">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Credits</div>
+            <div class="result-value" id="sem-r-credits">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Grade Points</div>
+            <div class="result-value" id="sem-r-points">—</div>
+          </div>
+        </div>
+        <div class="breakdown-wrap" style="margin-top:14px">
+          <div class="breakdown-title">Course Breakdown</div>
+          <table class="breakdown-table">
+            <thead><tr><th>Course</th><th>Grade</th><th>Credits</th><th>Points</th></tr></thead>
+            <tbody id="sem-breakdown-body"></tbody>
+          </table>
+        </div>
+        <div id="sem-insight" class="insight"><div class="insight-icon">💡</div><div id="sem-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ══ MODE 2: Cumulative GPA ══ -->
+    <div class="mode-panel" id="panel-cumulative">
+      <div class="field-grid">
+        <div class="field">
+          <label for="cum-prev-gpa">Previous Cumulative GPA</label>
+          <input type="number" id="cum-prev-gpa" value="3.20" min="0" max="5" step="0.01">
+        </div>
+        <div class="field">
+          <label for="cum-prev-credits">Previous Total Credits</label>
+          <input type="number" id="cum-prev-credits" value="45" min="0" step="1">
+        </div>
+        <div class="field">
+          <label for="cum-new-gpa">New Semester GPA</label>
+          <input type="number" id="cum-new-gpa" value="3.60" min="0" max="5" step="0.01">
+        </div>
+        <div class="field">
+          <label for="cum-new-credits">New Semester Credits</label>
+          <input type="number" id="cum-new-credits" value="15" min="0" step="1">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcCumulative()">Calculate →</button>
+      <div class="results" id="res-cumulative">
+        <div class="gpa-gauge-wrap">
+          <div class="gpa-value" id="cum-gpa-val">—</div>
+          <div class="gpa-scale">Cumulative GPA (out of 4.0)</div>
+          <div class="gpa-track-wrap"><div class="gpa-track" id="cum-gpa-track" style="width:0%"></div></div>
+          <div class="gpa-letter" id="cum-gpa-letter"></div>
+        </div>
+        <div class="results-grid">
+          <div class="result-item highlight">
+            <div class="result-label">New Cumulative GPA</div>
+            <div class="result-value" id="cum-r-gpa">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">GPA Change</div>
+            <div class="result-value" id="cum-r-change">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Credits</div>
+            <div class="result-value" id="cum-r-credits">—</div>
+          </div>
+        </div>
+        <div id="cum-insight" class="insight"><div class="insight-icon">💡</div><div id="cum-insight-text"></div></div>
+      </div>
+    </div>
+
+    <!-- ══ MODE 3: Final Grade Needed ══ -->
+    <div class="mode-panel" id="panel-final">
+      <p style="font-size:.83rem;color:var(--text-2);margin-bottom:14px">
+        Enter your current grade in the course, the weight of the final exam, and the grade you want to end up with. The calculator tells you exactly what you need to score on the final.
+      </p>
+      <div class="field-grid">
+        <div class="field">
+          <label for="fn-current">Current Grade (%)</label>
+          <div class="input-wrap">
+            <input type="number" id="fn-current" value="74" min="0" max="100" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fn-final-weight">Final Exam Weight</label>
+          <div class="input-wrap">
+            <input type="number" id="fn-final-weight" value="30" min="1" max="100" step="1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fn-target">Target Grade (%)</label>
+          <div class="input-wrap">
+            <input type="number" id="fn-target" value="80" min="0" max="100" step="0.1">
+            <span class="input-suffix">%</span>
+          </div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcFinalNeeded()">Calculate →</button>
+      <div class="results" id="res-final">
+        <div class="final-result-box">
+          <div class="final-result-pct" id="fn-result-pct">—</div>
+          <div class="final-result-sub" id="fn-result-sub"></div>
+        </div>
+        <div class="formula-box" style="background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:10px;padding:14px 18px;margin-bottom:14px">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:8px">How it's calculated</div>
+          <div style="font-family:var(--font-mono,monospace);font-size:.85rem;color:var(--text-2);line-height:1.7" id="fn-formula"></div>
+        </div>
+        <div id="fn-insight" class="insight"><div class="insight-icon">💡</div><div id="fn-insight-text"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How GPA Is Calculated</h2>
+  <p>GPA (Grade Point Average) is a weighted average of grade points earned across all courses, weighted by credit hours. A 3-credit course carries three times more weight in your GPA than a 1-credit course.</p>
+  <p>The formula: <strong>GPA = Total Grade Points ÷ Total Credit Hours</strong>, where grade points for each course = grade point value × credit hours.</p>
+
+  <h3>Grade Point Values (4.0 Scale)</h3>
+  <ul>
+    <li>A+ / A = 4.0 &nbsp;|&nbsp; A− = 3.7</li>
+    <li>B+ = 3.3 &nbsp;|&nbsp; B = 3.0 &nbsp;|&nbsp; B− = 2.7</li>
+    <li>C+ = 2.3 &nbsp;|&nbsp; C = 2.0 &nbsp;|&nbsp; C− = 1.7</li>
+    <li>D+ = 1.3 &nbsp;|&nbsp; D = 1.0 &nbsp;|&nbsp; D− = 0.7</li>
+    <li>F = 0.0</li>
+  </ul>
+
+  <div class="faq-item">
+    <div class="faq-q">What is a good GPA?</div>
+    <div class="faq-a"><p>At most US universities, a 3.5+ GPA is considered excellent (Dean's List territory). A 3.0 is a solid B average. Many graduate schools and competitive employers look for a 3.0 minimum, with top programs often preferring 3.5+. The importance of GPA varies significantly by field and intended career path.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What's the difference between semester and cumulative GPA?</div>
+    <div class="faq-a"><p>Semester GPA only counts the courses taken in a single term. Cumulative GPA is the weighted average across your entire academic career. A strong semester can only move cumulative GPA gradually — the more credits you've accumulated, the harder it is to shift the cumulative number significantly.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I calculate the grade I need on my final exam?</div>
+    <div class="faq-a"><p>The formula is: Required = (Target − Current × (1 − Final Weight)) ÷ Final Weight. For example, if you have a 74% going into a final worth 30%, and you want an 80%: Required = (0.80 − 0.74 × 0.70) ÷ 0.30 = (0.80 − 0.518) ÷ 0.30 = 94%. Use the "Final Grade Needed" tab above for instant results.</p></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+/* ── Grade point tables ── */
+var GRADES_4 = {
+  'A+':4.0,'A':4.0,'A-':3.7,
+  'B+':3.3,'B':3.0,'B-':2.7,
+  'C+':2.3,'C':2.0,'C-':1.7,
+  'D+':1.3,'D':1.0,'D-':0.7,
+  'F':0.0
+};
+var GRADES_5 = {
+  'A+':5.0,'A':5.0,'A-':4.7,
+  'B+':4.3,'B':4.0,'B-':3.7,
+  'C+':3.3,'C':3.0,'C-':2.7,
+  'D+':2.3,'D':2.0,'D-':1.7,
+  'F':0.0
+};
+
+function getGradeTable(){
+  var scale = document.querySelector('input[name="gpa-scale"]:checked').value;
+  return scale === '5' ? GRADES_5 : GRADES_4;
+}
+function getMaxGPA(){
+  var scale = document.querySelector('input[name="gpa-scale"]:checked').value;
+  return parseFloat(scale);
+}
+
+/* ── Grade letter from GPA ── */
+function gpaToLetter(gpa, max){
+  var pct = gpa / max;
+  if(pct >= 0.925) return { letter:'A', cls:'grade-a' };
+  if(pct >= 0.825) return { letter:'B', cls:'grade-b' };
+  if(pct >= 0.725) return { letter:'C', cls:'grade-c' };
+  if(pct >= 0.625) return { letter:'D', cls:'grade-d' };
+  return { letter:'F', cls:'grade-f' };
+}
+
+/* ── Build grade <select> options ── */
+function gradeOptions(selected){
+  selected = selected || 'A';
+  return Object.keys(GRADES_4).map(function(g){
+    return '<option value="'+g+'"'+(g===selected?' selected':'')+'>'+g+'</option>';
+  }).join('');
+}
+
+/* ── Course row management ── */
+var courseCount = 0;
+function addCourse(name, grade, credits){
+  courseCount++;
+  var id = courseCount;
+  var tr = document.createElement('tr');
+  tr.dataset.id = id;
+  tr.innerHTML =
+    '<td><input type="text" placeholder="e.g. Math 101" value="'+(name||'')+'"></td>'
+    +'<td><select>'+gradeOptions(grade||'B')+'</select></td>'
+    +'<td><input type="number" value="'+(credits||3)+'" min="0.5" max="12" step="0.5"></td>'
+    +'<td class="td-del"><button class="del-btn" onclick="removeCourse('+id+')">✕</button></td>';
+  document.getElementById('course-tbody').appendChild(tr);
+}
+function removeCourse(id){
+  var rows = document.querySelectorAll('#course-tbody tr');
+  if(rows.length <= 1){ showToast('Need at least one course'); return; }
+  var row = document.querySelector('#course-tbody tr[data-id="'+id+'"]');
+  if(row) row.remove();
+}
+
+/* ── Mode switching ── */
+function setMode(mode, btn){
+  document.querySelectorAll('.mode-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.mode-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('panel-'+mode).classList.add('active');
+}
+
+/* ── GPA scale toggle ── */
+document.querySelectorAll('input[name="gpa-scale"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    document.querySelectorAll('input[name="gpa-scale"]').forEach(function(x){
+      x.closest('.radio-pill').classList.toggle('checked', x.checked);
+    });
+  });
+});
+
+/* ══ CALC: Semester GPA ══ */
+function calcGPA(){
+  var rows = document.querySelectorAll('#course-tbody tr');
+  var gradeTable = getGradeTable();
+  var maxGPA = getMaxGPA();
+  var totalPoints = 0, totalCredits = 0;
+  var breakdown = [];
+
+  rows.forEach(function(row){
+    var cells = row.querySelectorAll('td');
+    var name    = cells[0].querySelector('input').value.trim() || ('Course ' + (breakdown.length+1));
+    var grade   = cells[1].querySelector('select').value;
+    var credits = parseFloat(cells[2].querySelector('input').value) || 0;
+    var gp      = gradeTable[grade];
+    var points  = gp * credits;
+    totalPoints  += points;
+    totalCredits += credits;
+    breakdown.push({ name:name, grade:grade, credits:credits, gp:gp, points:points });
+  });
+
+  if(totalCredits === 0){ showToast('Enter at least one course with credits'); return; }
+
+  var gpa = totalPoints / totalCredits;
+  var trackPct = (gpa / maxGPA * 100).toFixed(1);
+  var letterInfo = gpaToLetter(gpa, maxGPA);
+
+  document.getElementById('sem-gpa-val').textContent      = gpa.toFixed(2);
+  document.getElementById('sem-gpa-scale').textContent    = 'out of ' + maxGPA.toFixed(1);
+  document.getElementById('sem-gpa-track').style.width    = trackPct + '%';
+  document.getElementById('sem-gpa-letter').innerHTML     = '<span class="'+letterInfo.cls+'">' + letterInfo.letter + ' Average</span>';
+  setEl('sem-r-gpa',     gpa.toFixed(2));
+  setEl('sem-r-credits', totalCredits.toFixed(1));
+  setEl('sem-r-points',  totalPoints.toFixed(2));
+
+  var tbodyHtml = breakdown.map(function(r){
+    var cls = r.gp >= 3.5 ? 'grade-a' : r.gp >= 2.5 ? 'grade-b' : r.gp >= 1.5 ? 'grade-c' : r.gp >= 0.5 ? 'grade-d' : 'grade-f';
+    return '<tr>'
+      +'<td>'+escH(r.name)+'</td>'
+      +'<td class="td-mono"><span class="'+cls+'">'+r.grade+'</span></td>'
+      +'<td class="td-mono">'+r.credits+'</td>'
+      +'<td class="td-mono">'+r.points.toFixed(2)+'</td>'
+      +'</tr>';
+  }).join('');
+  document.getElementById('sem-breakdown-body').innerHTML = tbodyHtml;
+
+  var best  = breakdown.reduce(function(a,b){ return b.gp > a.gp ? b : a; });
+  var worst = breakdown.reduce(function(a,b){ return b.gp < a.gp ? b : a; });
+  document.getElementById('sem-insight-text').innerHTML =
+    'Your semester GPA is <strong>'+gpa.toFixed(2)+'</strong> across <strong>'+totalCredits+'</strong> credits. '
+    +'Strongest course: <strong>'+escH(best.name)+'</strong> ('+best.grade+'). '
+    +(breakdown.length > 1 ? 'Most room for improvement: <strong>'+escH(worst.name)+'</strong> ('+worst.grade+').' : '');
+
+  showRes('res-semester');
+}
+
+/* ══ CALC: Cumulative GPA ══ */
+function calcCumulative(){
+  var prevGPA     = parseFloat(document.getElementById('cum-prev-gpa').value);
+  var prevCredits = parseFloat(document.getElementById('cum-prev-credits').value);
+  var newGPA      = parseFloat(document.getElementById('cum-new-gpa').value);
+  var newCredits  = parseFloat(document.getElementById('cum-new-credits').value);
+
+  if([prevGPA,prevCredits,newGPA,newCredits].some(isNaN)){ showToast('Enter all four values'); return; }
+  if(prevCredits + newCredits === 0){ showToast('Credits cannot both be 0'); return; }
+
+  var totalPoints  = prevGPA * prevCredits + newGPA * newCredits;
+  var totalCredits = prevCredits + newCredits;
+  var cumGPA       = totalPoints / totalCredits;
+  var change       = cumGPA - prevGPA;
+  var letterInfo   = gpaToLetter(cumGPA, 4.0);
+  var trackPct     = Math.min(cumGPA / 4.0 * 100, 100).toFixed(1);
+
+  document.getElementById('cum-gpa-val').textContent    = cumGPA.toFixed(2);
+  document.getElementById('cum-gpa-track').style.width  = trackPct + '%';
+  document.getElementById('cum-gpa-letter').innerHTML   = '<span class="'+letterInfo.cls+'">'+letterInfo.letter+' Average</span>';
+  setEl('cum-r-gpa',     cumGPA.toFixed(2));
+  setEl('cum-r-credits', totalCredits.toFixed(0));
+  var changeEl = document.getElementById('cum-r-change');
+  changeEl.textContent = (change >= 0 ? '+' : '') + change.toFixed(3);
+  changeEl.style.color = change >= 0 ? '#22c55e' : '#ef4444';
+
+  document.getElementById('cum-insight-text').innerHTML =
+    'Your cumulative GPA <strong>'+(change>=0?'improved by':'decreased by')+'</strong> <strong>'+Math.abs(change).toFixed(3)+' points</strong> '
+    +'to <strong>'+cumGPA.toFixed(2)+'</strong>. '
+    +(Math.abs(change) < 0.05 ? 'Your semester GPA was very close to your cumulative average, keeping it stable.' :
+      change > 0 ? 'A semester above your cumulative average pulled it up.' : 'A semester below your cumulative average pulled it down.');
+
+  showRes('res-cumulative');
+}
+
+/* ══ CALC: Final Grade Needed ══ */
+function calcFinalNeeded(){
+  var current     = parseFloat(document.getElementById('fn-current').value) / 100;
+  var finalWeight = parseFloat(document.getElementById('fn-final-weight').value) / 100;
+  var target      = parseFloat(document.getElementById('fn-target').value) / 100;
+
+  if([current,finalWeight,target].some(isNaN)){ showToast('Enter all three values'); return; }
+  if(finalWeight <= 0 || finalWeight > 1){ showToast('Final exam weight must be between 1–100%'); return; }
+
+  var currentWeight = 1 - finalWeight;
+  var required = (target - current * currentWeight) / finalWeight;
+  var requiredPct = (required * 100).toFixed(1);
+
+  var resultEl = document.getElementById('fn-result-pct');
+  var subEl    = document.getElementById('fn-result-sub');
+
+  if(required > 1){
+    resultEl.style.color = '#ef4444';
+    resultEl.textContent = requiredPct + '%';
+    subEl.textContent = 'This score exceeds 100% — the target grade may not be achievable this semester.';
+  } else if(required < 0){
+    resultEl.style.color = '#22c55e';
+    resultEl.textContent = '0% minimum';
+    subEl.textContent = 'You\'ve already secured your target grade — even a 0% on the final gets you there.';
+  } else {
+    resultEl.style.color = required > 0.85 ? '#f59e0b' : '#22c55e';
+    resultEl.textContent = requiredPct + '%';
+    subEl.textContent = 'Score ' + requiredPct + '% or higher on the final to reach your target.';
+  }
+
+  var currentPct     = (current * 100).toFixed(1);
+  var finalWeightPct = (finalWeight * 100).toFixed(0);
+  var targetPct      = (target * 100).toFixed(1);
+
+  document.getElementById('fn-formula').innerHTML =
+    'Required = (Target − Current × (1 − Final Weight)) ÷ Final Weight\n'
+    +'         = (' + targetPct + '% − ' + currentPct + '% × ' + (currentWeight*100).toFixed(0) + '%) ÷ ' + finalWeightPct + '%\n'
+    +'         = (' + targetPct + '% − ' + (current*currentWeight*100).toFixed(2) + '%) ÷ ' + finalWeightPct + '%\n'
+    +'         = <b>' + requiredPct + '%</b>';
+
+  document.getElementById('fn-insight-text').innerHTML =
+    'Your current grade of <strong>' + currentPct + '%</strong> accounts for <strong>' + (currentWeight*100).toFixed(0) + '%</strong> of your final mark. '
+    +'The exam is worth <strong>' + finalWeightPct + '%</strong>. '
+    +(required <= 1 && required >= 0
+      ? 'You need <strong>' + requiredPct + '%</strong> on the final to finish with <strong>' + targetPct + '%</strong>.'
+      : required < 0
+        ? 'Great position — your grade is already locked in above your target regardless of the final.'
+        : 'Consider speaking with your instructor about extra credit or grade weighting options.');
+
+  showRes('res-final');
+}
+
+function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ── Init ── */
+window.addEventListener('load', function(){
+  addCourse('Mathematics', 'A-', 3);
+  addCourse('English Composition', 'B+', 3);
+  addCourse('Biology', 'B', 4);
+  addCourse('History', 'A', 3);
+  addCourse('Elective', 'B-', 2);
+  calcGPA();
+});
+</script>
+</body>
+</html>

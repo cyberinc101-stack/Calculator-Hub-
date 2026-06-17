@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Water Intake Calculator — Daily Hydration by Weight, Activity & Climate | CalcHub</title>
+<meta name="description" content="Free daily water intake calculator. Find how much water you should drink based on body weight, activity level, climate, and pregnancy status. Get results in cups, oz, and litres instantly.">
+<meta name="keywords" content="water intake calculator,how much water should I drink,daily water intake,hydration calculator,water consumption calculator,8 glasses of water,daily water needs">
+<link rel="canonical" href="https://yourdomain.com/calculator-types/water-intake.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Water Intake Calculator","description":"Calculate your personalised daily water intake based on weight, activity level, climate, and health factors.","url":"https://yourdomain.com/calculator-types/water-intake.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/vars.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/layout.css">
+<style>
+/* Water gauge visual */
+.water-gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem auto .5rem;
+  max-width: 260px;
+}
+.water-gauge {
+  width: 120px;
+  height: 160px;
+  border: 3px solid var(--accent-mid);
+  border-radius: 0 0 18px 18px;
+  border-top: none;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.water-fill {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(180deg, #4fc3f7 0%, #0288d1 100%);
+  transition: height .8s cubic-bezier(.34,1.56,.64,1);
+  opacity: .85;
+}
+.water-gauge-pct {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-mid);
+}
+.water-gauge-label {
+  font-size: .78rem;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+.cup-viz {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 1rem;
+  justify-content: center;
+}
+.cup-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  filter: grayscale(1);
+  opacity: .35;
+  transition: filter .2s, opacity .2s;
+}
+.cup-icon.filled {
+  filter: grayscale(0);
+  opacity: 1;
+}
+.intake-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .9rem;
+}
+.intake-row:last-child { border-bottom: none; }
+.intake-row-label { color: var(--text-2); }
+.intake-row-val { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 36px">
+  <div class="hero-eyebrow">💧 Health Calculator</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Water Intake Calculator</h1>
+  <p class="hero-sub">Get your personalised daily water target based on weight, activity level, climate, and whether you're pregnant or breastfeeding.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">💧</div>
+    <div><div class="calc-card-title">Daily Water Intake Calculator</div><div class="calc-card-desc">Weight, activity, climate, and health factors — all accounted for</div></div>
+  </div>
+  <div class="calc-card-body">
+
+    <div class="field" style="margin-bottom:14px">
+      <label>Unit System</label>
+      <div class="radio-group">
+        <label class="radio-pill checked"><input type="radio" name="wi-units" value="metric" checked> Metric (kg / L)</label>
+        <label class="radio-pill"><input type="radio" name="wi-units" value="imperial"> Imperial (lb / oz)</label>
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div class="field">
+        <label for="wi-weight" id="wi-weight-label">Body Weight</label>
+        <div class="input-wrap">
+          <input type="number" id="wi-weight" value="70" min="20" max="300" step="1">
+          <span class="input-suffix" id="wi-weight-unit">kg</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="wi-age">Age</label>
+        <div class="input-wrap">
+          <input type="number" id="wi-age" value="30" min="1" max="100" step="1">
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="wi-activity">Activity Level</label>
+        <select id="wi-activity">
+          <option value="0">Sedentary (little or no exercise)</option>
+          <option value="1" selected>Lightly active (1–3 days/week)</option>
+          <option value="2">Moderately active (3–5 days/week)</option>
+          <option value="3">Very active (6–7 days/week)</option>
+          <option value="4">Extremely active (athlete / physical job)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wi-climate">Climate</label>
+        <select id="wi-climate">
+          <option value="0">Cool / Temperate</option>
+          <option value="1" selected>Moderate</option>
+          <option value="2">Hot &amp; Humid</option>
+          <option value="3">Very Hot (desert / tropical)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wi-pregnancy">Pregnancy / Breastfeeding</label>
+        <select id="wi-pregnancy">
+          <option value="0" selected>None</option>
+          <option value="1">Pregnant</option>
+          <option value="2">Breastfeeding</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wi-exercise">Exercise Duration Today</label>
+        <div class="input-wrap">
+          <input type="number" id="wi-exercise" value="0" min="0" max="300" step="5">
+          <span class="input-suffix">min</span>
+        </div>
+        <span class="field-hint">Adds ~500 ml per hour of exercise</span>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcWater()">Calculate My Water Target →</button>
+
+    <div class="results" id="wi-results">
+      <div class="results-header">Your Daily Hydration Target</div>
+
+      <div class="results-grid">
+        <div class="result-item highlight">
+          <div class="result-label">Daily Water Target</div>
+          <div class="result-value" id="r-wi-litres">—</div>
+          <div class="result-sub" id="r-wi-oz"></div>
+        </div>
+        <div class="result-item green">
+          <div class="result-label">Number of Cups (250 ml)</div>
+          <div class="result-value" id="r-wi-cups">—</div>
+          <div class="result-sub">8 fl oz cups</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Base Intake (weight only)</div>
+          <div class="result-value" id="r-wi-base">—</div>
+        </div>
+        <div class="result-item amber">
+          <div class="result-label">Exercise Add-on</div>
+          <div class="result-value" id="r-wi-exercise">—</div>
+          <div class="result-sub">from today's workout</div>
+        </div>
+      </div>
+
+      <!-- Cup visualisation -->
+      <div class="water-gauge-wrap">
+        <div class="water-gauge"><div class="water-fill" id="wi-gauge-fill" style="height:0%"></div></div>
+        <div class="water-gauge-pct" id="wi-gauge-pct">—</div>
+        <div class="water-gauge-label">of the old "8 glasses" rule</div>
+      </div>
+
+      <!-- Cup icons -->
+      <div class="cup-viz" id="wi-cups-viz"></div>
+
+      <!-- Breakdown table -->
+      <div class="breakdown-wrap" style="margin-top:1.2rem">
+        <div class="breakdown-title">How Your Target Is Built</div>
+        <div id="wi-breakdown-rows"></div>
+      </div>
+
+      <div id="wi-insight" class="insight"><div class="insight-icon">💡</div><div id="wi-insight-text"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How Much Water Should You Drink Per Day?</h2>
+  <p>There is no single universal answer — your ideal water intake depends on your body size, how active you are, the climate you live in, and whether you are pregnant or breastfeeding. The famous "8 glasses a day" rule is a rough average that does not account for individual variation.</p>
+
+  <h3>The Science Behind the Recommendation</h3>
+  <p>The National Academies of Sciences recommends a total daily water intake of 3.7 litres (125 oz) for men and 2.7 litres (91 oz) for women — including water from all food and drinks, not just plain water. About 20% of water intake typically comes from food. A common starting formula is 35 ml per kilogram of body weight per day, adjusted upward for activity and heat.</p>
+
+  <h3>Signs You Are Not Drinking Enough</h3>
+  <p>Dark yellow urine (aim for pale straw), feeling thirsty, headaches, difficulty concentrating, and fatigue are the most common signs of mild dehydration. By the time you feel thirsty, you are already mildly dehydrated.</p>
+
+  <div class="faq-item"><div class="faq-q">Does coffee or tea count toward my water intake?</div><div class="faq-a"><p>Yes. Despite the mild diuretic effect of caffeine, research shows that caffeinated beverages still contribute net fluid to the body. A cup of coffee or tea counts towards total daily fluid intake, though plain water remains the ideal choice.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How much extra water do I need when exercising?</div><div class="faq-a"><p>A general guideline is an extra 400–600 ml (14–20 oz) for every 30–60 minutes of moderate exercise. In hot weather or during high-intensity activity, losses can be significantly higher. Weigh yourself before and after exercise — every 1 kg lost equals approximately 1 litre of fluid deficit.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Is it possible to drink too much water?</div><div class="faq-a"><p>Yes — overhydration (hyponatraemia) can occur when water intake greatly exceeds kidney excretion capacity, typically above 0.8–1 litre per hour sustained over several hours. This is rare outside of endurance sports. For most people, thirst is a reliable guide and the kidneys handle the rest.</p></div></div>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="../js/app.js"></script>
+<script>
+var wiUnits = 'metric';
+
+document.querySelectorAll('input[name="wi-units"]').forEach(function(radio){
+  radio.addEventListener('change', function(){
+    document.querySelectorAll('input[name="wi-units"]').forEach(function(r){
+      r.closest('.radio-pill').classList.toggle('checked', r.checked);
+    });
+    wiUnits = this.value;
+    var isMetric = wiUnits === 'metric';
+    document.getElementById('wi-weight-unit').textContent = isMetric ? 'kg' : 'lb';
+    // Convert displayed weight
+    var wEl = document.getElementById('wi-weight');
+    var wVal = parseFloat(wEl.value) || 0;
+    if(isMetric && wVal > 0){
+      wEl.value = Math.round(wVal / 2.205);
+    } else if(!isMetric && wVal > 0){
+      wEl.value = Math.round(wVal * 2.205);
+    }
+  });
+});
+
+function calcWater(){
+  var weightRaw  = v('wi-weight');
+  var age        = v('wi-age');
+  var activity   = parseInt(vs('wi-activity'));
+  var climate    = parseInt(vs('wi-climate'));
+  var pregnancy  = parseInt(vs('wi-pregnancy'));
+  var exerciseMin = v('wi-exercise');
+
+  if(!weightRaw || weightRaw <= 0){ showToast('Enter a valid body weight'); return; }
+
+  // Convert to kg
+  var weightKg = wiUnits === 'imperial' ? weightRaw / 2.205 : weightRaw;
+
+  // BASE: 35 ml/kg (general adult recommendation)
+  var baseML = weightKg * 35;
+
+  // Age adjustment: children need more per kg; elderly slightly less
+  var ageMult = 1;
+  if(age < 18)       ageMult = 1.15;
+  else if(age > 65)  ageMult = 0.95;
+  baseML *= ageMult;
+
+  // Activity adjustments (ml added)
+  var activityAdd = [0, 350, 700, 1050, 1400][activity];
+
+  // Climate adjustments
+  var climateAdd  = [0, 300, 600, 1000][climate];
+
+  // Pregnancy / breastfeeding
+  var pregnancyAdd = [0, 300, 500][pregnancy];
+
+  // Exercise: ~500 ml per hour
+  var exerciseAddML = (exerciseMin / 60) * 500;
+
+  var totalML = baseML + activityAdd + climateAdd + pregnancyAdd + exerciseAddML;
+
+  var totalL   = totalML / 1000;
+  var totalOz  = totalML / 29.5735;
+  var cups     = totalML / 250; // 250 ml per cup
+  var baseL    = baseML / 1000;
+  var exerciseL = exerciseAddML / 1000;
+
+  // "8 glasses" = 8 × 250 ml = 2000 ml benchmark
+  var vsEight = totalML / 2000 * 100;
+
+  setEl('r-wi-litres', totalL.toFixed(2) + ' L');
+  document.getElementById('r-wi-oz').textContent = totalOz.toFixed(0) + ' fl oz';
+  setEl('r-wi-cups',   Math.ceil(cups) + ' cups');
+  setEl('r-wi-base',   baseL.toFixed(2) + ' L');
+  setEl('r-wi-exercise', exerciseAddML > 0 ? '+' + (exerciseAddML / 1000).toFixed(2) + ' L' : 'None today');
+
+  // Gauge
+  var gaugePct = Math.min(vsEight, 180); // cap visual at 180% so it doesn't overflow
+  document.getElementById('wi-gauge-fill').style.height = Math.min(gaugePct, 100) + '%';
+  document.getElementById('wi-gauge-pct').textContent = Math.round(vsEight) + '%';
+
+  // Cup icons — show up to 20 cups visually
+  var cupsInt = Math.ceil(cups);
+  var vizCount = Math.min(cupsInt, 20);
+  var cupsHtml = '';
+  for(var i = 0; i < vizCount; i++){
+    cupsHtml += '<span class="cup-icon filled">🥤</span>';
+  }
+  if(cupsInt > 20){
+    cupsHtml += '<span style="font-size:.8rem;color:var(--text-3);align-self:center">+' + (cupsInt - 20) + ' more</span>';
+  }
+  document.getElementById('wi-cups-viz').innerHTML = cupsHtml;
+
+  // Breakdown rows
+  var breakdownItems = [
+    { label: 'Base (body weight × 35 ml/kg)',   val: (baseML / 1000).toFixed(2) + ' L' },
+    { label: 'Activity level add-on',            val: activityAdd > 0 ? '+' + (activityAdd/1000).toFixed(2) + ' L' : 'None' },
+    { label: 'Climate add-on',                   val: climateAdd > 0  ? '+' + (climateAdd/1000).toFixed(2) + ' L'  : 'None' },
+    { label: 'Pregnancy / breastfeeding add-on', val: pregnancyAdd > 0 ? '+' + (pregnancyAdd/1000).toFixed(2) + ' L' : 'None' },
+    { label: 'Exercise add-on',                  val: exerciseAddML > 0 ? '+' + (exerciseAddML/1000).toFixed(2) + ' L' : 'None' },
+    { label: 'Total daily target',               val: totalL.toFixed(2) + ' L / ' + Math.ceil(cups) + ' cups' }
+  ];
+  document.getElementById('wi-breakdown-rows').innerHTML = breakdownItems.map(function(row){
+    return '<div class="intake-row"><span class="intake-row-label">' + row.label + '</span><span class="intake-row-val">' + row.val + '</span></div>';
+  }).join('');
+
+  // Insight
+  var compVsEight = vsEight > 110
+    ? 'significantly more than the old "8 glasses" guideline — your active lifestyle and conditions increase your needs.'
+    : vsEight < 90
+    ? 'slightly below the "8 glasses" guideline, which is appropriate for your lower activity and cooler climate.'
+    : 'close to the familiar "8 glasses" guideline, personalised for your specific body and lifestyle.';
+
+  document.getElementById('wi-insight-text').innerHTML =
+    'Your daily target of <strong>' + totalL.toFixed(2) + ' litres (' + Math.ceil(cups) + ' cups)</strong> is ' + compVsEight
+    + ' Spread your intake throughout the day — aim for a glass first thing in the morning, one with each meal, and sip steadily during any exercise.';
+
+  showRes('wi-results');
+}
+
+window.addEventListener('load', calcWater);
+</script>
+</body>
+</html>
