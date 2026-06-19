@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "boat-loan-calculator",
+    "title": "Boat Loan Calculator — Monthly Payment & Amortization | CalcHub",
+    "metaDescription": "Free boat loan calculator for new and used boats, pontoons, and yachts. Calculate your monthly payment, total interest, and full amortization schedule.",
+    "metaKeywords": "boat loan calculator,yacht loan calculator,boat payment calculator,boat finance calculator,marine loan calculator,boat financing calculator",
+    "icon": "⛵",
+    "category": "Boat & Marine Loans",
+    "h1": "Boat Loan Calculator",
+    "intro": "Estimate your monthly boat payment, total interest, and amortization schedule for a new or used boat, pontoon, or yacht purchase.",
+    "defaultExample": {
+      "principal": 45000,
+      "aprPercent": 8.25,
+      "termMonths": 180
+    },
+    "primaryKeyword": "boat loan calculator",
+    "searchVolume": 40500,
+    "relatedSlugs": [
+      "rv-loan-calculator",
+      "personal-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "How long can a boat loan term be?",
+        "a": "Boat loan terms commonly range from 10 to 20 years depending on the loan amount and the boat's age. Larger loans on newer boats tend to qualify for longer terms, while loans on older used boats are often capped at shorter terms by the lender."
+      },
+      {
+        "q": "Are boat loan rates higher than auto loan rates?",
+        "a": "Generally yes. Boats are considered a higher-risk collateral category than cars because they depreciate quickly and have a smaller resale market, so boat loan APRs typically run higher than comparable auto loan rates. Exact rates vary significantly by lender, credit score, and loan-to-value ratio."
+      },
+      {
+        "q": "Do I need a down payment for a boat loan?",
+        "a": "Most lenders require a down payment of 10-20% of the purchase price, though this varies by loan amount and lender. A larger down payment typically improves your approval odds and can qualify you for a better rate."
+      }
+    ]
+  },
+  {
+    "slug": "rv-loan-calculator",
+    "title": "RV Loan Calculator — Motorhome & Travel Trailer Payments | CalcHub",
+    "metaDescription": "Free RV loan calculator for motorhomes, travel trailers, and fifth wheels. Calculate your monthly payment, total interest, and amortization schedule.",
+    "metaKeywords": "rv loan calculator,motorhome financing calculator,rv financing calculator,travel trailer financing calculator,rv payment calculator,motorhome loan calculator",
+    "icon": "🚐",
+    "category": "RV & Motorhome Loans",
+    "h1": "RV Loan Calculator",
+    "intro": "Calculate your monthly payment for a motorhome, travel trailer, fifth wheel, or other recreational vehicle, including total interest and a full amortization schedule.",
+    "defaultExample": {
+      "principal": 65000,
+      "aprPercent": 7.75,
+      "termMonths": 180
+    },
+    "primaryKeyword": "rv loan calculator",
+    "searchVolume": 33100,
+    "relatedSlugs": [
+      "boat-loan-calculator",
+      "personal-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "How long can I finance an RV?",
+        "a": "RV loan terms often run 10 to 20 years, occasionally longer for high-value motorhomes. Longer terms lower the monthly payment but increase total interest paid over the life of the loan."
+      },
+      {
+        "q": "Is financing a travel trailer different from financing a motorhome?",
+        "a": "The underlying loan structure is similar, but towable units like travel trailers and fifth wheels often qualify for somewhat shorter terms and different rate tiers than motorized RVs, since lenders treat them as a distinct collateral category."
+      },
+      {
+        "q": "What credit score is typically needed for an RV loan?",
+        "a": "Most lenders look for a credit score in the mid-600s or higher for standard RV financing terms. Borrowers below that range may still qualify but typically see higher rates or stricter down payment requirements."
+      }
+    ]
+  },
+  {
+    "slug": "land-loan-calculator",
+    "title": "Land Loan Calculator — Raw Land & Lot Financing | CalcHub",
+    "metaDescription": "Free land loan calculator for raw land, vacant lots, and rural acreage. Estimate your monthly payment, total interest, and amortization schedule.",
+    "metaKeywords": "land loan calculator,land financing calculator,vacant land loan calculator,lot loan calculator,raw land loan calculator",
+    "icon": "🏞️",
+    "category": "Land & Lot Loans",
+    "h1": "Land Loan Calculator",
+    "intro": "Estimate the monthly payment for financing raw land, a vacant lot, or rural acreage, along with total interest and an amortization schedule.",
+    "defaultExample": {
+      "principal": 75000,
+      "aprPercent": 8.75,
+      "termMonths": 180
+    },
+    "primaryKeyword": "land loan calculator",
+    "searchVolume": 18100,
+    "relatedSlugs": [
+      "construction-loan-calculator",
+      "home-equity-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "Why are land loan rates higher than mortgage rates?",
+        "a": "Land without a structure on it is considered riskier collateral than a financed home, since vacant land is harder to resell and generates no income. Lenders typically price land loans at a premium over comparable mortgage rates as a result."
+      },
+      {
+        "q": "How big a down payment does a land loan require?",
+        "a": "Down payments for raw or unimproved land are usually higher than for a typical home purchase, often in the 20-50% range depending on the land's intended use, access to utilities, and the lender's policies."
+      },
+      {
+        "q": "What's the difference between a land loan and a construction loan?",
+        "a": "A land loan finances the purchase of the lot itself with no building plans required. A construction loan finances the lot together with the cost of building on it, and usually converts into a standard mortgage once construction is complete."
+      }
+    ]
+  },
+  {
+    "slug": "motorcycle-loan-calculator",
+    "title": "Motorcycle Loan Calculator — Monthly Payment & Amortization | CalcHub",
+    "metaDescription": "Free motorcycle loan calculator for new and used bikes. Calculate your monthly payment, total interest, and full amortization schedule.",
+    "metaKeywords": "motorcycle loan calculator,motorcycle payment calculator,motorcycle finance calculator,bike loan calculator",
+    "icon": "🏍️",
+    "category": "Motorcycle Loans",
+    "h1": "Motorcycle Loan Calculator",
+    "intro": "Calculate your monthly motorcycle payment for a new or used bike, including total interest and a full amortization schedule.",
+    "defaultExample": {
+      "principal": 12000,
+      "aprPercent": 9.25,
+      "termMonths": 60
+    },
+    "primaryKeyword": "motorcycle loan calculator",
+    "searchVolume": 18100,
+    "relatedSlugs": [
+      "personal-loan-calculator",
+      "truck-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "How long are typical motorcycle loan terms?",
+        "a": "Most motorcycle loans run 36 to 72 months. Shorter terms mean higher monthly payments but less total interest, while longer terms lower the payment at the cost of more interest over time."
+      },
+      {
+        "q": "Are motorcycle loan rates higher than car loan rates?",
+        "a": "Often yes, since motorcycles depreciate faster and have a smaller resale market than cars, which translates into somewhat higher APRs on average for comparable credit profiles."
+      },
+      {
+        "q": "Does a down payment help on a motorcycle loan?",
+        "a": "Yes — a larger down payment reduces the amount financed, which lowers both your monthly payment and the risk of owing more than the bike is worth as it depreciates."
+      }
+    ]
+  },
+  {
+    "slug": "construction-loan-calculator",
+    "title": "Construction Loan Calculator — Build & Permanent Financing | CalcHub",
+    "metaDescription": "Free construction loan calculator for building a new home. Estimate the permanent mortgage payment after your construction-to-permanent loan converts.",
+    "metaKeywords": "construction loan calculator,building loan calculator,construction to permanent loan calculator,home construction loan calculator",
+    "icon": "🏗️",
+    "category": "Construction Loans",
+    "h1": "Construction Loan Calculator",
+    "intro": "Most construction loans are interest-only during the build phase, then convert into a standard amortizing mortgage once the home is finished. This calculator models that final permanent-loan payment so you can budget for life after construction — for the interest-only build phase itself, talk to your lender about the draw schedule.",
+    "defaultExample": {
+      "principal": 200000,
+      "aprPercent": 7.5,
+      "termMonths": 360
+    },
+    "primaryKeyword": "construction loan calculator",
+    "searchVolume": 6600,
+    "relatedSlugs": [
+      "land-loan-calculator",
+      "home-equity-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "How does a construction loan actually work?",
+        "a": "Most construction loans disburse funds in stages (\"draws\") as building milestones are completed, and you typically only pay interest on the amount drawn so far during the build. Once construction finishes, the loan either converts into a standard mortgage or is paid off by a separate permanent mortgage."
+      },
+      {
+        "q": "Why does this calculator show a 30-year term?",
+        "a": "Because the interest-only construction phase isn't a fixed monthly payment in the way a standard loan is — it depends on the draw schedule. This calculator instead estimates the ongoing payment for the permanent mortgage that follows construction, which is what most homeowners actually budget around long-term."
+      },
+      {
+        "q": "Do construction loan rates differ from regular mortgage rates?",
+        "a": "Yes, the construction phase typically carries a higher rate than a standard mortgage due to the added risk of an unfinished project, and that rate may be variable. Once converted to a permanent mortgage, rates are generally in line with standard mortgage pricing."
+      }
+    ]
+  },
+  {
+    "slug": "home-equity-loan-calculator",
+    "title": "Home Equity Loan Calculator — Payment & Amortization Schedule | CalcHub",
+    "metaDescription": "Free home equity loan calculator. Calculate your fixed monthly payment, total interest, and amortization schedule for a second mortgage against your home's equity.",
+    "metaKeywords": "home equity loan calculator,heloc loan calculator,equity loan calculator,second mortgage calculator",
+    "icon": "🏡",
+    "category": "Home Equity Loans",
+    "h1": "Home Equity Loan Calculator",
+    "intro": "Calculate the fixed monthly payment, total interest, and amortization schedule for a home equity loan — a lump-sum second mortgage borrowed against your home's equity. Note this models a fixed-rate home equity loan specifically, not a revolving HELOC line of credit, which typically has a separate variable-rate draw period.",
+    "defaultExample": {
+      "principal": 50000,
+      "aprPercent": 8.5,
+      "termMonths": 180
+    },
+    "primaryKeyword": "home equity loan calculator",
+    "searchVolume": 74000,
+    "relatedSlugs": [
+      "construction-loan-calculator",
+      "debt-consolidation-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "What's the difference between a home equity loan and a HELOC?",
+        "a": "A home equity loan gives you a lump sum upfront with a fixed rate and fixed monthly payment, similar to a second mortgage. A HELOC (home equity line of credit) works more like a credit card — a revolving credit line, often with a variable rate and an interest-only draw period before repayment begins. This calculator models the fixed-payment home equity loan structure."
+      },
+      {
+        "q": "How much equity do I need to qualify?",
+        "a": "Most lenders want you to retain at least 15-20% equity in your home after the new loan, meaning your combined mortgage and home equity loan balance generally can't exceed 80-85% of your home's appraised value."
+      },
+      {
+        "q": "What can a home equity loan be used for?",
+        "a": "Common uses include home renovations, debt consolidation, and major expenses, since the fixed payment and lump-sum structure make it easier to budget for a specific, known cost compared to a revolving HELOC."
+      }
+    ]
+  }
+]

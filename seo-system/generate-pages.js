@@ -36,6 +36,118 @@ const CATEGORY_ICONS = {
   Torque: '🔧'
 };
 
+// --- Unit definitions --------------------------------------------------
+// Short, factual one-to-two sentence explanations of each unit, keyed by
+// the short code used in conversions.json. Used to add genuine educational
+// content per page (varies by unit, not by pair) without per-pair authorship.
+const UNIT_DEFINITIONS = {
+  km: "The kilometer is the standard metric unit for measuring medium to long distances, equal to 1,000 meters. It's the primary distance unit used on road signs and for trip distances across most of the world.",
+  miles: "The mile is an imperial unit of distance equal to 5,280 feet, used primarily in the United States and the United Kingdom for road distances and speed limits.",
+  meters: "The meter is the base unit of length in the metric system, used worldwide for everyday length measurements from room sizes to running distances.",
+  feet: "The foot is an imperial unit of length equal to 12 inches, commonly used in the US and UK for height, room dimensions, and construction.",
+  inches: "The inch is a small imperial unit of length equal to 1/12 of a foot, widely used for screen sizes, paper dimensions, and small objects.",
+  cm: "The centimeter is a metric unit of length equal to one-hundredth of a meter, commonly used for height, fabric, and everyday object measurements.",
+  yards: "The yard is an imperial unit of length equal to 3 feet, traditionally used in sports fields and fabric measurements.",
+  mm: "The millimeter is a small metric unit of length equal to one-thousandth of a meter, used for precise measurements like screen thickness or engineering tolerances.",
+  nauticalmiles: "The nautical mile is a unit of distance used in air and sea navigation, equal to 1,852 meters and based on one minute of latitude.",
+  micrometers: "The micrometer (micron) is a unit of length equal to one-millionth of a meter, used to measure tiny distances like microchip features.",
+  lightyears: "A light-year is the distance light travels in one year, used in astronomy to measure vast distances between stars and galaxies.",
+  fathoms: "The fathom is a unit of length traditionally used to measure water depth, equal to 6 feet.",
+  furlongs: "The furlong is a unit of distance equal to 1/8 of a mile, still commonly used to measure distances in horse racing.",
+  kg: "The kilogram is the base metric unit of mass, equal to 1,000 grams, used worldwide for body weight, food, and general mass.",
+  lbs: "The pound is an imperial unit of mass commonly used in the US for body weight, food packaging, and shipping.",
+  stone: "The stone is a traditional British unit of mass equal to 14 pounds, still widely used in the UK and Ireland to describe body weight.",
+  oz: "The ounce is a small imperial unit of mass equal to 1/16 of a pound, often used for food portions and small package weights.",
+  grams: "The gram is a small metric unit of mass equal to one-thousandth of a kilogram, commonly used for cooking, jewelry, and precise measurements.",
+  tonnes: "The metric tonne is a unit of mass equal to 1,000 kilograms, used for measuring large quantities like vehicles and cargo.",
+  tons: "The US ton (short ton) is a unit of mass equal to 2,000 pounds, used in the US for vehicle weight, shipping, and bulk materials.",
+  carats: "The carat is a unit of mass used to weigh gemstones and pearls, equal to 200 milligrams.",
+  milligrams: "The milligram is a tiny metric unit of mass equal to one-thousandth of a gram, commonly used in medicine dosages and chemistry.",
+  celsius: "Celsius is the metric temperature scale where water freezes at 0° and boils at 100°, used by most of the world for weather and everyday temperatures.",
+  fahrenheit: "Fahrenheit is the temperature scale used primarily in the United States, where water freezes at 32° and boils at 212°.",
+  kelvin: "Kelvin is the scientific base unit of temperature, starting at absolute zero, used in physics, chemistry, and engineering.",
+  liters: "The liter is the standard metric unit of volume, commonly used for liquids like beverages, fuel, and cooking ingredients.",
+  gallons: "The US gallon is a unit of volume used primarily in the United States for fuel, milk, and other liquids.",
+  cups: "The cup is a common cooking measurement for volume, especially in US recipes, equal to about 236.6 milliliters.",
+  ml: "The milliliter is a small metric unit of volume equal to one-thousandth of a liter, commonly used for medicine doses and small liquid measurements.",
+  tsp: "The teaspoon is a small cooking measurement of volume, commonly used for spices, baking powder, and small ingredient quantities.",
+  tbsp: "The tablespoon is a cooking measurement of volume equal to 3 teaspoons, used for liquids and ingredients in recipes.",
+  floz: "The fluid ounce is a US unit of volume used for beverages and liquid ingredients.",
+  pint: "The US pint is a unit of volume equal to 16 fluid ounces, commonly used for beer, milk, and ice cream servings.",
+  quart: "The US quart is a unit of volume equal to 2 pints, often used for milk and other liquid containers.",
+  imperialgallons: "The imperial gallon is a unit of volume used in the UK and historically the British Commonwealth, larger than the US gallon.",
+  cubicmeters: "The cubic meter is the metric unit of volume for large quantities, used to measure water usage, shipping containers, and construction materials.",
+  barrels: "The oil barrel is a standard unit of volume used in the petroleum industry, equal to 42 US gallons.",
+  mph: "Miles per hour is the standard speed unit used in the US and UK for vehicle speed limits and travel speed.",
+  kmh: "Kilometers per hour is the standard metric speed unit used by most of the world for vehicle speed and travel.",
+  ms: "Meters per second is the scientific unit of speed, commonly used in physics and engineering calculations.",
+  knots: "The knot is a unit of speed used in maritime and aviation contexts, equal to one nautical mile per hour.",
+  sqft: "The square foot is an imperial unit of area commonly used in the US for real estate, room sizes, and construction.",
+  sqm: "The square meter is the metric unit of area used worldwide for measuring rooms, land, and building space.",
+  acres: "The acre is a unit of land area traditionally used for farms and real estate, equal to 43,560 square feet.",
+  hectares: "The hectare is a metric unit of land area equal to 10,000 square meters, commonly used internationally for farmland.",
+  sqmi: "The square mile is a large imperial unit of area used to describe the size of cities, counties, and regions.",
+  sqkm: "The square kilometer is a metric unit of area used to describe the size of cities, countries, and large regions.",
+  sqyd: "The square yard is an imperial unit of area sometimes used for flooring, carpeting, and landscaping.",
+  sqin: "The square inch is a small imperial unit of area used for measuring small surfaces like screens or materials.",
+  sqcm: "The square centimeter is a small metric unit of area used for measuring small surfaces in science and engineering.",
+  hours: "The hour is a standard unit of time equal to 60 minutes, used universally for scheduling and measuring duration.",
+  minutes: "The minute is a unit of time equal to 60 seconds, commonly used for everyday timekeeping.",
+  days: "The day is a unit of time based on one full rotation of the Earth, equal to 24 hours.",
+  weeks: "The week is a unit of time equal to 7 days, used worldwide for scheduling and calendars.",
+  years: "The year is a unit of time based on one orbit of the Earth around the sun, equal to about 365.25 days.",
+  months: "The month is a calendar unit of time, averaging about 30.4 days, used for billing cycles, age, and scheduling.",
+  seconds: "The second is the base scientific unit of time, used for precise timing in everyday life and science.",
+  decades: "The decade is a unit of time equal to 10 years, often used to describe historical periods or long-term trends.",
+  kb: "The kilobyte is a unit of digital storage, traditionally equal to 1,024 bytes, used for small files like text documents.",
+  mb: "The megabyte is a unit of digital storage equal to 1,024 kilobytes, commonly used to describe photo and document file sizes.",
+  gb: "The gigabyte is a unit of digital storage equal to 1,024 megabytes, commonly used to describe phone storage, RAM, and video file sizes.",
+  tb: "The terabyte is a unit of digital storage equal to 1,024 gigabytes, commonly used for hard drives and large data storage.",
+  bytes: "The byte is the basic unit of digital information, made up of 8 bits, used to measure file and data sizes.",
+  pb: "The petabyte is a massive unit of digital storage equal to 1,024 terabytes, used to describe data center and cloud storage capacity.",
+  bits: "The bit is the smallest unit of digital information, representing a single 0 or 1, commonly used to describe connection speeds.",
+  mbps: "Megabits per second is a unit used to measure internet and network connection speed.",
+  mbs: "Megabytes per second is a unit used to measure data transfer speed, such as file download or upload rates.",
+  joules: "The joule is the standard scientific unit of energy, used in physics to measure work, heat, and electrical energy.",
+  calories: "The calorie is a unit of energy commonly used to describe the energy content of food and physical activity.",
+  kwh: "The kilowatt-hour is a unit of energy used to measure electricity consumption, commonly seen on home power bills.",
+  btu: "The British Thermal Unit (BTU) is a unit of energy used to describe heating and cooling capacity, such as for air conditioners and furnaces.",
+  kcal: "The kilocalorie (often just called 'calorie' on food labels) is a unit of energy equal to 1,000 calories.",
+  psi: "Pounds per square inch (PSI) is a unit of pressure commonly used in the US for tire pressure, water pressure, and mechanical systems.",
+  bar: "The bar is a metric unit of pressure roughly equal to atmospheric pressure at sea level, commonly used in weather forecasting and engineering.",
+  pascal: "The pascal is the SI unit of pressure, used in scientific and engineering contexts to measure force per unit area.",
+  atm: "The atmosphere (atm) is a unit of pressure based on average air pressure at sea level, commonly used in chemistry and meteorology.",
+  mmhg: "Millimeters of mercury (mmHg) is a unit of pressure traditionally used to measure blood pressure and atmospheric pressure.",
+  watts: "The watt is the standard unit of power, measuring the rate of energy use, commonly seen on appliance and light bulb labels.",
+  hp: "Horsepower is a traditional unit of power used to describe the output of engines and motors, especially in vehicles.",
+  kw: "The kilowatt is a unit of power equal to 1,000 watts, commonly used to describe appliance power and electric vehicle motor output.",
+  mw: "The megawatt is a unit of power equal to 1,000 kilowatts, used to describe large-scale power generation such as power plants.",
+  degrees: "The degree is the common unit for measuring angles, with a full circle equal to 360 degrees.",
+  radians: "The radian is the standard scientific unit for measuring angles, based on the radius of a circle, commonly used in mathematics and physics.",
+  gradians: "The gradian (or gon) is a unit of angle measurement where a full circle equals 400 gradians, occasionally used in surveying.",
+  hz: "The hertz is the unit of frequency, measuring how many times an event repeats per second, used for sound, electrical signals, and processor speeds.",
+  khz: "The kilohertz is a unit of frequency equal to 1,000 hertz, often used for radio frequencies and audio sample rates.",
+  mhz: "The megahertz is a unit of frequency equal to 1,000 kilohertz, commonly used for radio frequencies and older processor speeds.",
+  ghz: "The gigahertz is a unit of frequency equal to 1,000 megahertz, commonly used to describe modern computer processor speeds.",
+  newtons: "The newton is the SI unit of force, defined as the force needed to accelerate one kilogram at one meter per second squared.",
+  lbf: "Pound-force is an imperial unit of force, commonly used in engineering and physics in the US.",
+  kgf: "Kilogram-force is a unit of force based on the weight of one kilogram under standard gravity, sometimes used in older engineering contexts.",
+  grams_flour: "This conversion uses the typical weight of all-purpose flour, where one cup weighs approximately 125 grams, useful for baking recipes.",
+  grams_sugar: "This conversion uses the typical weight of granulated sugar, where one cup weighs approximately 200 grams, useful for baking recipes.",
+  grams_butter: "This conversion uses the typical weight of butter, where one cup weighs approximately 227 grams, useful for baking recipes.",
+  sticks_butter: "In US recipes, a 'stick' of butter is a standard package size equal to half a cup, about 113 grams.",
+  cups_water: "This conversion uses the density of water, where one cup of water weighs approximately 8 fluid ounces, useful for kitchen measurements.",
+  minperkm: "Minutes per kilometer is a pace measurement commonly used by runners and cyclists training in metric-based countries.",
+  minpermile: "Minutes per mile is a pace measurement commonly used by runners and cyclists in the US and UK.",
+  nm: "The newton-meter is the SI unit of torque, used to measure rotational force in engineering and mechanics.",
+  lbft: "Pound-feet is an imperial unit of torque, commonly used to describe engine torque output in vehicles.",
+  lbin: "Pound-inches is a smaller imperial unit of torque, used for precise torque specifications like bolt tightening."
+};
+
+function definitionFor(code, fullName) {
+  return UNIT_DEFINITIONS[code] || `${fullName} is one of the units supported by this converter.`;
+}
+
 // --- Keyword-research overrides --------------------------------------------
 // Formulaic title/meta generation leaves real keyword research on the table
 // for our highest-traffic pairs. This map swaps in the researched phrase
@@ -171,6 +283,8 @@ data.forEach(row => {
     .replaceAll('{{CATEGORY}}', row.category)
     .replaceAll('{{FORMULA_TEXT}}', buildFormulaText(row))
     .replaceAll('{{ONE_UNIT_RESULT}}', oneUnitResult)
+    .replaceAll('{{FROM_DEFINITION}}', definitionFor(row.from, row.fromFull))
+    .replaceAll('{{TO_DEFINITION}}', definitionFor(row.to, row.toFull))
     .replaceAll('{{COMMON_TABLE_ROWS}}', buildCommonTableRows(row))
     .replaceAll('{{RELATED_LINKS}}', buildRelatedLinks(row, data));
 

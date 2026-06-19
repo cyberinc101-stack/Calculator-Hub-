@@ -1,0 +1,247 @@
+[
+  {
+    "slug": "personal-loan-calculator",
+    "title": "Personal Loan Calculator — Monthly Payment & Amortization | CalcHub",
+    "metaDescription": "Free personal loan calculator. Calculate your monthly payment, total interest, and amortization schedule for an unsecured personal loan.",
+    "metaKeywords": "personal loan calculator,loan calculator personal loan,online personal loan calculator,unsecured loan calculator",
+    "icon": "💰",
+    "category": "Personal Loans",
+    "h1": "Personal Loan Calculator",
+    "intro": "Estimate the monthly payment, total interest, and amortization schedule for an unsecured personal loan based on your loan amount, rate, and term.",
+    "defaultExample": {
+      "principal": 15000,
+      "aprPercent": 12.5,
+      "termMonths": 48
+    },
+    "primaryKeyword": "personal loan calculator",
+    "searchVolume": 165000,
+    "relatedSlugs": [
+      "debt-consolidation-loan-calculator",
+      "student-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "What credit score do I need for a good personal loan rate?",
+        "a": "Lenders generally reserve their lowest advertised rates for borrowers with strong credit (typically scores above 700-720). Mid-range scores still qualify for personal loans but at progressively higher rates, and approval becomes harder below the low 600s without a co-signer or secured option."
+      },
+      {
+        "q": "Are personal loans fixed or variable rate?",
+        "a": "Most personal loans from banks, credit unions, and online lenders use a fixed rate and fixed monthly payment for the life of the loan, which makes budgeting straightforward compared to variable-rate products."
+      },
+      {
+        "q": "How fast can I pay off a personal loan early?",
+        "a": "Most personal loans allow early payoff without penalty, but it's worth confirming with your specific lender — a small number of loans include a prepayment penalty clause. Paying extra toward principal each month, even a modest amount, can meaningfully cut total interest."
+      }
+    ]
+  },
+  {
+    "slug": "debt-consolidation-loan-calculator",
+    "title": "Debt Consolidation Loan Calculator — Payment & Savings | CalcHub",
+    "metaDescription": "Free debt consolidation loan calculator. Estimate your new monthly payment and total interest when rolling credit card or multiple debts into one loan.",
+    "metaKeywords": "debt consolidation loan calculator,personal debt consolidation loan,credit card debt consolidation calculator,consolidation loan calculator",
+    "icon": "🔄",
+    "category": "Debt Consolidation",
+    "h1": "Debt Consolidation Loan Calculator",
+    "intro": "Estimate the monthly payment and total interest for a debt consolidation loan that combines credit card balances or other debts into a single fixed payment.",
+    "defaultExample": {
+      "principal": 20000,
+      "aprPercent": 13.5,
+      "termMonths": 48
+    },
+    "primaryKeyword": "personal debt consolidation loan",
+    "searchVolume": 74000,
+    "relatedSlugs": [
+      "personal-loan-calculator",
+      "student-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "Does debt consolidation actually save money?",
+        "a": "It can, if the new loan's APR is meaningfully lower than the blended rate of the debts you're combining — credit cards in particular often carry rates well above what a consolidation loan can offer. It mainly helps when paired with not running the old credit cards back up afterward."
+      },
+      {
+        "q": "Will a debt consolidation loan hurt my credit score?",
+        "a": "There's often a small, temporary dip from the credit check and new account, but consolidating can help your score over time by lowering your credit utilization on revolving accounts and creating a track record of on-time fixed payments."
+      },
+      {
+        "q": "Is a debt consolidation loan the same as a balance transfer card?",
+        "a": "No. A debt consolidation loan is an installment loan with a fixed rate and term, paid out as a lump sum used to pay off other debts. A balance transfer card moves revolving debt onto a new card, often with a promotional rate that expires after a set period."
+      }
+    ]
+  },
+  {
+    "slug": "student-loan-calculator",
+    "title": "Student Loan Calculator — Monthly Payment & Repayment Schedule | CalcHub",
+    "metaDescription": "Free student loan calculator. Estimate your monthly payment, total interest, and repayment schedule for federal or private student loans.",
+    "metaKeywords": "student loan calculator,student loan payment calculator,student loan repayment calculator,education loan calculator,estimate student loan repayment",
+    "icon": "🎓",
+    "category": "Student Loans",
+    "h1": "Student Loan Calculator",
+    "intro": "Estimate your monthly student loan payment, total interest, and repayment schedule for a federal or private education loan under a standard repayment plan.",
+    "defaultExample": {
+      "principal": 30000,
+      "aprPercent": 6.5,
+      "termMonths": 120
+    },
+    "primaryKeyword": "student loan calculator",
+    "searchVolume": 33100,
+    "relatedSlugs": [
+      "personal-loan-calculator",
+      "debt-consolidation-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "What's the standard student loan repayment term?",
+        "a": "The standard federal repayment plan spreads payments over 10 years. Other federal plans, including income-driven options, can extend repayment to 20-25 years with payments tied to income rather than a fixed amortization schedule."
+      },
+      {
+        "q": "Does this calculator work for income-driven repayment plans?",
+        "a": "Not directly — this models a standard fixed-payment amortizing loan. Income-driven plans calculate your payment as a percentage of discretionary income instead, so your actual payment under those plans may differ from a fixed amortization estimate."
+      },
+      {
+        "q": "Are federal student loan rates fixed or variable?",
+        "a": "Federal student loans issued since 2006 carry fixed rates set annually by Congress. Private student loans may offer either fixed or variable rates, with variable rates carrying the risk of increasing over the life of the loan."
+      }
+    ]
+  },
+  {
+    "slug": "business-loan-calculator",
+    "title": "Business Loan Calculator — Monthly Payment & Amortization | CalcHub",
+    "metaDescription": "Free business loan calculator. Calculate your monthly payment, total interest, and amortization schedule for a small business term loan.",
+    "metaKeywords": "business loan calculator,small business loan calculator,business loan payment calculator,business finance calculator",
+    "icon": "🏢",
+    "category": "Business Loans",
+    "h1": "Business Loan Calculator",
+    "intro": "Estimate the monthly payment, total interest, and amortization schedule for a small business term loan based on your loan amount, rate, and repayment term.",
+    "defaultExample": {
+      "principal": 100000,
+      "aprPercent": 9.5,
+      "termMonths": 60
+    },
+    "primaryKeyword": "business loan calculator",
+    "searchVolume": 18100,
+    "relatedSlugs": [
+      "sba-loan-calculator",
+      "commercial-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "What loan terms are typical for small business loans?",
+        "a": "Term loans for working capital or equipment commonly run 1 to 7 years, while loans secured by real estate can extend to 20-25 years. Shorter-term loans usually carry less total interest but higher monthly payments."
+      },
+      {
+        "q": "What factors affect my business loan rate?",
+        "a": "Lenders typically weigh your business and personal credit history, time in business, annual revenue, and whether the loan is secured by collateral. Newer businesses or those without collateral generally see higher rates."
+      },
+      {
+        "q": "Is a business loan different from an SBA loan?",
+        "a": "A conventional business loan is issued directly by a bank or lender using its own underwriting criteria. An SBA loan is also issued by a private lender but is partially guaranteed by the U.S. Small Business Administration, which often allows for lower rates or longer terms than a comparable conventional loan."
+      }
+    ]
+  },
+  {
+    "slug": "commercial-loan-calculator",
+    "title": "Commercial Loan Calculator — Real Estate & Property Financing | CalcHub",
+    "metaDescription": "Free commercial loan calculator for commercial real estate financing. Calculate your monthly payment, total interest, and amortization schedule.",
+    "metaKeywords": "commercial loan calculator,commercial real estate loan calculator,commercial property loan calculator,commercial business loan calculator",
+    "icon": "🏬",
+    "category": "Commercial Real Estate Loans",
+    "h1": "Commercial Loan Calculator",
+    "intro": "Estimate the monthly payment, total interest, and amortization schedule for a commercial real estate loan used to purchase or refinance office, retail, or industrial property.",
+    "defaultExample": {
+      "principal": 350000,
+      "aprPercent": 7.75,
+      "termMonths": 240
+    },
+    "primaryKeyword": "commercial loan calculator",
+    "searchVolume": 14800,
+    "relatedSlugs": [
+      "business-loan-calculator",
+      "sba-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "How are commercial real estate loan terms different from a home mortgage?",
+        "a": "Commercial loans often use a shorter amortization period than a typical 30-year home mortgage, and some include a balloon payment due at the end of a 5-10 year term even though payments are calculated as if amortizing over a longer period."
+      },
+      {
+        "q": "What down payment is typical for a commercial property loan?",
+        "a": "Down payments for commercial real estate are generally higher than residential mortgages, often in the 20-30% range, though this varies by property type, the borrower's financials, and whether the loan is SBA-backed."
+      },
+      {
+        "q": "Do commercial loans use fixed or variable rates?",
+        "a": "Both exist in the market. Some commercial loans offer a fixed rate for an initial period (such as 5 or 10 years) before adjusting, while others are fixed for the full term. Rate structure varies significantly by lender and loan program."
+      }
+    ]
+  },
+  {
+    "slug": "sba-loan-calculator",
+    "title": "SBA Loan Calculator — 7(a) & 504 Payment Estimator | CalcHub",
+    "metaDescription": "Free SBA loan calculator for 7(a) and 504 loans. Estimate your monthly payment, total interest, and amortization schedule.",
+    "metaKeywords": "sba loan calculator,sba 7a loan calculator,sba 504 loan calculator,sba loan payment calculator",
+    "icon": "🏛️",
+    "category": "SBA Loans",
+    "h1": "SBA Loan Calculator",
+    "intro": "Estimate the monthly payment, total interest, and amortization schedule for an SBA 7(a) or 504 loan based on your loan amount, rate, and term.",
+    "defaultExample": {
+      "principal": 150000,
+      "aprPercent": 9.75,
+      "termMonths": 120
+    },
+    "primaryKeyword": "sba loan calculator",
+    "searchVolume": 9900,
+    "relatedSlugs": [
+      "business-loan-calculator",
+      "commercial-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "What's the difference between an SBA 7(a) and 504 loan?",
+        "a": "A 7(a) loan is the SBA's most flexible program, usable for working capital, equipment, or real estate, typically through a single lender. A 504 loan is specifically for major fixed assets like real estate or large equipment and is structured through a bank loan plus a separate certified development company loan."
+      },
+      {
+        "q": "How long can SBA loan terms run?",
+        "a": "Terms vary by use: working capital SBA loans often run up to 10 years, while loans used to purchase real estate can extend to 25 years, reflecting the longer useful life of the asset being financed."
+      },
+      {
+        "q": "Are SBA loan rates lower than conventional business loans?",
+        "a": "Because SBA loans are partially government-guaranteed, lenders can often offer comparatively favorable rates and terms versus a similar conventional loan, though SBA loans also involve more documentation and a longer approval process."
+      }
+    ]
+  },
+  {
+    "slug": "truck-loan-calculator",
+    "title": "Truck Loan Calculator — Monthly Payment & Amortization | CalcHub",
+    "metaDescription": "Free truck loan calculator for pickups, commercial trucks, and fleet financing. Calculate your monthly payment, total interest, and amortization schedule.",
+    "metaKeywords": "truck loan calculator,truck payment calculator,truck finance calculator,commercial truck loan calculator,fleet financing calculator",
+    "icon": "🚚",
+    "category": "Truck & Fleet Loans",
+    "h1": "Truck Loan Calculator",
+    "intro": "Calculate your monthly payment for a pickup, commercial truck, or fleet vehicle purchase, including total interest and a full amortization schedule.",
+    "defaultExample": {
+      "principal": 55000,
+      "aprPercent": 8.0,
+      "termMonths": 72
+    },
+    "primaryKeyword": "truck loan calculator",
+    "searchVolume": 5400,
+    "relatedSlugs": [
+      "motorcycle-loan-calculator",
+      "business-loan-calculator"
+    ],
+    "faq": [
+      {
+        "q": "Are commercial truck loan terms different from a personal vehicle loan?",
+        "a": "Commercial truck loans often allow longer terms than personal auto loans, sometimes 6-7 years or more, since trucks used for business have a longer expected service life and higher price tags."
+      },
+      {
+        "q": "Can a truck loan be used for fleet purchases?",
+        "a": "Yes — many lenders offer fleet financing structured similarly to a single-vehicle truck loan, sometimes with volume-based rate discounts for purchasing multiple vehicles at once."
+      },
+      {
+        "q": "Does a truck loan rate depend on personal or business credit?",
+        "a": "It depends on how the loan is structured. Loans taken out by an individual typically rely on personal credit, while loans under a business entity may weigh business credit history, revenue, and time in business alongside or instead of personal credit."
+      }
+    ]
+  }
+]

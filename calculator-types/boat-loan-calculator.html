@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boat Loan Calculator — Monthly Payment & Amortization | CalcHub</title>
+<meta name="description" content="Free boat loan calculator for new and used boats, pontoons, and yachts. Calculate your monthly payment, total interest, and full amortization schedule.">
+<meta name="keywords" content="boat loan calculator,yacht loan calculator,boat payment calculator,boat finance calculator,marine loan calculator,boat financing calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/boat-loan-calculator.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long can a boat loan term be?","acceptedAnswer":{"@type":"Answer","text":"Boat loan terms commonly range from 10 to 20 years depending on the loan amount and the boat's age. Larger loans on newer boats tend to qualify for longer terms, while loans on older used boats are often capped at shorter terms by the lender."}},{"@type":"Question","name":"Are boat loan rates higher than auto loan rates?","acceptedAnswer":{"@type":"Answer","text":"Generally yes. Boats are considered a higher-risk collateral category than cars because they depreciate quickly and have a smaller resale market, so boat loan APRs typically run higher than comparable auto loan rates. Exact rates vary significantly by lender, credit score, and loan-to-value ratio."}},{"@type":"Question","name":"Do I need a down payment for a boat loan?","acceptedAnswer":{"@type":"Answer","text":"Most lenders require a down payment of 10-20% of the purchase price, though this varies by loan amount and lender. A larger down payment typically improves your approval odds and can qualify you for a better rate."}}]}</script>
+<style>
+  /* Fallback styling for elements not yet in base.css/layout.css —
+     safe to delete any rule here once an equivalent exists site-wide. */
+  .calc-box{border:1px solid var(--border,#2a2f3a);border-radius:12px;padding:24px;margin:24px 0;background:var(--card-bg,#161a22);}
+  .calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .calc-row label{font-size:.85rem;opacity:.75;}
+  .calc-row input{padding:10px 12px;border-radius:8px;border:1px solid var(--border,#2a2f3a);background:var(--input-bg,#0f1218);color:inherit;font-size:1rem;}
+  .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid var(--border,#2a2f3a);}
+  .calc-results .res-label{font-size:.78rem;opacity:.65;display:block;}
+  .calc-results .res-value{font-size:1.3rem;font-weight:700;}
+  .faq-item{margin-bottom:18px;}
+  .faq-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .faq-item p{opacity:.85;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <div class="hero-eyebrow">⛵ Boat & Marine Loans</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Boat Loan Calculator</h1>
+  <p class="hero-sub">Estimate your monthly boat payment, total interest, and amortization schedule for a new or used boat, pontoon, or yacht purchase.</p>
+</div>
+
+<div class="calc-box">
+  <div class="calc-row">
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" value="45000" min="0" step="100">
+  </div>
+  <div class="calc-row">
+    <label for="aprRate">Interest Rate / APR (%)</label>
+    <input type="number" id="aprRate" value="8.25" min="0" step="0.01">
+  </div>
+  <div class="calc-row">
+    <label for="termMonths">Loan Term (months)</label>
+    <input type="number" id="termMonths" value="180" min="1" step="1">
+  </div>
+  <div class="calc-results">
+    <div><span class="res-label">Monthly Payment</span><span class="res-value" id="resPayment">$436.56</span></div>
+    <div><span class="res-label">Total Interest</span><span class="res-value" id="resInterest">$33,580.80</span></div>
+    <div><span class="res-label">Total Paid</span><span class="res-value" id="resTotal">$78,580.80</span></div>
+  </div>
+</div>
+
+<div class="seo-box">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How long can a boat loan term be?</h3>
+        <p>Boat loan terms commonly range from 10 to 20 years depending on the loan amount and the boat's age. Larger loans on newer boats tend to qualify for longer terms, while loans on older used boats are often capped at shorter terms by the lender.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are boat loan rates higher than auto loan rates?</h3>
+        <p>Generally yes. Boats are considered a higher-risk collateral category than cars because they depreciate quickly and have a smaller resale market, so boat loan APRs typically run higher than comparable auto loan rates. Exact rates vary significantly by lender, credit score, and loan-to-value ratio.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need a down payment for a boat loan?</h3>
+        <p>Most lenders require a down payment of 10-20% of the purchase price, though this varies by loan amount and lender. A larger down payment typically improves your approval odds and can qualify you for a better rate.</p>
+      </div>
+
+  <h2>Related Calculators</h2>
+  <ul>
+    <li><a href="rv-loan-calculator.html">RV Loan Calculator</a></li>
+    <li><a href="personal-loan-calculator.html">Personal Loan Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  const amountEl = document.getElementById('loanAmount');
+  const aprEl = document.getElementById('aprRate');
+  const termEl = document.getElementById('termMonths');
+  const payEl = document.getElementById('resPayment');
+  const intEl = document.getElementById('resInterest');
+  const totEl = document.getElementById('resTotal');
+
+  function fmt(n){ return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function recalc(){
+    const principal = parseFloat(amountEl.value) || 0;
+    const apr = parseFloat(aprEl.value) || 0;
+    const n = parseInt(termEl.value) || 1;
+    const r = (apr / 100) / 12;
+    const payment = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - principal;
+    payEl.textContent = '$' + fmt(payment);
+    intEl.textContent = '$' + fmt(totalInterest);
+    totEl.textContent = '$' + fmt(totalPaid);
+  }
+
+  [amountEl, aprEl, termEl].forEach(el => el.addEventListener('input', recalc));
+  recalc();
+})();
+</script>
+</body>
+</html>

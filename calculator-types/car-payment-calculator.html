@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Car Payment Calculator | Estimate Your Monthly Car Payment | CalcHub</title>
+<meta name="description" content="Estimate your monthly car payment instantly. Enter vehicle price, down payment, trade-in, interest rate and loan term to see your true monthly cost.">
+<meta name="keywords" content="car payment calculator,estimate car payment calculator,auto car payment calculator,monthly car payment calculator,auto monthly payment calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/car-payment-calculator.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is a monthly car payment calculated?","acceptedAnswer":{"@type":"Answer","text":"Monthly payment is calculated using the loan amortization formula: M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan principal after down payment/trade-in, r is your monthly interest rate, and n is the loan term in months."}},{"@type":"Question","name":"What's a good interest rate for a car payment calculator estimate?","acceptedAnswer":{"@type":"Answer","text":"Rates vary by credit score and loan term, typically ranging from around 5% for excellent credit to 15%+ for subprime borrowers. Use your actual pre-approval rate for the most accurate estimate."}}]}</script>
+<style>
+  /* Fallback styling for elements not yet in base.css/layout.css —
+     safe to delete any rule here once an equivalent exists site-wide. */
+  .calc-box{border:1px solid var(--border,#2a2f3a);border-radius:12px;padding:24px;margin:24px 0;background:var(--card-bg,#161a22);}
+  .calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .calc-row label{font-size:.85rem;opacity:.75;}
+  .calc-row input{padding:10px 12px;border-radius:8px;border:1px solid var(--border,#2a2f3a);background:var(--input-bg,#0f1218);color:inherit;font-size:1rem;}
+  .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid var(--border,#2a2f3a);}
+  .calc-results .res-label{font-size:.78rem;opacity:.65;display:block;}
+  .calc-results .res-value{font-size:1.3rem;font-weight:700;}
+  .faq-item{margin-bottom:18px;}
+  .faq-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .faq-item p{opacity:.85;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <div class="hero-eyebrow">🚗 Auto & Vehicle</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Car Payment Calculator</h1>
+  <p class="hero-sub">Figure out what a car will actually cost you per month before you talk to a dealer. Factor in trade-in value, down payment, sales tax, and your real interest rate.</p>
+</div>
+
+<div class="calc-box">
+  <div class="calc-row">
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" value="28000" min="0" step="100">
+  </div>
+  <div class="calc-row">
+    <label for="aprRate">Interest Rate / APR (%)</label>
+    <input type="number" id="aprRate" value="6.9" min="0" step="0.01">
+  </div>
+  <div class="calc-row">
+    <label for="termMonths">Loan Term (months)</label>
+    <input type="number" id="termMonths" value="60" min="1" step="1">
+  </div>
+  <div class="calc-results">
+    <div><span class="res-label">Monthly Payment</span><span class="res-value" id="resPayment">$553.11</span></div>
+    <div><span class="res-label">Total Interest</span><span class="res-value" id="resInterest">$5,186.60</span></div>
+    <div><span class="res-label">Total Paid</span><span class="res-value" id="resTotal">$33,186.60</span></div>
+  </div>
+</div>
+
+<div class="seo-box">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How is a monthly car payment calculated?</h3>
+        <p>Monthly payment is calculated using the loan amortization formula: M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan principal after down payment/trade-in, r is your monthly interest rate, and n is the loan term in months.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What's a good interest rate for a car payment calculator estimate?</h3>
+        <p>Rates vary by credit score and loan term, typically ranging from around 5% for excellent credit to 15%+ for subprime borrowers. Use your actual pre-approval rate for the most accurate estimate.</p>
+      </div>
+
+  <h2>Related Calculators</h2>
+  <ul>
+    <li><a href="vehicle-loan-payment-calculator.html">Vehicle Loan Payment Calculator</a></li>
+    <li><a href="motorcycle-loan-calculator.html">Motorcycle Loan Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  const amountEl = document.getElementById('loanAmount');
+  const aprEl = document.getElementById('aprRate');
+  const termEl = document.getElementById('termMonths');
+  const payEl = document.getElementById('resPayment');
+  const intEl = document.getElementById('resInterest');
+  const totEl = document.getElementById('resTotal');
+
+  function fmt(n){ return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function recalc(){
+    const principal = parseFloat(amountEl.value) || 0;
+    const apr = parseFloat(aprEl.value) || 0;
+    const n = parseInt(termEl.value) || 1;
+    const r = (apr / 100) / 12;
+    const payment = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - principal;
+    payEl.textContent = '$' + fmt(payment);
+    intEl.textContent = '$' + fmt(totalInterest);
+    totEl.textContent = '$' + fmt(totalPaid);
+  }
+
+  [amountEl, aprEl, termEl].forEach(el => el.addEventListener('input', recalc));
+  recalc();
+})();
+</script>
+</body>
+</html>

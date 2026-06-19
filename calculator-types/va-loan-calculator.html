@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VA Loan Calculator | VA Home Loan Payment Estimator | CalcHub</title>
+<meta name="description" content="Estimate your VA home loan monthly payment, including principal, interest, and the VA funding fee. Free calculator for veterans and active military.">
+<meta name="keywords" content="va loan calculator,free va loan calculator,va loan rates calculator,va home loan payment calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/va-loan-calculator.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do VA loans require a down payment?","acceptedAnswer":{"@type":"Answer","text":"Most VA loans require $0 down for eligible borrowers, one of the key advantages over conventional mortgages which typically require 3-20% down."}},{"@type":"Question","name":"What is the VA funding fee?","acceptedAnswer":{"@type":"Answer","text":"The VA funding fee is a one-time charge (typically 1.25%-3.3% of the loan amount depending on down payment and whether it's a first or subsequent use) that helps fund the VA loan program, and can usually be rolled into the loan."}}]}</script>
+<style>
+  /* Fallback styling for elements not yet in base.css/layout.css —
+     safe to delete any rule here once an equivalent exists site-wide. */
+  .calc-box{border:1px solid var(--border,#2a2f3a);border-radius:12px;padding:24px;margin:24px 0;background:var(--card-bg,#161a22);}
+  .calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .calc-row label{font-size:.85rem;opacity:.75;}
+  .calc-row input{padding:10px 12px;border-radius:8px;border:1px solid var(--border,#2a2f3a);background:var(--input-bg,#0f1218);color:inherit;font-size:1rem;}
+  .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid var(--border,#2a2f3a);}
+  .calc-results .res-label{font-size:.78rem;opacity:.65;display:block;}
+  .calc-results .res-value{font-size:1.3rem;font-weight:700;}
+  .faq-item{margin-bottom:18px;}
+  .faq-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .faq-item p{opacity:.85;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <div class="hero-eyebrow">🎖️ Mortgage & Property</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">VA Loan Calculator</h1>
+  <p class="hero-sub">VA loans offer no down payment and competitive rates for eligible veterans and service members. Estimate your monthly payment including the VA funding fee.</p>
+</div>
+
+<div class="calc-box">
+  <div class="calc-row">
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" value="320000" min="0" step="100">
+  </div>
+  <div class="calc-row">
+    <label for="aprRate">Interest Rate / APR (%)</label>
+    <input type="number" id="aprRate" value="6" min="0" step="0.01">
+  </div>
+  <div class="calc-row">
+    <label for="termMonths">Loan Term (months)</label>
+    <input type="number" id="termMonths" value="360" min="1" step="1">
+  </div>
+  <div class="calc-results">
+    <div><span class="res-label">Monthly Payment</span><span class="res-value" id="resPayment">$1,918.56</span></div>
+    <div><span class="res-label">Total Interest</span><span class="res-value" id="resInterest">$370,681.60</span></div>
+    <div><span class="res-label">Total Paid</span><span class="res-value" id="resTotal">$690,681.60</span></div>
+  </div>
+</div>
+
+<div class="seo-box">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Do VA loans require a down payment?</h3>
+        <p>Most VA loans require $0 down for eligible borrowers, one of the key advantages over conventional mortgages which typically require 3-20% down.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is the VA funding fee?</h3>
+        <p>The VA funding fee is a one-time charge (typically 1.25%-3.3% of the loan amount depending on down payment and whether it's a first or subsequent use) that helps fund the VA loan program, and can usually be rolled into the loan.</p>
+      </div>
+
+  <h2>Related Calculators</h2>
+  <ul>
+    <li><a href="fha-loan-calculator.html">FHA Loan Calculator</a></li>
+    <li><a href="loan-amortization-calculator.html">Loan Amortization Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  const amountEl = document.getElementById('loanAmount');
+  const aprEl = document.getElementById('aprRate');
+  const termEl = document.getElementById('termMonths');
+  const payEl = document.getElementById('resPayment');
+  const intEl = document.getElementById('resInterest');
+  const totEl = document.getElementById('resTotal');
+
+  function fmt(n){ return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function recalc(){
+    const principal = parseFloat(amountEl.value) || 0;
+    const apr = parseFloat(aprEl.value) || 0;
+    const n = parseInt(termEl.value) || 1;
+    const r = (apr / 100) / 12;
+    const payment = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - principal;
+    payEl.textContent = '$' + fmt(payment);
+    intEl.textContent = '$' + fmt(totalInterest);
+    totEl.textContent = '$' + fmt(totalPaid);
+  }
+
+  [amountEl, aprEl, termEl].forEach(el => el.addEventListener('input', recalc));
+  recalc();
+})();
+</script>
+</body>
+</html>

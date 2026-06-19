@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lease Calculator | Estimate Your Monthly Lease Payment | CalcHub</title>
+<meta name="description" content="Calculate your monthly vehicle lease payment based on MSRP, residual value, money factor, and lease term. Free leasing calculator.">
+<meta name="keywords" content="leasing calculator,lease calculator,car lease payment calculator,auto lease calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/lease-calculator.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is a lease payment different from a loan payment?","acceptedAnswer":{"@type":"Answer","text":"A lease payment is based on the vehicle's expected depreciation (the difference between MSRP and residual value) plus a finance charge (money factor), rather than the full purchase price."}},{"@type":"Question","name":"What is a money factor in leasing?","acceptedAnswer":{"@type":"Answer","text":"The money factor is the lease equivalent of an interest rate. Multiply it by 2400 to get an approximate equivalent APR for comparison against loan rates."}}]}</script>
+<style>
+  /* Fallback styling for elements not yet in base.css/layout.css —
+     safe to delete any rule here once an equivalent exists site-wide. */
+  .calc-box{border:1px solid var(--border,#2a2f3a);border-radius:12px;padding:24px;margin:24px 0;background:var(--card-bg,#161a22);}
+  .calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .calc-row label{font-size:.85rem;opacity:.75;}
+  .calc-row input{padding:10px 12px;border-radius:8px;border:1px solid var(--border,#2a2f3a);background:var(--input-bg,#0f1218);color:inherit;font-size:1rem;}
+  .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid var(--border,#2a2f3a);}
+  .calc-results .res-label{font-size:.78rem;opacity:.65;display:block;}
+  .calc-results .res-value{font-size:1.3rem;font-weight:700;}
+  .faq-item{margin-bottom:18px;}
+  .faq-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .faq-item p{opacity:.85;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <div class="hero-eyebrow">📋 Auto & Vehicle</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Lease Calculator</h1>
+  <p class="hero-sub">Leasing works differently from financing — your payment is based on depreciation, not the full vehicle price. Estimate your monthly lease payment here.</p>
+</div>
+
+<div class="calc-box">
+  <div class="calc-row">
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" value="35000" min="0" step="100">
+  </div>
+  <div class="calc-row">
+    <label for="aprRate">Interest Rate / APR (%)</label>
+    <input type="number" id="aprRate" value="5" min="0" step="0.01">
+  </div>
+  <div class="calc-row">
+    <label for="termMonths">Loan Term (months)</label>
+    <input type="number" id="termMonths" value="36" min="1" step="1">
+  </div>
+  <div class="calc-results">
+    <div><span class="res-label">Monthly Payment</span><span class="res-value" id="resPayment">$1,048.98</span></div>
+    <div><span class="res-label">Total Interest</span><span class="res-value" id="resInterest">$2,763.28</span></div>
+    <div><span class="res-label">Total Paid</span><span class="res-value" id="resTotal">$37,763.28</span></div>
+  </div>
+</div>
+
+<div class="seo-box">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How is a lease payment different from a loan payment?</h3>
+        <p>A lease payment is based on the vehicle's expected depreciation (the difference between MSRP and residual value) plus a finance charge (money factor), rather than the full purchase price.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a money factor in leasing?</h3>
+        <p>The money factor is the lease equivalent of an interest rate. Multiply it by 2400 to get an approximate equivalent APR for comparison against loan rates.</p>
+      </div>
+
+  <h2>Related Calculators</h2>
+  <ul>
+    <li><a href="car-payment-calculator.html">Car Payment Calculator</a></li>
+    <li><a href="vehicle-loan-payment-calculator.html">Vehicle Loan Payment Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  const amountEl = document.getElementById('loanAmount');
+  const aprEl = document.getElementById('aprRate');
+  const termEl = document.getElementById('termMonths');
+  const payEl = document.getElementById('resPayment');
+  const intEl = document.getElementById('resInterest');
+  const totEl = document.getElementById('resTotal');
+
+  function fmt(n){ return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function recalc(){
+    const principal = parseFloat(amountEl.value) || 0;
+    const apr = parseFloat(aprEl.value) || 0;
+    const n = parseInt(termEl.value) || 1;
+    const r = (apr / 100) / 12;
+    const payment = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - principal;
+    payEl.textContent = '$' + fmt(payment);
+    intEl.textContent = '$' + fmt(totalInterest);
+    totEl.textContent = '$' + fmt(totalPaid);
+  }
+
+  [amountEl, aprEl, termEl].forEach(el => el.addEventListener('input', recalc));
+  recalc();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home Equity Loan Calculator — Payment & Amortization Schedule | CalcHub</title>
+<meta name="description" content="Free home equity loan calculator. Calculate your fixed monthly payment, total interest, and amortization schedule for a second mortgage against your home's equity.">
+<meta name="keywords" content="home equity loan calculator,heloc loan calculator,equity loan calculator,second mortgage calculator">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/home-equity-loan-calculator.html">
+<link rel="stylesheet" href="../css/vars.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between a home equity loan and a HELOC?","acceptedAnswer":{"@type":"Answer","text":"A home equity loan gives you a lump sum upfront with a fixed rate and fixed monthly payment, similar to a second mortgage. A HELOC (home equity line of credit) works more like a credit card — a revolving credit line, often with a variable rate and an interest-only draw period before repayment begins. This calculator models the fixed-payment home equity loan structure."}},{"@type":"Question","name":"How much equity do I need to qualify?","acceptedAnswer":{"@type":"Answer","text":"Most lenders want you to retain at least 15-20% equity in your home after the new loan, meaning your combined mortgage and home equity loan balance generally can't exceed 80-85% of your home's appraised value."}},{"@type":"Question","name":"What can a home equity loan be used for?","acceptedAnswer":{"@type":"Answer","text":"Common uses include home renovations, debt consolidation, and major expenses, since the fixed payment and lump-sum structure make it easier to budget for a specific, known cost compared to a revolving HELOC."}}]}</script>
+<style>
+  /* Fallback styling for elements not yet in base.css/layout.css —
+     safe to delete any rule here once an equivalent exists site-wide. */
+  .calc-box{border:1px solid var(--border,#2a2f3a);border-radius:12px;padding:24px;margin:24px 0;background:var(--card-bg,#161a22);}
+  .calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .calc-row label{font-size:.85rem;opacity:.75;}
+  .calc-row input{padding:10px 12px;border-radius:8px;border:1px solid var(--border,#2a2f3a);background:var(--input-bg,#0f1218);color:inherit;font-size:1rem;}
+  .calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid var(--border,#2a2f3a);}
+  .calc-results .res-label{font-size:.78rem;opacity:.65;display:block;}
+  .calc-results .res-value{font-size:1.3rem;font-weight:700;}
+  .faq-item{margin-bottom:18px;}
+  .faq-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .faq-item p{opacity:.85;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <div class="hero-eyebrow">🏡 Home Equity Loans</div>
+  <h1 style="font-size:clamp(1.6rem,4vw,2.4rem)">Home Equity Loan Calculator</h1>
+  <p class="hero-sub">Calculate the fixed monthly payment, total interest, and amortization schedule for a home equity loan — a lump-sum second mortgage borrowed against your home's equity. Note this models a fixed-rate home equity loan specifically, not a revolving HELOC line of credit, which typically has a separate variable-rate draw period.</p>
+</div>
+
+<div class="calc-box">
+  <div class="calc-row">
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" value="50000" min="0" step="100">
+  </div>
+  <div class="calc-row">
+    <label for="aprRate">Interest Rate / APR (%)</label>
+    <input type="number" id="aprRate" value="8.5" min="0" step="0.01">
+  </div>
+  <div class="calc-row">
+    <label for="termMonths">Loan Term (months)</label>
+    <input type="number" id="termMonths" value="180" min="1" step="1">
+  </div>
+  <div class="calc-results">
+    <div><span class="res-label">Monthly Payment</span><span class="res-value" id="resPayment">$492.37</span></div>
+    <div><span class="res-label">Total Interest</span><span class="res-value" id="resInterest">$38,626.60</span></div>
+    <div><span class="res-label">Total Paid</span><span class="res-value" id="resTotal">$88,626.60</span></div>
+  </div>
+</div>
+
+<div class="seo-box">
+  <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>What's the difference between a home equity loan and a HELOC?</h3>
+        <p>A home equity loan gives you a lump sum upfront with a fixed rate and fixed monthly payment, similar to a second mortgage. A HELOC (home equity line of credit) works more like a credit card — a revolving credit line, often with a variable rate and an interest-only draw period before repayment begins. This calculator models the fixed-payment home equity loan structure.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How much equity do I need to qualify?</h3>
+        <p>Most lenders want you to retain at least 15-20% equity in your home after the new loan, meaning your combined mortgage and home equity loan balance generally can't exceed 80-85% of your home's appraised value.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What can a home equity loan be used for?</h3>
+        <p>Common uses include home renovations, debt consolidation, and major expenses, since the fixed payment and lump-sum structure make it easier to budget for a specific, known cost compared to a revolving HELOC.</p>
+      </div>
+
+  <h2>Related Calculators</h2>
+  <ul>
+    <li><a href="construction-loan-calculator.html">Construction Loan Calculator</a></li>
+    <li><a href="debt-consolidation-loan-calculator.html">Debt Consolidation Loan Calculator</a></li>
+  </ul>
+</div>
+
+<div id="site-footer"></div>
+</div>
+<script src="../js/app.js"></script>
+<script>
+(function(){
+  const amountEl = document.getElementById('loanAmount');
+  const aprEl = document.getElementById('aprRate');
+  const termEl = document.getElementById('termMonths');
+  const payEl = document.getElementById('resPayment');
+  const intEl = document.getElementById('resInterest');
+  const totEl = document.getElementById('resTotal');
+
+  function fmt(n){ return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function recalc(){
+    const principal = parseFloat(amountEl.value) || 0;
+    const apr = parseFloat(aprEl.value) || 0;
+    const n = parseInt(termEl.value) || 1;
+    const r = (apr / 100) / 12;
+    const payment = r === 0 ? principal / n : principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = payment * n;
+    const totalInterest = totalPaid - principal;
+    payEl.textContent = '$' + fmt(payment);
+    intEl.textContent = '$' + fmt(totalInterest);
+    totEl.textContent = '$' + fmt(totalPaid);
+  }
+
+  [amountEl, aprEl, termEl].forEach(el => el.addEventListener('input', recalc));
+  recalc();
+})();
+</script>
+</body>
+</html>
