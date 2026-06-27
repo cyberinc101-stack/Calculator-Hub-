@@ -66,11 +66,72 @@
       +'<div id="toast"></div>';
   }
 
+  function injectHeroBg(){
+    var hero = document.querySelector('.hero');
+    if(!hero) return;
+    // Don't inject on the homepage (it already has it)
+    if(document.querySelector('.hero-bg')) return;
+    var css = '<style id="hero-bg-style">'
+      +'.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}'
+      +'.hero-bg svg{width:100%;height:100%;display:block}'
+      +'.hero>*:not(.hero-bg){position:relative;z-index:1}'
+      +'.hero-bg .hb-blob-1{fill:var(--accent-mid,#5b5bf0);opacity:.34}'
+      +'.hero-bg .hb-blob-2{fill:#ffb86b;opacity:.28}'
+      +'.hero-bg .hb-blob-3{fill:var(--accent-mid,#5b5bf0);opacity:.20}'
+      +'.hero-bg .hb-blob-4{fill:#7CFA9C;opacity:.26}'
+      +'.hero-bg .hb-blob-5{fill:#FFD76A;opacity:.20}'
+      +'.hero-bg .hb-keys rect{fill:none;stroke:var(--accent-mid,#5b5bf0);stroke-width:2;opacity:.26}'
+      +'.hero-bg .hb-symbol{font-family:var(--font-sans);font-weight:700;fill:var(--accent-mid,#5b5bf0);opacity:.17}'
+      +'.hero-bg .hb-frame{fill:none;stroke:var(--accent-mid,#5b5bf0);stroke-width:2;opacity:.10}'
+      +'[data-theme="dark"] .hero-bg .hb-blob-1{opacity:.42}'
+      +'[data-theme="dark"] .hero-bg .hb-blob-2{opacity:.34}'
+      +'[data-theme="dark"] .hero-bg .hb-blob-3{opacity:.26}'
+      +'[data-theme="dark"] .hero-bg .hb-blob-4{opacity:.32}'
+      +'[data-theme="dark"] .hero-bg .hb-blob-5{opacity:.26}'
+      +'[data-theme="dark"] .hero-bg .hb-keys rect{opacity:.32}'
+      +'[data-theme="dark"] .hero-bg .hb-symbol{opacity:.22}'
+      +'[data-theme="dark"] .hero-bg .hb-frame{opacity:.16}'
+      +'</style>';
+    var svg = '<div class="hero-bg" aria-hidden="true">'
+      +'<svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><filter id="heroBlur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="55"/></filter></defs>'
+      +'<rect class="hb-frame" x="250" y="-60" width="720" height="420" rx="64" transform="rotate(-5 610 150)"/>'
+      +'<ellipse class="hb-blob-1" cx="980" cy="40" rx="260" ry="180" filter="url(#heroBlur)"/>'
+      +'<ellipse class="hb-blob-2" cx="140" cy="280" rx="230" ry="140" filter="url(#heroBlur)"/>'
+      +'<ellipse class="hb-blob-3" cx="600" cy="20" rx="170" ry="100" filter="url(#heroBlur)"/>'
+      +'<ellipse class="hb-blob-4" cx="260" cy="70" rx="150" ry="90" filter="url(#heroBlur)"/>'
+      +'<ellipse class="hb-blob-5" cx="880" cy="290" rx="150" ry="90" filter="url(#heroBlur)"/>'
+      +'<g class="hb-keys" transform="translate(55,20) rotate(-9)">'
+      +'<rect x="0" y="0" width="32" height="32" rx="9"/><rect x="44" y="0" width="32" height="32" rx="9"/><rect x="88" y="0" width="32" height="32" rx="9"/>'
+      +'<rect x="0" y="44" width="32" height="32" rx="9"/><rect x="44" y="44" width="32" height="32" rx="9"/><rect x="88" y="44" width="32" height="32" rx="9"/>'
+      +'</g>'
+      +'<g class="hb-keys" transform="translate(1015,200) rotate(11)">'
+      +'<rect x="0" y="0" width="26" height="26" rx="7"/><rect x="36" y="0" width="26" height="26" rx="7"/>'
+      +'<rect x="0" y="36" width="26" height="26" rx="7"/><rect x="36" y="36" width="26" height="26" rx="7"/>'
+      +'</g>'
+      +'<text class="hb-symbol" x="110" y="180" font-size="74" transform="rotate(-11 110 180)">÷</text>'
+      +'<text class="hb-symbol" x="1075" y="140" font-size="64" transform="rotate(9 1075 140)">×</text>'
+      +'<text class="hb-symbol" x="970" y="285" font-size="58" transform="rotate(-7 970 285)">%</text>'
+      +'<text class="hb-symbol" x="55" y="260" font-size="60" transform="rotate(8 55 260)">=</text>'
+      +'<text class="hb-symbol" x="690" y="290" font-size="68" transform="rotate(-5 690 290)">+</text>'
+      +'<text class="hb-symbol" x="330" y="285" font-size="52" transform="rotate(6 330 285)">√</text>'
+      +'<text class="hb-symbol" x="1140" y="180" font-size="56" transform="rotate(-8 1140 180)">π</text>'
+      +'</svg></div>';
+    // Inject CSS once into head
+    if(!document.getElementById('hero-bg-style')){
+      document.head.insertAdjacentHTML('beforeend', css);
+    }
+    // Make hero position:relative if not already
+    hero.style.position = 'relative';
+    hero.insertAdjacentHTML('afterbegin', svg);
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     var h = document.getElementById('site-header');
     var f = document.getElementById('site-footer');
     if(h) h.outerHTML = buildHeader();
     if(f) f.outerHTML = buildFooter();
+    injectHeroBg();
 
     // Apply saved theme
     var saved = localStorage.getItem('calchub_theme') || 'light';
