@@ -1,4 +1,9 @@
-$root=(Resolve-Path "$PSScriptRoot\..").Path; Set-Location $root; $u=New-Object Text.UTF8Encoding $false; $CT="$root\calculator-types"
+# seo-system/publish.ps1
+# Run after the generators. Sorts new pages into calculator-types subfolders, fixes links,
+# adds new pages to sitemap.xml, then adds the AdSense block (core/inject-ads.js) to every page.
+# Use -NoAds to skip the last step.
+param([switch]$NoAds)
+$root=(Resolve-Path "$PSScriptRoot\..").Path; Set-Location $root; $u=New-Object Text.UTF8Encoding $false; $strict=New-Object Text.UTF8Encoding $false,$true; $CT="$root\calculator-types"
 $G=@{finance='compound-interest credit-card-payoff debt-snowball-avalanche bankruptcy-calculator retirement savings-goal roi profit-margin markup break-even budget-planner net-worth currency-converter gst-vat payroll-tax employee-cost invoice saas-mrr-arr tip bill-split'
 health='bmi calorie calories-burned body-fat ideal-weight macro blood-pressure heart-rate-zones one-rep-max running-pace vo2-max sleep water-intake bac-calculator ovulation pregnancy-due-date'
 'math-science'='percentage fraction ratio gcf-lcm prime-number-checker quadratic-equation-solver scientific-notation half-life ohms-law density wavelength-frequency area volume'
@@ -16,10 +21,11 @@ function Fix($t){
  [regex]::Replace($t,'(?<=["''/])calculator-types/([a-z0-9-]+)\.html',{param($x) $p=$MAP[$x.Groups[1].Value]; if($p){'calculator-types/'+$p}else{$x.Value}}) }
 New-Item -Force -ItemType Directory "$root\_archive" | Out-Null; Copy-Item "$root\sitemap.xml" "$root\_archive\sitemap.xml.bak-$(Get-Date -f yyyyMMdd-HHmmss)"
 $files=@(gci $CT -Recurse -Filter *.html)+@(gci "$root\pages" -Filter *.html)+@(gci "$root\js" -Filter *.js)+@(gi "$root\index.html","$root\sitemap.xml","$root\robots.txt" -ea 0)
-$n=0; foreach($f in $files){ $t=[IO.File]::ReadAllText($f.FullName); $o=Fix $t; if($f.Name -eq 'app.js'){$o=$o.Replace("return location.pathname.includes('/calculator-types/') ? '../' : '';","return '/';")}; if($o -ne $t){[IO.File]::WriteAllText($f.FullName,$o,$u);$n++} }
+$n=0; $bad=@(); foreach($f in $files){ try{ $t=$strict.GetString([IO.File]::ReadAllBytes($f.FullName)) }catch{ $bad+=$f.Name; continue }; if($t.Contains([string][char]0xFFFD)){ $bad+=$f.Name; continue }; $o=Fix $t; if($f.Name -eq 'app.js'){$o=$o.Replace("return location.pathname.includes('/calculator-types/') ? '../' : '';","return '/';")}; if($o -ne $t){[IO.File]::WriteAllText($f.FullName,$o,$u);$n++} }
 if(-not (Test-Path "$root\vercel.json") -and $mv.Count){ $rd=@($mv.Keys | sort | % { [ordered]@{source="/calculator-types/$_.html";destination="/calculator-types/$($mv[$_])";permanent=$true} }); [IO.File]::WriteAllText("$root\vercel.json",(ConvertTo-Json @{redirects=$rd} -Depth 4),$u) }
 foreach($k in $mv.Keys){ $dst="$CT\$($mv[$k].Replace('/','\'))"; New-Item -Force -ItemType Directory (Split-Path $dst) | Out-Null; Move-Item "$CT\$k.html" $dst -Force }
 $sm=[IO.File]::ReadAllText("$root\sitemap.xml"); $b=[regex]::Match($sm,'<loc>(https?://[^/<]+)').Groups[1].Value
 $add=@(gci $CT -Recurse -Filter *.html | % { $q='calculator-types/'+$_.FullName.Substring($CT.Length+1).Replace('\','/'); if(-not $sm.Contains("/$q<")){ $pr=if($q -like '*loan*'){'0.8'}else{'0.7'}; "  <url><loc>$b/$q</loc><priority>$pr</priority><changefreq>monthly</changefreq></url>" } })
 if($b -and $add.Count){[IO.File]::WriteAllText("$root\sitemap.xml",$sm.Replace('</urlset>',(($add -join "`n")+"`n</urlset>")),$u)}
-"moved: $($mv.Count) | files rewritten: $n | sitemap added: $($add.Count) | unmapped: $($warn -join ', ')"
+"moved: $($mv.Count) | files rewritten: $n | sitemap added: $($add.Count) | unmapped: $($warn -join ', ') | skipped (bad encoding): $($bad -join ', ')"
+if(-not $NoAds){ if(Get-Command node -ErrorAction SilentlyContinue){ node "$root\core\inject-ads.js" --apply } else { "node not found: run core\inject-ads.js --apply by hand" } }
