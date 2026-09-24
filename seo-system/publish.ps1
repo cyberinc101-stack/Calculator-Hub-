@@ -17,8 +17,8 @@ $MAP=@{}; gci $CT -Recurse -Filter *.html | ? { $_.DirectoryName -ne $CT -and $_
 $mv=@{}; $warn=@(); foreach($f in (gci $CT -Filter *.html)){ $p=Dest $f.BaseName; if($p){$MAP[$f.BaseName]=$p; $mv[$f.BaseName]=$p}else{$warn+=$f.Name} }
 function Fix($t){
  $t=$t -replace '="\.\./(css|js|pages)/','="/$1/' -replace '="\.\./index\.html"','="/index.html"'
- $t=[regex]::Replace($t,'(href|src)="(?:\.\./)?([a-z0-9-]+)\.html"',{param($x) $p=$MAP[$x.Groups[2].Value]; if($p){$x.Groups[1].Value+'="/calculator-types/'+$p+'"'}else{$x.Value}})
- [regex]::Replace($t,'(?<=["''/])calculator-types/([a-z0-9-]+)\.html',{param($x) $p=$MAP[$x.Groups[1].Value]; if($p){'calculator-types/'+$p}else{$x.Value}}) }
+ $t=[regex]::Replace($t,'(href|src)="(?:\.\./)?([a-z0-9_-]+)\.html"',{param($x) $p=$MAP[$x.Groups[2].Value]; if($p){$x.Groups[1].Value+'="/calculator-types/'+$p+'"'}else{$x.Value}})
+ [regex]::Replace($t,'(?<=["''/])calculator-types/([a-z0-9_-]+)\.html',{param($x) $p=$MAP[$x.Groups[1].Value]; if($p){'calculator-types/'+$p}else{$x.Value}}) }
 New-Item -Force -ItemType Directory "$root\_archive" | Out-Null; Copy-Item "$root\sitemap.xml" "$root\_archive\sitemap.xml.bak-$(Get-Date -f yyyyMMdd-HHmmss)"
 $files=@(gci $CT -Recurse -Filter *.html)+@(gci "$root\pages" -Filter *.html)+@(gci "$root\js" -Filter *.js)+@(gi "$root\index.html","$root\sitemap.xml","$root\robots.txt" -ea 0)
 $n=0; $bad=@(); foreach($f in $files){ try{ $t=$strict.GetString([IO.File]::ReadAllBytes($f.FullName)) }catch{ $bad+=$f.Name; continue }; if($t.Contains([string][char]0xFFFD)){ $bad+=$f.Name; continue }; $o=Fix $t; if($f.Name -eq 'app.js'){$o=$o.Replace("return location.pathname.includes('/calculator-types/') ? '../' : '';","return '/';")}; if($o -ne $t){[IO.File]::WriteAllText($f.FullName,$o,$u);$n++} }

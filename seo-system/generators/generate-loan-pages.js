@@ -20,6 +20,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { attr } = require('./escape');
 
 const DATA_FILES = [
   path.join(__dirname, '..', 'data', 'loan-calculators-vehicle-property.json'),
@@ -48,7 +49,7 @@ function round2(n) {
 
 function buildFaqHtml(faq) {
   return faq.map(item =>
-    `      <div class="faq-item">\n        <h3>${item.q}</h3>\n        <p>${item.a}</p>\n      </div>`
+    `      <div class="faq-item">\n        <h3>${attr(item.q)}</h3>\n        <p>${attr(item.a)}</p>\n      </div>`
   ).join('\n');
 }
 
@@ -68,7 +69,7 @@ function buildFaqSchema(faq) {
 function buildRelatedLinks(entry, allEntries) {
   const bySlug = Object.fromEntries(allEntries.map(e => [e.slug, e]));
   return entry.relatedSlugs
-    .map(slug => bySlug[slug] ? `    <li><a href="${slug}.html">${bySlug[slug].h1}</a></li>` : null)
+    .map(slug => bySlug[slug] ? `    <li><a href="${attr(slug)}.html">${attr(bySlug[slug].h1)}</a></li>` : null)
     .filter(Boolean)
     .join('\n') || '    <li>No related calculators yet.</li>';
 }
@@ -91,14 +92,14 @@ data.forEach(entry => {
   const canonical = `${SITE_BASE_URL}/calculator-types/${entry.slug}.html`;
 
   let page = template
-    .replaceAll('{{TITLE}}', entry.title)
-    .replaceAll('{{META_DESCRIPTION}}', entry.metaDescription)
-    .replaceAll('{{META_KEYWORDS}}', entry.metaKeywords)
-    .replaceAll('{{CANONICAL}}', canonical)
+    .replaceAll('{{TITLE}}', attr(entry.title))
+    .replaceAll('{{META_DESCRIPTION}}', attr(entry.metaDescription))
+    .replaceAll('{{META_KEYWORDS}}', attr(entry.metaKeywords))
+    .replaceAll('{{CANONICAL}}', attr(canonical))
     .replaceAll('{{ICON}}', entry.icon)
-    .replaceAll('{{CATEGORY}}', entry.category)
-    .replaceAll('{{H1}}', entry.h1)
-    .replaceAll('{{INTRO}}', entry.intro)
+    .replaceAll('{{CATEGORY}}', attr(entry.category))
+    .replaceAll('{{H1}}', attr(entry.h1))
+    .replaceAll('{{INTRO}}', attr(entry.intro))
     .replaceAll('{{DEFAULT_PRINCIPAL}}', principal)
     .replaceAll('{{DEFAULT_APR}}', aprPercent)
     .replaceAll('{{DEFAULT_TERM_MONTHS}}', termMonths)
