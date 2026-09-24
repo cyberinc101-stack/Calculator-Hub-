@@ -194,3 +194,39 @@
   window.setEl = function(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; };
   window.showRes = function(id){ var el=document.getElementById(id); if(el){ el.classList.add('show'); el.scrollIntoView({behavior:'smooth', block:'nearest'}); }};
 })();
+;/* side-layout:start */
+(function(){
+function run(){
+ var p=location.pathname,m=/^\/calculator-types\/([^\/]+)\//.exec(p);
+ var wrap=document.querySelector('.wrap'),foot=document.getElementById('site-footer'),head=document.getElementById('site-header');
+ if(!m||!wrap||!foot||foot.parentNode!==wrap||document.querySelector('.layout'))return;
+ var start=wrap.querySelector('.hero')||head;
+ if(!start||start.parentNode!==wrap||!(start.compareDocumentPosition(foot)&4))return;
+ var cat=m[1],cur=p.split('/').pop().replace(/\.html$/,'');
+ var C={
+  finance:'compound-interest credit-card-payoff debt-snowball-avalanche bankruptcy-calculator retirement savings-goal roi profit-margin markup break-even budget-planner net-worth currency-converter gst-vat payroll-tax employee-cost invoice saas-mrr-arr tip bill-split',
+  health:'bmi calorie calories-burned body-fat ideal-weight macro blood-pressure heart-rate-zones one-rep-max running-pace vo2-max sleep water-intake bac-calculator ovulation pregnancy-due-date',
+  everyday:'age date-difference time-zone-converter grade-gpa paint-coverage concrete fuel-cost electricity-cost speed-distance-time',
+  'math-science':'percentage fraction ratio gcf-lcm prime-number-checker quadratic-equation-solver scientific-notation half-life ohms-law wavelength-frequency area volume',
+  loans:'mortgage loan auto-loan-calculator car-payment-calculator personal-loan-calculator student-loan-calculator business-loan-calculator home-equity-loan-calculator loan-amortization-calculator loan-payoff-calculator loan-comparison interest-rate-calculator lease-calculator'
+ };
+ var L={finance:'Finance',health:'Health',everyday:'Everyday','math-science':'Math & science',loans:'Loan'};
+ var N={bmi:'BMI',roi:'ROI','gst-vat':'GST / VAT','gcf-lcm':'GCF & LCM','saas-mrr-arr':'SaaS MRR / ARR','vo2-max':'VO2 max','bac-calculator':'BAC','loan':'Loan','ohms-law':"Ohm's law",'grade-gpa':'Grade / GPA'};
+ function nm(s){return N[s]||s.replace(/-calculator$/,'').replace(/-/g,' ').replace(/^./,function(c){return c.toUpperCase();});}
+ function li(h,t,on){return '<li><a href="'+h+'"'+(on?' aria-current="page"':'')+'>'+t+'</a></li>';}
+ function box(t,items){return '<div class="side-box"><h2>'+t+'</h2><ul class="side-list">'+items+'</ul></div>';}
+ function fromPairs(a){return a.map(function(x){return li('/calculator-types/'+x[0]+'.html',x[1],x[0].split('/').pop()===cur);}).join('');}
+ var first;
+ if(C[cat]){first=box(L[cat]+' calculators',C[cat].split(' ').map(function(s){return li('/calculator-types/'+cat+'/'+s+'.html',nm(s),s===cur);}).join(''));}
+ else{first=box('Popular converters',fromPairs([['converters/index','All converters'],['converters/unit-converter','Unit converter'],['converters/length/convert-cm-to-inches','cm to inches'],['converters/weight/convert-kg-to-lbs','kg to lbs'],['converters/length/convert-miles-to-km','Miles to km'],['converters/temperature/convert-celsius-to-fahrenheit','°C to °F'],['converters/volume/convert-cups-to-ml','Cups to ml'],['converters/length/convert-feet-to-meters','Feet to meters']]));}
+ var more=box('Popular calculators',fromPairs([['loans/mortgage','Mortgage'],['health/bmi','BMI'],['math-science/percentage','Percentage'],['finance/compound-interest','Compound interest'],['everyday/age','Age'],['finance/tip','Tip'],['math-science/fraction','Fraction'],['loans/loan','Loan']])+'<li><a href="/">All calculators</a></li>');
+ var layout=document.createElement('div');layout.className='layout';
+ var main=document.createElement('div');main.className='main';
+ while(start.nextSibling&&start.nextSibling!==foot)main.appendChild(start.nextSibling);
+ var side=document.createElement('aside');side.className='side';side.setAttribute('aria-label','More calculators');
+ side.innerHTML='<div class="ad-slot">Advertisement</div>'+first+more;
+ layout.appendChild(main);layout.appendChild(side);wrap.insertBefore(layout,foot);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+/* side-layout:end */

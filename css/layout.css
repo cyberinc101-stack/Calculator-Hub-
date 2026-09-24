@@ -563,3 +563,18 @@
 .calc-card,.seo-box,.ad-leaderboard,.ad-banner{max-width:780px;margin-left:auto;margin-right:auto}
 }
 /* compact-layout:end */
+/* side-layout:start */
+.side{margin-top:1.2rem}
+.side .ad-slot{height:250px;margin-bottom:14px}
+.side-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.side-box h2{font-family:var(--font-sans);font-size:.95rem;font-weight:700;margin:0;padding:10px 14px;background:var(--accent-mid);color:#fff}
+.side-list{list-style:none;margin:0;padding:10px 14px;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.85rem;line-height:1.35}
+.side-list a{color:var(--accent-mid);text-decoration:none}
+.side-list a:hover{text-decoration:underline}
+.side-list a[aria-current]{color:var(--text);font-weight:700}
+@media(min-width:960px){
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+.layout .main>*{max-width:none;margin-left:0;margin-right:0}
+.side{margin-top:1rem}
+}
+/* side-layout:end */
