@@ -23,17 +23,17 @@ const SITE_BASE_URL = 'https://calculator-hub-phi-five.vercel.app';
 // Maps a long-tail group to the generic converter page it should link back to
 // for "need a different value" — must match slugs produced by generate-pages.js
 const GENERIC_CONVERTER_LINKS = {
-  height_cm_to_ftin: '../calculator-types/convert-cm-to-inches.html',
-  height_ftin_to_cm: '../calculator-types/convert-inches-to-cm.html',
-  weight_kg_to_lbs: '../calculator-types/convert-kg-to-lbs.html',
-  weight_lbs_to_kg: '../calculator-types/convert-lbs-to-kg.html',
-  oven_f_to_c: '../calculator-types/convert-fahrenheit-to-celsius.html',
-  oven_c_to_f: '../calculator-types/convert-celsius-to-fahrenheit.html',
-  temp_c_to_f: '../calculator-types/convert-celsius-to-fahrenheit.html',
-  temp_f_to_c: '../calculator-types/convert-fahrenheit-to-celsius.html',
-  distance_km_to_miles: '../calculator-types/convert-km-to-miles.html',
-  distance_miles_to_km: '../calculator-types/convert-miles-to-km.html',
-  screen_in_to_cm: '../calculator-types/convert-inches-to-cm.html'
+  height_cm_to_ftin: '../convert-cm-to-inches.html',
+  height_ftin_to_cm: '../convert-inches-to-cm.html',
+  weight_kg_to_lbs: '../convert-kg-to-lbs.html',
+  weight_lbs_to_kg: '../convert-lbs-to-kg.html',
+  oven_f_to_c: '../convert-fahrenheit-to-celsius.html',
+  oven_c_to_f: '../convert-celsius-to-fahrenheit.html',
+  temp_c_to_f: '../convert-celsius-to-fahrenheit.html',
+  temp_f_to_c: '../convert-fahrenheit-to-celsius.html',
+  distance_km_to_miles: '../convert-km-to-miles.html',
+  distance_miles_to_km: '../convert-miles-to-km.html',
+  screen_in_to_cm: '../convert-inches-to-cm.html'
 };
 
 // Simple linear (factor/offset) groups - safe to drive the generic JS formula
@@ -142,7 +142,7 @@ data.forEach(entry => {
   const metaDescription = `${entry.primaryValue} ${entry.primaryUnit} = ${entry.resultValue} ${entry.resultUnit}. ${entry.contextNote}`;
   const metaKeywords = `${entry.h1.toLowerCase()},${entry.primaryValue} ${entry.primaryUnit} to ${entry.resultUnit},${entry.primaryUnit} to ${entry.resultUnit} converter`;
   const canonical = `${SITE_BASE_URL}/calculator-types/longtail/${entry.slug}.html`;
-  const genericLink = GENERIC_CONVERTER_LINKS[entry.group] || '../calculator-types/convert-index.html';
+  const genericLink = GENERIC_CONVERTER_LINKS[entry.group] || '../convert-index.html';
 
   // For the "type a different value" input default, use a sensible raw number
   // (for ft/in groups this is total inches; for others it's primaryValue itself)
