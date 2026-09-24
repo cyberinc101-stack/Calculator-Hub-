@@ -666,16 +666,6 @@
                           "permanent":  true
                       },
                       {
-                          "source":  "/calculator-types/density.html",
-                          "destination":  "/calculator-types/math-science/density.html",
-                          "permanent":  true
-                      },
-                      {
-                          "source":  "/calculator-types/distance-time.html",
-                          "destination":  "/calculator-types/everyday/distance-time.html",
-                          "permanent":  true
-                      },
-                      {
                           "source":  "/calculator-types/electricity-cost.html",
                           "destination":  "/calculator-types/everyday/electricity-cost.html",
                           "permanent":  true
