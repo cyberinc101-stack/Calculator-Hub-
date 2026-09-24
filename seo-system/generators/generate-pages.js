@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { attr, jsonStr } = require('./escape');
 
 const DATA_PATH = path.join(__dirname, '..', 'data', 'conversions.json');
 const TEMPLATE_PATH = path.join(__dirname, '..', 'templates', 'converter.template.html');
@@ -268,10 +269,13 @@ data.forEach(row => {
   const oneUnitResult = round4(row.factor + row.offset);
 
   let page = template
-    .replaceAll('{{TITLE}}', title)
-    .replaceAll('{{META_DESCRIPTION}}', metaDescription)
-    .replaceAll('{{META_KEYWORDS}}', metaKeywords)
-    .replaceAll('{{CANONICAL}}', canonical)
+    .replaceAll('{{TITLE}}', attr(title))
+    .replaceAll('{{META_DESCRIPTION}}', attr(metaDescription))
+    .replaceAll('{{META_KEYWORDS}}', attr(metaKeywords))
+    .replaceAll('{{CANONICAL}}', attr(canonical))
+    .replaceAll('{{H1_JSON}}', jsonStr(h1))
+    .replaceAll('{{META_DESCRIPTION_JSON}}', jsonStr(metaDescription))
+    .replaceAll('{{CANONICAL_JSON}}', jsonStr(canonical))
     .replaceAll('{{ICON}}', icon)
     .replaceAll('{{H1}}', h1)
     .replaceAll('{{FROM_FULL}}', row.fromFull)

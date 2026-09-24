@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "mortgage-calculator",
+    "category": "Mortgage",
+    "icon": "🏠",
+    "h1": "Mortgage Payment Calculator",
+    "intro": "Estimate your monthly mortgage payment, total interest, and total cost over the life of the loan.",
+    "defaultPrincipal": 300000,
+    "defaultApr": 6.5,
+    "defaultTermMonths": 360,
+    "faqs": [
+      { "q": "What's included in this mortgage payment estimate?", "a": "This calculator estimates principal and interest only. It does not include property taxes, homeowners insurance, or PMI, which will add to your actual monthly payment." },
+      { "q": "How does the loan term affect my payment?", "a": "A longer term (like 30 years) lowers your monthly payment but increases the total interest paid. A shorter term (like 15 years) raises the monthly payment but saves money over time." }
+    ]
+  },
+  {
+    "slug": "auto-loan-calculator",
+    "category": "Auto",
+    "icon": "🚗",
+    "h1": "Auto Loan Calculator",
+    "intro": "Calculate your estimated monthly car payment based on loan amount, interest rate, and term.",
+    "defaultPrincipal": 28000,
+    "defaultApr": 7.2,
+    "defaultTermMonths": 60,
+    "faqs": [
+      { "q": "Does this include sales tax or fees?", "a": "No, this calculator estimates payments on the loan principal you enter. Add any taxes, title, and registration fees to your loan amount for a more accurate total." },
+      { "q": "What's a typical auto loan term?", "a": "Most auto loans run 36 to 72 months. Shorter terms mean higher monthly payments but less interest paid overall." }
+    ]
+  },
+  {
+    "slug": "personal-loan-calculator",
+    "category": "Personal",
+    "icon": "💵",
+    "h1": "Personal Loan Calculator",
+    "intro": "See your estimated monthly payment for a personal loan based on amount, rate, and term.",
+    "defaultPrincipal": 10000,
+    "defaultApr": 11.5,
+    "defaultTermMonths": 36,
+    "faqs": [
+      { "q": "Is this for secured or unsecured loans?", "a": "The math works the same for both. Unsecured personal loans typically carry higher interest rates than secured loans." },
+      { "q": "Can I pay off a personal loan early?", "a": "Many lenders allow early payoff, but some charge a prepayment penalty. Check your loan agreement before making extra payments." }
+    ]
+  },
+  {
+    "slug": "student-loan-calculator",
+    "category": "Student",
+    "icon": "🎓",
+    "h1": "Student Loan Calculator",
+    "intro": "Estimate your monthly student loan payment and total repayment cost.",
+    "defaultPrincipal": 35000,
+    "defaultApr": 5.5,
+    "defaultTermMonths": 120,
+    "faqs": [
+      { "q": "Does this account for income-driven repayment plans?", "a": "No, this calculates a standard fixed monthly payment. Income-driven plans adjust your payment based on income and family size instead." },
+      { "q": "Should I include both federal and private loans?", "a": "Calculate them separately since they usually carry different interest rates and repayment terms." }
+    ]
+  }
+]

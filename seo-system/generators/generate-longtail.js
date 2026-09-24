@@ -14,6 +14,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { attr, jsonStr } = require('./escape');
 
 const DATA_PATH = path.join(__dirname, '..', 'data', 'longtail.json');
 const TEMPLATE_PATH = path.join(__dirname, '..', 'templates', 'longtail.template.html');
@@ -74,7 +75,7 @@ function buildRelatedTableRows(entry, allEntries) {
   const sample = sameGroup.slice(0, 8);
   return sample.map(e => {
     const unitSuffix = e.resultUnit === 'ft/in' ? '' : ` ${e.resultUnit}`;
-    return `        <tr><td>${e.primaryValue} ${e.primaryUnit}</td><td>${e.resultValue}${unitSuffix}</td></tr>`;
+    return `        <tr><td>${attr(e.primaryValue)} ${attr(e.primaryUnit)}</td><td>${attr(e.resultValue)}${attr(unitSuffix)}</td></tr>`;
   }).join('\n');
 }
 
@@ -163,29 +164,33 @@ data.forEach(entry => {
   const headlinePrimaryUnit = entry.primaryUnit === 'ft/in' ? '' : ` ${entry.primaryUnit}`;
 
   let page = template
-    .replaceAll('{{TITLE}}', title)
-    .replaceAll('{{META_DESCRIPTION}}', metaDescription)
-    .replaceAll('{{META_KEYWORDS}}', metaKeywords)
-    .replaceAll('{{CANONICAL}}', canonical)
+    .replaceAll('{{TITLE}}', attr(title))
+    .replaceAll('{{META_DESCRIPTION}}', attr(metaDescription))
+    .replaceAll('{{META_KEYWORDS}}', attr(metaKeywords))
+    .replaceAll('{{CANONICAL}}', attr(canonical))
     .replaceAll('{{ICON}}', entry.icon)
-    .replaceAll('{{CATEGORY}}', entry.category)
-    .replaceAll('{{H1}}', entry.h1)
-    .replaceAll('{{CONTEXT_NOTE}}', entry.contextNote)
-    .replaceAll('{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} equals', `${entry.primaryValue}${headlinePrimaryUnit} equals`)
-    .replaceAll('{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} is equal to <strong>{{RESULT_VALUE}} {{RESULT_UNIT}}</strong>', `${entry.primaryValue}${headlinePrimaryUnit} is equal to <strong>${entry.resultValue}${headlineResultUnit}</strong>`)
-    .replaceAll('{{RESULT_VALUE}} {{RESULT_UNIT}}</div>', `${entry.resultValue}${headlineResultUnit}</div>`)
-    .replaceAll('{{PRIMARY_VALUE}}', entry.primaryValue)
-    .replaceAll('{{PRIMARY_VALUE_RAW}}', primaryValueRaw)
-    .replaceAll('{{PRIMARY_UNIT}}', entry.primaryUnit)
-    .replaceAll('{{RESULT_VALUE}}', entry.resultValue)
-    .replaceAll('{{RESULT_UNIT}}', entry.resultUnit)
-    .replaceAll('{{RELATED_GROUP_LABEL}}', entry.relatedGroupLabel)
+    .replaceAll('{{CATEGORY}}', attr(entry.category))
+    .replaceAll('{{H1}}', attr(entry.h1))
+    .replaceAll('{{CONTEXT_NOTE}}', attr(entry.contextNote))
+    .replaceAll('{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} equals', `${attr(entry.primaryValue)}${attr(headlinePrimaryUnit)} equals`)
+    .replaceAll('{{PRIMARY_VALUE}} {{PRIMARY_UNIT}} is equal to <strong>{{RESULT_VALUE}} {{RESULT_UNIT}}</strong>', `${attr(entry.primaryValue)}${attr(headlinePrimaryUnit)} is equal to <strong>${attr(entry.resultValue)}${attr(headlineResultUnit)}</strong>`)
+    .replaceAll('{{RESULT_VALUE}} {{RESULT_UNIT}}</div>', `${attr(entry.resultValue)}${attr(headlineResultUnit)}</div>`)
+    .replaceAll('{{PRIMARY_VALUE}}', attr(entry.primaryValue))
+    .replaceAll('{{PRIMARY_VALUE_RAW}}', attr(primaryValueRaw))
+    .replaceAll('{{PRIMARY_UNIT}}', attr(entry.primaryUnit))
+    .replaceAll('{{RESULT_VALUE}}', attr(entry.resultValue))
+    .replaceAll('{{RESULT_UNIT}}', attr(entry.resultUnit))
+    .replaceAll('{{RELATED_GROUP_LABEL}}', attr(entry.relatedGroupLabel))
     .replaceAll('{{RELATED_TABLE_ROWS}}', buildRelatedTableRows(entry, data))
-    .replaceAll('{{GENERIC_CONVERTER_LINK}}', genericLink)
-    .replaceAll('{{FAQ_Q1}}', q1)
-    .replaceAll('{{FAQ_A1}}', a1)
-    .replaceAll('{{FAQ_Q2}}', q2)
-    .replaceAll('{{FAQ_A2}}', a2)
+    .replaceAll('{{GENERIC_CONVERTER_LINK}}', attr(genericLink))
+    .replaceAll('{{FAQ_Q1}}', attr(q1))
+    .replaceAll('{{FAQ_A1}}', attr(a1))
+    .replaceAll('{{FAQ_Q2}}', attr(q2))
+    .replaceAll('{{FAQ_A2}}', attr(a2))
+    .replaceAll('{{FAQ_Q1_JSON}}', jsonStr(q1))
+    .replaceAll('{{FAQ_A1_JSON}}', jsonStr(a1))
+    .replaceAll('{{FAQ_Q2_JSON}}', jsonStr(q2))
+    .replaceAll('{{FAQ_A2_JSON}}', jsonStr(a2))
     .replace(
       /const factor = \{\{FACTOR\}\};[\s\S]*?convert\(\);/,
       buildInlineScript(entry).trim()
