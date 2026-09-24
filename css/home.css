@@ -1,0 +1,83 @@
+/* CalcHub homepage styles. Loaded after vars/base/layout, on index.html only. */
+
+/* ---------- Hero ---------- */
+.hero { text-align:center; padding:16px 0 32px; position:relative; }
+.hero::before { display:none; }
+.hero h1 {
+  font-family:var(--font-sans);
+  font-size:clamp(1.8rem, 4.6vw, 3rem);
+  font-weight:700;
+  letter-spacing:-.03em;
+  line-height:1.15;
+  max-width:760px;
+  margin:0 auto 14px;
+  color:var(--text);
+  background:none !important;
+  -webkit-text-fill-color:var(--text) !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+}
+.hero-sub { font-size:1.05rem; color:var(--text-2); max-width:560px; margin:0 auto 24px; }
+
+.hero-search { position:relative; max-width:560px; margin:0 auto; }
+.hero-search svg {
+  position:absolute; left:16px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; color:var(--text-muted); pointer-events:none;
+}
+.hero-search input {
+  width:100%; height:52px; padding:0 16px 0 46px;
+  font-family:var(--font-sans); font-size:1rem; color:var(--text);
+  background:var(--surface); border:1px solid var(--border2); border-radius:8px;
+  box-shadow:var(--shadow-sm);
+  -webkit-appearance:none; appearance:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.hero-search input::placeholder { color:var(--text-muted); }
+.hero-search input:focus {
+  outline:none; border-color:var(--accent-mid); box-shadow:0 0 0 3px var(--accent-glow);
+}
+
+.hero-trust { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; margin-top:18px; }
+.trust-item {
+  background:none; border:none; box-shadow:none; border-radius:0; padding:0;
+  font-size:.85rem; font-weight:500; color:var(--text-muted);
+}
+.trust-item::before { content:"\2713"; color:var(--accent-mid); font-weight:700; margin-right:.4rem; }
+
+/* ---------- Category filter ---------- */
+.cat-nav { justify-content:center; margin-bottom:1.25rem; }
+.cat-pill { border-width:1px; border-radius:8px; padding:.45rem .95rem; font-size:.85rem; font-weight:600; }
+.cat-pill:hover { transform:none; }
+.cat-pill.active { background:var(--text); border-color:var(--text); color:var(--bg); box-shadow:none; }
+
+/* ---------- Sections and cards ---------- */
+.dir-section { margin:2rem 0 .5rem; }
+.dir-section-title {
+  font-size:1.15rem; font-weight:700; text-transform:none;
+  letter-spacing:-.01em; margin-bottom:.9rem;
+}
+.dir-section-title::after { display:none; }
+.dir-grid { grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:12px; }
+.dir-card { padding:16px 18px; border:1px solid var(--border); border-radius:8px; box-shadow:none; }
+.dir-card:hover,
+.dir-section[data-cat] .dir-card:hover {
+  transform:none; box-shadow:var(--shadow-sm); border-color:var(--accent-mid);
+}
+.dir-card h3 { font-size:.95rem; font-weight:600; letter-spacing:0; margin-bottom:.3rem; }
+.dir-card p { font-size:.82rem; }
+
+/* compact link list (loan pages) */
+.link-list { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:0 28px; }
+.dir-link {
+  display:block; padding:9px 0; border-bottom:1px solid var(--border);
+  font-size:.9rem; font-weight:500; color:var(--text-2); text-decoration:none;
+}
+.dir-link:hover { color:var(--accent-mid); text-decoration:none; }
+
+.no-results { display:none; text-align:center; color:var(--text-muted); padding:2.5rem 0; font-size:.95rem; }
+.no-results.show { display:block; }
+.no-results a { color:var(--accent-mid); }
+
+/* ---------- Info box ---------- */
+.seo-box { border-radius:8px; box-shadow:none; }
+.seo-box h2 { font-family:var(--font-sans); font-size:1.15rem; font-weight:700; }
