@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  function pre(){ return location.pathname.includes('/calculator-types/') ? '../' : ''; }
+  function pre(){ return '/'; }
 
   function buildHeader(){
     var p = pre();

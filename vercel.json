@@ -1,0 +1,969 @@
+{
+    "redirects":  [
+                      {
+                          "source":  "/calculator-types/age.html",
+                          "destination":  "/calculator-types/everyday/age.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/area.html",
+                          "destination":  "/calculator-types/math-science/area.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/auto-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/auto-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/bac-calculator.html",
+                          "destination":  "/calculator-types/health/bac-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/bankruptcy-calculator.html",
+                          "destination":  "/calculator-types/finance/bankruptcy-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/bill-split.html",
+                          "destination":  "/calculator-types/finance/bill-split.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/blood-pressure.html",
+                          "destination":  "/calculator-types/health/blood-pressure.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/bmi.html",
+                          "destination":  "/calculator-types/health/bmi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/boat-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/boat-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/body-fat.html",
+                          "destination":  "/calculator-types/health/body-fat.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/break-even.html",
+                          "destination":  "/calculator-types/finance/break-even.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/budget-planner.html",
+                          "destination":  "/calculator-types/finance/budget-planner.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/business-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/business-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/calorie.html",
+                          "destination":  "/calculator-types/health/calorie.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/calories-burned.html",
+                          "destination":  "/calculator-types/health/calories-burned.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/car-payment-calculator.html",
+                          "destination":  "/calculator-types/loans/car-payment-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/commercial-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/commercial-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/compound-interest.html",
+                          "destination":  "/calculator-types/finance/compound-interest.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/concrete.html",
+                          "destination":  "/calculator-types/everyday/concrete.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/construction-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/construction-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-acres-to-hectares.html",
+                          "destination":  "/calculator-types/converters/area/convert-acres-to-hectares.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-atm-to-psi.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-atm-to-psi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-bar-to-psi.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-bar-to-psi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-btu-to-joules.html",
+                          "destination":  "/calculator-types/converters/energy/convert-btu-to-joules.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-bytes-to-kb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-bytes-to-kb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-calories-to-joules.html",
+                          "destination":  "/calculator-types/converters/energy/convert-calories-to-joules.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-celsius-to-fahrenheit.html",
+                          "destination":  "/calculator-types/converters/temperature/convert-celsius-to-fahrenheit.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-celsius-to-kelvin.html",
+                          "destination":  "/calculator-types/converters/temperature/convert-celsius-to-kelvin.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-cm-to-inches.html",
+                          "destination":  "/calculator-types/converters/length/convert-cm-to-inches.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-cm-to-mm.html",
+                          "destination":  "/calculator-types/converters/length/convert-cm-to-mm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-cups-to-ml.html",
+                          "destination":  "/calculator-types/converters/volume/convert-cups-to-ml.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-days-to-hours.html",
+                          "destination":  "/calculator-types/converters/time/convert-days-to-hours.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-days-to-weeks.html",
+                          "destination":  "/calculator-types/converters/time/convert-days-to-weeks.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-days-to-years.html",
+                          "destination":  "/calculator-types/converters/time/convert-days-to-years.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-degrees-to-radians.html",
+                          "destination":  "/calculator-types/converters/angle/convert-degrees-to-radians.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-fahrenheit-to-celsius.html",
+                          "destination":  "/calculator-types/converters/temperature/convert-fahrenheit-to-celsius.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-feet-to-inches.html",
+                          "destination":  "/calculator-types/converters/length/convert-feet-to-inches.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-feet-to-meters.html",
+                          "destination":  "/calculator-types/converters/length/convert-feet-to-meters.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-feet-to-yards.html",
+                          "destination":  "/calculator-types/converters/length/convert-feet-to-yards.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-floz-to-ml.html",
+                          "destination":  "/calculator-types/converters/volume/convert-floz-to-ml.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-gallons-to-liters.html",
+                          "destination":  "/calculator-types/converters/volume/convert-gallons-to-liters.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-gb-to-mb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-gb-to-mb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-gb-to-tb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-gb-to-tb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ghz-to-mhz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-ghz-to-mhz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-grams-to-oz.html",
+                          "destination":  "/calculator-types/converters/weight/convert-grams-to-oz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hectares-to-acres.html",
+                          "destination":  "/calculator-types/converters/area/convert-hectares-to-acres.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hours-to-days.html",
+                          "destination":  "/calculator-types/converters/time/convert-hours-to-days.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hours-to-minutes.html",
+                          "destination":  "/calculator-types/converters/time/convert-hours-to-minutes.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hp-to-kw.html",
+                          "destination":  "/calculator-types/converters/power/convert-hp-to-kw.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hp-to-watts.html",
+                          "destination":  "/calculator-types/converters/power/convert-hp-to-watts.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-hz-to-khz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-hz-to-khz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-inches-to-cm.html",
+                          "destination":  "/calculator-types/converters/length/convert-inches-to-cm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-inches-to-feet.html",
+                          "destination":  "/calculator-types/converters/length/convert-inches-to-feet.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-inches-to-mm.html",
+                          "destination":  "/calculator-types/converters/length/convert-inches-to-mm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-index.html",
+                          "destination":  "/calculator-types/converters/index.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-joules-to-btu.html",
+                          "destination":  "/calculator-types/converters/energy/convert-joules-to-btu.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-joules-to-calories.html",
+                          "destination":  "/calculator-types/converters/energy/convert-joules-to-calories.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-joules-to-kwh.html",
+                          "destination":  "/calculator-types/converters/energy/convert-joules-to-kwh.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kb-to-bytes.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-kb-to-bytes.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kb-to-mb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-kb-to-mb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kelvin-to-celsius.html",
+                          "destination":  "/calculator-types/converters/temperature/convert-kelvin-to-celsius.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kg-to-lbs.html",
+                          "destination":  "/calculator-types/converters/weight/convert-kg-to-lbs.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kg-to-stone.html",
+                          "destination":  "/calculator-types/converters/weight/convert-kg-to-stone.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kg-to-tonnes.html",
+                          "destination":  "/calculator-types/converters/weight/convert-kg-to-tonnes.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kg-to-tons.html",
+                          "destination":  "/calculator-types/converters/weight/convert-kg-to-tons.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-khz-to-hz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-khz-to-hz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-khz-to-mhz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-khz-to-mhz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kmh-to-mph.html",
+                          "destination":  "/calculator-types/converters/speed/convert-kmh-to-mph.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kmh-to-ms.html",
+                          "destination":  "/calculator-types/converters/speed/convert-kmh-to-ms.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-km-to-miles.html",
+                          "destination":  "/calculator-types/converters/length/convert-km-to-miles.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kwh-to-joules.html",
+                          "destination":  "/calculator-types/converters/energy/convert-kwh-to-joules.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-kw-to-hp.html",
+                          "destination":  "/calculator-types/converters/power/convert-kw-to-hp.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-lbf-to-newtons.html",
+                          "destination":  "/calculator-types/converters/force/convert-lbf-to-newtons.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-lbs-to-kg.html",
+                          "destination":  "/calculator-types/converters/weight/convert-lbs-to-kg.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-lbs-to-oz.html",
+                          "destination":  "/calculator-types/converters/weight/convert-lbs-to-oz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-lbs-to-stone.html",
+                          "destination":  "/calculator-types/converters/weight/convert-lbs-to-stone.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-liters-to-gallons.html",
+                          "destination":  "/calculator-types/converters/volume/convert-liters-to-gallons.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-liters-to-pint.html",
+                          "destination":  "/calculator-types/converters/volume/convert-liters-to-pint.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-liters-to-quart.html",
+                          "destination":  "/calculator-types/converters/volume/convert-liters-to-quart.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mb-to-gb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-mb-to-gb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mb-to-kb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-mb-to-kb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-meters-to-feet.html",
+                          "destination":  "/calculator-types/converters/length/convert-meters-to-feet.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-meters-to-yards.html",
+                          "destination":  "/calculator-types/converters/length/convert-meters-to-yards.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mhz-to-ghz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-mhz-to-ghz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mhz-to-khz.html",
+                          "destination":  "/calculator-types/converters/frequency/convert-mhz-to-khz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-miles-to-feet.html",
+                          "destination":  "/calculator-types/converters/length/convert-miles-to-feet.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-miles-to-km.html",
+                          "destination":  "/calculator-types/converters/length/convert-miles-to-km.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-minutes-to-hours.html",
+                          "destination":  "/calculator-types/converters/time/convert-minutes-to-hours.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-minutes-to-seconds.html",
+                          "destination":  "/calculator-types/converters/time/convert-minutes-to-seconds.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ml-to-cups.html",
+                          "destination":  "/calculator-types/converters/volume/convert-ml-to-cups.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ml-to-floz.html",
+                          "destination":  "/calculator-types/converters/volume/convert-ml-to-floz.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ml-to-tbsp.html",
+                          "destination":  "/calculator-types/converters/volume/convert-ml-to-tbsp.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ml-to-tsp.html",
+                          "destination":  "/calculator-types/converters/volume/convert-ml-to-tsp.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mm-to-cm.html",
+                          "destination":  "/calculator-types/converters/length/convert-mm-to-cm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mm-to-inches.html",
+                          "destination":  "/calculator-types/converters/length/convert-mm-to-inches.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mph-to-kmh.html",
+                          "destination":  "/calculator-types/converters/speed/convert-mph-to-kmh.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-mph-to-ms.html",
+                          "destination":  "/calculator-types/converters/speed/convert-mph-to-ms.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ms-to-kmh.html",
+                          "destination":  "/calculator-types/converters/speed/convert-ms-to-kmh.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-ms-to-mph.html",
+                          "destination":  "/calculator-types/converters/speed/convert-ms-to-mph.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-newtons-to-lbf.html",
+                          "destination":  "/calculator-types/converters/force/convert-newtons-to-lbf.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-oz-to-grams.html",
+                          "destination":  "/calculator-types/converters/weight/convert-oz-to-grams.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-oz-to-lbs.html",
+                          "destination":  "/calculator-types/converters/weight/convert-oz-to-lbs.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-pascal-to-psi.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-pascal-to-psi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-pint-to-liters.html",
+                          "destination":  "/calculator-types/converters/volume/convert-pint-to-liters.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-psi-to-atm.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-psi-to-atm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-psi-to-bar.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-psi-to-bar.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-psi-to-pascal.html",
+                          "destination":  "/calculator-types/converters/pressure/convert-psi-to-pascal.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-quart-to-liters.html",
+                          "destination":  "/calculator-types/converters/volume/convert-quart-to-liters.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-radians-to-degrees.html",
+                          "destination":  "/calculator-types/converters/angle/convert-radians-to-degrees.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-seconds-to-minutes.html",
+                          "destination":  "/calculator-types/converters/time/convert-seconds-to-minutes.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqft-to-sqm.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqft-to-sqm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqkm-to-sqmi.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqkm-to-sqmi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqmi-to-sqkm.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqmi-to-sqkm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqm-to-sqft.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqm-to-sqft.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqm-to-sqyd.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqm-to-sqyd.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-sqyd-to-sqm.html",
+                          "destination":  "/calculator-types/converters/area/convert-sqyd-to-sqm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-stone-to-kg.html",
+                          "destination":  "/calculator-types/converters/weight/convert-stone-to-kg.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-stone-to-lbs.html",
+                          "destination":  "/calculator-types/converters/weight/convert-stone-to-lbs.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-tbsp-to-ml.html",
+                          "destination":  "/calculator-types/converters/volume/convert-tbsp-to-ml.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-tb-to-gb.html",
+                          "destination":  "/calculator-types/converters/data-storage/convert-tb-to-gb.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-tonnes-to-kg.html",
+                          "destination":  "/calculator-types/converters/weight/convert-tonnes-to-kg.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-tons-to-kg.html",
+                          "destination":  "/calculator-types/converters/weight/convert-tons-to-kg.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-tsp-to-ml.html",
+                          "destination":  "/calculator-types/converters/volume/convert-tsp-to-ml.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-watts-to-hp.html",
+                          "destination":  "/calculator-types/converters/power/convert-watts-to-hp.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-weeks-to-days.html",
+                          "destination":  "/calculator-types/converters/time/convert-weeks-to-days.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-yards-to-feet.html",
+                          "destination":  "/calculator-types/converters/length/convert-yards-to-feet.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-yards-to-meters.html",
+                          "destination":  "/calculator-types/converters/length/convert-yards-to-meters.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/convert-years-to-days.html",
+                          "destination":  "/calculator-types/converters/time/convert-years-to-days.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/credit-card-payoff.html",
+                          "destination":  "/calculator-types/finance/credit-card-payoff.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/currency-converter.html",
+                          "destination":  "/calculator-types/finance/currency-converter.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/date-difference.html",
+                          "destination":  "/calculator-types/everyday/date-difference.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/debt-consolidation-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/debt-consolidation-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/debt-snowball-avalanche.html",
+                          "destination":  "/calculator-types/finance/debt-snowball-avalanche.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/density.html",
+                          "destination":  "/calculator-types/math-science/density.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/distance-time.html",
+                          "destination":  "/calculator-types/everyday/distance-time.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/electricity-cost.html",
+                          "destination":  "/calculator-types/everyday/electricity-cost.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/employee-cost.html",
+                          "destination":  "/calculator-types/finance/employee-cost.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/fha-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/fha-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/fraction.html",
+                          "destination":  "/calculator-types/math-science/fraction.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/fuel-cost.html",
+                          "destination":  "/calculator-types/everyday/fuel-cost.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/gcf-lcm.html",
+                          "destination":  "/calculator-types/math-science/gcf-lcm.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/grade-gpa.html",
+                          "destination":  "/calculator-types/everyday/grade-gpa.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/gst-vat.html",
+                          "destination":  "/calculator-types/finance/gst-vat.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/half-life.html",
+                          "destination":  "/calculator-types/math-science/half-life.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/heart-rate-zones.html",
+                          "destination":  "/calculator-types/health/heart-rate-zones.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/home-equity-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/home-equity-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/ideal-weight.html",
+                          "destination":  "/calculator-types/health/ideal-weight.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/interest-rate-calculator.html",
+                          "destination":  "/calculator-types/loans/interest-rate-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/invoice.html",
+                          "destination":  "/calculator-types/finance/invoice.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/land-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/land-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/lease-calculator.html",
+                          "destination":  "/calculator-types/loans/lease-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/loan.html",
+                          "destination":  "/calculator-types/loans/loan.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/loan-amortization-calculator.html",
+                          "destination":  "/calculator-types/loans/loan-amortization-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/loan-comparison.html",
+                          "destination":  "/calculator-types/loans/loan-comparison.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/loan-payoff-calculator.html",
+                          "destination":  "/calculator-types/loans/loan-payoff-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/macro.html",
+                          "destination":  "/calculator-types/health/macro.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/markup.html",
+                          "destination":  "/calculator-types/finance/markup.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/mortgage.html",
+                          "destination":  "/calculator-types/loans/mortgage.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/motorcycle-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/motorcycle-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/net-worth.html",
+                          "destination":  "/calculator-types/finance/net-worth.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/ohms-law.html",
+                          "destination":  "/calculator-types/math-science/ohms-law.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/one-rep-max.html",
+                          "destination":  "/calculator-types/health/one-rep-max.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/ovulation.html",
+                          "destination":  "/calculator-types/health/ovulation.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/paint-coverage.html",
+                          "destination":  "/calculator-types/everyday/paint-coverage.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/payroll-tax.html",
+                          "destination":  "/calculator-types/finance/payroll-tax.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/percentage.html",
+                          "destination":  "/calculator-types/math-science/percentage.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/personal-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/personal-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/pregnancy-due-date.html",
+                          "destination":  "/calculator-types/health/pregnancy-due-date.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/prime-number-checker.html",
+                          "destination":  "/calculator-types/math-science/prime-number-checker.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/profit-margin.html",
+                          "destination":  "/calculator-types/finance/profit-margin.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/quadratic-equation-solver.html",
+                          "destination":  "/calculator-types/math-science/quadratic-equation-solver.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/ratio.html",
+                          "destination":  "/calculator-types/math-science/ratio.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/retirement.html",
+                          "destination":  "/calculator-types/finance/retirement.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/roi.html",
+                          "destination":  "/calculator-types/finance/roi.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/running-pace.html",
+                          "destination":  "/calculator-types/health/running-pace.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/rv-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/rv-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/saas-mrr-arr.html",
+                          "destination":  "/calculator-types/finance/saas-mrr-arr.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/savings-goal.html",
+                          "destination":  "/calculator-types/finance/savings-goal.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/sba-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/sba-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/scientific-notation.html",
+                          "destination":  "/calculator-types/math-science/scientific-notation.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/sleep.html",
+                          "destination":  "/calculator-types/health/sleep.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/speed-distance-time.html",
+                          "destination":  "/calculator-types/everyday/speed-distance-time.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/student-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/student-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/time-zone-converter.html",
+                          "destination":  "/calculator-types/everyday/time-zone-converter.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/tip.html",
+                          "destination":  "/calculator-types/finance/tip.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/truck-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/truck-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/unit-converter.html",
+                          "destination":  "/calculator-types/converters/unit-converter.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/va-loan-calculator.html",
+                          "destination":  "/calculator-types/loans/va-loan-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/vehicle-loan-payment-calculator.html",
+                          "destination":  "/calculator-types/loans/vehicle-loan-payment-calculator.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/vo2-max.html",
+                          "destination":  "/calculator-types/health/vo2-max.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/volume.html",
+                          "destination":  "/calculator-types/math-science/volume.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/water-intake.html",
+                          "destination":  "/calculator-types/health/water-intake.html",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/calculator-types/wavelength-frequency.html",
+                          "destination":  "/calculator-types/math-science/wavelength-frequency.html",
+                          "permanent":  true
+                      }
+                  ]
+}
