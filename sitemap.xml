@@ -490,4 +490,8 @@
   <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/converters/weight/convert-lbs-to-tons.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/converters/weight/convert-milligrams-to-grams.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/converters/weight/convert-tons-to-lbs.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-tracker.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/period/cycle-length-calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://calculator-hub-phi-five.vercel.app/calculator-types/period/late-period-calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
 </urlset>

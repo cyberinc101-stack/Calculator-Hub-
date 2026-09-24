@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Period Tracker — Log Periods and Predict Your Next Period | CalcHub</title>
+<meta name="description" content="Free period tracker. Log the start date of each period to see your average cycle length, next period date, ovulation estimate and fertile window. Private: saved only in your browser.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-tracker.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Period Tracker","description":"Free period tracker. Log the start date of each period to see your average cycle length, next period date, ovulation estimate and fertile window. Private: saved only in your browser.","url":"https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-tracker.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/vars.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/layout.css">
+<!-- ads:start -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9286981131873574" crossorigin="anonymous"></script>
+<!-- ads:end -->
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <h1 style="font-size:clamp(1.6rem,4vw,2.3rem)">Period Tracker</h1>
+  <p class="hero-sub">Log the first day of each period and see your average cycle, your next period and your fertile window. Your dates stay in this browser.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">📅</div>
+    <div><div class="calc-card-title">Log your periods</div><div class="calc-card-desc">Add the first day of each period. The more you add, the better the prediction.</div></div>
+  </div>
+  <div class="calc-card-body">
+<div class="field-grid"><div class="field"><label for="ps">First day of period</label><input id="ps" type="date" value="" ></div></div>
+<button class="calc-btn" type="button" onclick="addPeriod()">Add period</button>
+<ul id="lst" style="list-style:none;margin:12px 0 0;padding:0"></ul>
+<p class="field-hint" style="margin-top:10px">Your dates are saved only in this browser on this device. Nothing is sent to our servers, and clearing your browser data removes them.</p>
+<div class="results" id="res"><div class="results-grid" id="rg" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))"></div><div class="insight"><div class="insight-icon">💡</div><div id="ins"></div></div></div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How the period tracker works</h2><p>Enter the first day of each period. The tracker measures the gap between each start date, averages your recent cycles, and adds that average to your last start date to predict the next one. Ovulation usually happens about 14 days before the next period, and the fertile window is the five days before ovulation plus ovulation day and the day after.</p>
+  <div class="faq-item"><div class="faq-q">Is my data private?</div><div class="faq-a"><p>Yes. Dates are stored in your browser using local storage. They are not sent to our servers, and they are removed if you clear your browser data. They will not appear on other devices.</p></div></div>
+  <div class="faq-item"><div class="faq-q">How accurate are the predictions?</div><div class="faq-a"><p>They are estimates. Stress, illness, travel, sleep and hormonal changes can all move a period by several days. The more cycles you log, the closer the average gets to your usual pattern.</p></div></div>
+  <p style="margin-top:1rem"><strong>Related:</strong> <a href="/calculator-types/period/period-calculator.html">Period Calculator</a> &middot; <a href="/calculator-types/period/cycle-length-calculator.html">Cycle Length Calculator</a> &middot; <a href="/calculator-types/period/late-period-calculator.html">Late Period Calculator</a> &middot; <a href="/calculator-types/health/ovulation.html">Ovulation Calculator</a> &middot; <a href="/calculator-types/health/pregnancy-due-date.html">Pregnancy Due Date Calculator</a></p>
+  <p class="field-hint" style="margin-top:.8rem">These results are estimates based on the dates you enter. They are not medical advice and are not a method of contraception. If something about your cycle worries you, talk to a doctor or nurse.</p>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+
+var $=function(i){return document.getElementById(i);},v=function(i){return $(i).value;};
+function pd(s){var p=(s||'').split('-');if(p.length!==3)return null;var d=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(d)?null:d;}
+function ad(d,n){return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);}
+function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+function fd(d){return d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'});}
+function dd(a,b){return Math.round((b-a)/864e5);}
+function today(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate());}
+function item(l,val,s,c){return '<div class="result-item'+(c?' '+c:'')+'"><div class="result-label">'+l+'</div><div class="result-value">'+val+'</div>'+(s?'<div class="result-sub">'+s+'</div>':'')+'</div>';}
+
+var K='calchub_period_log';
+function load(){try{var a=JSON.parse(localStorage.getItem(K)||'[]');return Array.isArray(a)?a.filter(function(x){return pd(x);}).sort():[];}catch(e){return [];}}
+function save(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){showToast('Could not save in this browser');}}
+function addPeriod(){var d=v('ps');if(!pd(d)){showToast('Pick a date first');return;}var a=load();if(a.indexOf(d)<0)a.push(d);a.sort();save(a);draw();}
+function delPeriod(d){save(load().filter(function(x){return x!==d;}));draw();}
+function draw(){
+ var a=load(),h='',i;
+ for(i=a.length-1;i>=0;i--)h+='<li style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)"><span>'+fd(pd(a[i]))+'</span><button type="button" onclick="delPeriod(\''+a[i]+'\')" style="background:none;border:none;color:var(--accent-mid);cursor:pointer;font:inherit">Remove</button></li>';
+ $('lst').innerHTML=h||'<li style="color:var(--text-muted)">No periods logged yet.</li>';
+ if(!a.length){$('res').classList.remove('show');return;}
+ var l=[];for(i=Math.max(1,a.length-6);i<a.length;i++){var n=dd(pd(a[i-1]),pd(a[i]));if(n>=15&&n<=60)l.push(n);}
+ var avg=l.length?Math.round(l.reduce(function(p,q){return p+q;},0)/l.length):28,nx=ad(pd(a[a.length-1]),avg),ov=ad(nx,-14),d=dd(today(),nx);
+ $('rg').innerHTML=item('Next period',fd(nx),d>0?'in '+d+' day'+(d===1?'':'s'):d===0?'expected today':(-d)+' day'+(d===-1?'':'s')+' ago','highlight')
+  +item('Average cycle',avg+' days',l.length?'from your last '+l.length+' cycle'+(l.length===1?'':'s'):'default until you log 2 periods')
+  +item('Estimated ovulation',fd(ov),'about 14 days before the next period','green')
+  +item('Fertile window',fd(ad(ov,-5))+' to '+fd(ad(ov,1)),'','green');
+ $('ins').innerHTML=l.length?'Predictions use the average of your recent cycles, so they improve as you log more periods.':'Log at least two period start dates to use your own cycle length. Until then this assumes 28 days.';
+ $('res').classList.add('show');}
+$('ps').value=iso(today());draw();
+</script>
+</body>
+</html>

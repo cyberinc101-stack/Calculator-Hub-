@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2ZT2CL405H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2ZT2CL405H');
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Period Calculator — When Is My Next Period? | CalcHub</title>
+<meta name="description" content="Free period calculator. Enter the first day of your last period and your cycle length to see your next six period dates, estimated ovulation and fertile window.">
+<link rel="canonical" href="https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-calculator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Period Calculator","description":"Free period calculator. Enter the first day of your last period and your cycle length to see your next six period dates, estimated ovulation and fertile window.","url":"https://calculator-hub-phi-five.vercel.app/calculator-types/period/period-calculator.html","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/vars.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/layout.css">
+<!-- ads:start -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9286981131873574" crossorigin="anonymous"></script>
+<!-- ads:end -->
+</head>
+<body>
+<div class="wrap">
+<div id="site-header"></div>
+
+<div class="hero" style="padding:4px 0 24px">
+  <h1 style="font-size:clamp(1.6rem,4vw,2.3rem)">Period Calculator</h1>
+  <p class="hero-sub">Find out when your next period is due, and see the next six periods, your ovulation day and your fertile window.</p>
+</div>
+
+<div class="ad-slot ad-leaderboard">Advertisement</div>
+
+<div class="calc-card active">
+  <div class="calc-card-header">
+    <div class="calc-icon">🩸</div>
+    <div><div class="calc-card-title">When is my next period?</div><div class="calc-card-desc">Enter the first day of your last period and your usual cycle length.</div></div>
+  </div>
+  <div class="calc-card-body">
+<div class="field-grid field-grid-3"><div class="field"><label for="lp">First day of last period</label><input id="lp" type="date" value="" ></div><div class="field"><label for="cl">Cycle length (days)</label><input id="cl" type="number" value="28" min="20" max="45" step="1"></div><div class="field"><label for="pl">Period length (days)</label><input id="pl" type="number" value="5" min="1" max="12" step="1"></div></div>
+<button class="calc-btn" type="button" onclick="calc()">Calculate</button><div class="results" id="res"><div class="results-grid" id="rg" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))"></div><div class="insight"><div class="insight-icon">💡</div><div id="ins"></div></div></div>
+  </div>
+</div>
+
+<div class="ad-slot ad-banner" style="margin-top:1.5rem">Advertisement</div>
+
+<div class="seo-box">
+  <h2>How to calculate your next period</h2><p>Count from the first day of your last period. Add your cycle length to that date to get the first day of your next period. The cycle length is the number of days from the first day of one period to the first day of the next, and it is usually between 21 and 35 days for adults.</p><p>To find your fertile window, count back 14 days from your next period to estimate ovulation. Sperm can survive for up to five days, so the window runs from five days before ovulation to the day after.</p>
+  <div class="faq-item"><div class="faq-q">What if my cycle length changes each month?</div><div class="faq-a"><p>Use your average, or work it out with the cycle length calculator. If your cycles vary a lot, the dates here will be less reliable.</p></div></div>
+  <div class="faq-item"><div class="faq-q">Can I use this to avoid pregnancy?</div><div class="faq-a"><p>No. Ovulation timing varies from cycle to cycle, so this calculator is not a method of contraception.</p></div></div>
+  <p style="margin-top:1rem"><strong>Related:</strong> <a href="/calculator-types/period/period-tracker.html">Period Tracker</a> &middot; <a href="/calculator-types/period/cycle-length-calculator.html">Cycle Length Calculator</a> &middot; <a href="/calculator-types/period/late-period-calculator.html">Late Period Calculator</a> &middot; <a href="/calculator-types/health/ovulation.html">Ovulation Calculator</a> &middot; <a href="/calculator-types/health/pregnancy-due-date.html">Pregnancy Due Date Calculator</a></p>
+  <p class="field-hint" style="margin-top:.8rem">These results are estimates based on the dates you enter. They are not medical advice and are not a method of contraception. If something about your cycle worries you, talk to a doctor or nurse.</p>
+</div>
+
+<div id="site-footer"></div>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+
+var $=function(i){return document.getElementById(i);},v=function(i){return $(i).value;};
+function pd(s){var p=(s||'').split('-');if(p.length!==3)return null;var d=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(d)?null:d;}
+function ad(d,n){return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);}
+function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+function fd(d){return d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'});}
+function dd(a,b){return Math.round((b-a)/864e5);}
+function today(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate());}
+function item(l,val,s,c){return '<div class="result-item'+(c?' '+c:'')+'"><div class="result-label">'+l+'</div><div class="result-value">'+val+'</div>'+(s?'<div class="result-sub">'+s+'</div>':'')+'</div>';}
+
+function calc(){
+ var s=pd(v('lp')),c=+v('cl'),pl=+v('pl');
+ if(!s||!(c>=20&&c<=45)||!(pl>=1&&pl<=12)){showToast('Enter a start date, a cycle of 20 to 45 days and a period of 1 to 12 days');return;}
+ var h='',i,n;
+ for(i=1;i<=6;i++){n=ad(s,c*i);h+=item('Period '+i,fd(n),'lasts until '+fd(ad(n,pl-1)),i===1?'highlight':'');}
+ var ov=ad(ad(s,c),-14);
+ h+=item('Estimated ovulation',fd(ov),'about 14 days before the next period','green')+item('Fertile window',fd(ad(ov,-5))+' to '+fd(ad(ov,1)),'5 days before ovulation, ovulation day and the day after','green');
+ $('rg').innerHTML=h;
+ var d=dd(today(),ad(s,c));
+ $('ins').innerHTML=d>0?'Your next period is expected in <strong>'+d+' day'+(d===1?'':'s')+'</strong>.':d===0?'Your next period is expected <strong>today</strong>.':'Your next period was expected <strong>'+(-d)+' day'+(d===-1?'':'s')+' ago</strong>. Update the start date if it has already begun.';
+ showRes('res');}
+$('lp').value=iso(ad(today(),-14));
+</script>
+</body>
+</html>

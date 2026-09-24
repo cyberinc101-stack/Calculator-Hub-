@@ -208,10 +208,11 @@ function run(){
   health:'bmi calorie calories-burned body-fat ideal-weight macro blood-pressure heart-rate-zones one-rep-max running-pace vo2-max sleep water-intake bac-calculator ovulation pregnancy-due-date',
   everyday:'age date-difference time-zone-converter grade-gpa paint-coverage concrete fuel-cost electricity-cost speed-distance-time',
   'math-science':'percentage fraction ratio gcf-lcm prime-number-checker quadratic-equation-solver scientific-notation half-life ohms-law wavelength-frequency area volume',
+  period:'period-tracker period-calculator cycle-length-calculator late-period-calculator',
   loans:'mortgage loan auto-loan-calculator car-payment-calculator personal-loan-calculator student-loan-calculator business-loan-calculator home-equity-loan-calculator loan-amortization-calculator loan-payoff-calculator loan-comparison interest-rate-calculator lease-calculator'
  };
- var L={finance:'Finance',health:'Health',everyday:'Everyday','math-science':'Math & science',loans:'Loan'};
- var N={bmi:'BMI',roi:'ROI','gst-vat':'GST / VAT','gcf-lcm':'GCF & LCM','saas-mrr-arr':'SaaS MRR / ARR','vo2-max':'VO2 max','bac-calculator':'BAC','loan':'Loan','ohms-law':"Ohm's law",'grade-gpa':'Grade / GPA'};
+ var L={finance:'Finance',health:'Health',everyday:'Everyday','math-science':'Math & science',loans:'Loan',period:'Period & cycle'};
+ var N={'period-calculator':'Period calculator','cycle-length-calculator':'Cycle length','late-period-calculator':'Late period',bmi:'BMI',roi:'ROI','gst-vat':'GST / VAT','gcf-lcm':'GCF & LCM','saas-mrr-arr':'SaaS MRR / ARR','vo2-max':'VO2 max','bac-calculator':'BAC','loan':'Loan','ohms-law':"Ohm's law",'grade-gpa':'Grade / GPA'};
  function nm(s){return N[s]||s.replace(/-calculator$/,'').replace(/-/g,' ').replace(/^./,function(c){return c.toUpperCase();});}
  function li(h,t,on){return '<li><a href="'+h+'"'+(on?' aria-current="page"':'')+'>'+t+'</a></li>';}
  function box(t,items){return '<div class="side-box"><h2>'+t+'</h2><ul class="side-list">'+items+'</ul></div>';}
