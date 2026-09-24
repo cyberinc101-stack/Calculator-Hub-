@@ -24,18 +24,18 @@
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
 }
 .mode-tab{
-  padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  padding:8px 16px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);
   font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
   background:transparent;color:var(--text-2);transition:all .15s;
 }
 .mode-tab.active{
-  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;
 }
 
 /* ── Timeline bar ── */
 .timeline-bar{
   position:relative;height:8px;
-  background:var(--card-border,#1e3a1e);
+  background:var(--border,#d5d9e6);
   border-radius:999px;margin:18px 0 8px;overflow:hidden;
 }
 .timeline-fill{
@@ -56,8 +56,8 @@
   margin-bottom:14px;
 }
 .stat-card{
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:12px;
   padding:14px 12px;text-align:center;
 }
@@ -79,8 +79,8 @@
 
 /* ── Breakdown grid ── */
 .breakdown-detail{
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:10px;padding:14px 18px;margin-bottom:14px;
 }
 .breakdown-detail-title{
@@ -89,7 +89,7 @@
 }
 .detail-row{
   display:flex;justify-content:space-between;align-items:baseline;
-  padding:5px 0;border-bottom:1px solid var(--card-border,#1e3a1e);
+  padding:5px 0;border-bottom:1px solid var(--border,#d5d9e6);
   font-size:.88rem;
 }
 .detail-row:last-child{ border-bottom:none; }
@@ -108,12 +108,12 @@
   display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;
 }
 .dir-pill{
-  padding:6px 14px;border-radius:999px;border:1.5px solid var(--card-border,#1e3a1e);
+  padding:6px 14px;border-radius:999px;border:1.5px solid var(--border,#d5d9e6);
   font-size:.8rem;font-weight:600;cursor:pointer;background:transparent;
   color:var(--text-2);transition:all .15s;font-family:var(--font-sans);
 }
 .dir-pill.active{
-  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;
 }
 
 @media(max-width:480px){
@@ -263,7 +263,7 @@
 
     <!-- Results: Add/Subtract mode -->
     <div class="results" id="add-results">
-      <div class="frac-answer" style="text-align:center;padding:28px 20px 20px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px">
+      <div class="frac-answer" style="text-align:center;padding:28px 20px 20px;background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:14px;margin-bottom:14px">
         <div style="font-family:var(--font-mono);font-size:clamp(1.6rem,5vw,2.8rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:6px" id="r-result-date">—</div>
         <div style="font-size:.85rem;color:var(--text-2)" id="r-result-dayname"></div>
       </div>

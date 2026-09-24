@@ -20,12 +20,12 @@
 <link rel="stylesheet" href="/css/vars.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/layout.css">
 <style>
 /* Unit toggle */
-.unit-toggle{display:flex;gap:0;margin-bottom:18px;border-radius:10px;overflow:hidden;border:1.5px solid var(--card-border,#1e3a1e);width:fit-content;}
+.unit-toggle{display:flex;gap:0;margin-bottom:18px;border-radius:10px;overflow:hidden;border:1.5px solid var(--border,#d5d9e6);width:fit-content;}
 .unit-toggle-btn{padding:7px 16px;font-size:.8rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:var(--text-2);font-family:var(--font-sans);transition:all .15s;}
-.unit-toggle-btn.active{background:var(--accent,#22c55e);color:#0a0f0a;}
+.unit-toggle-btn.active{background:var(--accent,#22c55e);color:#ffffff;}
 
 /* Macro donut + legend */
-.macro-visual{display:flex;align-items:center;gap:24px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;padding:20px;margin-bottom:14px;flex-wrap:wrap;}
+.macro-visual{display:flex;align-items:center;gap:24px;background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:14px;padding:20px;margin-bottom:14px;flex-wrap:wrap;}
 .macro-donut-wrap{flex-shrink:0;}
 .macro-legend{flex:1;min-width:160px;}
 .legend-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
@@ -36,25 +36,25 @@
 .legend-cal{font-size:.75rem;color:var(--text-2);}
 
 /* Big calorie display */
-.calorie-answer{text-align:center;padding:20px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px;}
+.calorie-answer{text-align:center;padding:20px;background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:14px;margin-bottom:14px;}
 .calorie-value{font-family:var(--font-mono);font-size:clamp(2rem,7vw,3.2rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:4px;}
 .calorie-label{font-size:.85rem;color:var(--text-2);}
 
 /* Stat grid */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px;}
-.stat-card{background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:12px;padding:14px 12px;text-align:center;}
+.stat-card{background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:12px;padding:14px 12px;text-align:center;}
 .stat-value{font-family:var(--font-mono);font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1.1;}
 .stat-label{font-size:.72rem;color:var(--text-2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
 
 /* Goal pills */
 .goal-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
-.goal-pill{padding:8px 14px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s;}
-.goal-pill.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;}
+.goal-pill{padding:8px 14px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s;}
+.goal-pill.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;}
 
 /* Meal split table */
 .meal-table{width:100%;border-collapse:collapse;font-size:.82rem;}
-.meal-table th{text-align:left;padding:6px 8px;color:var(--text-2);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--card-border,#1e3a1e);}
-.meal-table td{padding:7px 8px;border-bottom:1px solid var(--card-border,#1e3a1e);font-family:var(--font-mono);font-size:.82rem;}
+.meal-table th{text-align:left;padding:6px 8px;color:var(--text-2);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--border,#d5d9e6);}
+.meal-table td{padding:7px 8px;border-bottom:1px solid var(--border,#d5d9e6);font-family:var(--font-mono);font-size:.82rem;}
 .meal-table tr:last-child td{border-bottom:none;}
 </style>
   
@@ -123,7 +123,7 @@
 
     <div class="field" style="margin-bottom:14px">
       <label>Activity Level</label>
-      <select id="mac-activity" style="width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);background:var(--card,#111a11);color:var(--text);font-family:var(--font-sans);font-size:.9rem;">
+      <select id="mac-activity" style="width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);background:var(--surface2,#f4f5fb);color:var(--text);font-family:var(--font-sans);font-size:.9rem;">
         <option value="1.2">Sedentary (desk job, little or no exercise)</option>
         <option value="1.375">Lightly active (light exercise 1–3 days/week)</option>
         <option value="1.55" selected>Moderately active (moderate exercise 3–5 days/week)</option>
@@ -163,7 +163,7 @@
       <div class="macro-visual">
         <div class="macro-donut-wrap">
           <svg width="120" height="120" viewBox="0 0 120 120" id="macro-donut">
-            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--card-border,#1e3a1e)" stroke-width="18"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="var(--border,#d5d9e6)" stroke-width="18"/>
             <circle cx="60" cy="60" r="48" fill="none" stroke="#3b82f6" stroke-width="18"
               stroke-dasharray="0 301.59" stroke-dashoffset="75.4" id="donut-carb" style="transition:stroke-dasharray .4s ease"/>
             <circle cx="60" cy="60" r="48" fill="none" stroke="#22c55e" stroke-width="18"

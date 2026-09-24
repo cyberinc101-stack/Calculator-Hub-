@@ -24,12 +24,12 @@
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
 }
 .mode-tab{
-  padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  padding:8px 16px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);
   font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
   background:transparent;color:var(--text-2);transition:all .15s;
 }
 .mode-tab.active{
-  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;
 }
 
 /* ── Appliance quick-pick grid ── */
@@ -40,7 +40,7 @@
 }
 .appliance-chip{
   padding:8px 6px;border-radius:10px;
-  border:1.5px solid var(--card-border,#1e3a1e);
+  border:1.5px solid var(--border,#d5d9e6);
   background:transparent;cursor:pointer;
   font-family:var(--font-sans);font-size:.75rem;
   font-weight:600;color:var(--text-2);
@@ -51,7 +51,7 @@
   border-color:var(--accent,#22c55e);color:var(--text);
 }
 .appliance-chip.selected{
-  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;
 }
 .appliance-chip .chip-icon{ display:block;font-size:1.2rem;margin-bottom:3px; }
 .appliance-chip .chip-watts{ display:block;font-size:.68rem;opacity:.7;font-weight:400; }
@@ -59,8 +59,8 @@
 /* ── Cost display ── */
 .cost-answer{
   text-align:center;padding:24px 20px 18px;
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:14px;margin-bottom:14px;
 }
 .cost-main{
@@ -78,8 +78,8 @@
   gap:10px;margin-bottom:14px;
 }
 .stat-card{
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:12px;padding:14px 10px;text-align:center;
 }
 .stat-value{
@@ -102,7 +102,7 @@
 .multi-row input[type="text"]{ font-size:.85rem; }
 .multi-row input[type="number"]{ font-size:.85rem; }
 .remove-btn{
-  background:transparent;border:1.5px solid var(--card-border,#1e3a1e);
+  background:transparent;border:1.5px solid var(--border,#d5d9e6);
   border-radius:8px;width:34px;height:34px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;color:var(--text-2);font-size:1rem;
@@ -110,7 +110,7 @@
 }
 .remove-btn:hover{ border-color:#ef4444;color:#ef4444; }
 .add-appliance-btn{
-  background:transparent;border:1.5px dashed var(--card-border,#1e3a1e);
+  background:transparent;border:1.5px dashed var(--border,#d5d9e6);
   border-radius:10px;padding:10px;width:100%;
   font-family:var(--font-sans);font-size:.82rem;font-weight:600;
   color:var(--text-2);cursor:pointer;transition:all .15s;
@@ -127,10 +127,10 @@
   text-align:left;padding:6px 8px;
   font-size:.7rem;font-weight:700;letter-spacing:.07em;
   text-transform:uppercase;color:var(--text-2);
-  border-bottom:1.5px solid var(--card-border,#1e3a1e);
+  border-bottom:1.5px solid var(--border,#d5d9e6);
 }
 .multi-results-table td{
-  padding:8px 8px;border-bottom:1px solid var(--card-border,#1e3a1e);
+  padding:8px 8px;border-bottom:1px solid var(--border,#d5d9e6);
   vertical-align:middle;
 }
 .multi-results-table tr:last-child td{ border-bottom:none; }
@@ -139,7 +139,7 @@
   color:var(--accent,#22c55e);font-weight:700;
 }
 .multi-total-row td{
-  font-weight:700;border-top:1.5px solid var(--card-border,#1e3a1e);
+  font-weight:700;border-top:1.5px solid var(--border,#d5d9e6);
   padding-top:10px;
 }
 

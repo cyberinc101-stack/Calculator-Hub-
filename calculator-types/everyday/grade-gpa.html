@@ -22,13 +22,13 @@
 /* ── Mode tabs ── */
 .mode-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
 .mode-tab {
-  padding:8px 14px; border-radius:10px; border:1.5px solid var(--card-border,#1e3a1e);
+  padding:8px 14px; border-radius:10px; border:1.5px solid var(--border,#d5d9e6);
   font-size:.8rem; font-weight:600; cursor:pointer; font-family:var(--font-sans);
   background:transparent; color:var(--text-2); transition:all .15s; line-height:1.3; text-align:left;
 }
 .mode-tab .mode-tab-title { display:block; color:inherit; }
 .mode-tab .mode-tab-eg    { display:block; font-weight:400; font-size:.72rem; opacity:.65; margin-top:1px; }
-.mode-tab.active { background:var(--accent,#22c55e); border-color:var(--accent,#22c55e); color:#0a0f0a; }
+.mode-tab.active { background:var(--accent,#22c55e); border-color:var(--accent,#22c55e); color:#ffffff; }
 .mode-tab.active .mode-tab-eg { opacity:.75; }
 .mode-panel { display:none; }
 .mode-panel.active { display:block; }
@@ -42,19 +42,19 @@
 .course-table td { padding:4px 8px 4px 0; vertical-align:top; }
 .course-table td input, .course-table td select {
   width:100%; font-family:var(--font-sans); font-size:.85rem;
-  background:var(--card,#111a11); color:var(--text); border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb); color:var(--text); border:1.5px solid var(--border,#d5d9e6);
   border-radius:8px; padding:7px 10px; outline:none; box-sizing:border-box;
 }
 .course-table td input:focus, .course-table td select:focus { border-color:var(--accent,#22c55e); }
 .course-table td.td-del { width:36px; }
 .del-btn {
-  background:transparent; border:1.5px solid var(--card-border,#1e3a1e); border-radius:8px;
+  background:transparent; border:1.5px solid var(--border,#d5d9e6); border-radius:8px;
   color:var(--text-2); font-size:.9rem; cursor:pointer; padding:6px 8px; line-height:1;
   transition:all .15s;
 }
 .del-btn:hover { border-color:#ef4444; color:#ef4444; }
 .add-course-btn {
-  background:transparent; border:1.5px dashed var(--card-border,#1e3a1e); border-radius:10px;
+  background:transparent; border:1.5px dashed var(--border,#d5d9e6); border-radius:10px;
   color:var(--text-2); font-size:.83rem; font-weight:600; font-family:var(--font-sans);
   cursor:pointer; padding:9px 16px; width:100%; margin-bottom:14px; transition:all .15s;
 }
@@ -63,7 +63,7 @@
 /* ── GPA gauge ── */
 .gpa-gauge-wrap {
   text-align:center; padding:24px 20px 16px;
-  background:var(--card,#111a11); border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb); border:1.5px solid var(--border,#d5d9e6);
   border-radius:14px; margin-bottom:14px;
 }
 .gpa-value {
@@ -71,7 +71,7 @@
   font-weight:700; color:var(--accent,#22c55e); line-height:1; margin-bottom:4px;
 }
 .gpa-scale { font-size:.82rem; color:var(--text-2); margin-bottom:14px; }
-.gpa-track-wrap { background:var(--card-border,#1e3a1e); border-radius:999px; height:12px; overflow:hidden; margin:0 auto; max-width:380px; }
+.gpa-track-wrap { background:var(--border,#d5d9e6); border-radius:999px; height:12px; overflow:hidden; margin:0 auto; max-width:380px; }
 .gpa-track { height:100%; border-radius:999px; background:var(--accent,#22c55e); transition:width .6s ease; }
 .gpa-letter { font-size:1.4rem; font-weight:700; margin-top:10px; color:var(--text); }
 
@@ -85,7 +85,7 @@
 /* ── Final grade result ── */
 .final-result-box {
   text-align:center; padding:24px 20px 18px;
-  background:var(--card,#111a11); border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb); border:1.5px solid var(--border,#d5d9e6);
   border-radius:14px; margin-bottom:14px;
 }
 .final-result-pct {
@@ -277,7 +277,7 @@
           <div class="final-result-pct" id="fn-result-pct">—</div>
           <div class="final-result-sub" id="fn-result-sub"></div>
         </div>
-        <div class="formula-box" style="background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:10px;padding:14px 18px;margin-bottom:14px">
+        <div class="formula-box" style="background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:10px;padding:14px 18px;margin-bottom:14px">
           <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:8px">How it's calculated</div>
           <div style="font-family:var(--font-mono,monospace);font-size:.85rem;color:var(--text-2);line-height:1.7" id="fn-formula"></div>
         </div>

@@ -21,34 +21,34 @@
 <style>
 /* Mode tabs */
 .mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
-.mode-tab{padding:8px 16px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s;}
-.mode-tab.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;}
+.mode-tab{padding:8px 16px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);background:transparent;color:var(--text-2);transition:all .15s;}
+.mode-tab.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;}
 
 /* Unit toggle */
-.unit-toggle{display:flex;gap:0;margin-bottom:18px;border-radius:10px;overflow:hidden;border:1.5px solid var(--card-border,#1e3a1e);width:fit-content;}
+.unit-toggle{display:flex;gap:0;margin-bottom:18px;border-radius:10px;overflow:hidden;border:1.5px solid var(--border,#d5d9e6);width:fit-content;}
 .unit-toggle-btn{padding:7px 16px;font-size:.8rem;font-weight:600;background:transparent;border:none;cursor:pointer;color:var(--text-2);font-family:var(--font-sans);transition:all .15s;}
-.unit-toggle-btn.active{background:var(--accent,#22c55e);color:#0a0f0a;}
+.unit-toggle-btn.active{background:var(--accent,#22c55e);color:#ffffff;}
 
 /* Race distance pills */
 .dist-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
-.dist-pill{padding:7px 13px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-mono);background:transparent;color:var(--text-2);transition:all .15s;}
-.dist-pill.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;}
+.dist-pill{padding:7px 13px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font-mono);background:transparent;color:var(--text-2);transition:all .15s;}
+.dist-pill.active{background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;}
 
 /* Big answer */
-.pace-answer{text-align:center;padding:24px 20px 18px;background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:14px;margin-bottom:14px;}
+.pace-answer{text-align:center;padding:24px 20px 18px;background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:14px;margin-bottom:14px;}
 .pace-value{font-family:var(--font-mono);font-size:clamp(2rem,7vw,3.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1;margin-bottom:6px;}
 .pace-sub{font-size:.85rem;color:var(--text-2);}
 
 /* Stat grid */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px;}
-.stat-card{background:var(--card,#111a11);border:1.5px solid var(--card-border,#1e3a1e);border-radius:12px;padding:14px 12px;text-align:center;}
+.stat-card{background:var(--surface2,#f4f5fb);border:1.5px solid var(--border,#d5d9e6);border-radius:12px;padding:14px 12px;text-align:center;}
 .stat-value{font-family:var(--font-mono);font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--accent,#22c55e);line-height:1.1;}
 .stat-label{font-size:.72rem;color:var(--text-2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
 
 /* Split table */
 .split-table{width:100%;border-collapse:collapse;font-size:.82rem;}
-.split-table th{text-align:left;padding:6px 8px;color:var(--text-2);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--card-border,#1e3a1e);}
-.split-table td{padding:7px 8px;border-bottom:1px solid var(--card-border,#1e3a1e);font-family:var(--font-mono);font-size:.82rem;}
+.split-table th{text-align:left;padding:6px 8px;color:var(--text-2);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--border,#d5d9e6);}
+.split-table td{padding:7px 8px;border-bottom:1px solid var(--border,#d5d9e6);font-family:var(--font-mono);font-size:.82rem;}
 .split-table tr:last-child td{border-bottom:none;}
 .split-table tr.highlight-row td{color:var(--accent,#22c55e);font-weight:700;}
 
@@ -56,7 +56,7 @@
 .time-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:14px;flex-wrap:wrap;}
 .time-field{flex:1;min-width:70px;}
 .time-field label{display:block;font-size:.82rem;font-weight:600;color:var(--text-2);margin-bottom:6px;}
-.time-field input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);background:var(--card,#111a11);color:var(--text);font-family:var(--font-mono);font-size:1rem;box-sizing:border-box;}
+.time-field input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);background:var(--surface2,#f4f5fb);color:var(--text);font-family:var(--font-mono);font-size:1rem;box-sizing:border-box;}
 .time-sep{font-size:1.4rem;font-weight:700;color:var(--text-2);padding-bottom:10px;align-self:flex-end;}
 
 /* Pace input (mm:ss) */
