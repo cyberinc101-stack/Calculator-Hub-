@@ -24,12 +24,12 @@
   display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;
 }
 .mode-tab{
-  padding:8px 18px;border-radius:10px;border:1.5px solid var(--card-border,#1e3a1e);
+  padding:8px 18px;border-radius:10px;border:1.5px solid var(--border,#d5d9e6);
   font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);
   background:transparent;color:var(--text-2);transition:all .15s;
 }
 .mode-tab.active{
-  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#0a0f0a;
+  background:var(--accent,#22c55e);border-color:var(--accent,#22c55e);color:#ffffff;
 }
 
 /* ── Visual fraction display ── */
@@ -46,8 +46,8 @@
   line-height:1;
 }
 .frac-entry{
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:12px;
   padding:14px;
   text-align:center;
@@ -66,17 +66,17 @@
   display:flex;flex-direction:column;align-items:center;gap:0;
 }
 .frac-line{
-  width:100%;height:2px;background:var(--card-border,#1e3a1e);
+  width:100%;height:2px;background:var(--border,#d5d9e6);
   border-radius:2px;margin:4px 0;
 }
 .frac-num-input{
   width:60px;text-align:center;
   padding:6px 4px;
   font-family:var(--font-mono);font-size:1.05rem;font-weight:600;
-  background:var(--bg,#0a0f0a);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--bg,#ffffff);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:6px;
-  color:var(--text,#e8f5e9);
+  color:var(--text,#111827);
 }
 .frac-num-input:focus{
   outline:none;border-color:var(--accent,#22c55e);
@@ -88,8 +88,8 @@
 /* ── Big answer display ── */
 .frac-answer{
   text-align:center;padding:28px 20px 20px;
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:14px;margin-bottom:14px;
 }
 .frac-answer-visual{
@@ -125,8 +125,8 @@
 
 /* ── Steps box ── */
 .formula-box{
-  background:var(--card,#111a11);
-  border:1.5px solid var(--card-border,#1e3a1e);
+  background:var(--surface2,#f4f5fb);
+  border:1.5px solid var(--border,#d5d9e6);
   border-radius:10px;padding:14px 18px;margin-bottom:14px;
 }
 .formula-box-title{
@@ -159,8 +159,8 @@
 .frac-line{ height:3px; background:var(--text-2,#9bb59b); }
 .frac-num-input{ width:88px; font-size:1.25rem; padding:10px 6px; }
 .frac-whole-row .frac-num-input{ width:88px !important; }
-.frac-entry-label,.frac-whole-row label,.frac-denom-label{ font-size:.85rem; color:var(--text,#e8f5e9); }
-.formula-step{ font-family:var(--font-sans); font-size:1rem; line-height:1.7; color:var(--text,#e8f5e9); }
+.frac-entry-label,.frac-whole-row label,.frac-denom-label{ font-size:.85rem; color:var(--text,#111827); }
+.formula-step{ font-family:var(--font-sans); font-size:1rem; line-height:1.7; color:var(--text,#111827); }
 .mode-tab{ font-size:.95rem; }
 </style>
   
