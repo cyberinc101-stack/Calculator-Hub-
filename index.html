@@ -41,6 +41,112 @@
     <span class="trust-item">No sign-up</span>
     <span class="trust-item">Works on any device</span>
   </div>
+<!-- sci-calc:start -->
+<style>
+.sc{max-width:720px;margin:28px auto 0;padding:14px;background:var(--surface,#fff);border:1px solid var(--border,#d5d9e6);border-radius:16px;box-shadow:0 8px 30px rgba(60,50,140,.12);font-family:var(--font-sans,system-ui,sans-serif);color:var(--text,#111827);text-align:left}
+.sc:focus-within{border-color:var(--accent,#5046e5)}
+.sc-screen{background:#eef0fb;border-radius:10px;padding:8px 14px;margin-bottom:12px;text-align:right;min-height:74px;display:flex;flex-direction:column;justify-content:center}
+.sc-prev{font-size:.85rem;color:#4b5563;min-height:1.2em;overflow-x:auto;white-space:nowrap}
+.sc-main{font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;overflow-x:auto;white-space:nowrap;line-height:1.25}
+.sc-mem{float:left;font-size:.8rem;font-weight:700;color:var(--accent,#5046e5)}
+.sc-body{display:flex;flex-wrap:wrap;gap:14px}
+.sc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;flex:1 1 280px}
+.sc-grid button,.sc-deg{height:42px;border:1px solid #c9cee3;border-radius:8px;background:#f3f4fb;color:#111827;font:600 .95rem var(--font-sans,system-ui,sans-serif);cursor:pointer}
+.sc-grid button:hover{background:#e4e7f7}
+.sc-grid button:focus-visible{outline:2px solid var(--accent,#5046e5);outline-offset:1px}
+.sc-grid button.n{background:#dfe3f5}
+.sc-grid button.eq{background:var(--accent,#5046e5);border-color:var(--accent,#5046e5);color:#fff}
+.sc-grid button.ac{background:#fde4e4;border-color:#f3b8b8}
+.sc-grid sup{font-size:.65em}
+.sc-deg{grid-column:span 2;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:500;font-size:.9rem;cursor:default;background:#fff}
+.sc-deg label{display:flex;align-items:center;gap:4px;cursor:pointer}
+</style>
+<div class="sc" id="sci-calc" tabindex="0" aria-label="Scientific calculator">
+  <div class="sc-screen"><div class="sc-prev"><span class="sc-mem"></span><span class="sc-p"></span></div><div class="sc-main" aria-live="polite">0</div></div>
+  <div class="sc-body"><div class="sc-grid" id="sc-l"></div><div class="sc-grid" id="sc-r"></div></div>
+</div>
+<script>
+(function(){
+var root=document.getElementById('sci-calc');if(!root)return;
+var st={e:'',ans:0,mem:0,fresh:false,err:false,out:'0',prev:'',deg:true};
+var L=[['sin','sin('],['cos','cos('],['tan','tan('],'DEG',['sin<sup>-1</sup>','asin('],['cos<sup>-1</sup>','acos('],['tan<sup>-1</sup>','atan('],['π','π'],['e','e'],
+['x<sup>y</sup>','^'],['x<sup>3</sup>','^3'],['x<sup>2</sup>','^2'],['e<sup>x</sup>','e^('],['10<sup>x</sup>','10^('],
+['<sup>y</sup>√x','√'],['<sup>3</sup>√x','3√'],['√x','√('],['ln','ln('],['log','log('],
+['(','('],[')',')'],['1/x','1÷('],['%','%'],['n!','!']];
+var R=[['7','7'],['8','8'],['9','9'],['+','+'],['Back','~back'],['4','4'],['5','5'],['6','6'],['−','−'],['Ans','Ans'],
+['1','1'],['2','2'],['3','3'],['×','×'],['M+','~m+'],['0','0'],['.','.'],['EXP','E'],['÷','÷'],['M−','~m-'],
+['±','~pm'],['RND','~rnd'],['AC','~ac'],['=','~eq'],['MR','~mr']];
+function build(id,list){var g=document.getElementById(id);list.forEach(function(k){
+ if(k==='DEG'){var d=document.createElement('div');d.className='sc-deg';d.innerHTML='<label><input type="radio" name="sc-ang" value="d" checked> Deg</label><label><input type="radio" name="sc-ang" value="r"> Rad</label>';
+  d.addEventListener('change',function(ev){st.deg=ev.target.value==='d';});g.appendChild(d);return;}
+ var b=document.createElement('button');b.type='button';b.innerHTML=k[0];b.setAttribute('data-k',k[1]);
+ if(/^\d$|^\.$/.test(k[1]))b.className='n';if(k[1]==='~eq')b.className='eq';if(k[1]==='~ac')b.className='ac';g.appendChild(b);});}
+build('sc-l',L);build('sc-r',R);
+
+function fact(n){if(n<0||n!==Math.floor(n)||n>170)throw 0;var r=1;for(var i=2;i<=n;i++)r*=i;return r;}
+function evaluate(src,ans,deg){
+ var re=/(?:\d+\.?\d*|\.\d+)(?:E[−+]?\d+)?|Ans|asin|acos|atan|sin|cos|tan|ln|log|π|e|[+−×÷^√!%()]/y,t=[],last=0,m;
+ while(last<src.length){re.lastIndex=last;m=re.exec(src);if(!m)throw 0;t.push(m[0]);last=re.lastIndex;}
+ var i=0,peek=function(){return t[i];},next=function(){return t[i++];};
+ var rad=function(x){return deg?x*Math.PI/180:x;},dg=function(x){return deg?x*180/Math.PI:x;},cl=function(v){return Math.round(v*1e12)/1e12;};
+ var F={sin:function(x){return cl(Math.sin(rad(x)));},cos:function(x){return cl(Math.cos(rad(x)));},tan:function(x){return cl(Math.tan(rad(x)));},
+  asin:function(x){return dg(Math.asin(x));},acos:function(x){return dg(Math.acos(x));},atan:function(x){return dg(Math.atan(x));},ln:Math.log,log:Math.log10};
+ function expr(){var v=term();while(peek()==='+'||peek()==='−'){var o=next(),r=term();v=o==='+'?v+r:v-r;}return v;}
+ function term(){var v=unary();for(;;){var p=peek();
+  if(p==='×'||p==='÷'){next();var r=unary();v=p==='×'?v*r:v/r;}
+  else if(p!==undefined&&/^(\d|\.|Ans|[a-z]|π|\()/.test(p)){v*=unary();}else break;}return v;}
+ function unary(){var p=peek();if(p==='−'){next();return -unary();}if(p==='+'){next();return unary();}return power();}
+ function power(){var b=post(),p=peek();
+  if(p==='^'){next();return Math.pow(b,unary());}
+  if(p==='√'){next();var x=unary();if(x<0&&Math.abs(b%2)===1)return -Math.pow(-x,1/b);return Math.pow(x,1/b);}
+  return b;}
+ function post(){var v=primary();while(peek()==='!'||peek()==='%'){v=next()==='!'?fact(v):v/100;}return v;}
+ function primary(){var k=next();if(k===undefined)throw 0;
+  if(/^[\d.]/.test(k))return parseFloat(k.replace('−','-'));
+  if(k==='π')return Math.PI;if(k==='e')return Math.E;if(k==='Ans')return ans;
+  if(k==='√')return Math.sqrt(unary());
+  if(k==='('){var v=expr();if(peek()===')')next();return v;}
+  if(F[k]){if(next()!=='(')throw 0;var a=expr();if(peek()===')')next();return F[k](a);}
+  throw 0;}
+ var res=expr();if(i<t.length)throw 0;if(!isFinite(res))throw 0;return res;}
+function fmt(v){var s=parseFloat(v.toPrecision(12)).toString();return s.replace('e+','E').replace('e','E');}
+function lit(v){var s=fmt(v).replace(/-/g,'−');return v<0?'('+s+')':s;}
+
+var elMain=root.querySelector('.sc-main'),elPrev=root.querySelector('.sc-p'),elMem=root.querySelector('.sc-mem');
+function render(){elMain.textContent=st.fresh?st.out:(st.e||'0');elPrev.textContent=st.fresh?st.prev:'';elMem.textContent=st.mem?'M ':'';elMain.scrollLeft=elMain.scrollWidth;}
+function put(s){
+ if(st.fresh){st.e=(!st.err&&/^[+−×÷^!%]/.test(s))?'Ans':'';st.fresh=false;st.err=false;}
+ if(/^[+×÷]$/.test(s)&&/[+−×÷]$/.test(st.e))st.e=st.e.slice(0,-1);
+ st.e+=s;render();}
+function eq(){if(!st.e)return;
+ try{var v=evaluate(st.e,st.ans,st.deg);st.ans=v;st.out=fmt(v);st.prev=st.e+' =';st.err=false;}
+ catch(x){st.out='Error';st.prev=st.e;st.err=true;}
+ st.fresh=true;render();}
+function cur(){if(st.fresh)return st.err?0:st.ans;if(!st.e)return 0;try{return evaluate(st.e,st.ans,st.deg);}catch(x){return null;}}
+function cmd(c){
+ if(c==='~eq')return eq();
+ if(c==='~ac'){st.e='';st.fresh=false;st.err=false;return render();}
+ if(c==='~back'){if(st.fresh){st.e='';st.fresh=false;st.err=false;}else st.e=st.e.replace(/(?:asin|acos|atan|sin|cos|tan|ln|log)\($|Ans$|.$/,'');return render();}
+ if(c==='~m+'||c==='~m-'){var v=cur();if(v===null){st.out='Error';st.fresh=true;st.err=true;return render();}st.mem+=c==='~m+'?v:-v;st.mem=parseFloat(st.mem.toPrecision(12));return render();}
+ if(c==='~mr')return put(lit(st.mem));
+ if(c==='~rnd')return put(Math.random().toFixed(4));
+ if(c==='~pm'){if(st.fresh){st.e='';st.fresh=false;st.err=false;}
+  var m1=/\(−(\d*\.?\d+)\)$/.exec(st.e);
+  if(m1)st.e=st.e.slice(0,m1.index)+m1[1];
+  else{var m2=/(\d*\.?\d+)$/.exec(st.e);if(m2)st.e=st.e.slice(0,m2.index)+'(−'+m2[1]+')';else st.e+='(−';}
+  return render();}
+}
+root.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var k=b.getAttribute('data-k');k.charAt(0)==='~'?cmd(k):put(k);});
+root.addEventListener('keydown',function(ev){
+ if(ev.ctrlKey||ev.metaKey||ev.altKey)return;if((ev.key==='Enter'||ev.key===' ')&&ev.target.closest('button'))return;var k=ev.key,map={'-':'−','*':'×','/':'÷'};
+ if(/^[\d.+()^!%]$/.test(k)||map[k]){ev.preventDefault();put(map[k]||k);}
+ else if(k==='Enter'||k==='='){ev.preventDefault();eq();}
+ else if(k==='Backspace'){ev.preventDefault();cmd('~back');}
+ else if(k==='Escape'){cmd('~ac');}});
+render();
+})();
+</script>
+<!-- sci-calc:end -->
 </div>
 
 <!-- CATEGORY FILTER -->
