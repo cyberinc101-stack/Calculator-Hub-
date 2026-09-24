@@ -155,6 +155,13 @@
   .simplify-wrap{ grid-template-columns:1fr; }
   .simplify-arrow{ transform:rotate(90deg); }
 }
+/* readability overrides */
+.frac-line{ height:3px; background:var(--text-2,#9bb59b); }
+.frac-num-input{ width:88px; font-size:1.25rem; padding:10px 6px; }
+.frac-whole-row .frac-num-input{ width:88px !important; }
+.frac-entry-label,.frac-whole-row label,.frac-denom-label{ font-size:.85rem; color:var(--text,#e8f5e9); }
+.formula-step{ font-family:var(--font-sans); font-size:1rem; line-height:1.7; color:var(--text,#e8f5e9); }
+.mode-tab{ font-size:.95rem; }
 </style>
   
 <!-- ads:start -->
@@ -275,22 +282,22 @@
   <p>To add or subtract fractions, you must first find a common denominator — the lowest common multiple (LCM) of both denominators. Convert each fraction so both share that denominator, then add or subtract the numerators. Finally, simplify the result by dividing numerator and denominator by their greatest common factor (GCF).</p>
 
   <h3>Multiplying Fractions</h3>
-  <p>Multiply the numerators together, then multiply the denominators together. Simplify the result. Example: ²⁄₃ × ³⁄₄ = ⁶⁄₁₂ = ½.</p>
+  <p>Multiply the numerators together, then multiply the denominators together. Simplify the result. Example: 2/3 × 3/4 = 6/12 = 1/2.</p>
 
   <h3>Dividing Fractions</h3>
-  <p>To divide by a fraction, multiply by its reciprocal (flip numerator and denominator). Example: ²⁄₃ ÷ ⁴⁄₅ = ²⁄₃ × ⁵⁄₄ = ¹⁰⁄₁₂ = ⁵⁄₆.</p>
+  <p>To divide by a fraction, multiply by its reciprocal (flip numerator and denominator). Example: 2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6.</p>
 
   <div class="faq-item">
     <div class="faq-q">What is a mixed number?</div>
-    <div class="faq-a"><p>A mixed number combines a whole number and a proper fraction, like 2½. To calculate with mixed numbers, convert them to improper fractions first: multiply the whole number by the denominator and add the numerator (so 2½ becomes ⁵⁄₂). This calculator handles that conversion automatically.</p></div>
+    <div class="faq-a"><p>A mixed number combines a whole number and a proper fraction, like 2 1/2. To calculate with mixed numbers, convert them to improper fractions first: multiply the whole number by the denominator and add the numerator (so 2 1/2 becomes 5/2). This calculator handles that conversion automatically.</p></div>
   </div>
   <div class="faq-item">
     <div class="faq-q">What is simplifying a fraction?</div>
-    <div class="faq-a"><p>Simplifying (or reducing) a fraction means dividing both numerator and denominator by their greatest common factor until no common factor greater than 1 remains. For example, ¹²⁄₁₈ simplifies to ²⁄₃ because the GCF of 12 and 18 is 6.</p></div>
+    <div class="faq-a"><p>Simplifying (or reducing) a fraction means dividing both numerator and denominator by their greatest common factor until no common factor greater than 1 remains. For example, 12/18 simplifies to 2/3 because the GCF of 12 and 18 is 6.</p></div>
   </div>
   <div class="faq-item">
     <div class="faq-q">What is the lowest common denominator (LCD)?</div>
-    <div class="faq-a"><p>The LCD is the smallest number that is a multiple of both denominators. For ½ + ⅓, the LCD is 6 — so ½ becomes ³⁄₆ and ⅓ becomes ²⁄₆, giving ⁵⁄₆. Finding the LCD is the key step in adding and subtracting fractions.</p></div>
+    <div class="faq-a"><p>The LCD is the smallest number that is a multiple of both denominators. For 1/2 + 1/3, the LCD is 6 — so 1/2 becomes 3/6 and 1/3 becomes 2/6, giving 5/6. Finding the LCD is the key step in adding and subtracting fractions.</p></div>
   </div>
 </div>
 
