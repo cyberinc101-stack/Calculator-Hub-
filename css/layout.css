@@ -538,3 +538,28 @@
   .footer-app-link{ flex-wrap:wrap; }
   .footer-app-desc{ display:none; }
 }
+
+/* compact-layout:start */
+.calc-card-header{padding:12px 16px;gap:10px}
+.calc-icon{width:32px;height:32px;font-size:1rem;border-radius:8px}
+.calc-card-title{font-size:1rem}
+.calc-card-desc{font-size:.78rem}
+.calc-card-body{padding:14px 16px}
+.field-grid{gap:10px;margin-bottom:12px}
+.field{gap:3px}
+.field label{font-size:.7rem}
+.field input,.field select{padding:7px 10px;font-size:.9rem}
+.calc-btn{padding:10px;font-size:.92rem;margin-top:2px}
+.results{margin-top:14px}
+.results-grid{gap:8px;margin-bottom:10px}
+.result-item{padding:9px 12px}
+.result-value{font-size:1.1rem}
+.insight{padding:9px 12px;margin-top:8px}
+.seo-box{padding:18px 22px;margin-top:1.2rem}
+.ad-leaderboard{height:60px;margin:.6rem 0}
+.ad-banner{height:60px;margin:1rem 0}
+@media(min-width:641px){
+.field-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.calc-card,.seo-box,.ad-leaderboard,.ad-banner{max-width:780px;margin-left:auto;margin-right:auto}
+}
+/* compact-layout:end */
